@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Component Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'Blinky' 
+ * Project: 'base_project' 
  * Target:  'TM4C129 Flash' 
  */
 

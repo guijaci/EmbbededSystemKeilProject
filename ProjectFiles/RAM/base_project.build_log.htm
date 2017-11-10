@@ -17,25 +17,30 @@ Library Manager: ArmAr.exe V5.06 update 5 (build 528)
 Hex Converter:   FromElf.exe V5.06 update 5 (build 528)
 CPU DLL:         SARMCM3.DLL V5.24.1
 Dialog DLL:      DCM.DLL V1.16.0.0
-Target DLL:      UL2CM3.DLL V1.160.3.0
+Target DLL:      lmidk-agdi.dll V???
 Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\base_project.uvprojx
-Project File Date:  11/08/2017
+Project File Date:  11/10/2017
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild Project 'base_project' - Target 'TM4C129 RAM'
-compiling cfaf128x128x16.c...
 compiling LED.c...
-compiling Blinky.c...
+compiling cfaf128x128x16.c...
 assembling startup_TM4C129.s...
+compiling Blinky.c...
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(135): warning:  #177-D: variable "sContext"  was declared but never referenced
+  	tContext sContext;
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(136): warning:  #177-D: variable "sRect"  was declared but never referenced
+  	tRectangle sRect;
+Blinky.c: 2 warnings, 0 errors
 compiling RTX_Conf_CM.c...
 compiling system_TM4C129.c...
 linking...
-Program Size: Code=11940 RO-data=2400 RW-data=96 ZI-data=9432  
-".\RAM\base_project.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=7388 RO-data=744 RW-data=84 ZI-data=3732  
+".\RAM\base_project.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -62,24 +67,24 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device\Source\system_TM4C129.c
-      Source file:   Device\Source\ARM\startup_TM4C129.s
       Include file:  Device\Include\TM4C129\TM4C129.h
+      Source file:   Device\Source\ARM\startup_TM4C129.s
+      Source file:   Device\Source\system_TM4C129.c
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.1
-      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
-      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
-      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
-      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
-      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
+      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
+      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
+      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
 
    * Component: ARM::CMSIS:CORE:5.0.2
 
