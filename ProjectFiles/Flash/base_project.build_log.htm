@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.24.2.0
 Copyright (C) 2017 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Guilherme Jacichen, UTFPR, LIC=----
+License Information: Allan Patrick, UTFPR, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.24.1
@@ -21,21 +21,51 @@ Target DLL:      lmidk-agdi.dll V???
 Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\base_project.uvprojx
-Project File Date:  11/10/2017
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\base_project.uvprojx
+Project File Date:  11/11/2017
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild Project 'base_project' - Target 'TM4C129 Flash'
-compiling cfaf128x128x16.c...
 compiling LED.c...
 compiling Blinky.c...
-assembling startup_TM4C129.s...
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(164): warning:  #177-D: variable "val"  was declared but never referenced
+    int32_t val;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(165): warning:  #550-D: variable "a"  was set but never used
+        unsigned long a;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(188): warning:  #177-D: variable "val"  was declared but never referenced
+   int32_t val;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(189): warning:  #550-D: variable "b"  was set but never used
+   unsigned long b;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(210): warning:  #177-D: variable "val"  was declared but never referenced
+        int32_t val;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(211): warning:  #550-D: variable "c"  was set but never used
+        unsigned long c;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(239): warning:  #177-D: variable "val"  was declared but never referenced
+        int32_t val;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(240): warning:  #550-D: variable "d"  was set but never used
+        unsigned long  d;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(255): warning:  #550-D: variable "e"  was set but never used
+        unsigned long e;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(258): warning:  #177-D: variable "val"  was declared but never referenced
+        int32_t val;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(259): warning:  #177-D: variable "d"  was declared but never referenced
+        unsigned long  d;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(279): warning:  #550-D: variable "f"  was set but never used
+        unsigned long f;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(280): warning:  #177-D: variable "val"  was declared but never referenced
+        int32_t val;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(281): warning:  #177-D: variable "d"  was declared but never referenced
+        unsigned long  d;
+Blinky.c: 14 warnings, 0 errors
+compiling cfaf128x128x16.c...
 compiling RTX_Conf_CM.c...
+compiling retarget_io.c...
+assembling startup_TM4C129.s...
 compiling system_TM4C129.c...
 linking...
-Program Size: Code=11900 RO-data=2400 RW-data=96 ZI-data=4328  
-".\Flash\base_project.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=13584 RO-data=3416 RW-data=116 ZI-data=12172  
+".\Flash\base_project.axf" - 0 Error(s), 14 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -46,6 +76,14 @@ Package Vendor: ARM
    * Component: Keil RTX Version: 4.81.1
    * Component: CORE Version: 5.0.2
    * Component: RTOS Version: 1.0.0
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.ARM_Compiler.1.3.1.pack
+                Keil.ARM_Compiler.1.3.1
+                Keil ARM Compiler extensions for ARM Compiler 5 and ARM Compiler 6
+   * Component: STDOUT Variant: ITM Version: 1.2.0
+   * Component: STDIN Variant: ITM Version: 1.2.0
+   * Component: STDERR Variant: ITM Version: 1.2.0
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.TM4C_DFP.1.1.0.pack
@@ -62,29 +100,38 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: Keil::Device:Startup:1.0.0
+      Source file:   Device\Source\system_TM4C129.c
       Include file:  Device\Include\TM4C129\TM4C129.h
       Source file:   Device\Source\ARM\startup_TM4C129.s
-      Source file:   Device\Source\system_TM4C129.c
+
+   * Component: Keil.ARM Compiler::Compiler:I/O:STDOUT:ITM:1.2.0
+      Source file:   Source\retarget_io.c
+
+   * Component: Keil.ARM Compiler::Compiler:I/O:STDIN:ITM:1.2.0
+      Source file:   Source\retarget_io.c
+
+   * Component: Keil.ARM Compiler::Compiler:I/O:STDERR:ITM:1.2.0
+      Source file:   Source\retarget_io.c
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.1
-      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
-      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
       Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
       Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
       Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
 
    * Component: ARM::CMSIS:CORE:5.0.2
 
    * Component: ::CMSIS:RTOS:1.0.0 (API)
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

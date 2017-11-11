@@ -50,7 +50,7 @@ ARM Macro Assembler    Page 1
    32 00000000         
    33 00000000 00000200 
                        Stack_Size
-                               EQU              0x00000200
+                               EQU              0x0000200
    34 00000000         
    35 00000000                 AREA             STACK, NOINIT, READWRITE, ALIGN
 =3
