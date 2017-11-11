@@ -414,12 +414,7 @@ int main (void) {
 	osKernelStart();
 	
 	
-	//************************
-  //Thread Main
-  //************************
-  tid_drawer = osThreadGetId();
-  osThreadSetPriority(tid_drawer, osPriorityBelowNormal);
-  drawer();
+
 	
 //	sRect.i16XMin = 0;
 //	sRect.i16YMin = 0;
