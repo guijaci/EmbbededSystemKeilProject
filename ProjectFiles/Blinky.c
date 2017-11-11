@@ -383,7 +383,7 @@ osThreadDef(taskC, osPriorityNormal, 1, 0);
 osThreadDef(taskD, osPriorityNormal, 1, 0);
 osThreadDef(taskE, osPriorityNormal, 1, 0);
 osThreadDef(taskF, osPriorityNormal, 1, 0);
-//osThreadDef(drawer,  osPriorityNormal, 1, 0);
+osThreadDef(drawer,  osPriorityNormal, 1, 0);
 
 /*----------------------------------------------------------------------------
  *      Main: Initialize and start RTX Kernel
@@ -408,9 +408,8 @@ int main (void) {
   tid_taskC = osThreadCreate(osThread(taskC), NULL);
   tid_taskD = osThreadCreate(osThread(taskD), NULL);
 	tid_taskE = osThreadCreate(osThread(taskE), NULL);
-	tid_taskF = osThreadCreate(osThread(taskE), NULL);
-
-//	tid_drawer = osThreadCreate(osThread(drawer),  NULL);
+	tid_taskF = osThreadCreate(osThread(taskF), NULL);
+	tid_drawer = osThreadCreate(osThread(drawer),  NULL);
 
 	osKernelStart();
 	
