@@ -389,20 +389,12 @@ osThreadDef(drawer,  osPriorityNormal, 1, 0);
  *      Main: Initialize and start RTX Kernel
  *---------------------------------------------------------------------------*/
 int main (void) {
-//	tcontext scontext;
-//	trectangle srect;
-	
-//	ROM_SysCtlDeepSleepClockConfigSet(16, SYSCTL_DSLP_OSC_INT);
-//	SysCtlDeepSleepPowerSet(0x121);  // TSPD, FLASHPM = LOW_POWER_MODE, SRAMPM = STANDBY_MODE
-
 	osKernelInitialize();
 	
   SystemCoreClockUpdate();
   LED_Initialize();                         /* Initialize the LEDs           */
  	cfaf128x128x16Init();
-	
-//	GrContextInit(&sContext, &g_sCfaf128x128x16);
-	
+
   tid_taskA = osThreadCreate(osThread(taskA), NULL);
   tid_taskB = osThreadCreate(osThread(taskB), NULL);
   tid_taskC = osThreadCreate(osThread(taskC), NULL);
@@ -412,32 +404,6 @@ int main (void) {
 	tid_drawer = osThreadCreate(osThread(drawer),  NULL);
 
 	osKernelStart();
-	
-	
-
-	
-//	sRect.i16XMin = 0;
-//	sRect.i16YMin = 0;
-//	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
-//	sRect.i16YMax = 23;
-//	GrContextForegroundSet(&sContext, ClrDarkBlue);
-//	GrRectFill(&sContext, &sRect);
-
-//	intToString(33, casa, 10, 10);
-//	GrContextForegroundSet(&sContext, ClrWhite);
-//	GrRectDraw(&sContext, &sRect);
-//	
-//	GrContextFontSet(&sContext, g_psFontCm12);
-//	GrStringDrawCentered(&sContext,(char*)casa, -1,
-//											 GrContextDpyWidthGet(&sContext) / 2, 10, 0);
-
-//	GrContextFontSet(&sContext, g_psFontCm12/*g_psFontFixed6x8*/);
-//	GrStringDrawCentered(&sContext, "Hello World!", -1,
-//											 GrContextDpyWidthGet(&sContext) / 2,
-//											 ((GrContextDpyHeightGet(&sContext) - 24) / 2) + 24,
-//											 0);
-
-//	GrFlush(&sContext);
 	
 	osSignalSet(tid_taskA, 0x0001);          /* set signal to taskA thread   */
 	
