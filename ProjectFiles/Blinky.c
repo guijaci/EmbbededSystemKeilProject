@@ -305,7 +305,7 @@ void taskF(void  const *argument) {
 //  }
 //}
 
-void drawer () {
+void drawer (void  const *argument) {
 
 	tContext sContext;
 	tRectangle sRect;
