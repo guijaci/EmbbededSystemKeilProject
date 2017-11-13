@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Flash\base_project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Flash\base_project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Mon Nov 13 16:54:46 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Mon Nov 13 17:31:47 2017
 <BR><P>
 <H3>Maximum Stack Usage =        216 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -550,19 +550,19 @@ Global Symbols
 <LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fatorial
 </UL>
 
-<P><STRONG><a name="[cb]"></a>printLDC</STRONG> (Thumb, 1088 bytes, Stack size 48 bytes, blinky.o(.text))
+<P><STRONG><a name="[cb]"></a>printLDC</STRONG> (Thumb, 1406 bytes, Stack size 48 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 128<LI>Call Chain = printLDC &rArr; GrStringWidthGet &rArr; GrFontGlyphDataGet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrStringWidthGet
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrStringDraw
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrRectFill
-<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrRectDraw
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrRectFill
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrRectDraw
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrFontBaselineGet
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextFontSet
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextFontSet
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_Off
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_On
-<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;intToString
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;intToString
 </UL>
 <BR>[Called By]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskA
 </UL>
@@ -598,7 +598,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> blinky.o(.constdata)
 </UL>
-<P><STRONG><a name="[95]"></a>taskD</STRONG> (Thumb, 92 bytes, Stack size 16 bytes, blinky.o(.text))
+<P><STRONG><a name="[95]"></a>taskD</STRONG> (Thumb, 160 bytes, Stack size 16 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = taskD &rArr; osSignalSet &rArr; isrSignalSet &rArr; isr_evt_set &rArr; rt_psq_enq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalWait
@@ -628,7 +628,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> blinky.o(.constdata)
 </UL>
-<P><STRONG><a name="[98]"></a>drawer</STRONG> (Thumb, 860 bytes, Stack size 64 bytes, blinky.o(.text))
+<P><STRONG><a name="[98]"></a>drawer</STRONG> (Thumb, 786 bytes, Stack size 64 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = drawer &rArr; GrStringWidthGet &rArr; GrFontGlyphDataGet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalWait
@@ -636,14 +636,14 @@ Global Symbols
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrStringWidthGet
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrStringDraw
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrRectFill
-<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrRectDraw
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrRectFill
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrRectDraw
 <LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrFontBaselineGet
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextInit
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextFontSet
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextFontSet
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_Off
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_On
-<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;intToString
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;intToString
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> blinky.o(.constdata)
 </UL>
@@ -651,7 +651,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkReady
 </UL>
 
-<P><STRONG><a name="[da]"></a>checkReady</STRONG> (Thumb, 206 bytes, Stack size 28 bytes, blinky.o(.text))
+<P><STRONG><a name="[da]"></a>checkReady</STRONG> (Thumb, 264 bytes, Stack size 28 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 28<LI>Call Chain = checkReady
 </UL>
 <BR>[Calls]<UL><LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;swap
@@ -669,7 +669,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[df]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scheduler
 </UL>
 
-<P><STRONG><a name="[dc]"></a>nextRunning</STRONG> (Thumb, 102 bytes, Stack size 24 bytes, blinky.o(.text))
+<P><STRONG><a name="[dc]"></a>nextRunning</STRONG> (Thumb, 64 bytes, Stack size 24 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = nextRunning
 </UL>
 <BR>[Calls]<UL><LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getTotalPriority
@@ -1801,7 +1801,7 @@ Global Symbols
 
 <P><STRONG><a name="[182]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
-<P><STRONG><a name="[ce]"></a>GrContextFontSet</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, string.o(i.GrContextFontSet))
+<P><STRONG><a name="[cd]"></a>GrContextFontSet</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, string.o(i.GrContextFontSet))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = GrContextFontSet &rArr; UpdateContextCharMapping
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UpdateContextCharMapping
@@ -1846,19 +1846,19 @@ Global Symbols
 <P><STRONG><a name="[10e]"></a>GrLineDrawH</STRONG> (Thumb, 76 bytes, Stack size 16 bytes, line.o(i.GrLineDrawH))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = GrLineDrawH
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrRectDraw
+<BR>[Called By]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrRectDraw
 </UL>
 
 <P><STRONG><a name="[10f]"></a>GrLineDrawV</STRONG> (Thumb, 76 bytes, Stack size 16 bytes, line.o(i.GrLineDrawV))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = GrLineDrawV
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrRectDraw
+<BR>[Called By]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrRectDraw
 </UL>
 
 <P><STRONG><a name="[a2]"></a>GrMapISO8859_1_Unicode</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, charmap.o(i.GrMapISO8859_1_Unicode))
 <BR>[Address Reference Count : 1]<UL><LI> context.o(.constdata)
 </UL>
-<P><STRONG><a name="[cd]"></a>GrRectDraw</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, rectangle.o(i.GrRectDraw))
+<P><STRONG><a name="[cc]"></a>GrRectDraw</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, rectangle.o(i.GrRectDraw))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = GrRectDraw &rArr; GrLineDrawV
 </UL>
 <BR>[Calls]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrLineDrawV
@@ -1868,7 +1868,7 @@ Global Symbols
 <LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;printLDC
 </UL>
 
-<P><STRONG><a name="[cc]"></a>GrRectFill</STRONG> (Thumb, 180 bytes, Stack size 24 bytes, rectangle.o(i.GrRectFill))
+<P><STRONG><a name="[cf]"></a>GrRectFill</STRONG> (Thumb, 180 bytes, Stack size 24 bytes, rectangle.o(i.GrRectFill))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = GrRectFill
 </UL>
 <BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawer
@@ -2658,7 +2658,7 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[cf]"></a>intToString</STRONG> (Thumb, 102 bytes, Stack size 20 bytes, blinky.o(.text))
+<P><STRONG><a name="[ce]"></a>intToString</STRONG> (Thumb, 102 bytes, Stack size 20 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 20<LI>Call Chain = intToString
 </UL>
 <BR>[Called By]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawer
@@ -2786,7 +2786,7 @@ Local Symbols
 <P><STRONG><a name="[10b]"></a>UpdateContextCharMapping</STRONG> (Thumb, 108 bytes, Stack size 16 bytes, string.o(i.UpdateContextCharMapping))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = UpdateContextCharMapping
 </UL>
-<BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextFontSet
+<BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextFontSet
 </UL>
 
 <P><STRONG><a name="[147]"></a>rt_id2obj</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, rt_cmsis.o(i.rt_id2obj))

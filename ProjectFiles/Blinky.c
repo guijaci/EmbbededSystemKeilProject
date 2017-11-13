@@ -270,16 +270,10 @@ static void intToString(int value, char * pBuf, uint32_t len, uint32_t base){
     return;
 }
 
+
 void printLDC(tContext sContext ,tRectangle sRect){
 	
 		Switch_On (LED_CLK);
-//	sRect.i16XMin = 0;
-//	sRect.i16YMin = 0;
-//	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
-//	sRect.i16YMax = 23;
-//	GrContextForegroundSet(&sContext, ClrDarkBlue);
-		GrRectFill(&sContext, &sRect);
-
 	
 	GrContextForegroundSet(&sContext, ClrWhite);
 	GrRectDraw(&sContext, &sRect);
@@ -290,8 +284,9 @@ void printLDC(tContext sContext ,tRectangle sRect){
 	sRect.i16XMin = 15;
 	sRect.i16YMin = 17;
 	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
-	sRect.i16YMax = 128;
-	GrContextForegroundSet(&sContext, ClrDarkBlue);
+	sRect.i16YMax = 35;
+	GrContextForegroundSet(&sContext, ClrBlack);
+	GrContextBackgroundSet(&sContext, ClrBlack);
 		GrRectFill(&sContext, &sRect);
 
 	
@@ -339,8 +334,29 @@ void printLDC(tContext sContext ,tRectangle sRect){
 											 
 	GrStringDrawCentered(&sContext,"DEAD", -1,
 											 GrContextDpyWidthGet(&sContext) - 20,
-											 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);												 
+											 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);
 											 
+	GrStringDrawCentered(&sContext,"22708", -1,
+											 GrContextDpyWidthGet(&sContext) - 20,
+											 ((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);		
+
+	
+
+//	intToString(taskA_details.initTime, buf, 10, 10);
+//	GrStringDrawCentered(&sContext,(char*)buf, -1,
+//											 GrContextDpyWidthGet(&sContext) - 100,
+//											 ((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);
+	
+//	intToString(taskA_details.initTime, buf, 10, 10);
+//	GrStringDrawCentered(&sContext,(char*)buf, -1,
+//											 GrContextDpyWidthGet(&sContext) - 100,
+//											 ((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);		
+//	
+//		intToString(taskA_details.initTime, buf, 10, 10);
+//	GrStringDrawCentered(&sContext,(char*)buf, -1,
+//											 GrContextDpyWidthGet(&sContext) - 100,
+//											 ((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);		
+
 
 
 	GrFlush(&sContext);
