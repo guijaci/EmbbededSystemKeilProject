@@ -172,12 +172,12 @@ void timer_callback(const void* args)
 {
 	static uint8_t timerA = 0, timerB = 0, timerC = 0, timerD = 0, timerE = 0, timerF = 0;
 	const uint32_t 
-		perA = 1000/taskA_details.frequency, 
-		perB = 1000/taskB_details.frequency, 
-		perC = 1000/taskC_details.frequency, 
-		perD = 1000/taskD_details.frequency, 
-		perE = 1000/taskE_details.frequency, 
-		perF = 1000/taskF_details.frequency;
+		perA = 125/taskA_details.frequency, 
+		perB = 125/taskB_details.frequency, 
+		perC = 125/taskC_details.frequency, 
+		perD = 125/taskD_details.frequency, 
+		perE = 125/taskE_details.frequency, 
+		perF = 125/taskF_details.frequency;
 	timerA = (timerA + 1)% perA;
 	timerB = (timerB + 1)% perB;
 	timerC = (timerC + 1)% perC;
@@ -613,7 +613,7 @@ int main (void) {
 	
 	//Timer initialization
 	timerScheduler = osTimerCreate (osTimer(Timer2), osTimerPeriodic, NULL);
-	osTimerStart (timerScheduler, 1);    
+	osTimerStart (timerScheduler, 8);    
 
 	scheduler();
 			
