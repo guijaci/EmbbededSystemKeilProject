@@ -613,7 +613,7 @@ int main (void) {
 	
 	//Timer initialization
 	timerScheduler = osTimerCreate (osTimer(Timer2), osTimerPeriodic, NULL);
-	osTimerStart (timerScheduler, 20);    
+	osTimerStart (timerScheduler, 1);    
 
 	scheduler();
 			
