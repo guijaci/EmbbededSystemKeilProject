@@ -170,6 +170,7 @@ taskDetails taskDrawer_details = {
  *---------------------------------------------------------------------------*/
 void timer_callback(const void* args)
 {
+
 	static uint8_t timerA = 0, timerB = 0, timerC = 0, timerD = 0, timerE = 0, timerF = 0;
 	const uint32_t 
 		perA = 125/taskA_details.frequency, 
@@ -191,8 +192,8 @@ void timer_callback(const void* args)
 	if(timerD == 0 && taskD_details.task_state == WAITING){ taskD_details.task_state = READY; }
 	if(timerE == 0 && taskE_details.task_state == WAITING){ taskE_details.task_state = READY; }
 	if(timerF == 0 && taskF_details.task_state == WAITING){ taskF_details.task_state = READY; }
-
 	osSignalSet(tid_scheduler, 0x0001);
+	
 }
 
 
@@ -283,12 +284,12 @@ void taskA (void const *argument) {
    osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
 //    Switch_On (LED_0);
                 
-		 time = osKernelSysTick();
+		 taskA_details.initTime  = osKernelSysTick();
 			for(x = 0 ; x<=256 ; x++)
 			{
 				a = (x+(x+2));
 			}
-		taskA_details.initTime = osKernelSysTick() - time;
+
 		taskA_details.task_state = WAITING;
 		osSignalSet(tid_scheduler, 0x0001);
   }
@@ -306,12 +307,12 @@ void taskB (void const *argument) {
    osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
 //    Switch_On (LED_1);
 		//osSignalSet(tid_taskC, 0x0001);
-		time = osKernelSysTick();
+		taskB_details.initTime  = osKernelSysTick();
 		for( x = 1 ; x<=16 ; x++)
 			{
 				b = (2^x)/fatorial(x);
 			}
-    taskB_details.initTime = osKernelSysTick() - time;        /* call common signal function   */
+  
 		taskB_details.task_state = WAITING;
 		osSignalSet(tid_scheduler, 0x0001);
   }
@@ -327,12 +328,12 @@ void taskC (void const *argument) {
 	int x;
   for (;;) {
 		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-		time = osKernelSysTick();
-
+		
+		taskC_details.initTime = osKernelSysTick();
 		for(x = 1 ; x<=72 ; x++)
 			c = (x+1)/x;
 
-		taskC_details.initTime = osKernelSysTick() - time;
+		
 		taskC_details.task_state = WAITING;
 		osSignalSet(tid_scheduler, 0x0001);
   }
@@ -349,10 +350,9 @@ void taskD (void  const *argument) {
 	unsigned long  d;
   for (;;) {
 		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-		time = osKernelSysTick();
+		taskD_details.initTime = osKernelSysTick();
 		d = 1 + (5/fatorial(3))+(5/fatorial(5))+ (5/fatorial(7))+(5/fatorial(9));
 		
-		taskD_details.initTime = osKernelSysTick() - time;;
 		taskD_details.task_state = WAITING;
 		osSignalSet(tid_scheduler, 0x0001);
   }
@@ -367,11 +367,10 @@ void taskE (void  const *argument) {
 	unsigned long  d;
   for (;;) {
 		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-		time = osKernelSysTick();
+		taskE_details.initTime = osKernelSysTick();
 		for(x = 1 ; x<=100 ;x++)
 			e = x*PI2;
 		
-		taskE_details.initTime = osKernelSysTick() - time;;
 		taskE_details.task_state = WAITING;
 		osSignalSet(tid_scheduler, 0x0001);
   }
@@ -388,11 +387,10 @@ void taskF(void  const *argument) {
 	unsigned long  d;
   for (;;) {
 		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-		time = osKernelSysTick();
+		taskF_details.initTime  = osKernelSysTick();
 		for(x = 1 ; x<=128 ; x++)
 				f = (x*x*x)/(1<<x);
 		
-		taskF_details.initTime = osKernelSysTick() - time;
 		taskF_details.task_state = WAITING;
 		osSignalSet(tid_scheduler, 0x0001);
   }
@@ -522,6 +520,20 @@ int32_t getTotalPriority(taskDetails* details){
 	return details->dynamic_Priority + details->static_Priority;
 }
 
+void policies(taskDetails* tasksReady[7], uint8_t* sizeReady){
+	int i, j;
+	for(i=0; i<(*sizeReady); i++)
+	{
+		if(tasksReady[i]->task_state == READY){
+			if(tasksReady[i]->executionTime > tasksReady[i]->totalEstimateTime)
+				  tasksReady[i]->dynamic_Priority = tasksReady[i]->dynamic_Priority -10;
+			else
+					tasksReady[i]->dynamic_Priority = 0;
+		
+		}
+	}
+}
+
 taskDetails* nextRunning(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* lastRunning){
 	uint8_t i;
 	taskDetails* nextTask = lastRunning;
@@ -533,9 +545,18 @@ taskDetails* nextRunning(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDet
 	}
 	return nextTask;
 }
+void calcTime(taskDetails*  task){
+		static uint32_t cur_time = 0;
+		static uint32_t last_time = 0;
+		cur_time =  cur_time;
+		last_time = osKernelSysTick();
+		task->executionTime += cur_time - last_time;
+}
+
 
 void scheduler()
 {
+	
 	uint8_t i, sizeReady = 0, sizeWaiting = 7;
 	taskDetails* runningTask = NULL;
 	taskDetails* lastRunningTask = NULL;
@@ -563,10 +584,15 @@ void scheduler()
 	
 	while(1)
 	{
+	
 		osSignalWait(0x0001, osWaitForever);
 		checkReady(tasksReady, &sizeReady, tasksWaiting, &sizeWaiting);
 		lastRunningTask = runningTask;
+		if(lastRunningTask!= NULL )
+		calcTime(lastRunningTask);
+		policies(tasksReady, &sizeReady);
 		runningTask = nextRunning(tasksReady, &sizeReady, lastRunningTask);
+		
 		if(!sizeReady)
 			runningTask = NULL;
 		for(i = 0; i < 7; i++)
@@ -587,6 +613,7 @@ void scheduler()
 		if (*(runningTask->tid) == tid_taskE) 	{Switch_On (LED_0); Switch_Off(LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
 		if (*(runningTask->tid) == tid_taskF) 	{Switch_Off(LED_0); Switch_On (LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
 		if (*(runningTask->tid) == tid_drawer) 	{Switch_On (LED_0); Switch_On (LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
+		
 	}
 }
 /*----------------------------------------------------------------------------
