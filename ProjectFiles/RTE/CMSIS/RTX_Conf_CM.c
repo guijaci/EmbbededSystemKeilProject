@@ -260,6 +260,7 @@ void os_tick_irqack (void) {
 #define OS_ERROR_STACK_OVF      1
 #define OS_ERROR_FIFO_OVF       2
 #define OS_ERROR_MBX_OVF        3
+#define OS_ERROR_TIMER_OVF      4
 
 extern osThreadId svcThreadGetId (void);
 
@@ -279,6 +280,8 @@ void os_error (uint32_t error_code) {
     case OS_ERROR_MBX_OVF:
       /* Mailbox overflow detected. */
       break;
+		case OS_ERROR_TIMER_OVF	:
+			break;
   }
   for (;;);
 }

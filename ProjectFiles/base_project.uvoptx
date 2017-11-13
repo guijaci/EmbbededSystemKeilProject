@@ -262,7 +262,7 @@
         <Bp>
           <Number>7</Number>
           <Type>0</Type>
-          <LineNumber>496</LineNumber>
+          <LineNumber>397</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -278,7 +278,7 @@
         <Bp>
           <Number>8</Number>
           <Type>0</Type>
-          <LineNumber>510</LineNumber>
+          <LineNumber>272</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -287,7 +287,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>&lt;1&gt;.\Blinky.c</Filename>
+          <Filename>&lt;1&gt;RTE\CMSIS\RTX_Conf_CM.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -433,13 +433,17 @@
       <TargetDriverDllRegistry>
         <SetRegEntry>
           <Number>0</Number>
+          <Key>DLGUARM</Key>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
           <Key>ARMRTXEVENTFLAGS</Key>
           <Name>-L70 -Z18 -C0 -M0 -T1</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGTARM</Key>
-          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=-1,-1,-1,-1,0)(1009=-1,-1,-1,-1,0)(1012=-1,-1,-1,-1,0)</Name>
+          <Name>(1010=-1,-1,-1,-1,0)(1007=-1,-1,-1,-1,0)(1008=90,121,466,357,0)(1009=120,136,378,724,0)(1012=-1,-1,-1,-1,0)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -461,25 +465,25 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>510</LineNumber>
+          <LineNumber>272</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>3460</Address>
+          <Address>6504</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\Blinky.c</Filename>
+          <Filename>&lt;1&gt;RTE\CMSIS\RTX_Conf_CM.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\base_project\Blinky.c\510</Expression>
+          <Expression>\\base_project\RTE/CMSIS/RTX_Conf_CM.c\272</Expression>
         </Bp>
         <Bp>
           <Number>1</Number>
           <Type>0</Type>
-          <LineNumber>496</LineNumber>
+          <LineNumber>397</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>3360</Address>
+          <Address>2502</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -488,7 +492,23 @@
           <BreakIfRCount>1</BreakIfRCount>
           <Filename>&lt;1&gt;.\Blinky.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\base_project\Blinky.c\496</Expression>
+          <Expression>\\base_project\Blinky.c\397</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>224</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>6686</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;1&gt;RTE\Device\TM4C1294NCPDT\startup_TM4C129.s</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\base_project\RTE/Device/TM4C1294NCPDT/startup_TM4C129.s\224</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -507,26 +527,6 @@
           <WinNumber>1</WinNumber>
           <ItemText>tasksWaiting</ItemText>
         </Ww>
-        <Ww>
-          <count>3</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>sizeReady</ItemText>
-        </Ww>
-        <Ww>
-          <count>4</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>sizeWaiting</ItemText>
-        </Ww>
-        <Ww>
-          <count>5</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>tasksReady[i]</ItemText>
-        </Ww>
-        <Ww>
-          <count>6</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>nextTask</ItemText>
-        </Ww>
       </WatchWindow1>
       <Tracepoint>
         <THDelay>0</THDelay>
@@ -536,7 +536,7 @@
         <periodic>0</periodic>
         <aLwin>1</aLwin>
         <aCover>0</aCover>
-        <aSer1>1</aSer1>
+        <aSer1>0</aSer1>
         <aSer2>0</aSer2>
         <aPa>0</aPa>
         <viewmode>1</viewmode>
@@ -551,7 +551,7 @@
         <aLa>0</aLa>
         <aPa1>0</aPa1>
         <AscS4>0</AscS4>
-        <aSer4>1</aSer4>
+        <aSer4>0</aSer4>
         <StkLoc>0</StkLoc>
         <TrcWin>0</TrcWin>
         <newCpu>0</newCpu>

@@ -195,7 +195,7 @@
         <Bp>
           <Number>3</Number>
           <Type>0</Type>
-          <LineNumber>496</LineNumber>
+          <LineNumber>397</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -211,7 +211,7 @@
         <Bp>
           <Number>4</Number>
           <Type>0</Type>
-          <LineNumber>510</LineNumber>
+          <LineNumber>272</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -220,7 +220,7 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>&lt;1&gt;.\Blinky.c</Filename>
+          <Filename>&lt;1&gt;RTE\CMSIS\RTX_Conf_CM.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>

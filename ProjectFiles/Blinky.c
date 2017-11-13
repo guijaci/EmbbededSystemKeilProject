@@ -489,7 +489,7 @@ void swap(taskDetails** a, taskDetails** b){
 void checkReady(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* tasksWaiting[6], uint8_t* sizeWaiting)
 {
 	int i, j;
-	for(i=0; i<7 && tasksWaiting[i]; i++)
+	for(i=0; i<(*sizeWaiting); i++)
 	{
 		if(tasksWaiting[i]->task_state == READY)
 		{
@@ -503,7 +503,7 @@ void checkReady(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* tas
 		}
 	}
 	
-	for(i=0; i<7 && tasksWaiting[i]; i++)
+	for(i=0; i<(*sizeReady); i++)
 	{
 		if(tasksReady[i]->task_state == WAITING)
 		{
@@ -566,9 +566,9 @@ void scheduler()
 		osSignalWait(0x0001, osWaitForever);
 		checkReady(tasksReady, &sizeReady, tasksWaiting, &sizeWaiting);
 		lastRunningTask = runningTask;
-		if(!sizeReady)
-			lastRunningTask = NULL;
 		runningTask = nextRunning(tasksReady, &sizeReady, lastRunningTask);
+		if(!sizeReady)
+			runningTask = NULL;
 		for(i = 0; i < 7; i++)
 			osThreadSetPriority(*(user_thread_ids[i]), osPriorityIdle);
 		if(runningTask && runningTask->task_state != RUNNING)
@@ -577,7 +577,7 @@ void scheduler()
 			lastRunningTask->task_state = READY;
 		if(runningTask){
 			runningTask->task_state = RUNNING;
-			osThreadSetPriority(*(runningTask->tid), osPriorityHigh);
+			osThreadSetPriority(*(runningTask->tid), osPriorityNormal);
 		}
 		
 		if (*(runningTask->tid) == tid_taskA) 	{Switch_On (LED_0); Switch_Off(LED_1); Switch_Off(LED_2); Switch_Off(LED_3);}
@@ -608,12 +608,12 @@ int main (void) {
 	tid_drawer = osThreadCreate(osThread(drawer),  NULL);
 	tid_scheduler = osThreadGetId();
 	
-	osThreadSetPriority(tid_scheduler, osPriorityRealtime);
+	osThreadSetPriority(tid_scheduler, osPriorityHigh);
 	osKernelStart();
 	
 	//Timer initialization
 	timerScheduler = osTimerCreate (osTimer(Timer2), osTimerPeriodic, NULL);
-	osTimerStart (timerScheduler, 10);    
+	osTimerStart (timerScheduler, 20);    
 
 	scheduler();
 			

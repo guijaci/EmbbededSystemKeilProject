@@ -919,27 +919,27 @@ Image Symbol Table
     .text                                    0x0000049c   Section        0  led.o(.text)
     .text                                    0x00000620   Section        0  blinky.o(.text)
     intToString                              0x00000781   Thumb Code   102  blinky.o(.text)
-    .text                                    0x000010d0   Section        0  cfaf128x128x16.o(.text)
-    swap_ui16                                0x000010d1   Thumb Code    10  cfaf128x128x16.o(.text)
-    swap_i32                                 0x000010db   Thumb Code    10  cfaf128x128x16.o(.text)
-    cfaf128x128x16SsiTransfer                0x000010e5   Thumb Code    56  cfaf128x128x16.o(.text)
-    cfaf128x128x16WriteCommand               0x0000111d   Thumb Code    60  cfaf128x128x16.o(.text)
-    cfaf128x128x16WriteData                  0x00001159   Thumb Code    74  cfaf128x128x16.o(.text)
-    cfaf128x128x16WriteRegister              0x000011a3   Thumb Code    20  cfaf128x128x16.o(.text)
-    cfaf128x128x16SetWindow                  0x000011b7   Thumb Code   206  cfaf128x128x16.o(.text)
-    cfaf128x128x16PixelDraw                  0x00001375   Thumb Code    28  cfaf128x128x16.o(.text)
-    cfaf128x128x16PixelDrawMultiple          0x00001391   Thumb Code   498  cfaf128x128x16.o(.text)
-    cfaf128x128x16LineDrawH                  0x00001583   Thumb Code    48  cfaf128x128x16.o(.text)
-    cfaf128x128x16LineDrawV                  0x000015b3   Thumb Code    48  cfaf128x128x16.o(.text)
-    cfaf128x128x16RectFill                   0x000015e3   Thumb Code   100  cfaf128x128x16.o(.text)
-    cfaf128x128x16ColorTranslate             0x00001647   Thumb Code    24  cfaf128x128x16.o(.text)
-    cfaf128x128x16Flush                      0x0000165f   Thumb Code     2  cfaf128x128x16.o(.text)
-    ssiSetDataMode                           0x000016d9   Thumb Code    22  cfaf128x128x16.o(.text)
-    ssiSetClockDivider                       0x000016ef   Thumb Code     6  cfaf128x128x16.o(.text)
-    InitSSICom                               0x000016f5   Thumb Code   178  cfaf128x128x16.o(.text)
-    .text                                    0x0000196c   Section        0  rtx_conf_cm.o(.text)
-    __tagsym$$used                           0x000019d1   Number         0  rtx_conf_cm.o(.text)
-    __tagsym$$used                           0x000019e7   Number         0  rtx_conf_cm.o(.text)
+    .text                                    0x000010c8   Section        0  cfaf128x128x16.o(.text)
+    swap_ui16                                0x000010c9   Thumb Code    10  cfaf128x128x16.o(.text)
+    swap_i32                                 0x000010d3   Thumb Code    10  cfaf128x128x16.o(.text)
+    cfaf128x128x16SsiTransfer                0x000010dd   Thumb Code    56  cfaf128x128x16.o(.text)
+    cfaf128x128x16WriteCommand               0x00001115   Thumb Code    60  cfaf128x128x16.o(.text)
+    cfaf128x128x16WriteData                  0x00001151   Thumb Code    74  cfaf128x128x16.o(.text)
+    cfaf128x128x16WriteRegister              0x0000119b   Thumb Code    20  cfaf128x128x16.o(.text)
+    cfaf128x128x16SetWindow                  0x000011af   Thumb Code   206  cfaf128x128x16.o(.text)
+    cfaf128x128x16PixelDraw                  0x0000136d   Thumb Code    28  cfaf128x128x16.o(.text)
+    cfaf128x128x16PixelDrawMultiple          0x00001389   Thumb Code   498  cfaf128x128x16.o(.text)
+    cfaf128x128x16LineDrawH                  0x0000157b   Thumb Code    48  cfaf128x128x16.o(.text)
+    cfaf128x128x16LineDrawV                  0x000015ab   Thumb Code    48  cfaf128x128x16.o(.text)
+    cfaf128x128x16RectFill                   0x000015db   Thumb Code   100  cfaf128x128x16.o(.text)
+    cfaf128x128x16ColorTranslate             0x0000163f   Thumb Code    24  cfaf128x128x16.o(.text)
+    cfaf128x128x16Flush                      0x00001657   Thumb Code     2  cfaf128x128x16.o(.text)
+    ssiSetDataMode                           0x000016d1   Thumb Code    22  cfaf128x128x16.o(.text)
+    ssiSetClockDivider                       0x000016e7   Thumb Code     6  cfaf128x128x16.o(.text)
+    InitSSICom                               0x000016ed   Thumb Code   178  cfaf128x128x16.o(.text)
+    .text                                    0x00001964   Section        0  rtx_conf_cm.o(.text)
+    __tagsym$$used                           0x000019cf   Number         0  rtx_conf_cm.o(.text)
+    __tagsym$$used                           0x000019e5   Number         0  rtx_conf_cm.o(.text)
     .text                                    0x00001a14   Section      300  startup_tm4c129.o(.text)
     $v0                                      0x00001a14   Number         0  startup_tm4c129.o(.text)
     .text                                    0x00001b40   Section        0  system_tm4c129.o(.text)
@@ -1247,27 +1247,27 @@ Image Symbol Table
     taskF                                    0x00000987   Thumb Code    76  blinky.o(.text)
     drawer                                   0x000009d3   Thumb Code   812  blinky.o(.text)
     swap                                     0x00000cff   Thumb Code    10  blinky.o(.text)
-    checkReady                               0x00000d09   Thumb Code   214  blinky.o(.text)
-    getTotalPriority                         0x00000ddf   Thumb Code    14  blinky.o(.text)
-    nextRunning                              0x00000ded   Thumb Code    64  blinky.o(.text)
-    scheduler                                0x00000e2d   Thumb Code   458  blinky.o(.text)
-    main                                     0x00000ff7   Thumb Code   150  blinky.o(.text)
-    cfaf128x128x16Rect                       0x00001285   Thumb Code   134  cfaf128x128x16.o(.text)
-    cfaf128x128x16LineVer                    0x0000130b   Thumb Code    38  cfaf128x128x16.o(.text)
-    cfaf128x128x16LineHor                    0x00001331   Thumb Code    38  cfaf128x128x16.o(.text)
-    cfaf128x128x16Dot                        0x00001357   Thumb Code    30  cfaf128x128x16.o(.text)
-    cfaf128x128x16SetOrientation             0x00001661   Thumb Code    74  cfaf128x128x16.o(.text)
-    cfaf128x128x16ClearColor                 0x000016ab   Thumb Code    36  cfaf128x128x16.o(.text)
-    cfaf128x128x16Clear                      0x000016cf   Thumb Code    10  cfaf128x128x16.o(.text)
-    cfaf128x128x16Init                       0x000017a7   Thumb Code   384  cfaf128x128x16.o(.text)
-    os_idle_demon                            0x0000196d   Thumb Code     4  rtx_conf_cm.o(.text)
-    os_error                                 0x00001971   Thumb Code    26  rtx_conf_cm.o(.text)
-    rt_init_robin                            0x0000198b   Thumb Code     2  rtx_conf_cm.o(.text)
-    rt_chk_robin                             0x0000198d   Thumb Code     2  rtx_conf_cm.o(.text)
-    __user_perthread_libspace                0x0000198f   Thumb Code    32  rtx_conf_cm.o(.text)
-    _mutex_initialize                        0x000019af   Thumb Code    34  rtx_conf_cm.o(.text)
-    _mutex_acquire                           0x000019d1   Thumb Code    22  rtx_conf_cm.o(.text)
-    _mutex_release                           0x000019e7   Thumb Code    18  rtx_conf_cm.o(.text)
+    checkReady                               0x00000d09   Thumb Code   206  blinky.o(.text)
+    getTotalPriority                         0x00000dd7   Thumb Code    14  blinky.o(.text)
+    nextRunning                              0x00000de5   Thumb Code    64  blinky.o(.text)
+    scheduler                                0x00000e25   Thumb Code   458  blinky.o(.text)
+    main                                     0x00000fef   Thumb Code   150  blinky.o(.text)
+    cfaf128x128x16Rect                       0x0000127d   Thumb Code   134  cfaf128x128x16.o(.text)
+    cfaf128x128x16LineVer                    0x00001303   Thumb Code    38  cfaf128x128x16.o(.text)
+    cfaf128x128x16LineHor                    0x00001329   Thumb Code    38  cfaf128x128x16.o(.text)
+    cfaf128x128x16Dot                        0x0000134f   Thumb Code    30  cfaf128x128x16.o(.text)
+    cfaf128x128x16SetOrientation             0x00001659   Thumb Code    74  cfaf128x128x16.o(.text)
+    cfaf128x128x16ClearColor                 0x000016a3   Thumb Code    36  cfaf128x128x16.o(.text)
+    cfaf128x128x16Clear                      0x000016c7   Thumb Code    10  cfaf128x128x16.o(.text)
+    cfaf128x128x16Init                       0x0000179f   Thumb Code   384  cfaf128x128x16.o(.text)
+    os_idle_demon                            0x00001965   Thumb Code     4  rtx_conf_cm.o(.text)
+    os_error                                 0x00001969   Thumb Code    32  rtx_conf_cm.o(.text)
+    rt_init_robin                            0x00001989   Thumb Code     2  rtx_conf_cm.o(.text)
+    rt_chk_robin                             0x0000198b   Thumb Code     2  rtx_conf_cm.o(.text)
+    __user_perthread_libspace                0x0000198d   Thumb Code    32  rtx_conf_cm.o(.text)
+    _mutex_initialize                        0x000019ad   Thumb Code    34  rtx_conf_cm.o(.text)
+    _mutex_acquire                           0x000019cf   Thumb Code    22  rtx_conf_cm.o(.text)
+    _mutex_release                           0x000019e5   Thumb Code    18  rtx_conf_cm.o(.text)
     Reset_Handler                            0x00001a15   Thumb Code     8  startup_tm4c129.o(.text)
     NMI_Handler                              0x00001a1d   Thumb Code     2  startup_tm4c129.o(.text)
     HardFault_Handler                        0x00001a1f   Thumb Code     2  startup_tm4c129.o(.text)
@@ -1689,9 +1689,9 @@ Memory Map of the image
     0x000002e8   0x000002e8   0x0000001c   Code   RO          168    .emb_text           rtx_conf_cm.o
     0x00000304   0x00000304   0x00000198   Code   RO         1855    .emb_text           RTX_CM4.lib(hal_cm4.o)
     0x0000049c   0x0000049c   0x00000184   Code   RO            4    .text               led.o
-    0x00000620   0x00000620   0x00000ab0   Code   RO           63    .text               blinky.o
-    0x000010d0   0x000010d0   0x0000089c   Code   RO          134    .text               cfaf128x128x16.o
-    0x0000196c   0x0000196c   0x000000a8   Code   RO          169    .text               rtx_conf_cm.o
+    0x00000620   0x00000620   0x00000aa8   Code   RO           63    .text               blinky.o
+    0x000010c8   0x000010c8   0x0000089c   Code   RO          134    .text               cfaf128x128x16.o
+    0x00001964   0x00001964   0x000000b0   Code   RO          169    .text               rtx_conf_cm.o
     0x00001a14   0x00001a14   0x0000012c   Code   RO          234    .text               startup_tm4c129.o
     0x00001b40   0x00001b40   0x00000028   Code   RO          241    .text               system_tm4c129.o
     0x00001b68   0x00001b68   0x00000008   Code   RO         1891    .text               c_w.l(libspace.o)
@@ -1881,15 +1881,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-      2736        182        213        252         44      38492   blinky.o
+      2728        182        213        252         44      38436   blinky.o
       2204         86         64          5          0      10802   cfaf128x128x16.o
        388         32         16          0          0       6323   led.o
-       196         34        104         20       9120       9324   rtx_conf_cm.o
+       204         36        104         20       9120       9328   rtx_conf_cm.o
        300         22        512          0        512       6052   startup_tm4c129.o
         40         12          0          4          0        925   system_tm4c129.o
 
     ----------------------------------------------------------------------
-      5864        368        944        284       9680      71918   Object Totals
+      5864        370        944        284       9680      71866   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          0          0          3          3          4          0   (incl. Padding)
 
@@ -1971,9 +1971,9 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     15324       1006       3496        320       9880     252832   Grand Totals
-     15324       1006       3496        100       9880     252832   ELF Image Totals (compressed)
-     15324       1006       3496        100          0          0   ROM Totals
+     15324       1008       3496        320       9880     252780   Grand Totals
+     15324       1008       3496        100       9880     252780   ELF Image Totals (compressed)
+     15324       1008       3496        100          0          0   ROM Totals
 
 ==============================================================================
 
