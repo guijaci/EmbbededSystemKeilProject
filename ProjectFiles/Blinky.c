@@ -43,8 +43,7 @@ osThreadId tid_scheduler;
 int i;
 volatile int time1;
 
-uint8_t buf [10];
-char casa [10] ;
+char buf [10] ;
 
 
 //Timer
@@ -271,6 +270,85 @@ static void intToString(int value, char * pBuf, uint32_t len, uint32_t base){
     return;
 }
 
+void printLDC(tContext sContext ,tRectangle sRect){
+	
+		Switch_On (LED_CLK);
+//	sRect.i16XMin = 0;
+//	sRect.i16YMin = 0;
+//	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
+//	sRect.i16YMax = 23;
+//	GrContextForegroundSet(&sContext, ClrDarkBlue);
+		GrRectFill(&sContext, &sRect);
+
+	
+	GrContextForegroundSet(&sContext, ClrWhite);
+	GrRectDraw(&sContext, &sRect);
+	
+	GrContextFontSet(&sContext, g_psFontCm12);
+	intToString(33, buf, 10, 10);
+	Switch_On (LED_CLK);
+	sRect.i16XMin = 15;
+	sRect.i16YMin = 17;
+	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
+	sRect.i16YMax = 128;
+	GrContextForegroundSet(&sContext, ClrDarkBlue);
+		GrRectFill(&sContext, &sRect);
+
+	
+	GrContextForegroundSet(&sContext, ClrWhite);
+	GrRectDraw(&sContext, &sRect);
+	
+	GrContextFontSet(&sContext, g_psFontCm12);
+	intToString(33, buf, 10, 10);
+//	GrStringDrawCentered(&sContext,(char*)buf, -1,
+//											 GrContextDpyWidthGet(&sContext) / 2, 10, 0);
+	GrFlush(&sContext);
+	intToString(taskA_details.initTime, buf, 10, 10);
+	GrContextFontSet(&sContext,g_psFontFixed6x8);
+	GrStringDrawCentered(&sContext,"A", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);
+	GrStringDrawCentered(&sContext,"B", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);
+	GrStringDrawCentered(&sContext,"C", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);
+	GrStringDrawCentered(&sContext,"D", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);
+	GrStringDrawCentered(&sContext,"E", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);
+	GrStringDrawCentered(&sContext,"F", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);
+
+
+	GrStringDrawCentered(&sContext,"PRI", -1,
+											 GrContextDpyWidthGet(&sContext) - 100,
+											 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);
+											 
+	GrStringDrawCentered(&sContext,"%", -1,
+											 GrContextDpyWidthGet(&sContext) - 80,
+											 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);
+											 
+	GrStringDrawCentered(&sContext,"STA", -1,
+											 GrContextDpyWidthGet(&sContext) - 60,
+											 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);	
+											 
+	GrStringDrawCentered(&sContext,"DEAD", -1,
+											 GrContextDpyWidthGet(&sContext) - 20,
+											 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);												 
+											 
+
+
+	GrFlush(&sContext);
+	osDelay(5000);   
+	Switch_Off(LED_CLK);
+
+}
+
 
 /*----------------------------------------------------------------------------
  *      Thread 1 'taskA': task A output
@@ -280,6 +358,10 @@ void taskA (void const *argument) {
   int32_t val;
 	unsigned long a;
 	int x;
+	
+	tContext sContext;
+	tRectangle sRect;
+	GrContextInit(&sContext, &g_sCfaf128x128x16);
   for (;;) {
    osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
 //    Switch_On (LED_0);
@@ -289,8 +371,9 @@ void taskA (void const *argument) {
 			{
 				a = (x+(x+2));
 			}
-
+	
 		taskA_details.task_state = WAITING;
+		printLDC( sContext ,sRect);
 		osSignalSet(tid_scheduler, 0x0001);
   }
 }
@@ -405,11 +488,11 @@ void drawer (void  const *argument) {
   while (1) {
 	osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
 	Switch_On (LED_CLK);
-//	sRect.i16XMin = 0;
-//	sRect.i16YMin = 0;
-//	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
-//	sRect.i16YMax = 23;
-//	GrContextForegroundSet(&sContext, ClrDarkBlue);
+	sRect.i16XMin = 15;
+	sRect.i16YMin = 20;
+	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
+	sRect.i16YMax = 128;
+	GrContextForegroundSet(&sContext, ClrDarkBlue);
 		GrRectFill(&sContext, &sRect);
 
 	
@@ -417,47 +500,47 @@ void drawer (void  const *argument) {
 	GrRectDraw(&sContext, &sRect);
 	
 	GrContextFontSet(&sContext, g_psFontCm12);
-	intToString(33, casa, 10, 10);
-//	GrStringDrawCentered(&sContext,(char*)casa, -1,
+	intToString(33, buf, 10, 10);
+//	GrStringDrawCentered(&sContext,(char*)buf, -1,
 //											 GrContextDpyWidthGet(&sContext) / 2, 10, 0);
 	GrFlush(&sContext);
-	intToString(taskA_details.initTime, casa, 10, 10);
+	intToString(taskA_details.initTime, buf, 10, 10);
 	GrContextFontSet(&sContext,g_psFontFixed6x8);
-	GrStringDrawCentered(&sContext,(char*)casa, -1,
-											 GrContextDpyWidthGet(&sContext) / 2,
-											 ((GrContextDpyHeightGet(&sContext)- 120)) + 10,
+	GrStringDrawCentered(&sContext,"A", -1,
+											 GrContextDpyWidthGet(&sContext) - 118,
+											 ((GrContextDpyHeightGet(&sContext)- 115)) + 10,
 											 0);
 	
-	intToString(taskB_details.initTime, casa, 10, 10);
+	intToString(taskB_details.initTime, buf, 10, 10);
 	GrContextFontSet(&sContext, g_psFontFixed6x8/*g_psFontFixed6x8*/);
-	GrStringDrawCentered(&sContext,(char*)casa, -1,
+	GrStringDrawCentered(&sContext,(char*)buf, -1,
 											 GrContextDpyWidthGet(&sContext) / 2,
 											 ((GrContextDpyHeightGet(&sContext)- 110)) + 10,
 											 0);
 	
-	intToString(taskC_details.initTime, casa, 10, 10);
+	intToString(taskC_details.initTime, buf, 10, 10);
 	GrContextFontSet(&sContext, g_psFontFixed6x8/*g_psFontFixed6x8*/);
-	GrStringDrawCentered(&sContext,(char*)casa, -1,
+	GrStringDrawCentered(&sContext,(char*)buf, -1,
 											 GrContextDpyWidthGet(&sContext) / 2,
 											 ((GrContextDpyHeightGet(&sContext)- 100)) + 10,
 											 0);
 	
-	intToString(taskD_details.initTime, casa, 10, 10);
+	intToString(taskD_details.initTime, buf, 10, 10);
 	GrContextFontSet(&sContext, g_psFontFixed6x8/*g_psFontFixed6x8*/);
-	GrStringDrawCentered(&sContext,(char*)casa, -1,
+	GrStringDrawCentered(&sContext,(char*)buf, -1,
 											 GrContextDpyWidthGet(&sContext) / 2,
 											 ((GrContextDpyHeightGet(&sContext)- 90)) + 10,0);
 	
 	
-	intToString(taskE_details.initTime, casa, 10, 10);
+	intToString(taskE_details.initTime, buf, 10, 10);
 	GrContextFontSet(&sContext, g_psFontFixed6x8/*g_psFontFixed6x8*/);
-	GrStringDrawCentered(&sContext,(char*)casa, -1,
+	GrStringDrawCentered(&sContext,(char*)buf, -1,
 											 GrContextDpyWidthGet(&sContext) / 2,
 											 ((GrContextDpyHeightGet(&sContext)- 80)) + 10,0);
 	
-	intToString(taskF_details.initTime, casa, 10, 10);
+	intToString(taskF_details.initTime, buf, 10, 10);
 	GrContextFontSet(&sContext, g_psFontFixed6x8/*g_psFontFixed6x8*/);
-	GrStringDrawCentered(&sContext,(char*)casa, -1,
+	GrStringDrawCentered(&sContext,(char*)buf, -1,
 											 GrContextDpyWidthGet(&sContext) / 2,
 											 ((GrContextDpyHeightGet(&sContext)- 70)) + 10,0);
 
