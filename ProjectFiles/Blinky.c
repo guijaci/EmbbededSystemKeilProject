@@ -52,6 +52,8 @@ void timer_callback(const void* args);
 static osTimerId timerScheduler;                             // timer id
 static osTimerDef(Timer2, timer_callback);
 
+
+
 //====================================================
 // nome
 //====================================================
@@ -162,6 +164,29 @@ taskDetails taskDrawer_details = {
 	false,
 	10
 };
+
+//====================================================
+//Mail Queue
+//====================================================
+
+#define MAILQUEUE_OBJECTS      16                               
+// number of Message Queue Objects
+// object data type
+typedef struct {                                                
+	 taskDetails* task;
+	 int8_t dynamic_Priority;
+   int8_t static_Priority;
+	 uint16_t deadline; //in ticks
+	 uint32_t executionTime;
+	 uint32_t totalEstimateTime;
+	 uint8_t execution_percentage; // Percentual de execução
+} MAILQUEUE_OBJ_t;
+ 
+osMailQId qid_MailQueue;                                        
+// mail queue id
+ 
+osMailQDef (MailQueue, MAILQUEUE_OBJECTS, MAILQUEUE_OBJ_t);     
+// mail queue object
 
 
 
@@ -276,45 +301,89 @@ static void intToString(int value, char * pBuf, uint32_t len, uint32_t base){
  *      Thread 1 'taskA': task A output
  *---------------------------------------------------------------------------*/
 void taskA (void const *argument) {
+  MAILQUEUE_OBJ_t *pMail = 0;
 	volatile int time;
   int32_t val;
 	unsigned long a;
 	int x;
-  for (;;) {
-   osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-//    Switch_On (LED_0);
-                
-		 taskA_details.initTime  = osKernelSysTick();
-			for(x = 0 ; x<=256 ; x++)
-			{
-				a = (x+(x+2));
-			}
 
+	while (1) {
+			 osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
+			 taskA_details.initTime  = osKernelSysTick();
+				for(x = 0 ; x<=256 ; x++)
+				{
+					a = (x+(x+2));
+				}
+
+			
+	
+				
+    pMail = osMailAlloc (qid_MailQueue, osWaitForever);         
+    // Allocate memory
+ 
+    if (pMail) {  // Set the mail content
+      pMail->deadline = taskA_details.deadline;                                     
+      pMail->dynamic_Priority = taskA_details.dynamic_Priority;
+			pMail->executionTime = taskA_details.executionTime;
+			pMail->execution_percentage = taskA_details.execution_percentage;
+			pMail->static_Priority = taskA_details.static_Priority;
+			pMail->task = &taskA_details;
+			pMail->totalEstimateTime = taskA_details.totalEstimateTime; 
+			
+			taskDrawer_details.task_state = READY;
+			
+      osMailPut (qid_MailQueue, pMail);                         
+      // Send Mail
+    }		
+		
 		taskA_details.task_state = WAITING;
-		osSignalSet(tid_scheduler, 0x0001);
+    osSignalSet(tid_scheduler, 0x0001);
+		
   }
+	
 }
 
 /*----------------------------------------------------------------------------
  *      Thread 2 'taskB': task B output
  *---------------------------------------------------------------------------*/
 void taskB (void const *argument) {
+ MAILQUEUE_OBJ_t *pMail = 0;
  uint32_t time;
  int32_t val;
  unsigned long b;
 		int x;
-  for (;;) {
-   osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-//    Switch_On (LED_1);
-		//osSignalSet(tid_taskC, 0x0001);
-		taskB_details.initTime  = osKernelSysTick();
-		for( x = 1 ; x<=16 ; x++)
-			{
-				b = (2^x)/fatorial(x);
-			}
-  
+
+	while (1) {
+			 osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
+			taskB_details.initTime  = osKernelSysTick();
+			for( x = 1 ; x<=16 ; x++)
+				{
+					b = (2^x)/fatorial(x);
+				}
+		
+			
+    pMail = osMailAlloc (qid_MailQueue, osWaitForever);         
+    // Allocate memory
+ 
+    if (pMail) {  // Set the mail content
+			pMail->deadline = taskA_details.deadline;                                     
+      pMail->dynamic_Priority = taskA_details.dynamic_Priority;
+			pMail->executionTime = taskA_details.executionTime;
+			pMail->execution_percentage = taskA_details.execution_percentage;
+			pMail->static_Priority = taskA_details.static_Priority;
+			pMail->task = &taskA_details;
+			pMail->totalEstimateTime = taskA_details.totalEstimateTime;
+      
+			taskDrawer_details.task_state = READY;
+			
+			osMailPut (qid_MailQueue, pMail);                         
+      // Send Mail
+    }
+		
 		taskB_details.task_state = WAITING;
 		osSignalSet(tid_scheduler, 0x0001);
+			                                           
+    // suspend thread
   }
 }
 
@@ -322,20 +391,40 @@ void taskB (void const *argument) {
  *      Thread 3 'taskC': task C output
  *---------------------------------------------------------------------------*/
 void taskC (void const *argument) {
+  MAILQUEUE_OBJ_t *pMail = 0;
 	volatile int time;
 	int32_t val;
 	unsigned long c;
 	int x;
-  for (;;) {
-		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
+ 
+	while (1) {
+			osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
+			taskC_details.initTime = osKernelSysTick();
+			for(x = 1 ; x<=72 ; x++)
+				c = (x+1)/x;
 		
-		taskC_details.initTime = osKernelSysTick();
-		for(x = 1 ; x<=72 ; x++)
-			c = (x+1)/x;
-
+    pMail = osMailAlloc (qid_MailQueue, osWaitForever);         
+    // Allocate memory
+ 
+    if (pMail) {  // Set the mail content
+      pMail->deadline = taskA_details.deadline;                                     
+      pMail->dynamic_Priority = taskA_details.dynamic_Priority;
+			pMail->executionTime = taskA_details.executionTime;
+			pMail->execution_percentage = taskA_details.execution_percentage;
+			pMail->static_Priority = taskA_details.static_Priority;
+			pMail->task = &taskA_details;
+			pMail->totalEstimateTime = taskA_details.totalEstimateTime; 
+      
+			taskDrawer_details.task_state = READY;
 		
-		taskC_details.task_state = WAITING;
-		osSignalSet(tid_scheduler, 0x0001);
+			osMailPut (qid_MailQueue, pMail);                         
+      // Send Mail
+    }
+ 
+    	taskC_details.task_state = WAITING;
+			osSignalSet(tid_scheduler, 0x0001);
+		
+    // suspend thread
   }
 }
 
@@ -343,129 +432,154 @@ void taskC (void const *argument) {
  *      Thread 4 'taskD': task D output
  *---------------------------------------------------------------------------*/
 void taskD (void  const *argument) {
-	
+  MAILQUEUE_OBJ_t *pMail = 0;
 	volatile int time;
   volatile int time1;
 	int32_t val;
 	unsigned long  d;
-  for (;;) {
-		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-		taskD_details.initTime = osKernelSysTick();
-		d = 1 + (5/fatorial(3))+(5/fatorial(5))+ (5/fatorial(7))+(5/fatorial(9));
+	while (1) {
+			osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
+			taskD_details.initTime = osKernelSysTick();
+			d = 1 + (5/fatorial(3))+(5/fatorial(5))+ (5/fatorial(7))+(5/fatorial(9));
+			
 		
-		taskD_details.task_state = WAITING;
-		osSignalSet(tid_scheduler, 0x0001);
+		pMail = osMailAlloc (qid_MailQueue, osWaitForever);         
+    // Allocate memory
+ 
+    if (pMail) {  // Set the mail content
+      pMail->deadline = taskA_details.deadline;                                     
+      pMail->dynamic_Priority = taskA_details.dynamic_Priority;
+			pMail->executionTime = taskA_details.executionTime;
+			pMail->execution_percentage = taskA_details.execution_percentage;
+			pMail->static_Priority = taskA_details.static_Priority;
+			pMail->task = &taskA_details;
+			pMail->totalEstimateTime = taskA_details.totalEstimateTime; 
+
+			taskDrawer_details.task_state = READY;
+		
+      osMailPut (qid_MailQueue, pMail);                         
+      // Send Mail
+    }
+ 
+    	taskD_details.task_state = WAITING;
+			osSignalSet(tid_scheduler, 0x0001);
+    
+    // suspend thread
   }
 }
 
 void taskE (void  const *argument) {
+	MAILQUEUE_OBJ_t *pMail = 0;
 	int x;
 	unsigned long e;
 	volatile int time;
   volatile int time1;
 	int32_t val;
 	unsigned long  d;
-  for (;;) {
-		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-		taskE_details.initTime = osKernelSysTick();
-		for(x = 1 ; x<=100 ;x++)
-			e = x*PI2;
-		
-		taskE_details.task_state = WAITING;
+ 
+	 while (1) {
+			osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
+			taskE_details.initTime = osKernelSysTick();
+			for(x = 1 ; x<=100 ;x++)
+				e = x*PI2;
+			
+			
+		 pMail = osMailAlloc (qid_MailQueue, osWaitForever);         
+    // Allocate memory
+ 
+    if (pMail) {  // Set the mail content
+      pMail->deadline = taskA_details.deadline;                                     
+      pMail->dynamic_Priority = taskA_details.dynamic_Priority;
+			pMail->executionTime = taskA_details.executionTime;
+			pMail->execution_percentage = taskA_details.execution_percentage;
+			pMail->static_Priority = taskA_details.static_Priority;
+			pMail->task = &taskA_details;
+			pMail->totalEstimateTime = taskA_details.totalEstimateTime; 
+      
+			taskDrawer_details.task_state = READY;
+			
+			osMailPut (qid_MailQueue, pMail);                         
+      // Send Mail
+    }
+ 
+    taskE_details.task_state = WAITING;
 		osSignalSet(tid_scheduler, 0x0001);
+                                               
+    // suspend thread
   }
 }
 
 
 
 void taskF(void  const *argument) {
+  MAILQUEUE_OBJ_t *pMail = 0;
 	int x;
 	volatile int time;
   volatile int time1;
 	unsigned long f;
 	int32_t val;
 	unsigned long  d;
-  for (;;) {
-		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-		taskF_details.initTime  = osKernelSysTick();
-		for(x = 1 ; x<=128 ; x++)
-				f = (x*x*x)/(1<<x);
-		
-		taskF_details.task_state = WAITING;
-		osSignalSet(tid_scheduler, 0x0001);
+   
+	while (1) {
+			osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
+			taskF_details.initTime  = osKernelSysTick();
+			for(x = 1 ; x<=128 ; x++)
+					f = (x*x*x)/(1<<x);
+			
+			
+    pMail = osMailAlloc (qid_MailQueue, osWaitForever);         
+    // Allocate memory
+ 
+    if (pMail) {  // Set the mail content
+      pMail->deadline = taskA_details.deadline;                                     
+      pMail->dynamic_Priority = taskA_details.dynamic_Priority;
+			pMail->executionTime = taskA_details.executionTime;
+			pMail->execution_percentage = taskA_details.execution_percentage;
+			pMail->static_Priority = taskA_details.static_Priority;
+			pMail->task = &taskA_details;
+			pMail->totalEstimateTime = taskA_details.totalEstimateTime; 
+
+			taskDrawer_details.task_state = READY;		
+
+			osMailPut (qid_MailQueue, pMail);                         
+      // Send Mail
+    }
+ 
+    taskF_details.task_state = WAITING;
+			osSignalSet(tid_scheduler, 0x0001);
+		                                           
+    // suspend thread
   }
+	
+  
 }
 
 void drawer (void  const *argument) {
-
+  MAILQUEUE_OBJ_t  *pMail = 0;
+  osEvent           evt;
 	tContext sContext;
 	tRectangle sRect;
 	GrContextInit(&sContext, &g_sCfaf128x128x16);
  
   while (1) {
-	osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-	Switch_On (LED_CLK);
-//	sRect.i16XMin = 0;
-//	sRect.i16YMin = 0;
-//	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
-//	sRect.i16YMax = 23;
-//	GrContextForegroundSet(&sContext, ClrDarkBlue);
-		GrRectFill(&sContext, &sRect);
+			
+   evt = osMailGet (qid_MailQueue, osWaitForever);             
+   // wait for mail
+ 
+   if (evt.status == osEventMail) {
+     pMail = evt.value.p;
+   if (pMail) {
 
+				// Colocar código do draw aqui
+		 
+		 
+        osMailFree (qid_MailQueue, pMail);                      
+        // free memory allocated for mail
+      }
+    }
+  
+	}
 	
-	GrContextForegroundSet(&sContext, ClrWhite);
-	GrRectDraw(&sContext, &sRect);
-	
-	GrContextFontSet(&sContext, g_psFontCm12);
-	intToString(33, casa, 10, 10);
-//	GrStringDrawCentered(&sContext,(char*)casa, -1,
-//											 GrContextDpyWidthGet(&sContext) / 2, 10, 0);
-	GrFlush(&sContext);
-	intToString(taskA_details.initTime, casa, 10, 10);
-	GrContextFontSet(&sContext,g_psFontFixed6x8);
-	GrStringDrawCentered(&sContext,(char*)casa, -1,
-											 GrContextDpyWidthGet(&sContext) / 2,
-											 ((GrContextDpyHeightGet(&sContext)- 120)) + 10,
-											 0);
-	
-	intToString(taskB_details.initTime, casa, 10, 10);
-	GrContextFontSet(&sContext, g_psFontFixed6x8/*g_psFontFixed6x8*/);
-	GrStringDrawCentered(&sContext,(char*)casa, -1,
-											 GrContextDpyWidthGet(&sContext) / 2,
-											 ((GrContextDpyHeightGet(&sContext)- 110)) + 10,
-											 0);
-	
-	intToString(taskC_details.initTime, casa, 10, 10);
-	GrContextFontSet(&sContext, g_psFontFixed6x8/*g_psFontFixed6x8*/);
-	GrStringDrawCentered(&sContext,(char*)casa, -1,
-											 GrContextDpyWidthGet(&sContext) / 2,
-											 ((GrContextDpyHeightGet(&sContext)- 100)) + 10,
-											 0);
-	
-	intToString(taskD_details.initTime, casa, 10, 10);
-	GrContextFontSet(&sContext, g_psFontFixed6x8/*g_psFontFixed6x8*/);
-	GrStringDrawCentered(&sContext,(char*)casa, -1,
-											 GrContextDpyWidthGet(&sContext) / 2,
-											 ((GrContextDpyHeightGet(&sContext)- 90)) + 10,0);
-	
-	
-	intToString(taskE_details.initTime, casa, 10, 10);
-	GrContextFontSet(&sContext, g_psFontFixed6x8/*g_psFontFixed6x8*/);
-	GrStringDrawCentered(&sContext,(char*)casa, -1,
-											 GrContextDpyWidthGet(&sContext) / 2,
-											 ((GrContextDpyHeightGet(&sContext)- 80)) + 10,0);
-	
-	intToString(taskF_details.initTime, casa, 10, 10);
-	GrContextFontSet(&sContext, g_psFontFixed6x8/*g_psFontFixed6x8*/);
-	GrStringDrawCentered(&sContext,(char*)casa, -1,
-											 GrContextDpyWidthGet(&sContext) / 2,
-											 ((GrContextDpyHeightGet(&sContext)- 70)) + 10,0);
-
-	GrFlush(&sContext);
-	osDelay(5000);   
-	Switch_Off(LED_CLK);
-	osSignalSet(tid_taskA, 0x0001);
-  }
 }
 
 osThreadDef(taskA, osPriorityIdle, 1, 0);
@@ -520,17 +634,41 @@ int32_t getTotalPriority(taskDetails* details){
 	return details->dynamic_Priority + details->static_Priority;
 }
 
-void policies(taskDetails* tasksReady[7], uint8_t* sizeReady){
+void policies(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* runningTask,
+	taskDetails* lastRunningTask)
+{
+	
 	int i, j;
-	for(i=0; i<(*sizeReady); i++)
+
+	if(runningTask->task_state == WAITING)
 	{
-		if(tasksReady[i]->task_state == READY){
-			if(tasksReady[i]->executionTime > tasksReady[i]->totalEstimateTime)
-				  tasksReady[i]->dynamic_Priority = tasksReady[i]->dynamic_Priority -10;
-			else
-					tasksReady[i]->dynamic_Priority = 0;
+		//significa que uma thread que esta executando acabou
+		//verifica todas as polocies
+		
+		uint32_t lifespam = osKernelSysTick() - runningTask->initTime;
+		
+		if(lifespam > runningTask->deadline)
+		{
+			if(runningTask->static_Priority == -100  && runningTask->deadline != 0)
+			{
+				//erro
+				
+			}else{
+				runningTask->dynamic_Priority -= 10;
+			
+			}
 		
 		}
+		
+		if(lifespam < (runningTask->deadline + runningTask->totalEstimateTime)/2)
+		{
+			if(runningTask->static_Priority != -100 && runningTask->deadline != 0)
+			{
+				runningTask->dynamic_Priority += 10;
+			}
+		}
+		
+	
 	}
 }
 
@@ -581,40 +719,46 @@ void scheduler()
 		&tid_taskF,
 		&tid_drawer		
 	};	
-	
-	while(1)
-	{
-	
-		osSignalWait(0x0001, osWaitForever);
-		checkReady(tasksReady, &sizeReady, tasksWaiting, &sizeWaiting);
-		lastRunningTask = runningTask;
-		if(lastRunningTask!= NULL )
-		calcTime(lastRunningTask);
-		policies(tasksReady, &sizeReady);
-		runningTask = nextRunning(tasksReady, &sizeReady, lastRunningTask);
-		
-		if(!sizeReady)
-			runningTask = NULL;
-		for(i = 0; i < 7; i++)
-			osThreadSetPriority(*(user_thread_ids[i]), osPriorityIdle);
-		if(runningTask && runningTask->task_state != RUNNING)
-			osSignalSet(*(runningTask->tid), 0x0001);
-		if(lastRunningTask)
-			lastRunningTask->task_state = READY;
-		if(runningTask){
-			runningTask->task_state = RUNNING;
-			osThreadSetPriority(*(runningTask->tid), osPriorityNormal);
+	while(1){
+			osSignalWait(0x0001, osWaitForever);
+			
+			checkReady(tasksReady, &sizeReady, tasksWaiting, &sizeWaiting);
+			
+			lastRunningTask = runningTask;
+			if(lastRunningTask!= NULL )
+				calcTime(lastRunningTask);
+			policies(tasksReady, &sizeReady, runningTask, lastRunningTask);
+			runningTask = nextRunning(tasksReady, &sizeReady, lastRunningTask);
+			
+			//Depois de executar uma tarefa, reinicia tempos
+			if(lastRunningTask->task_state == WAITING){
+				lastRunningTask->deadline = lastRunningTask->deadline*lastRunningTask->executionTime/lastRunningTask->totalEstimateTime; 
+				lastRunningTask->totalEstimateTime = lastRunningTask->executionTime;
+				lastRunningTask->executionTime = 0;				
+			}
+				
+			
+			if(!sizeReady)
+				runningTask = NULL;
+			for(i = 0; i < 7; i++)
+				osThreadSetPriority(*(user_thread_ids[i]), osPriorityIdle);
+			if(runningTask && runningTask->task_state != RUNNING)
+				osSignalSet(*(runningTask->tid), 0x0001);
+			if(lastRunningTask)
+				lastRunningTask->task_state = READY;
+			if(runningTask){
+				runningTask->task_state = RUNNING;
+				osThreadSetPriority(*(runningTask->tid), osPriorityNormal);
+			}
+			
+			if (*(runningTask->tid) == tid_taskA) 	{Switch_On (LED_0); Switch_Off(LED_1); Switch_Off(LED_2); Switch_Off(LED_3);}
+			if (*(runningTask->tid) == tid_taskB) 	{Switch_Off(LED_0); Switch_On (LED_1); Switch_Off(LED_2); Switch_Off(LED_3);}
+			if (*(runningTask->tid) == tid_taskC) 	{Switch_On (LED_0); Switch_On (LED_1); Switch_Off(LED_2); Switch_Off(LED_3);}
+			if (*(runningTask->tid) == tid_taskD) 	{Switch_Off(LED_0); Switch_Off(LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
+			if (*(runningTask->tid) == tid_taskE) 	{Switch_On (LED_0); Switch_Off(LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
+			if (*(runningTask->tid) == tid_taskF) 	{Switch_Off(LED_0); Switch_On (LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
+			if (*(runningTask->tid) == tid_drawer) 	{Switch_On (LED_0); Switch_On (LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
 		}
-		
-		if (*(runningTask->tid) == tid_taskA) 	{Switch_On (LED_0); Switch_Off(LED_1); Switch_Off(LED_2); Switch_Off(LED_3);}
-		if (*(runningTask->tid) == tid_taskB) 	{Switch_Off(LED_0); Switch_On (LED_1); Switch_Off(LED_2); Switch_Off(LED_3);}
-		if (*(runningTask->tid) == tid_taskC) 	{Switch_On (LED_0); Switch_On (LED_1); Switch_Off(LED_2); Switch_Off(LED_3);}
-		if (*(runningTask->tid) == tid_taskD) 	{Switch_Off(LED_0); Switch_Off(LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
-		if (*(runningTask->tid) == tid_taskE) 	{Switch_On (LED_0); Switch_Off(LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
-		if (*(runningTask->tid) == tid_taskF) 	{Switch_Off(LED_0); Switch_On (LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
-		if (*(runningTask->tid) == tid_drawer) 	{Switch_On (LED_0); Switch_On (LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
-		
-	}
 }
 /*----------------------------------------------------------------------------
  *      Main: Initialize and start RTX Kernel
@@ -634,6 +778,15 @@ int main (void) {
 	tid_taskF = osThreadCreate(osThread(taskF), NULL);
 	tid_drawer = osThreadCreate(osThread(drawer),  NULL);
 	tid_scheduler = osThreadGetId();
+	
+	//Mail queue initialization
+	
+	qid_MailQueue = osMailCreate (osMailQ(MailQueue), NULL);      
+  // create mail queue
+ 
+  if (!qid_MailQueue) {
+    ; // Mail Queue object not created, handle failure
+  }
 	
 	osThreadSetPriority(tid_scheduler, osPriorityHigh);
 	osKernelStart();
