@@ -180,6 +180,7 @@ typedef struct {
 	 uint32_t executionTime;
 	 uint32_t totalEstimateTime;
 	 uint8_t execution_percentage; // Percentual de execução
+	 bool isError;
 } MAILQUEUE_OBJ_t;
  
 osMailQId qid_MailQueue;                                        
@@ -188,7 +189,11 @@ osMailQId qid_MailQueue;
 osMailQDef (MailQueue, MAILQUEUE_OBJECTS, MAILQUEUE_OBJ_t);     
 // mail queue object
 
+//====================================================
+//Flag que indica se o sistema esta rodando ou nao
+//====================================================
 
+bool systemRunning = true;
 
 /*----------------------------------------------------------------------------
  *      Timer Function
@@ -307,17 +312,14 @@ void taskA (void const *argument) {
 	unsigned long a;
 	int x;
 
-	while (1) {
+	while (systemRunning == true) {
 			 osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
 			 taskA_details.initTime  = osKernelSysTick();
 				for(x = 0 ; x<=256 ; x++)
 				{
 					a = (x+(x+2));
 				}
-
 			
-	
-				
     pMail = osMailAlloc (qid_MailQueue, osWaitForever);         
     // Allocate memory
  
@@ -329,7 +331,7 @@ void taskA (void const *argument) {
 			pMail->static_Priority = taskA_details.static_Priority;
 			pMail->task = &taskA_details;
 			pMail->totalEstimateTime = taskA_details.totalEstimateTime; 
-			
+			pMail->isError = NULL;
 			taskDrawer_details.task_state = READY;
 			
       osMailPut (qid_MailQueue, pMail);                         
@@ -340,6 +342,8 @@ void taskA (void const *argument) {
     osSignalSet(tid_scheduler, 0x0001);
 		
   }
+	
+	osDelay(osWaitForever);
 	
 }
 
@@ -353,7 +357,7 @@ void taskB (void const *argument) {
  unsigned long b;
 		int x;
 
-	while (1) {
+	while (systemRunning == true) {
 			 osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
 			taskB_details.initTime  = osKernelSysTick();
 			for( x = 1 ; x<=16 ; x++)
@@ -373,7 +377,8 @@ void taskB (void const *argument) {
 			pMail->static_Priority = taskA_details.static_Priority;
 			pMail->task = &taskA_details;
 			pMail->totalEstimateTime = taskA_details.totalEstimateTime;
-      
+      pMail->isError = NULL;
+			
 			taskDrawer_details.task_state = READY;
 			
 			osMailPut (qid_MailQueue, pMail);                         
@@ -385,6 +390,7 @@ void taskB (void const *argument) {
 			                                           
     // suspend thread
   }
+	osDelay(osWaitForever);
 }
 
 /*----------------------------------------------------------------------------
@@ -397,7 +403,7 @@ void taskC (void const *argument) {
 	unsigned long c;
 	int x;
  
-	while (1) {
+	while (systemRunning == true) {
 			osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
 			taskC_details.initTime = osKernelSysTick();
 			for(x = 1 ; x<=72 ; x++)
@@ -414,7 +420,8 @@ void taskC (void const *argument) {
 			pMail->static_Priority = taskA_details.static_Priority;
 			pMail->task = &taskA_details;
 			pMail->totalEstimateTime = taskA_details.totalEstimateTime; 
-      
+      pMail->isError = NULL;
+			
 			taskDrawer_details.task_state = READY;
 		
 			osMailPut (qid_MailQueue, pMail);                         
@@ -426,6 +433,7 @@ void taskC (void const *argument) {
 		
     // suspend thread
   }
+	osDelay(osWaitForever);
 }
 
 /*----------------------------------------------------------------------------
@@ -437,7 +445,7 @@ void taskD (void  const *argument) {
   volatile int time1;
 	int32_t val;
 	unsigned long  d;
-	while (1) {
+	while (systemRunning == true) {
 			osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
 			taskD_details.initTime = osKernelSysTick();
 			d = 1 + (5/fatorial(3))+(5/fatorial(5))+ (5/fatorial(7))+(5/fatorial(9));
@@ -454,6 +462,7 @@ void taskD (void  const *argument) {
 			pMail->static_Priority = taskA_details.static_Priority;
 			pMail->task = &taskA_details;
 			pMail->totalEstimateTime = taskA_details.totalEstimateTime; 
+			pMail->isError = NULL;
 
 			taskDrawer_details.task_state = READY;
 		
@@ -466,6 +475,7 @@ void taskD (void  const *argument) {
     
     // suspend thread
   }
+	osDelay(osWaitForever);
 }
 
 void taskE (void  const *argument) {
@@ -477,7 +487,7 @@ void taskE (void  const *argument) {
 	int32_t val;
 	unsigned long  d;
  
-	 while (1) {
+	 while (systemRunning == true) {
 			osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
 			taskE_details.initTime = osKernelSysTick();
 			for(x = 1 ; x<=100 ;x++)
@@ -495,7 +505,8 @@ void taskE (void  const *argument) {
 			pMail->static_Priority = taskA_details.static_Priority;
 			pMail->task = &taskA_details;
 			pMail->totalEstimateTime = taskA_details.totalEstimateTime; 
-      
+      pMail->isError = NULL;
+			
 			taskDrawer_details.task_state = READY;
 			
 			osMailPut (qid_MailQueue, pMail);                         
@@ -507,6 +518,7 @@ void taskE (void  const *argument) {
                                                
     // suspend thread
   }
+	 osDelay(osWaitForever);
 }
 
 
@@ -520,7 +532,7 @@ void taskF(void  const *argument) {
 	int32_t val;
 	unsigned long  d;
    
-	while (1) {
+	while (systemRunning == true) {
 			osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
 			taskF_details.initTime  = osKernelSysTick();
 			for(x = 1 ; x<=128 ; x++)
@@ -538,7 +550,8 @@ void taskF(void  const *argument) {
 			pMail->static_Priority = taskA_details.static_Priority;
 			pMail->task = &taskA_details;
 			pMail->totalEstimateTime = taskA_details.totalEstimateTime; 
-
+			pMail->isError = NULL;
+			
 			taskDrawer_details.task_state = READY;		
 
 			osMailPut (qid_MailQueue, pMail);                         
@@ -550,7 +563,7 @@ void taskF(void  const *argument) {
 		                                           
     // suspend thread
   }
-	
+	osDelay(osWaitForever);
   
 }
 
@@ -561,14 +574,14 @@ void drawer (void  const *argument) {
 	tRectangle sRect;
 	GrContextInit(&sContext, &g_sCfaf128x128x16);
  
-  while (1) {
+  while (systemRunning == true) {
 			
    evt = osMailGet (qid_MailQueue, osWaitForever);             
    // wait for mail
  
    if (evt.status == osEventMail) {
      pMail = evt.value.p;
-   if (pMail) {
+		if (pMail) {
 
 				// Colocar código do draw aqui
 		 
@@ -577,9 +590,9 @@ void drawer (void  const *argument) {
         // free memory allocated for mail
       }
     }
-  
 	}
-	
+		osDelay(osWaitForever);
+
 }
 
 osThreadDef(taskA, osPriorityIdle, 1, 0);
@@ -634,12 +647,12 @@ int32_t getTotalPriority(taskDetails* details){
 	return details->dynamic_Priority + details->static_Priority;
 }
 
-void policies(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* runningTask,
+bool policies(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* runningTask,
 	taskDetails* lastRunningTask)
 {
 	
 	int i, j;
-
+  
 	if(runningTask->task_state == WAITING)
 	{
 		//significa que uma thread que esta executando acabou
@@ -651,14 +664,16 @@ void policies(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* runni
 		{
 			if(runningTask->static_Priority == -100  && runningTask->deadline != 0)
 			{
-				//erro
-				
-			}else{
+					return false;
+			
+				}
+								
+		}else{
 				runningTask->dynamic_Priority -= 10;
 			
-			}
-		
 		}
+		
+	
 		
 		if(lifespam < (runningTask->deadline + runningTask->totalEstimateTime)/2)
 		{
@@ -667,9 +682,8 @@ void policies(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* runni
 				runningTask->dynamic_Priority += 10;
 			}
 		}
-		
-	
 	}
+	return true;
 }
 
 taskDetails* nextRunning(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* lastRunning){
@@ -694,7 +708,9 @@ void calcTime(taskDetails*  task){
 
 void scheduler()
 {
-	
+	bool policiesResult;
+	//mail queue
+	MAILQUEUE_OBJ_t  *pMail = 0;
 	uint8_t i, sizeReady = 0, sizeWaiting = 7;
 	taskDetails* runningTask = NULL;
 	taskDetails* lastRunningTask = NULL;
@@ -719,7 +735,7 @@ void scheduler()
 		&tid_taskF,
 		&tid_drawer		
 	};	
-	while(1){
+	while(systemRunning == true){
 			osSignalWait(0x0001, osWaitForever);
 			
 			checkReady(tasksReady, &sizeReady, tasksWaiting, &sizeWaiting);
@@ -727,7 +743,22 @@ void scheduler()
 			lastRunningTask = runningTask;
 			if(lastRunningTask!= NULL )
 				calcTime(lastRunningTask);
-			policies(tasksReady, &sizeReady, runningTask, lastRunningTask);
+			
+			pMail = osMailAlloc (qid_MailQueue, osWaitForever); 
+			
+				
+			policiesResult = policies(tasksReady, &sizeReady, runningTask, lastRunningTask);
+				
+			if(!policiesResult){
+				if (pMail)				
+				{  // Set the mail content
+						pMail->isError = true;
+						osMailPut (qid_MailQueue, pMail);                         
+						// Send Mail
+				
+				}
+			}
+			
 			runningTask = nextRunning(tasksReady, &sizeReady, lastRunningTask);
 			
 			//Depois de executar uma tarefa, reinicia tempos
@@ -796,7 +827,14 @@ int main (void) {
 	osTimerStart (timerScheduler, 8);    
 
 	scheduler();
-			
+	osThreadTerminate(tid_taskA);
+	osThreadTerminate(tid_taskB);
+	osThreadTerminate(tid_taskC);
+	osThreadTerminate(tid_taskD);
+	osThreadTerminate(tid_taskE);
+	osThreadTerminate(tid_taskF);
+	osThreadTerminate(tid_drawer);
+	
   osDelay(osWaitForever);
   while(1);
 }
