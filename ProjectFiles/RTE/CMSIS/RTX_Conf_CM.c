@@ -128,14 +128,14 @@
 //
 // <i> Enables Round-Robin Thread switching.
 #ifndef OS_ROBIN
- #define OS_ROBIN       1
+ #define OS_ROBIN       0
 #endif
 
 //   <o>Round-Robin Timeout [ticks] <1-1000>
 //   <i> Defines how long a thread will execute before a thread switch.
 //   <i> Default: 5
 #ifndef OS_ROBINTOUT
- #define OS_ROBINTOUT   5
+ #define OS_ROBINTOUT   0
 #endif
 
 // </e>
