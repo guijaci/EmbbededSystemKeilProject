@@ -380,7 +380,7 @@ static void
 cfaf128x128x16PixelDraw(void *pvDisplayData, int32_t i32X, int32_t i32Y,
                       uint32_t ui32Value)
 {
-	cfaf128x128x16Dot(i32X, i32Y, 1, ui32Value);
+	cfaf128x128x16Dot(i32X, i32Y, 0, ui32Value);
 }
 
 //*****************************************************************************
@@ -511,7 +511,7 @@ cfaf128x128x16LineDrawH(void *pvDisplayData, int32_t i32X1, int32_t i32X2, int32
                       uint32_t ui32Value)
 {
 	if(i32X1 > i32X2) swap_i32(&i32X1, &i32X2);
-	cfaf128x128x16LineHor(i32X1, i32X2, i32Y, 1, ui32Value);
+	cfaf128x128x16LineHor(i32X1, i32X2, i32Y, 0, ui32Value);
 }
 
 //*****************************************************************************
@@ -536,7 +536,7 @@ cfaf128x128x16LineDrawV(void *pvDisplayData, int32_t i32X, int32_t i32Y1, int32_
                       uint32_t ui32Value)
 {
 	if(i32Y1 > i32Y2) swap_i32(&i32Y1, &i32Y2);
-	cfaf128x128x16LineVer(i32X, i32Y1, i32Y2, 1, ui32Value);
+	cfaf128x128x16LineVer(i32X, i32Y1, i32Y2, 0, ui32Value);
 }
 
 //*****************************************************************************
@@ -567,7 +567,7 @@ cfaf128x128x16RectFill(void *pvDisplayData, const tRectangle *pRect,
 	
 	if(x0 > x1) swap_ui16(&x0, &x1);
 	if(y0 > y1) swap_ui16(&y0, &y1);
-	cfaf128x128x16Rect(x0, x1, y0, y1, ui32Value);
+	cfaf128x128x16Rect(x0, x1 -1, y0, y1 -1, ui32Value);
 }
 
 //*****************************************************************************
