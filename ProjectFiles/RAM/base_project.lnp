@@ -4,11 +4,12 @@
 ".\ram\cfaf128x128x16.o"
 "..\driverlib\rvmdk\driverlib.lib"
 "..\grlib\rvmdk\grlib.lib"
-"C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib"
+"C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib"
 ".\ram\rtx_conf_cm.o"
+".\ram\retarget_io.o"
 ".\ram\startup_tm4c129.o"
 ".\ram\system_tm4c129.o"
 --strict --scatter ".\RAM\base_project.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
---list ".\RAM\base_project.map" -o .\RAM\base_project.axf
+--list ".\base_project.map" -o .\RAM\base_project.axf

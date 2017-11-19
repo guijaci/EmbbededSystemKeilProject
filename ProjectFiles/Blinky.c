@@ -43,7 +43,7 @@ osThreadId tid_scheduler;
 int i;
 volatile int time1;
 
-uint8_t buf [10];
+
 char casa [10] ;
 
 
@@ -52,7 +52,9 @@ void timer_callback(const void* args);
 static osTimerId timerScheduler;                             // timer id
 static osTimerDef(Timer2, timer_callback);
 
+//Screen print
 
+char buf [10] ;
 
 //====================================================
 // nome
@@ -370,13 +372,13 @@ void taskB (void const *argument) {
     // Allocate memory
  
     if (pMail) {  // Set the mail content
-			pMail->deadline = taskA_details.deadline;                                     
-      pMail->dynamic_Priority = taskA_details.dynamic_Priority;
-			pMail->executionTime = taskA_details.executionTime;
-			pMail->execution_percentage = taskA_details.execution_percentage;
-			pMail->static_Priority = taskA_details.static_Priority;
-			pMail->task = &taskA_details;
-			pMail->totalEstimateTime = taskA_details.totalEstimateTime;
+			pMail->deadline = taskB_details.deadline;                                     
+      pMail->dynamic_Priority = taskB_details.dynamic_Priority;
+			pMail->executionTime = taskB_details.executionTime;
+			pMail->execution_percentage = taskB_details.execution_percentage;
+			pMail->static_Priority = taskB_details.static_Priority;
+			pMail->task = &taskB_details;
+			pMail->totalEstimateTime = taskB_details.totalEstimateTime;
       pMail->isError = NULL;
 			
 			taskDrawer_details.task_state = READY;
@@ -413,13 +415,13 @@ void taskC (void const *argument) {
     // Allocate memory
  
     if (pMail) {  // Set the mail content
-      pMail->deadline = taskA_details.deadline;                                     
-      pMail->dynamic_Priority = taskA_details.dynamic_Priority;
-			pMail->executionTime = taskA_details.executionTime;
-			pMail->execution_percentage = taskA_details.execution_percentage;
-			pMail->static_Priority = taskA_details.static_Priority;
-			pMail->task = &taskA_details;
-			pMail->totalEstimateTime = taskA_details.totalEstimateTime; 
+      pMail->deadline = taskC_details.deadline;                                     
+      pMail->dynamic_Priority = taskC_details.dynamic_Priority;
+			pMail->executionTime = taskC_details.executionTime;
+			pMail->execution_percentage = taskC_details.execution_percentage;
+			pMail->static_Priority = taskC_details.static_Priority;
+			pMail->task = &taskC_details;
+			pMail->totalEstimateTime = taskC_details.totalEstimateTime; 
       pMail->isError = NULL;
 			
 			taskDrawer_details.task_state = READY;
@@ -455,13 +457,13 @@ void taskD (void  const *argument) {
     // Allocate memory
  
     if (pMail) {  // Set the mail content
-      pMail->deadline = taskA_details.deadline;                                     
-      pMail->dynamic_Priority = taskA_details.dynamic_Priority;
-			pMail->executionTime = taskA_details.executionTime;
-			pMail->execution_percentage = taskA_details.execution_percentage;
-			pMail->static_Priority = taskA_details.static_Priority;
-			pMail->task = &taskA_details;
-			pMail->totalEstimateTime = taskA_details.totalEstimateTime; 
+      pMail->deadline = taskD_details.deadline;                                     
+      pMail->dynamic_Priority = taskD_details.dynamic_Priority;
+			pMail->executionTime = taskD_details.executionTime;
+			pMail->execution_percentage = taskD_details.execution_percentage;
+			pMail->static_Priority = taskD_details.static_Priority;
+			pMail->task = &taskD_details;
+			pMail->totalEstimateTime = taskD_details.totalEstimateTime; 
 			pMail->isError = NULL;
 
 			taskDrawer_details.task_state = READY;
@@ -498,13 +500,13 @@ void taskE (void  const *argument) {
     // Allocate memory
  
     if (pMail) {  // Set the mail content
-      pMail->deadline = taskA_details.deadline;                                     
-      pMail->dynamic_Priority = taskA_details.dynamic_Priority;
-			pMail->executionTime = taskA_details.executionTime;
-			pMail->execution_percentage = taskA_details.execution_percentage;
-			pMail->static_Priority = taskA_details.static_Priority;
-			pMail->task = &taskA_details;
-			pMail->totalEstimateTime = taskA_details.totalEstimateTime; 
+      pMail->deadline = taskE_details.deadline;                                     
+      pMail->dynamic_Priority = taskE_details.dynamic_Priority;
+			pMail->executionTime = taskE_details.executionTime;
+			pMail->execution_percentage = taskE_details.execution_percentage;
+			pMail->static_Priority = taskE_details.static_Priority;
+			pMail->task = &taskE_details;
+			pMail->totalEstimateTime = taskE_details.totalEstimateTime; 
       pMail->isError = NULL;
 			
 			taskDrawer_details.task_state = READY;
@@ -543,13 +545,13 @@ void taskF(void  const *argument) {
     // Allocate memory
  
     if (pMail) {  // Set the mail content
-      pMail->deadline = taskA_details.deadline;                                     
-      pMail->dynamic_Priority = taskA_details.dynamic_Priority;
-			pMail->executionTime = taskA_details.executionTime;
-			pMail->execution_percentage = taskA_details.execution_percentage;
-			pMail->static_Priority = taskA_details.static_Priority;
-			pMail->task = &taskA_details;
-			pMail->totalEstimateTime = taskA_details.totalEstimateTime; 
+      pMail->deadline = taskF_details.deadline;                                     
+      pMail->dynamic_Priority = taskF_details.dynamic_Priority;
+			pMail->executionTime = taskF_details.executionTime;
+			pMail->execution_percentage = taskF_details.execution_percentage;
+			pMail->static_Priority = taskF_details.static_Priority;
+			pMail->task = &taskF_details;
+			pMail->totalEstimateTime = taskF_details.totalEstimateTime; 
 			pMail->isError = NULL;
 			
 			taskDrawer_details.task_state = READY;		
@@ -568,12 +570,17 @@ void taskF(void  const *argument) {
 }
 
 void drawer (void  const *argument) {
-  MAILQUEUE_OBJ_t  *pMail = 0;
+   
+	//cria a task
+	
+	taskDetails *task_details;
+	MAILQUEUE_OBJ_t  *pMail = 0;
   osEvent           evt;
 	tContext sContext;
 	tRectangle sRect;
 	GrContextInit(&sContext, &g_sCfaf128x128x16);
- 
+
+	
   while (systemRunning == true) {
 			
    evt = osMailGet (qid_MailQueue, osWaitForever);             
@@ -583,9 +590,165 @@ void drawer (void  const *argument) {
      pMail = evt.value.p;
 		if (pMail) {
 
-				// Colocar código do draw aqui
+							GrContextFontSet(&sContext, g_psFontCm12);
+				intToString(33, buf, 10, 10);
+				Switch_On (LED_CLK);
+				
+				
+				GrContextFontSet(&sContext, g_psFontCm12);
+	
+				GrFlush(&sContext);
+				intToString(taskA_details.initTime, buf, 10, 10);
+				GrContextFontSet(&sContext,g_psFontFixed6x8);
 		 
-		 
+		 //Escreve menu lateral:
+				GrStringDrawCentered(&sContext,"A", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);
+				GrStringDrawCentered(&sContext,"B", -1,
+														 GrContextDpyWidthGet(&sContext) - 120,
+														 ((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);
+				GrStringDrawCentered(&sContext,"C", -1,
+														 GrContextDpyWidthGet(&sContext) - 120,
+														 ((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);
+				GrStringDrawCentered(&sContext,"D", -1,
+														 GrContextDpyWidthGet(&sContext) - 120,
+														 ((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);
+				GrStringDrawCentered(&sContext,"E", -1,
+														 GrContextDpyWidthGet(&sContext) - 120,
+														 ((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);
+				GrStringDrawCentered(&sContext,"F", -1,
+														 GrContextDpyWidthGet(&sContext) - 120,
+														 ((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);
+        //Escreve menu superior:
+				
+					GrStringDrawCentered(&sContext,"PRI", -1,
+											 GrContextDpyWidthGet(&sContext) - 100,
+											 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);
+											 
+					GrStringDrawCentered(&sContext,"%", -1,
+															 GrContextDpyWidthGet(&sContext) - 80,
+															 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);
+															 
+					GrStringDrawCentered(&sContext,"STA", -1,
+															 GrContextDpyWidthGet(&sContext) - 60,
+															 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);	
+															 
+					GrStringDrawCentered(&sContext,"DEAD", -1,
+															 GrContextDpyWidthGet(&sContext) - 20,
+															 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);
+				
+				//Impressão das tasks:
+				
+			task_details = pMail->task;
+			
+			
+			if(task_details->tid == &tid_taskA){
+					sRect.i16XMin = 15;
+					sRect.i16YMin = 17;
+					sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
+					sRect.i16YMax = 35;
+					GrContextForegroundSet(&sContext, ClrBlack);
+					GrContextBackgroundSet(&sContext, ClrBlack);
+						GrRectFill(&sContext, &sRect);
+
+					
+					GrContextForegroundSet(&sContext, ClrWhite);
+					GrRectDraw(&sContext, &sRect);
+				
+					intToString(pMail->dynamic_Priority, buf, 10, 10);
+					GrStringDrawCentered(&sContext,(char*)buf, -1,
+														 GrContextDpyWidthGet(&sContext) - 20, 
+					((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);
+						
+			}
+			if(task_details->tid == &tid_taskB){
+					sRect.i16XMin = 15;
+					sRect.i16YMin = 35;
+					sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
+					sRect.i16YMax = 53;
+					GrContextForegroundSet(&sContext, ClrBlack);
+					GrContextBackgroundSet(&sContext, ClrBlack);
+						GrRectFill(&sContext, &sRect);
+
+					
+					GrContextForegroundSet(&sContext, ClrWhite);
+					GrRectDraw(&sContext, &sRect);
+						intToString(pMail->dynamic_Priority, buf, 10, 10);
+					GrStringDrawCentered(&sContext,(char*)buf, -1,
+														 GrContextDpyWidthGet(&sContext) - 20, 
+					((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);
+			}
+			if(task_details->tid == &tid_taskC){
+						sRect.i16XMin = 15;
+					sRect.i16YMin = 17;
+					sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
+					sRect.i16YMax = 35;
+					GrContextForegroundSet(&sContext, ClrBlack);
+					GrContextBackgroundSet(&sContext, ClrBlack);
+						GrRectFill(&sContext, &sRect);
+
+					
+					GrContextForegroundSet(&sContext, ClrWhite);
+					GrRectDraw(&sContext, &sRect);
+					intToString(pMail->dynamic_Priority, buf, 10, 10);
+				GrStringDrawCentered(&sContext,(char*)buf, -1,
+													 GrContextDpyWidthGet(&sContext) - 20, 
+				((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);
+			}
+			if (task_details->tid == &tid_taskD){
+						sRect.i16XMin = 15;
+					sRect.i16YMin = 17;
+					sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
+					sRect.i16YMax = 35;
+					GrContextForegroundSet(&sContext, ClrBlack);
+					GrContextBackgroundSet(&sContext, ClrBlack);
+						GrRectFill(&sContext, &sRect);
+
+					
+					GrContextForegroundSet(&sContext, ClrWhite);
+					GrRectDraw(&sContext, &sRect);
+				intToString(pMail->dynamic_Priority, buf, 10, 10);
+				GrStringDrawCentered(&sContext,(char*)buf, -1,
+													 GrContextDpyWidthGet(&sContext) - 20, 
+				((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);
+			}
+			if (task_details->tid == &tid_taskE){
+						sRect.i16XMin = 15;
+					sRect.i16YMin = 17;
+					sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
+					sRect.i16YMax = 35;
+					GrContextForegroundSet(&sContext, ClrBlack);
+					GrContextBackgroundSet(&sContext, ClrBlack);
+						GrRectFill(&sContext, &sRect);
+
+					
+					GrContextForegroundSet(&sContext, ClrWhite);
+					GrRectDraw(&sContext, &sRect);
+					intToString(pMail->dynamic_Priority, buf, 10, 10);
+				GrStringDrawCentered(&sContext,(char*)buf, -1,
+													 GrContextDpyWidthGet(&sContext) - 20, 
+				((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);
+			}
+			if(task_details->tid == &tid_taskF){
+						sRect.i16XMin = 15;
+					sRect.i16YMin = 17;
+					sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
+					sRect.i16YMax = 35;
+					GrContextForegroundSet(&sContext, ClrBlack);
+					GrContextBackgroundSet(&sContext, ClrBlack);
+						GrRectFill(&sContext, &sRect);
+
+					
+					GrContextForegroundSet(&sContext, ClrWhite);
+					GrRectDraw(&sContext, &sRect);
+					intToString(pMail->dynamic_Priority, buf, 10, 10);
+				GrStringDrawCentered(&sContext,(char*)buf, -1,
+													 GrContextDpyWidthGet(&sContext) - 20, 
+				((GrContextDpyHeightGet(&sContext)- 15)) + 10,0);	
+			}
+				
+			osSignalSet(tid_scheduler, 0x0001);
         osMailFree (qid_MailQueue, pMail);                      
         // free memory allocated for mail
       }
