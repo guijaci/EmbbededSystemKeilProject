@@ -30,8 +30,9 @@ Rebuild Project 'base_project' - Target 'TM4C129 RAM'
 compiling LED.c...
 compiling cfaf128x128x16.c...
 compiling retarget_io.c...
-assembling startup_TM4C129.s...
 compiling RTX_Conf_CM.c...
+assembling startup_TM4C129.s...
+compiling system_TM4C129.c...
 compiling Blinky.c...
 C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(175): warning:  #68-D: integer conversion resulted in a change of sign
   	-1
@@ -67,14 +68,13 @@ C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\Blinky.
   	unsigned long  d;
 C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(956): warning:  #177-D: variable "j"  was declared but never referenced
   	int i, j;
-C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(1029): warning:  #1134-D: literal treated as "long long"
-  				task->executionTime  = 4294967295 - last_time + cur_time;
-C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(1177): warning:  #1-D: last line of file ends without a newline
+C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(1032): warning:  #1134-D: literal treated as "long long"
+  					task->executionTime  = 4294967295 - last_time + cur_time;
+C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(1183): warning:  #1-D: last line of file ends without a newline
   }
 Blinky.c: 19 warnings, 0 errors
-compiling system_TM4C129.c...
 linking...
-Program Size: Code=21604 RO-data=3508 RW-data=368 ZI-data=10296  
+Program Size: Code=20240 RO-data=3508 RW-data=372 ZI-data=10292  
 ".\RAM\base_project.axf" - 0 Error(s), 19 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -141,7 +141,7 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.0.1
 
    * Component: ::CMSIS:RTOS:1.0.0 (API)
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:03
 </pre>
 </body>
 </html>

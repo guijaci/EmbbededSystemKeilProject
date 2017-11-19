@@ -227,22 +227,22 @@ void timer_callback(const void* args)
 	timerE = (timerE + 1)% perE;
 	timerF = (timerF + 1)% perF;
 	
-	if(timerA == 0 && taskA_details.task_state == WAITING)
-		{
-			taskA_details.task_state = READY; 
-			}
-	if(timerB == 0 && taskB_details.task_state == WAITING)
-		{ taskB_details.task_state = READY; 
-			}
-	if(timerC == 0 && taskC_details.task_state == WAITING)
-		{ taskC_details.task_state = READY; 
-			}
-	if(timerD == 0 && taskD_details.task_state == WAITING)
-		{ taskD_details.task_state = READY;
-			}
-	if(timerE == 0 && taskE_details.task_state == WAITING)
-		{ taskE_details.task_state = READY; 
-			}
+//	if(timerA == 0 && taskA_details.task_state == WAITING)
+//		{
+//			taskA_details.task_state = READY; 
+//			}
+//	if(timerB == 0 && taskB_details.task_state == WAITING)
+//		{ taskB_details.task_state = READY; 
+//			}
+//	if(timerC == 0 && taskC_details.task_state == WAITING)
+//		{ taskC_details.task_state = READY; 
+//			}
+//	if(timerD == 0 && taskD_details.task_state == WAITING)
+//		{ taskD_details.task_state = READY;
+//			}
+//	if(timerE == 0 && taskE_details.task_state == WAITING)
+//		{ taskE_details.task_state = READY; 
+//			}
 	if(timerF == 0 && taskF_details.task_state == WAITING)
 		{
 			taskF_details.task_state = READY; 
@@ -702,7 +702,7 @@ void drawer (void  const *argument) {
 					GrContextForegroundSet(&sContext, ClrWhite);
 					GrRectDraw(&sContext, &sRect);
 				
-				intToString(pMail->dynamic_Priority, buf, 10, 10);
+			/*	intToString(pMail->dynamic_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);	
@@ -711,7 +711,7 @@ void drawer (void  const *argument) {
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 80, 
 				((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);	
-				
+				*/
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
@@ -736,7 +736,7 @@ void drawer (void  const *argument) {
 					GrContextForegroundSet(&sContext, ClrWhite);
 					GrRectDraw(&sContext, &sRect);
 					intToString(pMail->dynamic_Priority, buf, 10, 10);
-				GrStringDrawCentered(&sContext,(char*)buf, -1,
+				/*GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);	
 				
@@ -744,7 +744,7 @@ void drawer (void  const *argument) {
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 80, 
 				((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);	
-				
+				*/
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
@@ -767,7 +767,7 @@ void drawer (void  const *argument) {
 					
 					GrContextForegroundSet(&sContext, ClrWhite);
 					GrRectDraw(&sContext, &sRect);
-				intToString(pMail->dynamic_Priority, buf, 10, 10);
+				/*intToString(pMail->dynamic_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
@@ -776,7 +776,7 @@ void drawer (void  const *argument) {
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 80, 
 				((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
-				
+				*/
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
@@ -799,7 +799,7 @@ void drawer (void  const *argument) {
 					
 					GrContextForegroundSet(&sContext, ClrWhite);
 					GrRectDraw(&sContext, &sRect);
-				intToString(pMail->dynamic_Priority, buf, 10, 10);
+			/*	intToString(pMail->dynamic_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);	
@@ -808,7 +808,7 @@ void drawer (void  const *argument) {
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 80, 
 				((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);	
-				
+				*/
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
@@ -831,7 +831,7 @@ void drawer (void  const *argument) {
 					
 					GrContextForegroundSet(&sContext, ClrWhite);
 					GrRectDraw(&sContext, &sRect);
-					intToString(pMail->dynamic_Priority, buf, 10, 10);
+			/*		intToString(pMail->dynamic_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);	
@@ -840,7 +840,7 @@ void drawer (void  const *argument) {
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 80, 
 				((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);	
-				
+				*/
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
@@ -865,7 +865,7 @@ void drawer (void  const *argument) {
 					GrContextForegroundSet(&sContext, ClrWhite);
 					GrRectDraw(&sContext, &sRect);
 				
-					intToString(pMail->dynamic_Priority, buf, 10, 10);
+					/*intToString(pMail->dynamic_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);	
@@ -874,7 +874,7 @@ void drawer (void  const *argument) {
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 80, 
 				((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);	
-				
+				*/
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
@@ -1021,16 +1021,22 @@ taskDetails* nextRunning(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDet
 	return nextTask;
 }
 void calcTime(taskDetails*  task){
+		static bool init = false;
 		static uint32_t cur_time = 0;
 		static uint32_t last_time = 0;
-		last_time =  cur_time;
-		cur_time = osKernelSysTick();
-		if(last_time > cur_time){
-				task->executionTime  = 4294967295 - last_time + cur_time;
-		}else{
-			task->executionTime += cur_time - last_time;
-		}
 	
+		if(init == true){
+			last_time =  cur_time;
+			cur_time = osKernelSysTick();
+			if(last_time > cur_time){
+					task->executionTime  = 4294967295 - last_time + cur_time;
+			}else{
+				task->executionTime += cur_time - last_time;
+			}
+		}else{
+			init = true;
+			cur_time = osKernelSysTick();
+		}
 }
 
 
