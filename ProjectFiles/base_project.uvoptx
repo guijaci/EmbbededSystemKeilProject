@@ -118,6 +118,8 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
+          <Name>ÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÌÈ`&lt;
+’ÍV	ÜñS</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -151,7 +153,7 @@
           <Type>0</Type>
           <LineNumber>1182</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>8334</Address>
+          <Address>8990</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -167,7 +169,7 @@
           <Type>0</Type>
           <LineNumber>1175</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>8296</Address>
+          <Address>8952</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -183,7 +185,7 @@
           <Type>0</Type>
           <LineNumber>1084</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>7690</Address>
+          <Address>8346</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -245,73 +247,9 @@
         <Bp>
           <Number>6</Number>
           <Type>0</Type>
-          <LineNumber>1002</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>7516</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\Blinky.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\base_project\Blinky.c\1002</Expression>
-        </Bp>
-        <Bp>
-          <Number>7</Number>
-          <Type>0</Type>
-          <LineNumber>985</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>7452</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\Blinky.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\base_project\Blinky.c\985</Expression>
-        </Bp>
-        <Bp>
-          <Number>8</Number>
-          <Type>0</Type>
-          <LineNumber>977</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>7414</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\Blinky.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\base_project\Blinky.c\977</Expression>
-        </Bp>
-        <Bp>
-          <Number>9</Number>
-          <Type>0</Type>
-          <LineNumber>730</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>5010</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\Blinky.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\base_project\Blinky.c\730</Expression>
-        </Bp>
-        <Bp>
-          <Number>10</Number>
-          <Type>0</Type>
           <LineNumber>272</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>10708</Address>
+          <Address>11364</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -323,7 +261,39 @@
           <Expression>\\base_project\RTE/CMSIS/RTX_Conf_CM.c\272</Expression>
         </Bp>
         <Bp>
-          <Number>11</Number>
+          <Number>7</Number>
+          <Type>0</Type>
+          <LineNumber>487</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>2802</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;1&gt;.\Blinky.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\base_project\Blinky.c\487</Expression>
+        </Bp>
+        <Bp>
+          <Number>8</Number>
+          <Type>0</Type>
+          <LineNumber>900</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>7740</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>&lt;1&gt;.\Blinky.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\base_project\Blinky.c\900</Expression>
+        </Bp>
+        <Bp>
+          <Number>9</Number>
           <Type>0</Type>
           <LineNumber>1085</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -339,7 +309,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>12</Number>
+          <Number>10</Number>
           <Type>0</Type>
           <LineNumber>1174</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -355,7 +325,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>13</Number>
+          <Number>11</Number>
           <Type>0</Type>
           <LineNumber>1181</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -416,6 +386,41 @@
           <count>8</count>
           <WinNumber>1</WinNumber>
           <ItemText>timerB</ItemText>
+        </Ww>
+        <Ww>
+          <count>9</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>tasksReady[0]</ItemText>
+        </Ww>
+        <Ww>
+          <count>10</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>tasksReady[1]</ItemText>
+        </Ww>
+        <Ww>
+          <count>11</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>tasksReady[2]</ItemText>
+        </Ww>
+        <Ww>
+          <count>12</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>tasksReady[3]</ItemText>
+        </Ww>
+        <Ww>
+          <count>13</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>tasksReady[4]</ItemText>
+        </Ww>
+        <Ww>
+          <count>14</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>tasksReady[5]</ItemText>
+        </Ww>
+        <Ww>
+          <count>15</count>
+          <WinNumber>1</WinNumber>
+          <ItemText>tasksReady[6]</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
@@ -1016,7 +1021,7 @@
         <Bp>
           <Number>28</Number>
           <Type>0</Type>
-          <LineNumber>730</LineNumber>
+          <LineNumber>487</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -1032,7 +1037,7 @@
         <Bp>
           <Number>29</Number>
           <Type>0</Type>
-          <LineNumber>977</LineNumber>
+          <LineNumber>900</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -1048,7 +1053,7 @@
         <Bp>
           <Number>30</Number>
           <Type>0</Type>
-          <LineNumber>985</LineNumber>
+          <LineNumber>1042</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -1064,38 +1069,6 @@
         <Bp>
           <Number>31</Number>
           <Type>0</Type>
-          <LineNumber>1002</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>&lt;1&gt;.\Blinky.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>32</Number>
-          <Type>0</Type>
-          <LineNumber>1042</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>&lt;1&gt;.\Blinky.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>33</Number>
-          <Type>0</Type>
           <LineNumber>390</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
@@ -1110,7 +1083,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>34</Number>
+          <Number>32</Number>
           <Type>0</Type>
           <LineNumber>397</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -1126,7 +1099,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>35</Number>
+          <Number>33</Number>
           <Type>0</Type>
           <LineNumber>1084</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -1142,7 +1115,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>36</Number>
+          <Number>34</Number>
           <Type>0</Type>
           <LineNumber>1085</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -1158,7 +1131,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>37</Number>
+          <Number>35</Number>
           <Type>0</Type>
           <LineNumber>1174</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -1174,7 +1147,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>38</Number>
+          <Number>36</Number>
           <Type>0</Type>
           <LineNumber>1175</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -1190,7 +1163,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>39</Number>
+          <Number>37</Number>
           <Type>0</Type>
           <LineNumber>1181</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -1206,7 +1179,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>40</Number>
+          <Number>38</Number>
           <Type>0</Type>
           <LineNumber>1182</LineNumber>
           <EnabledFlag>0</EnabledFlag>

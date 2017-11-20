@@ -573,7 +573,7 @@
         <Bp>
           <Number>28</Number>
           <Type>0</Type>
-          <LineNumber>730</LineNumber>
+          <LineNumber>487</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -589,7 +589,7 @@
         <Bp>
           <Number>29</Number>
           <Type>0</Type>
-          <LineNumber>977</LineNumber>
+          <LineNumber>900</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -605,7 +605,7 @@
         <Bp>
           <Number>30</Number>
           <Type>0</Type>
-          <LineNumber>985</LineNumber>
+          <LineNumber>1042</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -621,38 +621,6 @@
         <Bp>
           <Number>31</Number>
           <Type>0</Type>
-          <LineNumber>1002</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>&lt;1&gt;.\Blinky.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>32</Number>
-          <Type>0</Type>
-          <LineNumber>1042</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>&lt;1&gt;.\Blinky.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>33</Number>
-          <Type>0</Type>
           <LineNumber>390</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
@@ -667,7 +635,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>34</Number>
+          <Number>32</Number>
           <Type>0</Type>
           <LineNumber>397</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -683,7 +651,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>35</Number>
+          <Number>33</Number>
           <Type>0</Type>
           <LineNumber>1084</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -699,7 +667,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>36</Number>
+          <Number>34</Number>
           <Type>0</Type>
           <LineNumber>1085</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -715,7 +683,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>37</Number>
+          <Number>35</Number>
           <Type>0</Type>
           <LineNumber>1174</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -731,7 +699,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>38</Number>
+          <Number>36</Number>
           <Type>0</Type>
           <LineNumber>1175</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -747,7 +715,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>39</Number>
+          <Number>37</Number>
           <Type>0</Type>
           <LineNumber>1181</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -763,7 +731,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>40</Number>
+          <Number>38</Number>
           <Type>0</Type>
           <LineNumber>1182</LineNumber>
           <EnabledFlag>0</EnabledFlag>

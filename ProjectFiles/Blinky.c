@@ -63,8 +63,8 @@ typedef enum{READY, RUNNING, WAITING} state;
 
 typedef struct {
 	 osThreadId *tid; 
-	 int8_t dynamic_Priority;
-   int8_t static_Priority;
+	 int32_t dynamic_Priority;
+   int32_t static_Priority;
 	 state	task_state;// if it is READY, RUNNING or WAITING
 	 uint32_t deadline; //in ticks
 	 uint32_t initTime; //in ticks, time of execution
@@ -185,8 +185,8 @@ void calcTime(taskDetails*  task);
 // object data type
 typedef struct {                                                
 	 taskDetails* task;
-	 int8_t dynamic_Priority;
-   int8_t static_Priority;
+	 int32_t dynamic_Priority;
+   int32_t static_Priority;
 	 uint16_t deadline; //in ticks
 	 uint32_t executionTime;
 	 uint32_t totalEstimateTime;
@@ -717,17 +717,17 @@ void drawer (void  const *argument) {
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);	
 				
-					intToString(pMail->execution_percentage, buf, 10, 10);
-				GrStringDrawCentered(&sContext,(char*)buf, -1,
-													 GrContextDpyWidthGet(&sContext) - 80, 
-				((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);	
+//					intToString(pMail->execution_percentage, buf, 10, 10);
+//				GrStringDrawCentered(&sContext,(char*)buf, -1,
+//													 GrContextDpyWidthGet(&sContext) - 80, 
+//				((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);	
 				
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
 				((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);	
 				
-					intToString(pMail->deadline, buf, 10, 10);
+					intToString(pMail->static_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 20, 
 				((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);	
@@ -750,20 +750,20 @@ void drawer (void  const *argument) {
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);	
 				
-					intToString(pMail->execution_percentage, buf, 10, 10);
-				GrStringDrawCentered(&sContext,(char*)buf, -1,
-													 GrContextDpyWidthGet(&sContext) - 80, 
-				((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);	
+//					intToString(pMail->execution_percentage, buf, 10, 10);
+//				GrStringDrawCentered(&sContext,(char*)buf, -1,
+//													 GrContextDpyWidthGet(&sContext) - 80, 
+//				((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);	
 				
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
 				((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);	
 				
-					intToString(pMail->deadline, buf, 10, 10);
+					intToString(pMail->static_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
-													 GrContextDpyWidthGet(&sContext) - 20, 
-				((GrContextDpyHeightGet(&sContext)- -95)) + 10,0);	
+													 GrContextDpyWidthGet(&sContext) -20, 
+				((GrContextDpyHeightGet(&sContext) -95)) + 10,0);	
 			}
 			if(task_details->tid == &tid_taskC){
 						sRect.i16XMin = 15;
@@ -782,17 +782,17 @@ void drawer (void  const *argument) {
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
 				
-					intToString(pMail->execution_percentage, buf, 10, 10);
-				GrStringDrawCentered(&sContext,(char*)buf, -1,
-													 GrContextDpyWidthGet(&sContext) - 80, 
-				((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
+//					intToString(pMail->execution_percentage, buf, 10, 10);
+//				GrStringDrawCentered(&sContext,(char*)buf, -1,
+//													 GrContextDpyWidthGet(&sContext) - 80, 
+//				((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
 				
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
 				((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
 				
-					intToString(pMail->deadline, buf, 10, 10);
+					intToString(pMail->static_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 20, 
 				((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
@@ -814,17 +814,17 @@ void drawer (void  const *argument) {
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);	
 				
-					intToString(pMail->execution_percentage, buf, 10, 10);
-				GrStringDrawCentered(&sContext,(char*)buf, -1,
-													 GrContextDpyWidthGet(&sContext) - 80, 
-				((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);	
+//					intToString(pMail->execution_percentage, buf, 10, 10);
+//				GrStringDrawCentered(&sContext,(char*)buf, -1,
+//													 GrContextDpyWidthGet(&sContext) - 80, 
+//				((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);	
 			
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
 				((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);	
 				
-					intToString(pMail->deadline, buf, 10, 10);
+					intToString(pMail->static_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 20, 
 				((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);	
@@ -845,18 +845,18 @@ void drawer (void  const *argument) {
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);	
-				
-					intToString(pMail->execution_percentage, buf, 10, 10);
-				GrStringDrawCentered(&sContext,(char*)buf, -1,
-													 GrContextDpyWidthGet(&sContext) - 80, 
-				((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);	
+//				
+//					intToString(pMail->execution_percentage, buf, 10, 10);
+//				GrStringDrawCentered(&sContext,(char*)buf, -1,
+//													 GrContextDpyWidthGet(&sContext) - 80, 
+//				((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);	
 			
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
 				((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);	
 				
-					intToString(pMail->deadline, buf, 10, 10);
+					intToString(pMail->static_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 20, 
 				((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);	
@@ -880,17 +880,17 @@ void drawer (void  const *argument) {
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);	
 				
-					intToString(pMail->execution_percentage, buf, 10, 10);
-				GrStringDrawCentered(&sContext,(char*)buf, -1,
-													 GrContextDpyWidthGet(&sContext) - 80, 
-				((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);	
+//					intToString(pMail->execution_percentage, buf, 10, 10);
+//				GrStringDrawCentered(&sContext,(char*)buf, -1,
+//													 GrContextDpyWidthGet(&sContext) - 80, 
+//				((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);	
 				
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
 				((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);	
 				
-					intToString(pMail->deadline, buf, 10, 10);
+					intToString(pMail->static_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 20, 
 				((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);	
@@ -967,7 +967,7 @@ bool policies(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* runni
   uint32_t lifespam = osKernelSysTick() - runningTask->initTime;
 		
 	
-	for(i = 0 ; i < *sizeReady ; i++)
+	for(i = 0 ; i <(*sizeReady) ; i++)
 	{
 		
 		if(tasksReady[i]->task_state != RUNNING)	
@@ -979,10 +979,10 @@ bool policies(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* runni
 				//Realtime
 				if(tasksReady[i]->static_Priority == -100  )
 				{
-						return true;//primeiro p.
+//return true;//primeiro p.
 				
 				}else{//nao realtime
-					tasksReady[i]->dynamic_Priority -= 10; //segundo paragrafo	
+				 tasksReady[i]->dynamic_Priority -= 10; //segundo paragrafo	
 				}
 			}
 		}
@@ -999,7 +999,7 @@ bool policies(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* runni
 			//Realtime
 			if(runningTask->static_Priority == -100 )
 			{
-					return true;//primeiro p.
+				//	return true;//primeiro p.
 			
 			}else{//nao realtime
 				runningTask->dynamic_Priority -= 10; //segundo paragrafo
