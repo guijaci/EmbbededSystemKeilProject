@@ -84,10 +84,10 @@ taskDetails taskA_details = {
 	0,
 	10,
 	WAITING,
-	8687548,//2530,
+	63,//2530,
 	0,
 	0,
-	5110322,//1488,
+	37,//1488,
 	0,
 	false,
 	8,
@@ -98,10 +98,10 @@ taskDetails taskB_details = {
 	0,
 	0,
 	WAITING,
-	16691601,//5838,
+	53,//5838,
 	0,
 	0,
-	11127734,//3892,
+	35,//3892,
 	0,
 	false,
   2,
@@ -112,10 +112,10 @@ taskDetails taskC_details = {
 	0,
 	-30,
 	WAITING,
-	8306311,//1096,
+	46,//1096,
 	0,
 	0,
-	6389470,//843,
+	35,//843,
 	0,
 	false,
 	5,
@@ -235,36 +235,36 @@ void timer_callback(const void* args)
 	timerF = (timerF + 1)% perF;
 	
 	
-//	if(timerA == 0 && taskA_details.task_state == WAITING)
-//	{
-//		taskA_details.initTime  = osKernelSysTick();
-//		taskA_details.task_state = READY; 
-//	}
-//	if(timerB == 0 && taskB_details.task_state == WAITING)
-//	{  
-//		taskB_details.initTime  = osKernelSysTick();
-//		taskB_details.task_state = READY; 
-//	}
+	if(timerA == 0 && taskA_details.task_state == WAITING)
+	{
+		taskA_details.initTime  = osKernelSysTick();
+		taskA_details.task_state = READY; 
+	}
+	if(timerB == 0 && taskB_details.task_state == WAITING)
+	{  
+		taskB_details.initTime  = osKernelSysTick();
+		taskB_details.task_state = READY; 
+	}
 	if(timerC == 0 && taskC_details.task_state == WAITING)
 	{ 
 		taskC_details.initTime  = osKernelSysTick();
 		taskC_details.task_state = READY; 
 	}
-//	if(timerD == 0 && taskD_details.task_state == WAITING)
-//	{
-//		taskD_details.initTime  = osKernelSysTick();
-//		taskD_details.task_state = READY;
-//	}
-//	if(timerE == 0 && taskE_details.task_state == WAITING)
-//	{ 
-//		taskE_details.initTime  = osKernelSysTick();
-//		taskE_details.task_state = READY; 
-//	}
-//	if(timerF == 0 && taskF_details.task_state == WAITING)
-//	{
-//		taskF_details.initTime  = osKernelSysTick();
-//		taskF_details.task_state = READY; 
-//	}
+	if(timerD == 0 && taskD_details.task_state == WAITING)
+	{
+		taskD_details.initTime  = osKernelSysTick();
+		taskD_details.task_state = READY;
+	}
+	if(timerE == 0 && taskE_details.task_state == WAITING)
+	{ 
+		taskE_details.initTime  = osKernelSysTick();
+		taskE_details.task_state = READY; 
+	}
+	if(timerF == 0 && taskF_details.task_state == WAITING)
+	{
+		taskF_details.initTime  = osKernelSysTick();
+		taskF_details.task_state = READY; 
+	}
 	osSignalSet(tid_scheduler, 0x0001);
 }
 

@@ -419,7 +419,7 @@
         <Bp>
           <Number>17</Number>
           <Type>0</Type>
-          <LineNumber>487</LineNumber>
+          <LineNumber>708</LineNumber>
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -435,22 +435,6 @@
         <Bp>
           <Number>18</Number>
           <Type>0</Type>
-          <LineNumber>667</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>&lt;1&gt;.\Blinky.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
-        <Bp>
-          <Number>19</Number>
-          <Type>0</Type>
           <LineNumber>1175</LineNumber>
           <EnabledFlag>0</EnabledFlag>
           <Address>0</Address>
@@ -465,7 +449,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>20</Number>
+          <Number>19</Number>
           <Type>0</Type>
           <LineNumber>1178</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -481,7 +465,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>21</Number>
+          <Number>20</Number>
           <Type>0</Type>
           <LineNumber>1182</LineNumber>
           <EnabledFlag>0</EnabledFlag>
@@ -497,7 +481,7 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>22</Number>
+          <Number>21</Number>
           <Type>0</Type>
           <LineNumber>1185</LineNumber>
           <EnabledFlag>0</EnabledFlag>
