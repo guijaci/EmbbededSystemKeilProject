@@ -59,6 +59,10 @@ osTimerDef(Timer2, timer_execution_counter);
 
 char buf [10] ;
 
+
+tContext sContext;
+tRectangle sRect;
+
 //====================================================
 // nome
 //====================================================
@@ -84,10 +88,10 @@ taskDetails taskA_details = {
 	0,
 	10,
 	WAITING,
-	63,//2530,
+	80,//2530,
 	0,
 	0,
-	37,//1488,
+	47,//1488,
 	0,
 	false,
 	8,
@@ -98,10 +102,10 @@ taskDetails taskB_details = {
 	0,
 	0,
 	WAITING,
-	53,//5838,
+	83,//5838,
 	0,
 	0,
-	35,//3892,
+	55,//3892,
 	0,
 	false,
   2,
@@ -112,10 +116,10 @@ taskDetails taskC_details = {
 	0,
 	-30,
 	WAITING,
-	46,//1096,
+	72,//1096,
 	0,
 	0,
-	35,//843,
+	55,//843,
 	0,
 	false,
 	5,
@@ -126,10 +130,10 @@ taskDetails taskD_details = {
 	0,
 	0,
 	WAITING,
-	60, //978,
+	68, //978,
 	0,
 	0,
-	40, //652,
+	45, //652,
 	0,
 	false,
 	1,
@@ -140,10 +144,10 @@ taskDetails taskE_details = {
 	0,
 	-30,
 	WAITING,
-	52,//22708,
+	73,//22708,
 	0,
 	0,
-	40,//17468,
+	56,//17468,
 	0,
 	false,
   6,
@@ -154,13 +158,13 @@ taskDetails taskF_details = {
 	0,
 	-100,
 	WAITING,
-	44,//1592,
+	66,//1592,
 	0,
 	0,
-	40,//1447,
+	60,//1447,
 	0,
 	false,
-	10,
+	1,
 	10
 };
 taskDetails taskDrawer_details = {
@@ -180,7 +184,7 @@ taskDetails taskDrawer_details = {
 
 //Tarefa selecionada pelo escalonador
 taskDetails* runningTask = NULL;
-
+bool in_scheduler = false;
 
 //void calcTime(taskDetails*  task);
 //====================================================
@@ -218,15 +222,22 @@ bool systemRunning = true;
  *---------------------------------------------------------------------------*/
 void timer_callback(const void* args)
 {
-
+	static bool init = false;
 	static uint8_t timerA = 0, timerB = 0, timerC = 0, timerD = 0, timerE = 0, timerF = 0;
-	const uint32_t 
-		perA = 125/taskA_details.frequency, 
-		perB = 125/taskB_details.frequency, 
-		perC = 125/taskC_details.frequency, 
-		perD = 125/taskD_details.frequency, 
-		perE = 125/taskE_details.frequency, 
+	static uint32_t 
+		perA,perB,perC,perD,perE,perF;
+	
+	if(!init)
+	{
+		perA = 125/taskA_details.frequency; 
+		perB = 125/taskB_details.frequency; 
+		perC = 125/taskC_details.frequency; 
+		perD = 125/taskD_details.frequency; 
+		perE = 125/taskE_details.frequency; 
 		perF = 125/taskF_details.frequency;
+		init = true;
+	}
+	
 	timerA = (timerA + 1)% perA;
 	timerB = (timerB + 1)% perB;
 	timerC = (timerC + 1)% perC;
@@ -237,40 +248,41 @@ void timer_callback(const void* args)
 	
 	if(timerA == 0 && taskA_details.task_state == WAITING)
 	{
-		taskA_details.initTime  = osKernelSysTick();
+		taskA_details.initTime  = osKernelSysTick()/16000;
 		taskA_details.task_state = READY; 
 	}
 	if(timerB == 0 && taskB_details.task_state == WAITING)
 	{  
-		taskB_details.initTime  = osKernelSysTick();
+		taskB_details.initTime  = osKernelSysTick()/16000;
 		taskB_details.task_state = READY; 
 	}
 	if(timerC == 0 && taskC_details.task_state == WAITING)
 	{ 
-		taskC_details.initTime  = osKernelSysTick();
+		taskC_details.initTime  = osKernelSysTick()/16000;
 		taskC_details.task_state = READY; 
 	}
 	if(timerD == 0 && taskD_details.task_state == WAITING)
 	{
-		taskD_details.initTime  = osKernelSysTick();
+		taskD_details.initTime  = osKernelSysTick()/16000;
 		taskD_details.task_state = READY;
 	}
 	if(timerE == 0 && taskE_details.task_state == WAITING)
 	{ 
-		taskE_details.initTime  = osKernelSysTick();
+		taskE_details.initTime  = osKernelSysTick()/16000;
 		taskE_details.task_state = READY; 
 	}
 	if(timerF == 0 && taskF_details.task_state == WAITING)
 	{
-		taskF_details.initTime  = osKernelSysTick();
+		taskF_details.initTime  = osKernelSysTick()/16000;
 		taskF_details.task_state = READY; 
 	}
 	osSignalSet(tid_scheduler, 0x0001);
 }
 
+
 void timer_execution_counter(const void* args)
 {
-		if(runningTask != NULL && runningTask->task_state != WAITING)
+		if(runningTask != NULL && runningTask->task_state != WAITING && !in_scheduler)
 			runningTask->executionTime++;
 }
 
@@ -348,6 +360,18 @@ static void intToString(int64_t value, char * pBuf, uint32_t len, uint32_t base)
     return;
 }
 
+const char* verifyState(state  s){
+	
+	switch(s){
+		case RUNNING:
+			return "RN";
+		case WAITING:
+			return "WT";
+		case READY:
+			return "RD";
+	}
+		
+}
 
 /*----------------------------------------------------------------------------
  *      Thread 1 'taskA': task A output
@@ -619,60 +643,7 @@ void drawer (void  const *argument) {
 	taskDetails *task_details;
 	MAILQUEUE_OBJ_t  *pMail = 0;
   osEvent           evt;
-	tContext sContext;
-	tRectangle sRect;
-	GrContextInit(&sContext, &g_sCfaf128x128x16);
 
-	GrContextFontSet(&sContext, g_psFontCm12);
-	intToString(33, buf, 10, 10);
-	Switch_On (LED_CLK);
-				
-	GrContextFontSet(&sContext, g_psFontCm12);
-
-	GrFlush(&sContext);
-	intToString(taskA_details.initTime, buf, 10, 10);
-	GrContextFontSet(&sContext,g_psFontFixed6x8);
-	
-	GrContextForegroundSet(&sContext, ClrWhite);
-	GrContextBackgroundSet(&sContext, ClrBlack);
-	
-	//Escreve menu lateral:
-	GrStringDrawCentered(&sContext,"A", -1,
-								 GrContextDpyWidthGet(&sContext) - 120,
-								 ((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);
-	GrStringDrawCentered(&sContext,"B", -1,
-											 GrContextDpyWidthGet(&sContext) - 120,
-											 ((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);
-	GrStringDrawCentered(&sContext,"C", -1,
-											 GrContextDpyWidthGet(&sContext) - 120,
-											 ((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);
-	GrStringDrawCentered(&sContext,"D", -1,
-											 GrContextDpyWidthGet(&sContext) - 120,
-											 ((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);
-	GrStringDrawCentered(&sContext,"E", -1,
-											 GrContextDpyWidthGet(&sContext) - 120,
-											 ((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);
-	GrStringDrawCentered(&sContext,"F", -1,
-											 GrContextDpyWidthGet(&sContext) - 120,
-											 ((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);
-	
-	//Escreve menu superior:
-	GrStringDrawCentered(&sContext,"PRI", -1,
-							 GrContextDpyWidthGet(&sContext) - 100,
-							 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);
-							 
-	GrStringDrawCentered(&sContext,"%", -1,
-											 GrContextDpyWidthGet(&sContext) - 80,
-											 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);
-											 
-	GrStringDrawCentered(&sContext,"STA", -1,
-											 GrContextDpyWidthGet(&sContext) - 60,
-											 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);	
-											 
-	GrStringDrawCentered(&sContext,"DEAD", -1,
-											 GrContextDpyWidthGet(&sContext) - 20,
-											 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);
-					
   while (systemRunning == true) {
    evt = osMailGet (qid_MailQueue, osWaitForever);             
    // wait for mail
@@ -686,19 +657,20 @@ void drawer (void  const *argument) {
 			
 			if(pMail->isError == true)
 			{
-				systemRunning = false;
 				sRect.i16XMin = 15;
 				sRect.i16YMin = 17;
 				sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
 				sRect.i16YMax = 128;
+				
+				GrContextForegroundSet(&sContext, ClrBlack);
+				GrContextBackgroundSet(&sContext, ClrBlack);
 				GrRectFill(&sContext, &sRect);
-
 				GrContextForegroundSet(&sContext, ClrWhite);
-				GrRectDraw(&sContext, &sRect);
 				
 				GrStringDrawCentered(&sContext,"Erro!", -1,
 														 GrContextDpyWidthGet(&sContext) - 60,
 														 ((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);
+				systemRunning = false;
 			}
 			else 
 			{
@@ -714,22 +686,22 @@ void drawer (void  const *argument) {
 				GrRectFill(&sContext, &sRect);
 				GrContextForegroundSet(&sContext, ClrWhite);
 				
-				intToString(pMail->dynamic_Priority, buf, 10, 10);
+				intToString(pMail->static_Priority + pMail->dynamic_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);	
 				
-//					intToString(pMail->execution_percentage, buf, 10, 10);
-//				GrStringDrawCentered(&sContext,(char*)buf, -1,
-//													 GrContextDpyWidthGet(&sContext) - 80, 
-//				((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);	
-				
-				intToString(pMail->executionTime, buf, 10, 10);
+				intToString(pMail->executionTime*100/pMail->totalEstimateTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
+													 GrContextDpyWidthGet(&sContext) - 80, 
+				((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);	
+				
+				
+				GrStringDrawCentered(&sContext,verifyState(task_details->task_state), -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
 				((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);	
 				
-				intToString(pMail->static_Priority, buf, 10, 10);
+				intToString(pMail->deadline, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 20, 
 				((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);	
@@ -746,22 +718,22 @@ void drawer (void  const *argument) {
 				GrRectFill(&sContext, &sRect);
 				GrContextForegroundSet(&sContext, ClrWhite);
 			
-				intToString(pMail->dynamic_Priority, buf, 10, 10);
+				intToString(pMail->static_Priority + pMail->dynamic_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);	
 				
-//					intToString(pMail->execution_percentage, buf, 10, 10);
-//				GrStringDrawCentered(&sContext,(char*)buf, -1,
-//													 GrContextDpyWidthGet(&sContext) - 80, 
-//				((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);	
-				
-				intToString(pMail->executionTime, buf, 10, 10);
+					intToString(pMail->executionTime*100/pMail->totalEstimateTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
+													 GrContextDpyWidthGet(&sContext) - 80, 
+				((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);	
+				
+				
+				GrStringDrawCentered(&sContext,verifyState(task_details->task_state), -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
 				((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);	
 				
-				intToString(pMail->static_Priority, buf, 10, 10);
+				intToString(pMail->deadline, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) -20, 
 				((GrContextDpyHeightGet(&sContext) -95)) + 10,0);	
@@ -777,22 +749,21 @@ void drawer (void  const *argument) {
 
 				
 				GrContextForegroundSet(&sContext, ClrWhite);
-				intToString(pMail->dynamic_Priority, buf, 10, 10);
+				intToString(pMail->static_Priority+pMail->dynamic_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
 				
-//					intToString(pMail->execution_percentage, buf, 10, 10);
-//				GrStringDrawCentered(&sContext,(char*)buf, -1,
-//													 GrContextDpyWidthGet(&sContext) - 80, 
-//				((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
-				
-				intToString(pMail->executionTime, buf, 10, 10);
+					intToString(pMail->executionTime*100/pMail->totalEstimateTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
+													 GrContextDpyWidthGet(&sContext) - 80, 
+				((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
+				
+				GrStringDrawCentered(&sContext,verifyState(task_details->task_state), -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
 				((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
 				
-				intToString(pMail->static_Priority, buf, 10, 10);
+				intToString(pMail->deadline, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 20, 
 				((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
@@ -807,22 +778,22 @@ void drawer (void  const *argument) {
 				GrRectFill(&sContext, &sRect);
 
 				GrContextForegroundSet(&sContext, ClrWhite);
-				intToString(pMail->dynamic_Priority, buf, 10, 10);
+				intToString(pMail->static_Priority + pMail->dynamic_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);	
 				
-//					intToString(pMail->execution_percentage, buf, 10, 10);
-//				GrStringDrawCentered(&sContext,(char*)buf, -1,
-//													 GrContextDpyWidthGet(&sContext) - 80, 
-//				((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);	
-			
-				intToString(pMail->executionTime, buf, 10, 10);
+					intToString(pMail->executionTime*100/pMail->totalEstimateTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
+													 GrContextDpyWidthGet(&sContext) - 80, 
+				((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);	
+			
+				
+				GrStringDrawCentered(&sContext,verifyState(task_details->task_state), -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
 				((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);	
 				
-				intToString(pMail->static_Priority, buf, 10, 10);
+				intToString(pMail->deadline, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 20, 
 				((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);	
@@ -837,22 +808,22 @@ void drawer (void  const *argument) {
 				GrRectFill(&sContext, &sRect);
 				GrContextForegroundSet(&sContext, ClrWhite);
 				
-				intToString(pMail->dynamic_Priority, buf, 10, 10);
+				intToString(pMail->static_Priority + pMail->dynamic_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);	
-//				
-//					intToString(pMail->execution_percentage, buf, 10, 10);
-//				GrStringDrawCentered(&sContext,(char*)buf, -1,
-//													 GrContextDpyWidthGet(&sContext) - 80, 
-//				((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);	
-			
-				intToString(pMail->executionTime, buf, 10, 10);
+				
+					intToString(pMail->executionTime*100/pMail->totalEstimateTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
+													 GrContextDpyWidthGet(&sContext) - 80, 
+				((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);	
+			
+		
+				GrStringDrawCentered(&sContext,verifyState(task_details->task_state), -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
 				((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);	
 				
-				intToString(pMail->static_Priority, buf, 10, 10);
+				intToString(pMail->deadline, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 20, 
 				((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);	
@@ -868,22 +839,22 @@ void drawer (void  const *argument) {
 				GrRectFill(&sContext, &sRect);
 				GrContextForegroundSet(&sContext, ClrWhite);
 				
-				intToString(pMail->dynamic_Priority, buf, 10, 10);
+				intToString(pMail->static_Priority + pMail->dynamic_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);	
 				
-//					intToString(pMail->execution_percentage, buf, 10, 10);
-//				GrStringDrawCentered(&sContext,(char*)buf, -1,
-//													 GrContextDpyWidthGet(&sContext) - 80, 
-//				((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);	
-				
-				intToString(pMail->executionTime, buf, 10, 10);
+					intToString(pMail->executionTime*100/pMail->totalEstimateTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
+													 GrContextDpyWidthGet(&sContext) - 80, 
+				((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);	
+				
+			
+				GrStringDrawCentered(&sContext,verifyState(task_details->task_state), -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
 				((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);	
 				
-				intToString(pMail->static_Priority, buf, 10, 10);
+				intToString(pMail->deadline, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 20, 
 				((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);	
@@ -955,7 +926,7 @@ int32_t getTotalPriority(taskDetails* details){
 bool policies(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* runningTask, taskDetails* lastRunningTask)
 {
 	int i, j;
-  uint32_t lifespam = osKernelSysTick() - runningTask->initTime;
+  uint32_t lifespam;
 	
 	for(i = 0 ; i <(*sizeReady) ; i++)
 	{
@@ -963,13 +934,13 @@ bool policies(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* runni
 		{	
 			if(tasksReady[i]->totalEstimateTime == 0 )
 				continue;
+			lifespam = osKernelSysTick()/16000 > tasksReady[i]->initTime ? osKernelSysTick()/16000 - tasksReady[i]->initTime : (UINT32_MAX + osKernelSysTick())/16000 - tasksReady[i]->initTime;
 			if(lifespam > tasksReady[i]->deadline && tasksReady[i]->deadline_percentage != (uint8_t)-1)
 			{
 				//Realtime
 				if(tasksReady[i]->static_Priority == -100 )
 				{
-//return true;//primeiro p.
-				
+					//return false;//primeiro p.
 				}
 				else
 				{//nao realtime
@@ -983,6 +954,7 @@ bool policies(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* runni
 		}
 	}
 	
+	lifespam = osKernelSysTick()/16000 > runningTask->initTime ? osKernelSysTick()/16000 - runningTask->initTime : (UINT32_MAX + osKernelSysTick())/16000 - runningTask->initTime;
 	if(runningTask->task_state == WAITING  && runningTask != NULL)
 	{
 		for(i = 0 ; i <(*sizeReady) ; i++)
@@ -999,11 +971,11 @@ bool policies(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* runni
 				//Realtime
 				if(runningTask->static_Priority == -100 )
 				{
-					//	return true;//primeiro p.
+					//return false;//primeiro p.
 				}
 				else
 				{//nao realtime
-					runningTask->dynamic_Priority -= 10; //segundo paragrafo
+					runningTask->dynamic_Priority -= 1; //segundo paragrafo
 				}
 			}
 		
@@ -1012,7 +984,7 @@ bool policies(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* runni
 			{
 				if(runningTask->static_Priority != -100 && runningTask->deadline != 0)
 				{
-					runningTask->dynamic_Priority += 10;
+					runningTask->dynamic_Priority += 1;
 				}
 			}
 		}
@@ -1081,62 +1053,66 @@ void scheduler()
 		&tid_drawer		
 	};	
 	
+	osTimerStart (timerScheduler, 				8);    
 	while(systemRunning == true){
-			osSignalWait(0x0001, osWaitForever);
-			checkReady(tasksReady, &sizeReady, tasksWaiting, &sizeWaiting);
+		osSignalWait(0x0001, osWaitForever);
+		in_scheduler = true;
+		checkReady(tasksReady, &sizeReady, tasksWaiting, &sizeWaiting);
+		
+		lastRunningTask = runningTask;
+		if(lastRunningTask!= NULL ){
+			//calcTime(lastRunningTask);
+		}				
+		policiesResult = policies(tasksReady, &sizeReady, runningTask, lastRunningTask);
 			
-			lastRunningTask = runningTask;
-			if(lastRunningTask!= NULL ){
-				//calcTime(lastRunningTask);
-			}				
-			policiesResult = policies(tasksReady, &sizeReady, runningTask, lastRunningTask);
-				
-			if(!policiesResult)
-			{
-				pMail = osMailAlloc (qid_MailQueue, osWaitForever); 	
-				if (pMail)				
-				{  // Set the mail content
-						pMail->isError = true;
-						osMailPut (qid_MailQueue, pMail);                         
-						// Send Mail
-				
-				}
+		if(!policiesResult)
+		{
+			pMail = osMailAlloc (qid_MailQueue, osWaitForever); 	
+			if (pMail)				
+			{  // Set the mail content
+					pMail->isError = true;
+					osMailPut (qid_MailQueue, pMail);                         
+					// Send Mail
+			
 			}
-			
-			runningTask = nextRunning(tasksReady, &sizeReady, lastRunningTask);
-			
-			//Depois de executar uma tarefa, reinicia tempos
-			if(lastRunningTask->task_state == WAITING ){
-			  //lastRunningTask->deadline = lastRunningTask->deadline*lastRunningTask->executionTime/lastRunningTask->totalEstimateTime; 
-			  //lastRunningTask->totalEstimateTime = lastRunningTask->executionTime;
-				//lastRunningTask->totalEstimateTime = lastRunningTask->executionTime;
-				//lastRunningTask->deadline = (lastRunningTask->totalEstimateTime*(lastRunningTask->deadline_percentage+100))/100;
-				
-				lastRunningTask->executionTime = 0;				
-			}
-				
-			
-			if(!sizeReady)
-				runningTask = NULL;
-			for(i = 0; i < 7; i++)
-				osThreadSetPriority(*(user_thread_ids[i]), osPriorityIdle);
-			if(runningTask && runningTask->task_state != RUNNING)
-				osSignalSet(*(runningTask->tid), 0x0001);
-			if(lastRunningTask)
-				lastRunningTask->task_state = READY;
-			if(runningTask){
-				runningTask->task_state = RUNNING;
-				osThreadSetPriority(*(runningTask->tid), osPriorityNormal);
-			}
-			
-			if (*(runningTask->tid) == tid_taskA) 	{Switch_On (LED_0); Switch_Off(LED_1); Switch_Off(LED_2); Switch_Off(LED_3);}
-			if (*(runningTask->tid) == tid_taskB) 	{Switch_Off(LED_0); Switch_On (LED_1); Switch_Off(LED_2); Switch_Off(LED_3);}
-			if (*(runningTask->tid) == tid_taskC) 	{Switch_On (LED_0); Switch_On (LED_1); Switch_Off(LED_2); Switch_Off(LED_3);}
-			if (*(runningTask->tid) == tid_taskD) 	{Switch_Off(LED_0); Switch_Off(LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
-			if (*(runningTask->tid) == tid_taskE) 	{Switch_On (LED_0); Switch_Off(LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
-			if (*(runningTask->tid) == tid_taskF) 	{Switch_Off(LED_0); Switch_On (LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
-			if (*(runningTask->tid) == tid_drawer) 	{Switch_On (LED_0); Switch_On (LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
 		}
+		
+		runningTask = nextRunning(tasksReady, &sizeReady, lastRunningTask);
+		
+		//Depois de executar uma tarefa, reinicia tempos
+		if(lastRunningTask->task_state == WAITING ){
+			//lastRunningTask->deadline = lastRunningTask->deadline*lastRunningTask->executionTime/lastRunningTask->totalEstimateTime; 
+			//lastRunningTask->totalEstimateTime = lastRunningTask->executionTime;
+//			lastRunningTask->totalEstimateTime = lastRunningTask->executionTime;
+//			lastRunningTask->deadline = (lastRunningTask->totalEstimateTime*(lastRunningTask->deadline_percentage+100))/100;
+			
+			lastRunningTask->executionTime = 0;				
+		}
+			
+		
+		if(!sizeReady)
+			runningTask = NULL;
+		for(i = 0; i < 7; i++)
+			osThreadSetPriority(*(user_thread_ids[i]), osPriorityIdle);
+		if(runningTask && runningTask->task_state != RUNNING)
+			osSignalSet(*(runningTask->tid), 0x0001);
+		if(lastRunningTask)
+			lastRunningTask->task_state = READY;
+		if(runningTask){
+			runningTask->task_state = RUNNING;
+			osThreadSetPriority(*(runningTask->tid), osPriorityNormal);
+		}
+		
+		if (*(runningTask->tid) == tid_taskA) 	{Switch_On (LED_0); Switch_Off(LED_1); Switch_Off(LED_2); Switch_Off(LED_3);}
+		if (*(runningTask->tid) == tid_taskB) 	{Switch_Off(LED_0); Switch_On (LED_1); Switch_Off(LED_2); Switch_Off(LED_3);}
+		if (*(runningTask->tid) == tid_taskC) 	{Switch_On (LED_0); Switch_On (LED_1); Switch_Off(LED_2); Switch_Off(LED_3);}
+		if (*(runningTask->tid) == tid_taskD) 	{Switch_Off(LED_0); Switch_Off(LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
+		if (*(runningTask->tid) == tid_taskE) 	{Switch_On (LED_0); Switch_Off(LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
+		if (*(runningTask->tid) == tid_taskF) 	{Switch_Off(LED_0); Switch_On (LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
+		if (*(runningTask->tid) == tid_drawer) 	{Switch_On (LED_0); Switch_On (LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
+		
+		in_scheduler = false;
+	}
 }
 /*----------------------------------------------------------------------------
  *      Main: Initialize and start RTX Kernel
@@ -1147,6 +1123,51 @@ int main (void) {
   SystemCoreClockUpdate();
   LED_Initialize();                         /* Initialize the LEDs           */
  	cfaf128x128x16Init();
+	
+	GrContextInit(&sContext, &g_sCfaf128x128x16);
+	
+	GrFlush(&sContext);
+	GrContextFontSet(&sContext,g_psFontFixed6x8);
+	
+	GrContextForegroundSet(&sContext, ClrWhite);
+	GrContextBackgroundSet(&sContext, ClrBlack);
+	
+	//Escreve menu lateral:
+	GrStringDrawCentered(&sContext,"A", -1,
+								 GrContextDpyWidthGet(&sContext) - 120,
+								 ((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);
+	GrStringDrawCentered(&sContext,"B", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);
+	GrStringDrawCentered(&sContext,"C", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);
+	GrStringDrawCentered(&sContext,"D", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);
+	GrStringDrawCentered(&sContext,"E", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);
+	GrStringDrawCentered(&sContext,"F", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);
+	
+	//Escreve menu superior:
+	GrStringDrawCentered(&sContext,"PRI", -1,
+							 GrContextDpyWidthGet(&sContext) - 100,
+							 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);
+							 
+	GrStringDrawCentered(&sContext,"%", -1,
+											 GrContextDpyWidthGet(&sContext) - 80,
+											 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);
+											 
+	GrStringDrawCentered(&sContext,"STA", -1,
+											 GrContextDpyWidthGet(&sContext) - 60,
+											 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);	
+											 
+	GrStringDrawCentered(&sContext,"DEAD", -1,
+											 GrContextDpyWidthGet(&sContext) - 20,
+											 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);
   
   tid_taskA = osThreadCreate(osThread(taskA), NULL);
   tid_taskB = osThreadCreate(osThread(taskB), NULL);
