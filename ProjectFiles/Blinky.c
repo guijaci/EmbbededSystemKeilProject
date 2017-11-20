@@ -66,7 +66,7 @@ typedef struct {
 	 int8_t dynamic_Priority;
    int8_t static_Priority;
 	 state	task_state;// if it is READY, RUNNING or WAITING
-	 uint16_t deadline; //in ticks
+	 uint32_t deadline; //in ticks
 	 uint32_t initTime; //in ticks, time of execution
 	 uint32_t executionTime;
 	 uint32_t totalEstimateTime;
@@ -81,10 +81,10 @@ taskDetails taskA_details = {
 	0,
 	10,
 	WAITING,
-	0,//2530,
+	8687548,//2530,
 	0,
 	0,
-	0,//1488,
+	5110322,//1488,
 	0,
 	false,
 	8,
@@ -95,10 +95,10 @@ taskDetails taskB_details = {
 	0,
 	0,
 	WAITING,
-	0,//5838,
+16691601,//5838,
 	0,
 	0,
-	0,//3892,
+	11127734,//3892,
 	0,
 	false,
   2,
@@ -109,10 +109,10 @@ taskDetails taskC_details = {
 	0,
 	-30,
 	WAITING,
-	0,//1096,
+	8306311,//1096,
 	0,
 	0,
-	0,//843,
+	6389470,//843,
 	0,
 	false,
 	5,
@@ -123,10 +123,10 @@ taskDetails taskD_details = {
 	0,
 	0,
 	WAITING,
-	0,//978,
+	28783896,//978,
 	0,
 	0,
-	0,//652,
+	19189264,//652,
 	0,
 	false,
 	1,
@@ -137,10 +137,10 @@ taskDetails taskE_details = {
 	0,
 	-30,
 	WAITING,
-	0,//22708,
+	7497580,//22708,
 	0,
 	0,
-	0,//17468,
+	5767369,//17468,
 	0,
 	false,
   6,
@@ -151,10 +151,10 @@ taskDetails taskF_details = {
 	0,
 	-100,
 	WAITING,
-	0,//1592,
+	5198619,//1592,
 	0,
 	0,
-	0,//1447,
+	4726017,//1447,
 	0,
 	false,
 	10,
@@ -227,26 +227,37 @@ void timer_callback(const void* args)
 	timerE = (timerE + 1)% perE;
 	timerF = (timerF + 1)% perF;
 	
-//	if(timerA == 0 && taskA_details.task_state == WAITING)
-//		{
-//			taskA_details.task_state = READY; 
-//			}
-//	if(timerB == 0 && taskB_details.task_state == WAITING)
-//		{ taskB_details.task_state = READY; 
-//			}
-//	if(timerC == 0 && taskC_details.task_state == WAITING)
-//		{ taskC_details.task_state = READY; 
-//			}
-//	if(timerD == 0 && taskD_details.task_state == WAITING)
-//		{ taskD_details.task_state = READY;
-//			}
-//	if(timerE == 0 && taskE_details.task_state == WAITING)
-//		{ taskE_details.task_state = READY; 
-//			}
-	if(timerF == 0 && taskF_details.task_state == WAITING)
+	
+	if(timerA == 0 && taskA_details.task_state == WAITING)
 		{
-			taskF_details.task_state = READY; 
+			 taskA_details.initTime  = osKernelSysTick();
+			taskA_details.task_state = READY; 
 			}
+	if(timerB == 0 && taskB_details.task_state == WAITING)
+		{  
+			taskB_details.initTime  = osKernelSysTick();
+			taskB_details.task_state = READY; 
+		}
+	if(timerC == 0 && taskC_details.task_state == WAITING)
+		{ 
+       taskC_details.initTime  = osKernelSysTick();
+			taskC_details.task_state = READY; 
+		}
+	if(timerD == 0 && taskD_details.task_state == WAITING)
+		{
+			 taskD_details.initTime  = osKernelSysTick();
+			taskD_details.task_state = READY;
+			}
+	if(timerE == 0 && taskE_details.task_state == WAITING)
+		{ 
+			 taskE_details.initTime  = osKernelSysTick();
+			taskE_details.task_state = READY; 
+			}
+		if(timerF == 0 && taskF_details.task_state == WAITING)
+		{
+		 taskF_details.initTime  = osKernelSysTick();
+			taskF_details.task_state = READY; 
+		}
 	osSignalSet(tid_scheduler, 0x0001);
 	
 }
@@ -339,7 +350,7 @@ void taskA (void const *argument) {
 
 	while (systemRunning == true) {
 			 osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-			 taskA_details.initTime  = osKernelSysTick();
+			
 				for(x = 0 ; x<=256 ; x++)
 				{
 					a = (x+(x+2));
@@ -384,7 +395,7 @@ void taskB (void const *argument) {
 
 	while (systemRunning == true) {
 			 osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-			taskB_details.initTime  = osKernelSysTick();
+			
 			for( x = 1 ; x<=16 ; x++)
 				{
 					b = (2^x)/fatorial(x);
@@ -430,7 +441,7 @@ void taskC (void const *argument) {
  
 	while (systemRunning == true) {
 			osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-			taskC_details.initTime = osKernelSysTick();
+		
 			for(x = 1 ; x<=72 ; x++)
 				c = (x+1)/x;
 		calcTime(&taskC_details); 	
@@ -472,7 +483,7 @@ void taskD (void  const *argument) {
 	unsigned long  d;
 	while (systemRunning == true) {
 			osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-			taskD_details.initTime = osKernelSysTick();
+	
 			d = 1 + (5/fatorial(3))+(5/fatorial(5))+ (5/fatorial(7))+(5/fatorial(9));
 			
 		calcTime(&taskD_details); 	
@@ -514,7 +525,7 @@ void taskE (void  const *argument) {
  
 	 while (systemRunning == true) {
 			osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-			taskE_details.initTime = osKernelSysTick();
+		
 			for(x = 1 ; x<=100 ;x++)
 				e = x*PI2;
 			
@@ -559,7 +570,6 @@ void taskF(void  const *argument) {
    
 	while (systemRunning == true) {
 			osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-			taskF_details.initTime  = osKernelSysTick();
 		
 			for(x = 1 ; x<=128 ; x++)
 					f = (x*x*x)/(1<<x);
@@ -702,7 +712,7 @@ void drawer (void  const *argument) {
 					GrContextForegroundSet(&sContext, ClrWhite);
 					GrRectDraw(&sContext, &sRect);
 				
-			/*	intToString(pMail->dynamic_Priority, buf, 10, 10);
+				intToString(pMail->dynamic_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);	
@@ -711,7 +721,7 @@ void drawer (void  const *argument) {
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 80, 
 				((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);	
-				*/
+				
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
@@ -736,7 +746,7 @@ void drawer (void  const *argument) {
 					GrContextForegroundSet(&sContext, ClrWhite);
 					GrRectDraw(&sContext, &sRect);
 					intToString(pMail->dynamic_Priority, buf, 10, 10);
-				/*GrStringDrawCentered(&sContext,(char*)buf, -1,
+				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);	
 				
@@ -744,7 +754,7 @@ void drawer (void  const *argument) {
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 80, 
 				((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);	
-				*/
+				
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
@@ -767,7 +777,7 @@ void drawer (void  const *argument) {
 					
 					GrContextForegroundSet(&sContext, ClrWhite);
 					GrRectDraw(&sContext, &sRect);
-				/*intToString(pMail->dynamic_Priority, buf, 10, 10);
+				intToString(pMail->dynamic_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
@@ -776,7 +786,7 @@ void drawer (void  const *argument) {
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 80, 
 				((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
-				*/
+				
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
@@ -799,7 +809,7 @@ void drawer (void  const *argument) {
 					
 					GrContextForegroundSet(&sContext, ClrWhite);
 					GrRectDraw(&sContext, &sRect);
-			/*	intToString(pMail->dynamic_Priority, buf, 10, 10);
+			intToString(pMail->dynamic_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);	
@@ -808,7 +818,7 @@ void drawer (void  const *argument) {
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 80, 
 				((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);	
-				*/
+			
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
@@ -831,7 +841,7 @@ void drawer (void  const *argument) {
 					
 					GrContextForegroundSet(&sContext, ClrWhite);
 					GrRectDraw(&sContext, &sRect);
-			/*		intToString(pMail->dynamic_Priority, buf, 10, 10);
+				intToString(pMail->dynamic_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);	
@@ -840,7 +850,7 @@ void drawer (void  const *argument) {
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 80, 
 				((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);	
-				*/
+			
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
@@ -865,7 +875,7 @@ void drawer (void  const *argument) {
 					GrContextForegroundSet(&sContext, ClrWhite);
 					GrRectDraw(&sContext, &sRect);
 				
-					/*intToString(pMail->dynamic_Priority, buf, 10, 10);
+					intToString(pMail->dynamic_Priority, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 100, 
 				((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);	
@@ -874,7 +884,7 @@ void drawer (void  const *argument) {
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 80, 
 				((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);	
-				*/
+				
 					intToString(pMail->executionTime, buf, 10, 10);
 				GrStringDrawCentered(&sContext,(char*)buf, -1,
 													 GrContextDpyWidthGet(&sContext) - 60, 
@@ -969,7 +979,7 @@ bool policies(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* runni
 				//Realtime
 				if(tasksReady[i]->static_Priority == -100  )
 				{
-						return false;//primeiro p.
+						return true;//primeiro p.
 				
 				}else{//nao realtime
 					tasksReady[i]->dynamic_Priority -= 10; //segundo paragrafo	
@@ -989,7 +999,7 @@ bool policies(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDetails* runni
 			//Realtime
 			if(runningTask->static_Priority == -100 )
 			{
-					return false;//primeiro p.
+					return true;//primeiro p.
 			
 			}else{//nao realtime
 				runningTask->dynamic_Priority -= 10; //segundo paragrafo
@@ -1029,7 +1039,7 @@ void calcTime(taskDetails*  task){
 			last_time =  cur_time;
 			cur_time = osKernelSysTick();
 			if(last_time > cur_time){
-					task->executionTime  = 4294967295 - last_time + cur_time;
+					task->executionTime  += 4294967295 - last_time + cur_time;
 			}else{
 				task->executionTime += cur_time - last_time;
 			}

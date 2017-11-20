@@ -36,7 +36,7 @@
       <WinId>1936</WinId>
       <ViewName>Watch 1</ViewName>
       <UserString></UserString>
-      <TableColWidths>181 205 56</TableColWidths>
+      <TableColWidths>56 56 56</TableColWidths>
     </View>
     <View>
       <WinId>1937</WinId>
@@ -48,7 +48,7 @@
       <WinId>1935</WinId>
       <ViewName>Call Stack + Locals</ViewName>
       <UserString></UserString>
-      <TableColWidths>210 158 173</TableColWidths>
+      <TableColWidths>56 56 56</TableColWidths>
     </View>
     <View>
       <WinId>2506</WinId>

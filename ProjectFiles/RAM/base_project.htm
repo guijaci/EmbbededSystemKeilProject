@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\RAM\base_project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\RAM\base_project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sun Nov 19 17:15:05 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Sun Nov 19 17:59:26 2017
 <BR><P>
 <H3>Maximum Stack Usage =        184 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -19,7 +19,7 @@ Functions with no stack information
 <H3>
 Mutually Recursive functions
 </H3> <LI><a href="#[7a]">rt_alloc_box</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[7a]">rt_alloc_box</a><BR>
- <LI><a href="#[ce]">fatorial</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[ce]">fatorial</a><BR>
+ <LI><a href="#[cf]">fatorial</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[cf]">fatorial</a><BR>
  <LI><a href="#[4]">NMI_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[4]">NMI_Handler</a><BR>
  <LI><a href="#[5]">HardFault_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[5]">HardFault_Handler</a><BR>
  <LI><a href="#[6]">MemManage_Handler</a>&nbsp;&nbsp;&nbsp;&rArr;&nbsp;&nbsp;&nbsp;<a href="#[6]">MemManage_Handler</a><BR>
@@ -503,12 +503,12 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[c9]"></a>LED_On</STRONG> (Thumb, 112 bytes, Stack size 0 bytes, led.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_On
+<BR><BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_On
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Out
 </UL>
 
 <P><STRONG><a name="[ca]"></a>LED_Off</STRONG> (Thumb, 112 bytes, Stack size 0 bytes, led.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_Off
+<BR><BR>[Called By]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_Off
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Out
 </UL>
 
@@ -517,14 +517,15 @@ Global Symbols
 <LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_On
 </UL>
 
-<P><STRONG><a name="[95]"></a>timer_callback</STRONG> (Thumb, 198 bytes, Stack size 32 bytes, blinky.o(.text))
+<P><STRONG><a name="[95]"></a>timer_callback</STRONG> (Thumb, 334 bytes, Stack size 32 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = timer_callback &rArr; osSignalSet &rArr; isrSignalSet &rArr; isr_evt_set &rArr; rt_psq_enq
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
+<BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
+<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelSysTick
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> blinky.o(.constdata)
 </UL>
-<P><STRONG><a name="[cc]"></a>Switch_On</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, blinky.o(.text))
+<P><STRONG><a name="[cd]"></a>Switch_On</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Switch_On
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_On
@@ -533,7 +534,7 @@ Global Symbols
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawer
 </UL>
 
-<P><STRONG><a name="[cd]"></a>Switch_Off</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, blinky.o(.text))
+<P><STRONG><a name="[ce]"></a>Switch_Off</STRONG> (Thumb, 16 bytes, Stack size 8 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Switch_Off
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LED_Off
@@ -541,21 +542,21 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scheduler
 </UL>
 
-<P><STRONG><a name="[ce]"></a>fatorial</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, blinky.o(.text))
+<P><STRONG><a name="[cf]"></a>fatorial</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8 + In Cycle
 <LI>Call Chain = fatorial &rArr;  fatorial (Cycle)
 </UL>
-<BR>[Calls]<UL><LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fatorial
+<BR>[Calls]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fatorial
 </UL>
 <BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskD
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskB
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fatorial
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fatorial
 </UL>
 
-<P><STRONG><a name="[d1]"></a>calcTime</STRONG> (Thumb, 90 bytes, Stack size 8 bytes, blinky.o(.text))
+<P><STRONG><a name="[d2]"></a>calcTime</STRONG> (Thumb, 94 bytes, Stack size 8 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = calcTime
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelSysTick
+<BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelSysTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scheduler
 <LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskF
@@ -566,93 +567,87 @@ Global Symbols
 <LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskA
 </UL>
 
-<P><STRONG><a name="[96]"></a>taskA</STRONG> (Thumb, 158 bytes, Stack size 32 bytes, blinky.o(.text))
+<P><STRONG><a name="[96]"></a>taskA</STRONG> (Thumb, 150 bytes, Stack size 32 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = taskA &rArr; osSignalSet &rArr; isrSignalSet &rArr; isr_evt_set &rArr; rt_psq_enq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalWait
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailPut
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailAlloc
-<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelSysTick
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcTime
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcTime
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> blinky.o(.constdata)
 </UL>
-<P><STRONG><a name="[97]"></a>taskB</STRONG> (Thumb, 166 bytes, Stack size 32 bytes, blinky.o(.text))
+<P><STRONG><a name="[97]"></a>taskB</STRONG> (Thumb, 158 bytes, Stack size 32 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = taskB &rArr; osSignalSet &rArr; isrSignalSet &rArr; isr_evt_set &rArr; rt_psq_enq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalWait
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailPut
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailAlloc
-<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelSysTick
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcTime
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fatorial
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcTime
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fatorial
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> blinky.o(.constdata)
 </UL>
-<P><STRONG><a name="[98]"></a>taskC</STRONG> (Thumb, 240 bytes, Stack size 32 bytes, blinky.o(.text))
+<P><STRONG><a name="[98]"></a>taskC</STRONG> (Thumb, 232 bytes, Stack size 32 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = taskC &rArr; osSignalSet &rArr; isrSignalSet &rArr; isr_evt_set &rArr; rt_psq_enq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalWait
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailPut
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailAlloc
-<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelSysTick
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcTime
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcTime
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> blinky.o(.constdata)
 </UL>
-<P><STRONG><a name="[99]"></a>taskD</STRONG> (Thumb, 198 bytes, Stack size 32 bytes, blinky.o(.text))
+<P><STRONG><a name="[99]"></a>taskD</STRONG> (Thumb, 190 bytes, Stack size 32 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = taskD &rArr; osSignalSet &rArr; isrSignalSet &rArr; isr_evt_set &rArr; rt_psq_enq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalWait
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailPut
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailAlloc
-<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelSysTick
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcTime
-<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fatorial
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcTime
+<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;fatorial
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> blinky.o(.constdata)
 </UL>
-<P><STRONG><a name="[9a]"></a>taskE</STRONG> (Thumb, 212 bytes, Stack size 56 bytes, blinky.o(.text))
+<P><STRONG><a name="[9a]"></a>taskE</STRONG> (Thumb, 204 bytes, Stack size 56 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = taskE &rArr; osSignalSet &rArr; isrSignalSet &rArr; isr_evt_set &rArr; rt_psq_enq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalWait
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailPut
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailAlloc
-<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelSysTick
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcTime
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcTime
 <LI><a href="#[d8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
 <LI><a href="#[d7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2uiz
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> blinky.o(.constdata)
 </UL>
-<P><STRONG><a name="[9b]"></a>taskF</STRONG> (Thumb, 166 bytes, Stack size 32 bytes, blinky.o(.text))
+<P><STRONG><a name="[9b]"></a>taskF</STRONG> (Thumb, 158 bytes, Stack size 32 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = taskF &rArr; osSignalSet &rArr; isrSignalSet &rArr; isr_evt_set &rArr; rt_psq_enq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalWait
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailPut
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailAlloc
-<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelSysTick
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcTime
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcTime
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> blinky.o(.constdata)
 </UL>
-<P><STRONG><a name="[9c]"></a>drawer</STRONG> (Thumb, 3804 bytes, Stack size 104 bytes, blinky.o(.text))
+<P><STRONG><a name="[9c]"></a>drawer</STRONG> (Thumb, 5074 bytes, Stack size 104 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 184<LI>Call Chain = drawer &rArr; GrStringWidthGet &rArr; GrFontGlyphDataGet
 </UL>
-<BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
+<BR>[Calls]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
 <LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailGet
 <LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailFree
 <LI><a href="#[d6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
@@ -663,8 +658,8 @@ Global Symbols
 <LI><a href="#[dd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrFontBaselineGet
 <LI><a href="#[da]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextInit
 <LI><a href="#[dc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GrContextFontSet
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_On
-<LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;intToString
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_On
+<LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;intToString
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> blinky.o(.constdata)
 </UL>
@@ -687,7 +682,7 @@ Global Symbols
 <P><STRONG><a name="[e5]"></a>policies</STRONG> (Thumb, 204 bytes, Stack size 32 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = policies
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelSysTick
+<BR>[Calls]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osKernelSysTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scheduler
 </UL>
@@ -700,20 +695,20 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;scheduler
 </UL>
 
-<P><STRONG><a name="[e8]"></a>scheduler</STRONG> (Thumb, 538 bytes, Stack size 128 bytes, blinky.o(.text))
+<P><STRONG><a name="[e8]"></a>scheduler</STRONG> (Thumb, 560 bytes, Stack size 128 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 168<LI>Call Chain = scheduler &rArr; osSignalSet &rArr; isrSignalSet &rArr; isr_evt_set &rArr; rt_psq_enq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osThreadSetPriority
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalWait
-<LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
+<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailPut
 <LI><a href="#[d4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailAlloc
 <LI><a href="#[e6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nextRunning
 <LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;policies
 <LI><a href="#[e3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;checkReady
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcTime
-<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_Off
-<LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_On
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcTime
+<LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_Off
+<LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Switch_On
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memclr4
 <LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
@@ -1761,10 +1756,10 @@ Global Symbols
 
 <P><STRONG><a name="[185]"></a>_ll_udiv</STRONG> (Thumb, 238 bytes, Stack size 48 bytes, lludivv7m.o(.text), UNUSED)
 
-<P><STRONG><a name="[d0]"></a>__aeabi_ldivmod</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llsdiv.o(.text))
+<P><STRONG><a name="[d1]"></a>__aeabi_ldivmod</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, llsdiv.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_ldivmod
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;intToString
+<BR>[Called By]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;intToString
 </UL>
 
 <P><STRONG><a name="[113]"></a>_ll_sdiv</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, llsdiv.o(.text), UNUSED)
@@ -1958,7 +1953,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isr_evt_set
 <LI><a href="#[123]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rt_tid2ptcb
 </UL>
-<BR>[Called By]<UL><LI><a href="#[cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
+<BR>[Called By]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSignalSet
 </UL>
 
 <P><STRONG><a name="[124]"></a>isr_evt_set</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, rt_event.o(i.isr_evt_set))
@@ -2015,15 +2010,10 @@ Global Symbols
 <LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[d2]"></a>osKernelSysTick</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, rt_cmsis.o(i.osKernelSysTick))
+<P><STRONG><a name="[cb]"></a>osKernelSysTick</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, rt_cmsis.o(i.osKernelSysTick))
 <BR><BR>[Called By]<UL><LI><a href="#[e5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;policies
-<LI><a href="#[9b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskF
-<LI><a href="#[9a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskE
-<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskD
-<LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskC
-<LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskB
-<LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskA
-<LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcTime
+<LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;calcTime
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;timer_callback
 </UL>
 
 <P><STRONG><a name="[d4]"></a>osMailAlloc</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, rt_cmsis.o(i.osMailAlloc))
@@ -2095,7 +2085,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailPut
 </UL>
 
-<P><STRONG><a name="[cb]"></a>osSignalSet</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, rt_cmsis.o(i.osSignalSet))
+<P><STRONG><a name="[cc]"></a>osSignalSet</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, rt_cmsis.o(i.osSignalSet))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = osSignalSet &rArr; isrSignalSet &rArr; isr_evt_set &rArr; rt_psq_enq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[122]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isrSignalSet
@@ -2843,10 +2833,10 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[cf]"></a>intToString</STRONG> (Thumb, 192 bytes, Stack size 40 bytes, blinky.o(.text))
+<P><STRONG><a name="[d0]"></a>intToString</STRONG> (Thumb, 192 bytes, Stack size 40 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = intToString &rArr; __aeabi_ldivmod
 </UL>
-<BR>[Calls]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ldivmod
+<BR>[Calls]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ldivmod
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;drawer
 </UL>
