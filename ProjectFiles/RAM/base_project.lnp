@@ -4,7 +4,7 @@
 ".\ram\cfaf128x128x16.o"
 "..\driverlib\rvmdk\driverlib.lib"
 "..\grlib\rvmdk\grlib.lib"
-"C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib"
+"C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib"
 ".\ram\rtx_conf_cm.o"
 ".\ram\retarget_io.o"
 ".\ram\startup_tm4c129.o"

@@ -1073,7 +1073,7 @@ void scheduler()
 	
 	while(systemRunning == true){
 			osSignalWait(0x0001, osWaitForever);
-			t_cor_init = osKernelSysTick();
+			t_cor_init += osKernelSysTick();
 			checkReady(tasksReady, &sizeReady, tasksWaiting, &sizeWaiting);
 			
 			lastRunningTask = runningTask;
