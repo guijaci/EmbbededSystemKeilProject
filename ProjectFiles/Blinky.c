@@ -33,6 +33,7 @@ osThreadId tid_taskE;                  /* Thread id of thread: task_e        */
 osThreadId tid_taskF;                  /* Thread id of thread: task_e        */
 osThreadId tid_drawer;                  /* Thread id of thread: drawer        */
 osThreadId tid_scheduler;
+
 #define LED_0      0
 #define LED_1      1
 #define LED_2      2
@@ -43,14 +44,16 @@ osThreadId tid_scheduler;
 int i;
 volatile int time1;
 
-
 char casa [10] ;
-
 
 //Timer
 void timer_callback(const void* args);
-static osTimerId timerScheduler;                             // timer id
-static osTimerDef(Timer2, timer_callback);
+void timer_execution_counter(const void* args);
+
+osTimerId timerScheduler;                             // timer id
+osTimerId timerExecutionCounter;                             // timer id
+osTimerDef(Timer1, timer_callback);
+osTimerDef(Timer2, timer_execution_counter);
 
 //Screen print
 
@@ -95,7 +98,7 @@ taskDetails taskB_details = {
 	0,
 	0,
 	WAITING,
-16691601,//5838,
+	16691601,//5838,
 	0,
 	0,
 	11127734,//3892,
@@ -123,10 +126,10 @@ taskDetails taskD_details = {
 	0,
 	0,
 	WAITING,
-	28783896,//978,
+	60, //978,
 	0,
 	0,
-	19189264,//652,
+	40, //652,
 	0,
 	false,
 	1,
@@ -137,10 +140,10 @@ taskDetails taskE_details = {
 	0,
 	-30,
 	WAITING,
-	7497580,//22708,
+	52,//22708,
 	0,
 	0,
-	5767369,//17468,
+	40,//17468,
 	0,
 	false,
   6,
@@ -151,10 +154,10 @@ taskDetails taskF_details = {
 	0,
 	-100,
 	WAITING,
-	5198619,//1592,
+	44,//1592,
 	0,
 	0,
-	4726017,//1447,
+	40,//1447,
 	0,
 	false,
 	10,
@@ -175,7 +178,11 @@ taskDetails taskDrawer_details = {
 	-1
 };
 
-void calcTime(taskDetails*  task);
+//Tarefa selecionada pelo escalonador
+taskDetails* runningTask = NULL;
+
+
+//void calcTime(taskDetails*  task);
 //====================================================
 //Mail Queue
 //====================================================
@@ -228,40 +235,44 @@ void timer_callback(const void* args)
 	timerF = (timerF + 1)% perF;
 	
 	
-	if(timerA == 0 && taskA_details.task_state == WAITING)
-		{
-			 taskA_details.initTime  = osKernelSysTick();
-			taskA_details.task_state = READY; 
-			}
-	if(timerB == 0 && taskB_details.task_state == WAITING)
-		{  
-			taskB_details.initTime  = osKernelSysTick();
-			taskB_details.task_state = READY; 
-		}
+//	if(timerA == 0 && taskA_details.task_state == WAITING)
+//	{
+//		taskA_details.initTime  = osKernelSysTick();
+//		taskA_details.task_state = READY; 
+//	}
+//	if(timerB == 0 && taskB_details.task_state == WAITING)
+//	{  
+//		taskB_details.initTime  = osKernelSysTick();
+//		taskB_details.task_state = READY; 
+//	}
 	if(timerC == 0 && taskC_details.task_state == WAITING)
-		{ 
-       taskC_details.initTime  = osKernelSysTick();
-			taskC_details.task_state = READY; 
-		}
-	if(timerD == 0 && taskD_details.task_state == WAITING)
-		{
-			 taskD_details.initTime  = osKernelSysTick();
-			taskD_details.task_state = READY;
-			}
-	if(timerE == 0 && taskE_details.task_state == WAITING)
-		{ 
-			 taskE_details.initTime  = osKernelSysTick();
-			taskE_details.task_state = READY; 
-			}
-		if(timerF == 0 && taskF_details.task_state == WAITING)
-		{
-		 taskF_details.initTime  = osKernelSysTick();
-			taskF_details.task_state = READY; 
-		}
+	{ 
+		taskC_details.initTime  = osKernelSysTick();
+		taskC_details.task_state = READY; 
+	}
+//	if(timerD == 0 && taskD_details.task_state == WAITING)
+//	{
+//		taskD_details.initTime  = osKernelSysTick();
+//		taskD_details.task_state = READY;
+//	}
+//	if(timerE == 0 && taskE_details.task_state == WAITING)
+//	{ 
+//		taskE_details.initTime  = osKernelSysTick();
+//		taskE_details.task_state = READY; 
+//	}
+//	if(timerF == 0 && taskF_details.task_state == WAITING)
+//	{
+//		taskF_details.initTime  = osKernelSysTick();
+//		taskF_details.task_state = READY; 
+//	}
 	osSignalSet(tid_scheduler, 0x0001);
-	
 }
 
+void timer_execution_counter(const void* args)
+{
+		if(runningTask != NULL && runningTask->task_state != WAITING)
+			runningTask->executionTime++;
+}
 
 /*----------------------------------------------------------------------------
  *      Switch LED on
@@ -355,7 +366,7 @@ void taskA (void const *argument) {
 				{
 					a = (x+(x+2));
 				}
-			calcTime(&taskA_details); 	
+			//calcTime(&taskA_details); 	
     pMail = osMailAlloc (qid_MailQueue, osWaitForever);         
     // Allocate memory
  
@@ -401,7 +412,7 @@ void taskB (void const *argument) {
 					b = (2^x)/fatorial(x);
 				}
 		
-			calcTime(&taskB_details); 	
+			//calcTime(&taskB_details); 	
     pMail = osMailAlloc (qid_MailQueue, osWaitForever);         
     // Allocate memory
  
@@ -444,7 +455,7 @@ void taskC (void const *argument) {
 		
 			for(x = 1 ; x<=72 ; x++)
 				c = (x+1)/x;
-		calcTime(&taskC_details); 	
+		//calcTime(&taskC_details); 	
     pMail = osMailAlloc (qid_MailQueue, osWaitForever);         
     // Allocate memory
  
@@ -484,7 +495,7 @@ void taskD (void  const *argument) {
 	while (systemRunning == true) {
 		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
 		d = 1 + (5/fatorial(3))+(5/fatorial(5))+ (5/fatorial(7))+(5/fatorial(9));
-		calcTime(&taskD_details); 	
+		//calcTime(&taskD_details); 	
 		pMail = osMailAlloc (qid_MailQueue, osWaitForever);         
     // Allocate memory
  
@@ -527,7 +538,7 @@ void taskE (void  const *argument) {
 		for(x = 1 ; x<=100 ;x++)
 			e = x*PI2;
 		
-		calcTime(&taskE_details); 	
+		//calcTime(&taskE_details); 	
 		pMail = osMailAlloc (qid_MailQueue, osWaitForever);         
     // Allocate memory
  
@@ -572,7 +583,7 @@ void taskF(void  const *argument) {
 			for(x = 1 ; x<=128 ; x++)
 					f = (x*x*x)/(1<<x);
 			
-		calcTime(&taskF_details); 	
+		//calcTime(&taskF_details); 	
     pMail = osMailAlloc (qid_MailQueue, osWaitForever);         
     // Allocate memory
  
@@ -1020,6 +1031,7 @@ taskDetails* nextRunning(taskDetails* tasksReady[7], uint8_t* sizeReady, taskDet
 	}
 	return nextTask;
 }
+
 void calcTime(taskDetails*  task){
 		static bool init = false;
 		static uint32_t cur_time = 0;
@@ -1042,12 +1054,10 @@ void calcTime(taskDetails*  task){
 
 void scheduler()
 {
-	uint32_t t_cor_init = 0, t_cor_end = 0;
 	bool policiesResult;
 	//mail queue
 	MAILQUEUE_OBJ_t  *pMail = 0;
 	uint8_t i, sizeReady = 0, sizeWaiting = 7;
-	taskDetails* runningTask = NULL;
 	taskDetails* lastRunningTask = NULL;
 	taskDetails* tasksReady[7] = {NULL};
 	taskDetails* tasksWaiting[7] = 
@@ -1073,16 +1083,12 @@ void scheduler()
 	
 	while(systemRunning == true){
 			osSignalWait(0x0001, osWaitForever);
-			t_cor_init = osKernelSysTick();
 			checkReady(tasksReady, &sizeReady, tasksWaiting, &sizeWaiting);
 			
 			lastRunningTask = runningTask;
 			if(lastRunningTask!= NULL ){
-				t_cor_init = osKernelSysTick() > t_cor_init ? osKernelSysTick() - t_cor_init : UINT32_MAX + osKernelSysTick() - t_cor_init ;
-				calcTime(lastRunningTask);
-				lastRunningTask->executionTime -= t_cor_init + t_cor_end;
+				//calcTime(lastRunningTask);
 			}				
-			t_cor_end = osKernelSysTick();
 			policiesResult = policies(tasksReady, &sizeReady, runningTask, lastRunningTask);
 				
 			if(!policiesResult)
@@ -1103,12 +1109,8 @@ void scheduler()
 			if(lastRunningTask->task_state == WAITING ){
 			  //lastRunningTask->deadline = lastRunningTask->deadline*lastRunningTask->executionTime/lastRunningTask->totalEstimateTime; 
 			  //lastRunningTask->totalEstimateTime = lastRunningTask->executionTime;
-				if(lastRunningTask->executionTime == 0 && lastRunningTask->deadline_percentage != (uint8_t)-1)
-				{
-					lastRunningTask->totalEstimateTime = lastRunningTask->executionTime;
-					lastRunningTask->deadline = (lastRunningTask->totalEstimateTime*(lastRunningTask->deadline_percentage+100))/100;
-				}
-				
+				//lastRunningTask->totalEstimateTime = lastRunningTask->executionTime;
+				//lastRunningTask->deadline = (lastRunningTask->totalEstimateTime*(lastRunningTask->deadline_percentage+100))/100;
 				
 				lastRunningTask->executionTime = 0;				
 			}
@@ -1134,7 +1136,6 @@ void scheduler()
 			if (*(runningTask->tid) == tid_taskE) 	{Switch_On (LED_0); Switch_Off(LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
 			if (*(runningTask->tid) == tid_taskF) 	{Switch_Off(LED_0); Switch_On (LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
 			if (*(runningTask->tid) == tid_drawer) 	{Switch_On (LED_0); Switch_On (LED_1); Switch_On (LED_2); Switch_Off(LED_3);}
-			t_cor_end = osKernelSysTick() > t_cor_end ? osKernelSysTick() - t_cor_end : UINT32_MAX + osKernelSysTick() > t_cor_end;
 		}
 }
 /*----------------------------------------------------------------------------
@@ -1169,8 +1170,10 @@ int main (void) {
 	osKernelStart();
 	
 	//Timer initialization
-	timerScheduler = osTimerCreate (osTimer(Timer2), osTimerPeriodic, NULL);
-	osTimerStart (timerScheduler, 8);    
+	timerScheduler 				= osTimerCreate (osTimer(Timer1), osTimerPeriodic, NULL);
+	timerExecutionCounter = osTimerCreate (osTimer(Timer2), osTimerPeriodic, NULL);
+	osTimerStart (timerScheduler, 				8);    
+	osTimerStart (timerExecutionCounter,  1);    
 
 	scheduler();
 	osThreadTerminate(tid_taskA);
