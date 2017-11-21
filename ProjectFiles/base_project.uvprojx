@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>TARGET_IS_TM4C129_RA0 PART_TM4C1294NCPDT</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\EmbbededSystemKeilProject</IncludePath>
+              <IncludePath>..\</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
