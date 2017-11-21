@@ -1,9 +1,15 @@
 //*****************************************************************************
 //
+// Author: Guilherme Jacichen
+// E-mail: jacichen@alunos.utfpr.edu.br
+//
 // cfaf128x128x16.c - Display driver for the Crystalfontz CFAF128128B-0145T
 //                  display with an ST7735S.  This version uses an SSI
-//                  interface to the display controller.
-//
+//                  interface to the display controller. This driver was made 
+//									to be used with the TivaWare grlib driver set (ti.com/tivaware), 
+//									and was based on the Kentec320x240x16_ssd2119_spi driver for the
+//									ek-tm4c1294xl board, the cfal96x64x16 driver for the dk-tm4c123g
+//									board and the Energia's Screen_HX8353E driver for dk-tm4c1294xl board
 //
 //*****************************************************************************
 
@@ -83,6 +89,7 @@ const uint16_t violetColor   = 0xF81F;
 const uint16_t grayColor     = 0x7BEF;
 const uint16_t darkGrayColor = 0x39E7;
 
+//Abstract for delay calls
 #define delay(d) ROM_SysCtlDelay(d)
 
 //*****************************************************************************
@@ -190,6 +197,7 @@ uint8_t _orientation;
                                  (((c) & 0x000000c0) >> 6))
 #define DPYCOLORTRANSLATE DPYCOLORTRANSLATE16
 
+//Swap contents of 2 uint16 variables
 static void 
 swap_ui16(uint16_t* a, uint16_t* b){
 	uint16_t aux = *a;
@@ -197,6 +205,7 @@ swap_ui16(uint16_t* a, uint16_t* b){
 	*b = aux;
 }
 
+//Swap contents of 2 uint32 variables
 static void 
 swap_i32(int32_t* a, int32_t* b){
 	int32_t aux = *a;
@@ -204,6 +213,7 @@ swap_i32(int32_t* a, int32_t* b){
 	*b = aux;
 }
 
+//Transfer data by the configured SSI (send and receive)
 static uint8_t 
 cfaf128x128x16SsiTransfer(uint8_t command8){
 	uint32_t received32;
@@ -217,12 +227,10 @@ cfaf128x128x16SsiTransfer(uint8_t command8){
 //
 //! Write a set of command bytes to the display controller.
 //
-//! \param pi8Cmd is a pointer to a set of command bytes.
-//! \param ui32Count is the count of command bytes.
+//! \param command8 is a command byte.
 //!
-//! This function provides a way to send multiple command bytes to the display
-//! controller.  It can be used for single commands, or multiple commands
-//! chained together in a buffer.  It will wait for any previous operation to
+//! This function provides a way to send command bytes to the display
+//! controller.  It can be used for single commands. It will wait for any previous operation to
 //! finish, and then copy all the command bytes to the controller.  It will
 //! not return until the last command byte has been written to the SSI FIFO,
 //! but data could still be shifting out to the display controller when this
@@ -244,7 +252,7 @@ cfaf128x128x16WriteCommand(uint8_t command8)
 //
 //! Write a set of data bytes to the display controller.
 //
-//! \param pi8Data is a pointer to a set of data bytes, containing pixel data.
+//! \param data8 is a pointer to a set of data bytes, containing pixel data.
 //! \param ndata is the count of command bytes.
 //!
 //! This function provides a way to send a set of pixel data to the display.
@@ -268,12 +276,15 @@ cfaf128x128x16WriteData(const uint8_t *data8, uint32_t ndata)
 	ROM_GPIOPinWrite(DISPLAY_CS_PORT, DISPLAY_CS_PIN, DISPLAY_CS_PIN);
 }
 
+//Write a command and one data byte
 static void 
 cfaf128x128x16WriteRegister(uint8_t command8, uint8_t data8){
 	cfaf128x128x16WriteCommand(command8);
 	cfaf128x128x16WriteData(&data8, 1);
 }
 
+//Setup drawing window. Data sent to the display will fill the pixels of 
+//the starting coordinate acording to the orientation set.
 static void 
 cfaf128x128x16SetWindow(uint16_t x0, uint16_t x1, uint16_t y0, uint16_t y1){
 	uint8_t bytes16[2];
@@ -306,6 +317,7 @@ cfaf128x128x16SetWindow(uint16_t x0, uint16_t x1, uint16_t y0, uint16_t y1){
 		default:
 			break;
 	}
+	//Setup columns
 	cfaf128x128x16WriteCommand(CM_CASET);
 	bytes16[0] = (x0&0xFF00)>>8;
 	bytes16[1] =  x0&0xFF;
@@ -314,6 +326,7 @@ cfaf128x128x16SetWindow(uint16_t x0, uint16_t x1, uint16_t y0, uint16_t y1){
 	bytes16[1] =  x1&0xFF;
 	cfaf128x128x16WriteData(bytes16, 2);
 
+	//Setup rows
 	cfaf128x128x16WriteCommand(CM_RASET);
 	bytes16[0] = (y0&0xFF00)>>8;
 	bytes16[1] =  y0&0xFF;
@@ -322,18 +335,23 @@ cfaf128x128x16SetWindow(uint16_t x0, uint16_t x1, uint16_t y0, uint16_t y1){
 	bytes16[1] =  y1&0xFF;
 	cfaf128x128x16WriteData(bytes16, 2);
 	
+	//Prepare to write to the display pixel matrix
 	cfaf128x128x16WriteCommand(CM_RAMWR);
 }
 
+//Draws a rectangles with the given limits and color
 void 
 cfaf128x128x16Rect(uint16_t x0, uint16_t x1, uint16_t y0, uint16_t y1, uint32_t color){
-	uint32_t t;
+	uint32_t t;	
+	uint32_t hor_size;
+	uint32_t ver_size;
 	uint8_t	lowByte =   0x00FF & color;
 	uint8_t	highByte = (0xFF00 & color)>>8;
-	
-	uint32_t hor_size = x1 - x0 + 1;
-	uint32_t ver_size = y1 - y0 + 1;
 
+	hor_size = x1 - x0 + 1;
+	ver_size = y1 - y0 + 1;
+	x1--; y1--;
+		
 	cfaf128x128x16SetWindow(x0, x1, y0, y1);
 	
 	ROM_GPIOPinWrite(DISPLAY_D_C_PORT, DISPLAY_D_C_PIN, DISPLAY_D_C_PIN);
@@ -345,16 +363,19 @@ cfaf128x128x16Rect(uint16_t x0, uint16_t x1, uint16_t y0, uint16_t y1, uint32_t 
 	ROM_GPIOPinWrite(DISPLAY_CS_PORT, DISPLAY_CS_PIN, DISPLAY_CS_PIN);
 }
 
+//Draws a vertical line with the given limits and color
 void 
 cfaf128x128x16LineVer(uint16_t x, uint16_t y0, uint16_t y1, uint16_t thickness, uint32_t color){
 	cfaf128x128x16Rect(x, x+thickness, y0, y1, color);
 }
 
+//Draws a horizontal line with the given limits and color
 void 
 cfaf128x128x16LineHor(uint16_t x0, uint16_t x1, uint16_t y, uint16_t thickness, uint32_t color){
 	cfaf128x128x16Rect(x0, x1, y, y+thickness, color);
 }
 
+//Draws a dot with the given coordinator and color
 void
 cfaf128x128x16Dot(uint16_t x, uint16_t y, uint16_t thickness, uint32_t color){
 	cfaf128x128x16Rect(x, x+thickness, y, y+thickness, color);
@@ -380,7 +401,7 @@ static void
 cfaf128x128x16PixelDraw(void *pvDisplayData, int32_t i32X, int32_t i32Y,
                       uint32_t ui32Value)
 {
-	cfaf128x128x16Dot(i32X, i32Y, 0, ui32Value);
+	cfaf128x128x16Dot(i32X, i32Y, 1, ui32Value);
 }
 
 //*****************************************************************************
@@ -417,73 +438,118 @@ cfaf128x128x16PixelDrawMultiple(void *pvDisplayData, int32_t i32X, int32_t i32Y,
 {
 	uint8_t	lowByte, highByte;
 	uint32_t ui32Byte, color;
-	cfaf128x128x16SetWindow(i32X, i32X + i32Count, i32Y, i32Y+1);
+	cfaf128x128x16SetWindow(i32X, i32X + i32Count, i32Y, i32Y);
 
 	ROM_GPIOPinWrite(DISPLAY_D_C_PORT, DISPLAY_D_C_PIN, DISPLAY_D_C_PIN);
 	ROM_GPIOPinWrite(DISPLAY_CS_PORT, DISPLAY_CS_PIN, 0);
+	
+	// Determine how to interpret the pixel data based on the number of bits
+	// per pixel.
 	switch(i32BPP & ~GRLIB_DRIVER_FLAG_NEW_IMAGE) {
+		// The pixel data is in 1 bit per pixel format.
 		case 1:
+			// Loop while there are more pixels to draw.
 			while(i32Count){
 				ui32Byte = *pui8Data++;
+				// Loop through the pixels in this byte of image data.
 				for(; (i32X0 < 8) && i32Count; i32X0++, i32Count--) {
+					// Get the next byte of image data.
 					color = ((uint32_t *)pui8Palette) [(ui32Byte >> (7 - i32X0)) & 1];
+					// Draw this pixel in the appropriate color.
 					lowByte =   0x00FF & color;
 					highByte = (0xFF00 & color)>>8;
 					cfaf128x128x16SsiTransfer(highByte);
 					cfaf128x128x16SsiTransfer(lowByte);
 				}
+				// Start at the beginning of the next byte of image data.
 				i32X0 = 0;
 			}
+			// The image data has been drawn.
 			break;
+		// The pixel data is in 4 bit per pixel format.
 		case 4:
+			// Loop while there are more pixels to draw.  "Duff's device" is
+			// used to jump into the middle of the loop if the first nibble of
+			// the pixel data should not be used.  Duff's device makes use of
+			// the fact that a case statement is legal anywhere within a
+			// sub-block of a switch statement.  See
+			// http://en.wikipedia.org/wiki/Duff's_device for detailed
+			// information about Duff's device.
 			switch(i32X0 & 1){
 				case 0:
 					while(i32Count){
+						// Get the upper nibble of the next byte of pixel data
+						// and extract the corresponding entry from the
+						// palette.
 						ui32Byte = (*pui8Data >> 4) * 3;
 						ui32Byte = (*(uint32_t *)(pui8Palette + ui32Byte) &
 											0x00ffffff);
+						// Translate this palette entry and write it to the
+						// screen.
 						color = DPYCOLORTRANSLATE(ui32Byte);
 						lowByte =   0x00FF & color;
 						highByte = (0xFF00 & color)>>8;
 						cfaf128x128x16SsiTransfer(highByte);
 						cfaf128x128x16SsiTransfer(lowByte);
+						// Decrement the count of pixels to draw.
 						i32Count--;
+						// See if there is another pixel to draw.
 						if(i32Count) {
 				case 1:
+							// Get the lower nibble of the next byte of pixel
+							// data and extract the corresponding entry from
+							// the palette.
 							ui32Byte = (*pui8Data++ & 15) * 3;
 							ui32Byte = (*(uint32_t *)(pui8Palette + ui32Byte) &
 											0x00ffffff);
+							// Translate this palette entry and write it to the
+							// screen.
 							color = DPYCOLORTRANSLATE(ui32Byte);
 							lowByte =   0x00FF & color;
 							highByte = (0xFF00 & color)>>8;
 							cfaf128x128x16SsiTransfer(highByte);
 							cfaf128x128x16SsiTransfer(lowByte);
+							// Decrement the count of pixels to draw.
 							i32Count--;
 						}
 					}
-					break;
 			}
+			// The image data has been drawn.
 			break;
+		// The pixel data is in 8 bit per pixel format.
 		case 8:
 			while(i32Count--) {
+				// Get the next byte of pixel data and extract the
+				// corresponding entry from the palette.				
 				ui32Byte = *pui8Data++ * 3;
 				ui32Byte = *(uint32_t *)(pui8Palette + ui32Byte) & 0x00ffffff;
+				// Translate this palette entry and write it to the screen.
 				color = DPYCOLORTRANSLATE(ui32Byte);
 				lowByte =   0x00FF & color;
 				highByte = (0xFF00 & color)>>8;
 				cfaf128x128x16SsiTransfer(highByte);
 				cfaf128x128x16SsiTransfer(lowByte);
 			}
+			// The image data has been drawn.
 			break;
+		// We are being passed data in the display's native format.  Merely
+		// write it directly to the display.  This is a special case which is
+		// not used by the graphics library but which is helpful to
+		// applications which may want to handle, for example, JPEG images.
 		case 16:
+			// Loop while there are more pixels to draw.
 			while(i32Count--) {
+				// Get the next byte of pixel data and extract the
+				// corresponding entry from the palette.
 				ui32Byte = *((uint16_t*) pui8Data);
 				pui8Data += 2;
+				// Translate this palette entry and write it to the screen.
 				lowByte =   0x00FF & ui32Byte;
 				highByte = (0xFF00 & ui32Byte)>>8;
 				cfaf128x128x16SsiTransfer(highByte);
 				cfaf128x128x16SsiTransfer(lowByte);
 			}
+			// The image data has been drawn.
 			break;
 	}
 	ROM_GPIOPinWrite(DISPLAY_CS_PORT, DISPLAY_CS_PIN, DISPLAY_CS_PIN);
@@ -511,7 +577,7 @@ cfaf128x128x16LineDrawH(void *pvDisplayData, int32_t i32X1, int32_t i32X2, int32
                       uint32_t ui32Value)
 {
 	if(i32X1 > i32X2) swap_i32(&i32X1, &i32X2);
-	cfaf128x128x16LineHor(i32X1, i32X2, i32Y, 0, ui32Value);
+	cfaf128x128x16LineHor(i32X1, i32X2, i32Y, 1, ui32Value);
 }
 
 //*****************************************************************************
@@ -536,7 +602,7 @@ cfaf128x128x16LineDrawV(void *pvDisplayData, int32_t i32X, int32_t i32Y1, int32_
                       uint32_t ui32Value)
 {
 	if(i32Y1 > i32Y2) swap_i32(&i32Y1, &i32Y2);
-	cfaf128x128x16LineVer(i32X, i32Y1, i32Y2, 0, ui32Value);
+	cfaf128x128x16LineVer(i32X, i32Y1, i32Y2, 1, ui32Value);
 }
 
 //*****************************************************************************
@@ -567,7 +633,7 @@ cfaf128x128x16RectFill(void *pvDisplayData, const tRectangle *pRect,
 	
 	if(x0 > x1) swap_ui16(&x0, &x1);
 	if(y0 > y1) swap_ui16(&y0, &y1);
-	cfaf128x128x16Rect(x0, x1 -1, y0, y1 -1, ui32Value);
+	cfaf128x128x16Rect(x0, x1, y0, y1, ui32Value);
 }
 
 //*****************************************************************************
@@ -640,6 +706,7 @@ const tDisplay g_sCfaf128x128x16 =
     cfaf128x128x16Flush
 };
 
+//Set the orientation for the rect filling
 void 
 cfaf128x128x16SetOrientation(uint8_t orientation){
 	uint8_t data = 0;
@@ -664,6 +731,7 @@ cfaf128x128x16SetOrientation(uint8_t orientation){
 	cfaf128x128x16WriteData(&data, 1);
 }
 
+//Clear screen with solid color
 void 
 cfaf128x128x16ClearColor(uint16_t color) {
 	uint8_t lastOrientation = _orientation;
@@ -673,30 +741,33 @@ cfaf128x128x16ClearColor(uint16_t color) {
 	cfaf128x128x16SetOrientation(lastOrientation);
 }
 
+//Clear screen with black color
 void
 cfaf128x128x16Clear(){
 	cfaf128x128x16ClearColor(blackColor);
 }
 
+//Set SSI data mode
 static void 
 ssiSetDataMode(uint8_t mode) {
 	HWREG(DISPLAY_SSI_BASE + SSI_O_CR0) &= ~(SSI_CR0_SPO | SSI_CR0_SPH);
 	HWREG(DISPLAY_SSI_BASE + SSI_O_CR0) |= mode;
 }
 
+//Set SSI clock divider
 static void
 ssiSetClockDivider(uint8_t divider){
   //value must be even
   HWREG(DISPLAY_SSI_BASE + SSI_O_CPSR) = divider;
 }
 
+//Initialiaze SSI comunication configuration
 static void
 InitSSICom(void){
 	uint32_t _ui32SysClock = 120000000L; //SysCtlClockGet();
 	uint32_t initialData = 0;
-	//
+
 	// Enable the peripherals used by this driver
-	//
 	ROM_SysCtlPeripheralEnable(DISPLAY_SSI_PERIPH);
 	ROM_SysCtlPeripheralEnable(DISPLAY_SSI_GPIO_PERIPH);
 
@@ -740,21 +811,24 @@ cfaf128x128x16Init(void)
 	
 	//ROM_GPIOPinConfigure();
 		
-	//
 	// Configure display control pins as GPIO output
-	//
 	ROM_GPIOPinTypeGPIOOutput(DISPLAY_RST_PORT, DISPLAY_RST_PIN);
 	ROM_GPIOPinTypeGPIOOutput(DISPLAY_D_C_PORT, DISPLAY_D_C_PIN);
 	ROM_GPIOPinTypeGPIOOutput(DISPLAY_CS_PORT,  DISPLAY_CS_PIN);
 	
-	//Backlight
+	//-----------------
+	//Backlight configuration - lacking for now
+	//-----------------
 	
+	//Display reset
 	ROM_GPIOPinWrite(DISPLAY_RST_PORT, DISPLAY_RST_PIN, DISPLAY_RST_PIN);
 	delay(100);	
 	ROM_GPIOPinWrite(DISPLAY_RST_PORT, DISPLAY_RST_PIN, 0);
 	delay(50);
 	ROM_GPIOPinWrite(DISPLAY_RST_PORT, DISPLAY_RST_PIN, DISPLAY_RST_PIN);
 	delay(120);
+	
+	//Display initialization command set
 	cfaf128x128x16WriteCommand(CM_SWRESET);
 	delay(150);
 	cfaf128x128x16WriteCommand(CM_SLPOUT);
@@ -777,7 +851,7 @@ cfaf128x128x16Init(void)
 	
 	delay(120);
 	cfaf128x128x16WriteCommand(CM_RAMWR);
-	//Set backlight
+	//Set backlight - if there's any
 	cfaf128x128x16SetOrientation(0);
 	cfaf128x128x16Clear();
 }

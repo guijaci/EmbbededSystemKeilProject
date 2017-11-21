@@ -2,7 +2,6 @@
 //
 // cfaf128x128x16.h - Prototypes for the Crystalfontz CFAF128128B-0145T display
 //                                     with an ST7735S controller.
-// This is part of revision 2.1.4.178 of the DK-TM4C123G Firmware Package.
 //
 //*****************************************************************************
 
