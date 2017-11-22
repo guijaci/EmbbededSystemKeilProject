@@ -53,7 +53,7 @@
 #define CM_CASET           0x2A
 #define CM_RASET           0x2B
 #define CM_RAMWR           0x2C
-#define CM_RGBSET          0x2d
+#define CM_RGBSET          0x2D
 #define CM_RAMRD           0x2E
 #define CM_PTLAR           0x30
 #define CM_MADCTL          0x36
@@ -184,11 +184,15 @@ uint8_t _orientation;
 // \return Returns the display-driver specific color.
 //
 // 24-bit format: XXXX XXXX RRRR RRRR GGGG GGGG BBBB BBBB
+// 18-bit format: ---- ---- ---- XXRR RRRR GGGG GGBB BBBB
 // 16-bit format: ---- ---- ---- ---- RRRR RGGG GGGB BBBB
 //  8-bit format: ---- ---- ---- ---- ---- ---- RRRG GGBB
 //
 //
 //*****************************************************************************
+#define DPYCOLORTRANSLATE18(c)  ((((c) & 0x00fc0000) >> 6) |                  \
+                                 (((c) & 0x0000fc00) >> 4) |                  \
+                                 (((c) & 0x000000fc) >> 2))
 #define DPYCOLORTRANSLATE16(c)  ((((c) & 0x00f80000) >> 8) |                  \
                                  (((c) & 0x0000fc00) >> 5) |                  \
                                  (((c) & 0x000000f8) >> 3))
@@ -655,9 +659,7 @@ cfaf128x128x16RectFill(void *pvDisplayData, const tRectangle *pRect,
 static uint32_t
 cfaf128x128x16ColorTranslate(void *pvDisplayData, uint32_t ui32Value)
 {
-    //
     // Translate from a 24-bit RGB color to a 3-3-2 RGB color.
-    //
     return(DPYCOLORTRANSLATE(ui32Value));
 }
 
