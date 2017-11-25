@@ -57,5 +57,4 @@ void SystemInit (void)
 #endif
 
   SystemCoreClock = __SYSTEM_CLOCK;
-
 }

@@ -30,16 +30,34 @@ Rebuild Project 'base_project' - Target 'TM4C129 RAM'
 compiling cfaf128x128x16.c...
 compiling LED.c...
 compiling Blinky.c...
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(183): warning:  #1-D: last line of file ends without a newline
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(22): warning:  #1295-D: Deprecated declaration rgb_init - give arg types
+  extern void rgb_init();
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif //__RGB_H__
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(190): warning:  #1-D: last line of file ends without a newline
   }
-Blinky.c: 1 warning, 0 errors
-compiling RTX_Conf_CM.c...
+Blinky.c: 3 warnings, 0 errors
+compiling servo.c...
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif //__SERVO_H__
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.c(8): warning:  #1-D: last line of file ends without a newline
+  //
+servo.c: 2 warnings, 0 errors
+compiling rgb.c...
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(22): warning:  #1295-D: Deprecated declaration rgb_init - give arg types
+  extern void rgb_init();
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif //__RGB_H__
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.c(165): warning:  #1-D: last line of file ends without a newline
+  }
+rgb.c: 3 warnings, 0 errors
 compiling retarget_io.c...
+compiling RTX_Conf_CM.c...
 assembling startup_TM4C129.s...
 compiling system_TM4C129.c...
 linking...
-Program Size: Code=11808 RO-data=2400 RW-data=88 ZI-data=9832  
-".\RAM\base_project.axf" - 0 Error(s), 1 Warning(s).
+Program Size: Code=7700 RO-data=1796 RW-data=60 ZI-data=9836  
+".\RAM\base_project.axf" - 0 Error(s), 8 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -88,18 +106,18 @@ Package Vendor: Keil
       Source file:   Source\retarget_io.c
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.1
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
       Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
       Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
-      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
       Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
       Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
 
    * Component: ARM::CMSIS:CORE:5.0.2

@@ -25,12 +25,14 @@
 #include "inc/hw_memmap.h"
 #include "inc/hw_ssi.h"
 #include "inc/hw_types.h"
+#include "inc/hw_sysctl.h"
 #include "driverlib/gpio.h"
 #include "driverlib/ssi.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/rom.h"
 #include "driverlib/pin_map.h"
 #include "grlib/grlib.h"
+
 #include "cfaf128x128x16.h"
 
 #define DISPLAY_WIDTH 128
@@ -763,11 +765,11 @@ ssiSetClockDivider(uint8_t divider){
 }
 
 //Initialiaze SSI comunication configuration
-static void
+void
 InitSSICom(void){
-	uint32_t _ui32SysClock = 120000000L; //SysCtlClockGet();
 	uint32_t initialData = 0;
-
+	_ui32SysClock = 120000000;
+	
 	// Enable the peripherals used by this driver
 	ROM_SysCtlPeripheralEnable(DISPLAY_SSI_PERIPH);
 	ROM_SysCtlPeripheralEnable(DISPLAY_SSI_GPIO_PERIPH);
