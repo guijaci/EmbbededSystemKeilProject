@@ -13,12 +13,14 @@
 #include "LED.h"
 
 #include "stdbool.h"
-#include "rgb.h"
 #include "driverlib/ssi.h"
 #include "driverlib/rom.h"
 #include "driverlib/sysctl.h"
 #include "grlib/grlib.h"
+
+#include "rgb.h"
 #include "cfaf128x128x16.h"
+#include "servo.h"
 
 osThreadId tid_phaseA;                  /* Thread id of thread: phase_a      */
 osThreadId tid_phaseB;                  /* Thread id of thread: phase_b      */
@@ -69,7 +71,7 @@ void signal_func (osThreadId tid)  {
 void phaseA (void const *argument) {
   for (;;) {
 		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-    rgb_write_c24b(RGB_RED);
+    rgb_write_color(RGB_RED);
     //Switch_On (LED_A);
     signal_func(tid_phaseB);                /* call common signal function   */
     //Switch_Off(LED_A);
@@ -82,7 +84,7 @@ void phaseA (void const *argument) {
 void phaseB (void const *argument) {
   for (;;) {
 		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-    rgb_write_c24b(RGB_GREEN);
+    rgb_write_color(RGB_GREEN);
     //Switch_On (LED_B);
     signal_func(tid_phaseC);                /* call common signal function   */
     //Switch_Off(LED_B);
@@ -95,7 +97,7 @@ void phaseB (void const *argument) {
 void phaseC (void const *argument) {
   for (;;) {
 		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-    rgb_write_c24b(RGB_BLUE);
+    rgb_write_color(RGB_BLUE);
     //Switch_On (LED_C);
     signal_func(tid_phaseD);                /* call common signal function   */
     //Switch_Off(LED_C);
@@ -108,7 +110,7 @@ void phaseC (void const *argument) {
 void phaseD (void  const *argument) {
   for (;;) {
 		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-    rgb_write_c24b(RGB_OFF);
+    rgb_write_color(RGB_OFF);
     //Switch_On (LED_D);
     signal_func(tid_phaseA);                /* call common signal function   */
     //Switch_Off(LED_D);
@@ -143,6 +145,7 @@ int main (void) {
 	osKernelInitialize();
 	cfaf128x128x16Init();
 	rgb_init();
+	servo_init();
 	
 	GrContextInit(&sContext, &g_sCfaf128x128x16);
 
