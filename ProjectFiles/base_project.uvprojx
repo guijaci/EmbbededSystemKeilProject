@@ -420,6 +420,11 @@
               <FileType>1</FileType>
               <FilePath>.\rgb.c</FilePath>
             </File>
+            <File>
+              <FileName>temp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\temp.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -861,6 +866,11 @@
               <FileName>rgb.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\rgb.c</FilePath>
+            </File>
+            <File>
+              <FileName>temp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\temp.c</FilePath>
             </File>
           </Files>
         </Group>

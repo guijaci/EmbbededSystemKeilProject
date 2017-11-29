@@ -11,14 +11,24 @@
 
 #include "servo.h"
 
-static uint32_t ui32SysClock;
+#ifndef __SysCtlClockGet
+#define __SysCtlClockGet()	\
+SysCtlClockFreqSet( 				\
+	SYSCTL_XTAL_25MHZ	| 			\
+	SYSCTL_OSC_MAIN 	| 			\
+	SYSCTL_USE_PLL 		| 			\
+	SYSCTL_CFG_VCO_480, 			\
+	120000000)
+#endif
+
+static uint32_t g_ui32SysClock;
 
 void 
 servo_init(){
 	uint32_t ulPeriod;
 	uint32_t dutyCycle, min;	
 	
-	ui32SysClock = 120000000;
+	g_ui32SysClock = __SysCtlClockGet();
 	
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER3);
 	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_TIMER3));
@@ -45,5 +55,4 @@ servo_init(){
 	TimerLoadSet(TIMER3_BASE, TIMER_B, ulPeriod - 1);
 	TimerMatchSet(TIMER3_BASE, TIMER_B, dutyCycle);
 	TimerEnable(TIMER3_BASE, TIMER_B);
-	
 }

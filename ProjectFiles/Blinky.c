@@ -21,6 +21,7 @@
 #include "rgb.h"
 #include "cfaf128x128x16.h"
 #include "servo.h"
+#include "temp.h"
 
 osThreadId tid_phaseA;                  /* Thread id of thread: phase_a      */
 osThreadId tid_phaseB;                  /* Thread id of thread: phase_b      */
@@ -71,7 +72,7 @@ void signal_func (osThreadId tid)  {
 void phaseA (void const *argument) {
   for (;;) {
 		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-    rgb_write_color(RGB_RED);
+    rgb_write_color(ApplyLightness(RGB_YELLOW, .1));
     //Switch_On (LED_A);
     signal_func(tid_phaseB);                /* call common signal function   */
     //Switch_Off(LED_A);
@@ -84,7 +85,7 @@ void phaseA (void const *argument) {
 void phaseB (void const *argument) {
   for (;;) {
 		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-    rgb_write_color(RGB_GREEN);
+    rgb_write_color(ApplyLightness(RGB_MAGENTA, .1));
     //Switch_On (LED_B);
     signal_func(tid_phaseC);                /* call common signal function   */
     //Switch_Off(LED_B);
@@ -97,7 +98,7 @@ void phaseB (void const *argument) {
 void phaseC (void const *argument) {
   for (;;) {
 		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-    rgb_write_color(RGB_BLUE);
+    rgb_write_color(ApplyLightness (RGB_CYAN, .1));
     //Switch_On (LED_C);
     signal_func(tid_phaseD);                /* call common signal function   */
     //Switch_Off(LED_C);
@@ -117,13 +118,78 @@ void phaseD (void  const *argument) {
   }
 }
 
+static void intToString(int64_t value, char * pBuf, uint32_t len, uint32_t base){
+    static const char* pAscii = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    int pos = 0;
+    int64_t tmpValue = value;
+
+    // the buffer must not be null and at least have a length of 2 to handle one
+    // digit and null-terminator
+    if (pBuf == NULL || len < 2)
+        return;
+
+    // a valid base cannot be less than 2 or larger than 36
+    // a base value of 2 means binary representation. A value of 1 would mean only zeros
+    // a base larger than 36 can only be used if a larger alphabet were used.
+    if (base < 2 || base > 36)
+        return;
+
+    // negative value
+    if (value < 0)
+    {
+        tmpValue = -tmpValue;
+        value    = -value;
+        pBuf[pos++] = '-';
+    }
+
+    // calculate the required length of the buffer
+    do {
+        pos++;
+        tmpValue /= base;
+    } while(tmpValue > 0);
+
+
+    if (pos > len)
+        // the len parameter is invalid.
+        return;
+
+    pBuf[pos] = '\0';
+
+    do {
+        pBuf[--pos] = pAscii[value % base];
+        value /= base;
+    } while(value > 0);
+}
+
+
 /*----------------------------------------------------------------------------
  *      Thread 5 'clock': Signal Clock
  *---------------------------------------------------------------------------*/
 void clock (void  const *argument) {
+	tContext sContext;
+	tRectangle sRect;
+	int16_t temp;
+	char buf[10];
+	
+	GrContextInit(&sContext, &g_sCfaf128x128x16);
+
+	sRect.i16XMin = 0;
+	sRect.i16YMin = 0;
+	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
+	sRect.i16YMax = 23;
+	GrContextFontSet(&sContext, g_psFontFixed6x8);
+
   for (;;) {
     osSignalWait(0x0100, osWaitForever);    /* wait for an event flag 0x0100 */
     //Switch_On (LED_CLK);
+		temp = temp_read();
+		intToString((uint16_t) temp, buf, 10, 16);
+		GrContextForegroundSet(&sContext, ClrDarkBlue);
+		GrRectFill(&sContext, &sRect);
+		GrContextForegroundSet(&sContext, ClrWhite);
+		GrStringDrawCentered(&sContext, buf, -1,
+												 GrContextDpyWidthGet(&sContext) / 2, 10, 0);
+		GrFlush(&sContext);
     osDelay(80);                            /* delay 80ms                    */
     //Switch_Off(LED_CLK);
   }
@@ -139,37 +205,11 @@ osThreadDef(clock,  osPriorityNormal, 1, 0);
  *      Main: Initialize and start RTX Kernel
  *---------------------------------------------------------------------------*/
 int main (void) {
-	tContext sContext;
-	tRectangle sRect;
-	
 	osKernelInitialize();
 	cfaf128x128x16Init();
 	rgb_init();
 	servo_init();
-	
-	GrContextInit(&sContext, &g_sCfaf128x128x16);
-
-	sRect.i16XMin = 0;
-	sRect.i16YMin = 0;
-	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
-	sRect.i16YMax = 23;
-	GrContextForegroundSet(&sContext, ClrDarkBlue);
-	GrRectFill(&sContext, &sRect);
-
-	GrContextForegroundSet(&sContext, ClrWhite);
-	GrRectDraw(&sContext, &sRect);
-
-	GrContextFontSet(&sContext, g_psFontCm12);
-	GrStringDrawCentered(&sContext, "hello", -1,
-											 GrContextDpyWidthGet(&sContext) / 2, 10, 0);
-
-	GrContextFontSet(&sContext, g_psFontCm12/*g_psFontFixed6x8*/);
-	GrStringDrawCentered(&sContext, "Hello World!", -1,
-											 GrContextDpyWidthGet(&sContext) / 2,
-											 ((GrContextDpyHeightGet(&sContext) - 24) / 2) + 24,
-											 0);
-
-	GrFlush(&sContext);
+	temp_init();
 	
   tid_phaseA = osThreadCreate(osThread(phaseA), NULL);
   tid_phaseB = osThreadCreate(osThread(phaseB), NULL);

@@ -92,7 +92,17 @@ const uint16_t grayColor     = 0x7BEF;
 const uint16_t darkGrayColor = 0x39E7;
 
 //Abstract for delay calls
-#define delay(d) ROM_SysCtlDelay(d)
+#define delay(d) ROM_SysCtlDelay(d*10)
+
+#ifndef __SysCtlClockGet
+#define __SysCtlClockGet()	\
+SysCtlClockFreqSet( 				\
+	SYSCTL_XTAL_25MHZ	| 			\
+	SYSCTL_OSC_MAIN 	| 			\
+	SYSCTL_USE_PLL 		| 			\
+	SYSCTL_CFG_VCO_480, 			\
+	120000000)
+#endif
 
 //*****************************************************************************
 //
@@ -168,8 +178,8 @@ const uint16_t darkGrayColor = 0x39E7;
 #define DISPLAY_SSI_BASE            SSI2_BASE // SSI2
 #define DISPLAY_SSI_CLOCK           60000000
 
-uint32_t _ui32SysClock;
-uint8_t _orientation;
+static uint32_t g_ui32SysClock;
+static uint8_t _orientation;
 
 //*****************************************************************************
 //
@@ -768,7 +778,7 @@ ssiSetClockDivider(uint8_t divider){
 void
 InitSSICom(void){
 	uint32_t initialData = 0;
-	_ui32SysClock = 120000000;
+	g_ui32SysClock = __SysCtlClockGet();
 	
 	// Enable the peripherals used by this driver
 	ROM_SysCtlPeripheralEnable(DISPLAY_SSI_PERIPH);
@@ -780,11 +790,9 @@ InitSSICom(void){
 	ROM_GPIOPinConfigure(DISPLAY_PINCFG_SSIRX);
 	
 	ROM_GPIOPinTypeSSI(DISPLAY_SSI_PORT, DISPLAY_SSI_PINS);
-
-	ROM_SSIDisable(DISPLAY_SSI_BASE);
 	
-	ROM_SSIClockSourceSet(DISPLAY_SSI_BASE, SSI_CLOCK_SYSTEM);
-	ROM_SSIConfigSetExpClk(DISPLAY_SSI_BASE, _ui32SysClock, 
+	ROM_SSIClockSourceSet(DISPLAY_SSI_BASE, SSI_CLOCK_PIOSC);
+	ROM_SSIConfigSetExpClk(DISPLAY_SSI_BASE, g_ui32SysClock, 
 		SSI_FRF_MOTO_MODE_0, SSI_MODE_MASTER, DISPLAY_SSI_CLOCK, 8);
 
 	ROM_SSIEnable(DISPLAY_SSI_BASE);
@@ -805,8 +813,8 @@ void
 cfaf128x128x16Init(void)
 {	
 	InitSSICom();
-	ssiSetClockDivider(2);
-	ssiSetDataMode(0);
+	//ssiSetClockDivider(2);
+	//ssiSetDataMode(0);
 
 	ROM_SysCtlPeripheralEnable(DISPLAY_RST_GPIO_PERIPH);
 	ROM_SysCtlPeripheralEnable(DISPLAY_C_D_GPIO_PERIPH);

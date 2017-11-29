@@ -22,52 +22,59 @@ Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\base_project.uvprojx
-Project File Date:  11/25/2017
+Project File Date:  11/29/2017
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild Project 'base_project' - Target 'TM4C129 Flash'
 compiling LED.c...
 compiling Blinky.c...
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(22): warning:  #1295-D: Deprecated declaration rgb_init - give arg types
-  extern void rgb_init();
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(24): warning:  #1-D: last line of file ends without a newline
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(33): warning:  #1-D: last line of file ends without a newline
   #endif //__RGB_H__
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.h(6): warning:  #1295-D: Deprecated declaration servo_init - give arg types
   extern void servo_init();
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(74): warning:  #223-D: function "rgb_write_color" declared implicitly
-      rgb_write_color(RGB_RED);
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(87): warning:  #223-D: function "rgb_write_color" declared implicitly
-      rgb_write_color(RGB_GREEN);
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(100): warning:  #223-D: function "rgb_write_color" declared implicitly
-      rgb_write_color(RGB_BLUE);
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(113): warning:  #223-D: function "rgb_write_color" declared implicitly
-      rgb_write_color(RGB_OFF);
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(186): warning:  #1-D: last line of file ends without a newline
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif //__TEMP_H__
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(226): warning:  #1-D: last line of file ends without a newline
   }
-Blinky.c: 8 warnings, 0 errors
+Blinky.c: 4 warnings, 0 errors
 compiling cfaf128x128x16.c...
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\cfaf128x128x16.c(765): warning:  #177-D: function "ssiSetDataMode"  was declared but never referenced
+  ssiSetDataMode(uint8_t mode) {
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\cfaf128x128x16.c(772): warning:  #177-D: function "ssiSetClockDivider"  was declared but never referenced
+  ssiSetClockDivider(uint8_t divider){
+cfaf128x128x16.c: 2 warnings, 0 errors
 compiling servo.c...
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.h(6): warning:  #1295-D: Deprecated declaration servo_init - give arg types
   extern void servo_init();
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.c(14): warning:  #550-D: variable "ui32SysClock"  was set but never used
-  static uint32_t ui32SysClock;
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.c(24): warning:  #550-D: variable "g_ui32SysClock"  was set but never used
+  static uint32_t g_ui32SysClock;
 servo.c: 2 warnings, 0 errors
 compiling rgb.c...
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(22): warning:  #1295-D: Deprecated declaration rgb_init - give arg types
-  extern void rgb_init();
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(24): warning:  #1-D: last line of file ends without a newline
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(33): warning:  #1-D: last line of file ends without a newline
   #endif //__RGB_H__
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.c(179): warning:  #1-D: last line of file ends without a newline
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.c(191): warning:  #1-D: last line of file ends without a newline
   }
-rgb.c: 3 warnings, 0 errors
+rgb.c: 2 warnings, 0 errors
+compiling temp.c...
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif //__TEMP_H__
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(125): warning:  #1-D: last line of file ends without a newline
+  }
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(95): warning:  #177-D: variable "temp"  was declared but never referenced
+        uint16_t temp = 0;
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(47): warning:  #550-D: variable "mid"  was set but never used
+  static uint16_t mid, did;
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(47): warning:  #550-D: variable "did"  was set but never used
+  static uint16_t mid, did;
+temp.c: 5 warnings, 0 errors
 compiling RTX_Conf_CM.c...
 compiling retarget_io.c...
 assembling startup_TM4C129.s...
 compiling system_TM4C129.c...
 linking...
-Program Size: Code=13568 RO-data=2952 RW-data=100 ZI-data=9836  
-".\Flash\base_project.axf" - 0 Error(s), 13 Warning(s).
+Program Size: Code=15192 RO-data=2972 RW-data=112 ZI-data=9832  
+".\Flash\base_project.axf" - 0 Error(s), 15 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -102,9 +109,9 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: Keil::Device:Startup:1.0.0
+      Source file:   Device\Source\system_TM4C129.c
       Include file:  Device\Include\TM4C129\TM4C129.h
       Source file:   Device\Source\ARM\startup_TM4C129.s
-      Source file:   Device\Source\system_TM4C129.c
 
    * Component: Keil.ARM Compiler::Compiler:I/O:STDOUT:ITM:1.2.0
       Source file:   Source\retarget_io.c
@@ -116,19 +123,19 @@ Package Vendor: Keil
       Source file:   Source\retarget_io.c
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.0
-      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
-      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
-      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
-      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
       Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
 
    * Component: ARM::CMSIS:CORE:5.0.1
 

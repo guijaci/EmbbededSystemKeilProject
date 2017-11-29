@@ -11,6 +11,16 @@
 
 #include "rgb.h"
 
+#ifndef __SysCtlClockGet
+#define __SysCtlClockGet()	\
+SysCtlClockFreqSet( 			\
+	SYSCTL_XTAL_25MHZ	| 		\
+	SYSCTL_OSC_MAIN 	| 		\
+	SYSCTL_USE_PLL 		| 		\
+	SYSCTL_CFG_VCO_480, 		\
+	120000000)
+#endif
+
 //*****************************************************************************
 //
 // Defines the PWM adn GPIO peripherals that are used for this RGB LED.
@@ -72,18 +82,16 @@
 #define PWMWidthB(c)  					PWMWidthPeriod(c, RGB_PWM_GEN_B)
 #define PWMDutyCicle(out, dc)  	MAP_PWMPulseWidthSet(RGB_PWM_BASE, out, dc)
 
-static uint32_t ui32SysClock;
+static uint32_t g_ui32SysClock;
 
 void 
 rgb_write_r(uint8_t r){
 	static bool enabled = false;
 	if(!r &&  enabled) {
-		MAP_PWMGenDisable(RGB_PWM_BASE, RGB_PWM_GEN_R);
 		MAP_PWMOutputState(RGB_PWM_BASE, RGB_PWM_OUT_R_BIT, false);
 	}	
 	PWMDutyCicle(RGB_PWM_OUT_R, PWMWidthR(r));
 	if( r && !enabled) { 
-		MAP_PWMGenEnable (RGB_PWM_BASE, RGB_PWM_GEN_R); 	
 		MAP_PWMOutputState(RGB_PWM_BASE, RGB_PWM_OUT_R_BIT, true);
 	}
 	enabled = r ? true : false;
@@ -93,12 +101,10 @@ void
 rgb_write_g(uint8_t g){
 	static bool enabled = false;
 	if(!g &&  enabled) {
-		MAP_PWMGenDisable(RGB_PWM_BASE, RGB_PWM_GEN_G);
 		MAP_PWMOutputState(RGB_PWM_BASE, RGB_PWM_OUT_G_BIT, false);
 	}	
 	PWMDutyCicle(RGB_PWM_OUT_G, PWMWidthG(g));
 	if( g && !enabled) {
-		MAP_PWMGenEnable (RGB_PWM_BASE, RGB_PWM_GEN_G);
 		MAP_PWMOutputState(RGB_PWM_BASE, RGB_PWM_OUT_G_BIT, true);
 	}
 	enabled = g ? true : false;
@@ -108,12 +114,10 @@ void
 rgb_write_b(uint8_t b){
 	static bool enabled = false;
 	if(!b &&  enabled) {
-		MAP_PWMGenDisable(RGB_PWM_BASE, RGB_PWM_GEN_B);
 		MAP_PWMOutputState(RGB_PWM_BASE, RGB_PWM_OUT_B_BIT, false);
 	}
 	PWMDutyCicle(RGB_PWM_OUT_B, PWMWidthB(b));
-	if( b && !enabled) {
-		MAP_PWMGenEnable (RGB_PWM_BASE, RGB_PWM_GEN_B);
+	if( b && !enabled) {		
 		MAP_PWMOutputState(RGB_PWM_BASE, RGB_PWM_OUT_B_BIT, true);
 	}
 	enabled = b ? true : false;
@@ -129,14 +133,14 @@ rgb_write(uint8_t r, uint8_t g, uint8_t b){
 void
 rgb_write_color(uint32_t rgb){
 	rgb_write(
-		((rgb & 0x00FF0000) >> 16 ),
-		((rgb & 0x0000FF00) >>  8 ),
-		 (rgb & 0x000000FF)       );
+		GetR(rgb),
+		GetG(rgb),
+		GetB(rgb));
 }
 
 void 
 rgb_init(){
-	ui32SysClock = 120000000;
+	g_ui32SysClock = __SysCtlClockGet();
 	
 	MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM0);
 	while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_PWM0));
@@ -148,6 +152,10 @@ rgb_init(){
 	MAP_SysCtlPeripheralEnable(RGB_GPIOB_PERIPH);
 	while(!MAP_SysCtlPeripheralReady(RGB_GPIOB_PERIPH));
 
+	MAP_PWMGenDisable(RGB_PWM_BASE, RGB_PWM_GEN_R);
+	MAP_PWMGenDisable(RGB_PWM_BASE, RGB_PWM_GEN_G);
+	MAP_PWMGenDisable(RGB_PWM_BASE, RGB_PWM_GEN_B);
+	
 	MAP_GPIOPinTypePWM(RGB_LED_PORTR, RGB_LED_PINR);
 	MAP_GPIOPinTypePWM(RGB_LED_PORTG, RGB_LED_PING);
 	MAP_GPIOPinTypePWM(RGB_LED_PORTB, RGB_LED_PINB);
@@ -171,9 +179,13 @@ rgb_init(){
 	// TODO: modify this calculation to use the clock frequency that you are
 	// using.
 	//
-	MAP_PWMGenPeriodSet(RGB_PWM_BASE, RGB_PWM_GEN_R, ui32SysClock/PWM_FREQUENCY/64);
-	MAP_PWMGenPeriodSet(RGB_PWM_BASE, RGB_PWM_GEN_G, ui32SysClock/PWM_FREQUENCY/64);
-	MAP_PWMGenPeriodSet(RGB_PWM_BASE, RGB_PWM_GEN_B, ui32SysClock/PWM_FREQUENCY/64);
+	MAP_PWMGenPeriodSet(RGB_PWM_BASE, RGB_PWM_GEN_R, g_ui32SysClock/PWM_FREQUENCY/64);
+	MAP_PWMGenPeriodSet(RGB_PWM_BASE, RGB_PWM_GEN_G, g_ui32SysClock/PWM_FREQUENCY/64);
+	MAP_PWMGenPeriodSet(RGB_PWM_BASE, RGB_PWM_GEN_B, g_ui32SysClock/PWM_FREQUENCY/64);
 	
 	rgb_write_color(RGB_OFF);
+
+	MAP_PWMGenEnable (RGB_PWM_BASE, RGB_PWM_GEN_R); 	
+	MAP_PWMGenEnable (RGB_PWM_BASE, RGB_PWM_GEN_G);
+	MAP_PWMGenEnable (RGB_PWM_BASE, RGB_PWM_GEN_B);
 }
