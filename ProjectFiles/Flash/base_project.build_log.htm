@@ -35,9 +35,15 @@ C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\s
   extern void servo_init();
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.h(9): warning:  #1-D: last line of file ends without a newline
   #endif //__TEMP_H__
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(226): warning:  #1-D: last line of file ends without a newline
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(4): warning:  #1295-D: Deprecated declaration opt_read - give arg types
+  extern int16_t opt_read();
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(5): warning:  #1295-D: Deprecated declaration opt_init - give arg types
+  extern void  opt_init();
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif //__OPT_H__
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(227): warning:  #1-D: last line of file ends without a newline
   }
-Blinky.c: 4 warnings, 0 errors
+Blinky.c: 7 warnings, 0 errors
 compiling cfaf128x128x16.c...
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\cfaf128x128x16.c(765): warning:  #177-D: function "ssiSetDataMode"  was declared but never referenced
   ssiSetDataMode(uint8_t mode) {
@@ -59,22 +65,36 @@ rgb.c: 2 warnings, 0 errors
 compiling temp.c...
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.h(9): warning:  #1-D: last line of file ends without a newline
   #endif //__TEMP_H__
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(125): warning:  #1-D: last line of file ends without a newline
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(134): warning:  #1-D: last line of file ends without a newline
   }
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(95): warning:  #177-D: variable "temp"  was declared but never referenced
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(98): warning:  #177-D: variable "temp"  was declared but never referenced
         uint16_t temp = 0;
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(47): warning:  #550-D: variable "mid"  was set but never used
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(49): warning:  #550-D: variable "mid"  was set but never used
   static uint16_t mid, did;
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(47): warning:  #550-D: variable "did"  was set but never used
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(49): warning:  #550-D: variable "did"  was set but never used
   static uint16_t mid, did;
 temp.c: 5 warnings, 0 errors
+compiling opt.c...
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(4): warning:  #1295-D: Deprecated declaration opt_read - give arg types
+  extern int16_t opt_read();
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(5): warning:  #1295-D: Deprecated declaration opt_init - give arg types
+  extern void  opt_init();
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif //__OPT_H__
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.c(88): warning:  #177-D: variable "temp"  was declared but never referenced
+        uint16_t temp = 0;
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.c(40): warning:  #550-D: variable "mid"  was set but never used
+  static uint16_t mid, did;
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.c(40): warning:  #550-D: variable "did"  was set but never used
+  static uint16_t mid, did;
+opt.c: 6 warnings, 0 errors
 compiling RTX_Conf_CM.c...
 compiling retarget_io.c...
 assembling startup_TM4C129.s...
 compiling system_TM4C129.c...
 linking...
-Program Size: Code=15192 RO-data=2972 RW-data=112 ZI-data=9832  
-".\Flash\base_project.axf" - 0 Error(s), 15 Warning(s).
+Program Size: Code=15260 RO-data=2972 RW-data=112 ZI-data=9832  
+".\Flash\base_project.axf" - 0 Error(s), 24 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -109,9 +129,9 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: Keil::Device:Startup:1.0.0
+      Source file:   Device\Source\ARM\startup_TM4C129.s
       Source file:   Device\Source\system_TM4C129.c
       Include file:  Device\Include\TM4C129\TM4C129.h
-      Source file:   Device\Source\ARM\startup_TM4C129.s
 
    * Component: Keil.ARM Compiler::Compiler:I/O:STDOUT:ITM:1.2.0
       Source file:   Source\retarget_io.c
@@ -123,18 +143,18 @@ Package Vendor: Keil
       Source file:   Source\retarget_io.c
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.0
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
-      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
       Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
-      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
-      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
       Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
 
    * Component: ARM::CMSIS:CORE:5.0.1

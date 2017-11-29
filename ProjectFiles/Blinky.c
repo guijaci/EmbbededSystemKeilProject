@@ -22,6 +22,7 @@
 #include "cfaf128x128x16.h"
 #include "servo.h"
 #include "temp.h"
+#include "opt.h"
 
 osThreadId tid_phaseA;                  /* Thread id of thread: phase_a      */
 osThreadId tid_phaseB;                  /* Thread id of thread: phase_b      */
@@ -182,7 +183,7 @@ void clock (void  const *argument) {
   for (;;) {
     osSignalWait(0x0100, osWaitForever);    /* wait for an event flag 0x0100 */
     //Switch_On (LED_CLK);
-		temp = temp_read();
+		temp = opt_read();
 		intToString((uint16_t) temp, buf, 10, 16);
 		GrContextForegroundSet(&sContext, ClrDarkBlue);
 		GrRectFill(&sContext, &sRect);
@@ -209,7 +210,7 @@ int main (void) {
 	cfaf128x128x16Init();
 	rgb_init();
 	servo_init();
-	temp_init();
+	opt_init();
 	
   tid_phaseA = osThreadCreate(osThread(phaseA), NULL);
   tid_phaseB = osThreadCreate(osThread(phaseB), NULL);

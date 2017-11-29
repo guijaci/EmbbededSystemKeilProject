@@ -425,6 +425,11 @@
               <FileType>1</FileType>
               <FilePath>.\temp.c</FilePath>
             </File>
+            <File>
+              <FileName>opt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\opt.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -871,6 +876,11 @@
               <FileName>temp.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\temp.c</FilePath>
+            </File>
+            <File>
+              <FileName>opt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\opt.c</FilePath>
             </File>
           </Files>
         </Group>

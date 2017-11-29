@@ -1,4 +1,4 @@
-//
+
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -11,7 +11,7 @@
 #include "driverlib/pin_map.h"
 #include "driverlib/rom_map.h"
 
-#include "temp.h"
+#include "opt.h"
 
 #ifndef __SysCtlClockGet
 #define __SysCtlClockGet()	\
@@ -23,28 +23,19 @@ SysCtlClockFreqSet( 			\
 	120000000)
 #endif
 
-#define TMP006_CONFIG     0x02
+#define OPT3001_I2CADDR 0x44
+#define OPT3001_MANID 0xFE
+#define OPT3001_DEVID 0x7F
 
-#define TMP006_CFG_RESET    0x8000
-#define TMP006_CFG_MODEON   0x7000
-#define TMP006_CFG_1SAMPLE  0x0000
-#define TMP006_CFG_2SAMPLE  0x0200
-#define TMP006_CFG_4SAMPLE  0x0400
-#define TMP006_CFG_8SAMPLE  0x0600
-#define TMP006_CFG_16SAMPLE 0x0800
-#define TMP006_CFG_DRDYEN   0x0100
-#define TMP006_CFG_DRDY     0x0080
+#define OPT3001_CONFIG 0x01
 
-#define TMP006_I2CADDR 0x40
-#define TMP006_MANID 0xFE
-#define TMP006_DEVID 0xFF
-
-#define TMP006_VOBJ  0x0
-#define TMP006_TAMB 0x01
+#define OPT3001_RESULT  0x00
+#define OPT3001_LOW  		0x02
+#define OPT3001_HIGH  	0x03
 
 #define I2C_WRITE false
 #define I2C_READ 	true
-
+	
 static uint32_t g_ui32SysClock;
 static uint16_t mid, did;
 
@@ -53,7 +44,7 @@ write16(uint8_t add, uint16_t data){
 	uint8_t data_low  =  data & 0x00FF;
 	uint8_t data_high = (data & 0xFF00)>>8;
 	while(I2CMasterBusy(I2C0_BASE));
-	I2CMasterSlaveAddrSet(I2C0_BASE, TMP006_I2CADDR, I2C_WRITE);
+	I2CMasterSlaveAddrSet(I2C0_BASE, OPT3001_I2CADDR, I2C_WRITE);
 	I2CMasterDataPut(I2C0_BASE, add);
 	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);	
 	while(I2CMasterBusy(I2C0_BASE));
@@ -71,14 +62,14 @@ static uint16_t
 read16(uint8_t add){
 	uint16_t data;
 	while(I2CMasterBusy(I2C0_BASE));
-	I2CMasterSlaveAddrSet(I2C0_BASE, TMP006_I2CADDR, I2C_WRITE);
+	I2CMasterSlaveAddrSet(I2C0_BASE, OPT3001_I2CADDR, I2C_WRITE);
 	I2CMasterDataPut(I2C0_BASE, add);
 	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);	
 	while(I2CMasterBusy(I2C0_BASE));
 	
 	
 	I2CMasterBurstLengthSet(I2C0_BASE, 3);
-	I2CMasterSlaveAddrSet(I2C0_BASE, TMP006_I2CADDR, I2C_READ);
+	I2CMasterSlaveAddrSet(I2C0_BASE, OPT3001_I2CADDR, I2C_READ);
 	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_RECEIVE_START);
 	while(I2CMasterBusy(I2C0_BASE));
 	data = (I2CMasterDataGet(I2C0_BASE));
@@ -89,12 +80,11 @@ read16(uint8_t add){
 	return data;
 }
 
-int16_t temp_read(){
-	return read16(TMP006_DEVID);
+int16_t opt_read(){
+	return read16(OPT3001_RESULT);
 }
-
 void 
-temp_init(){
+opt_init(){
 	uint16_t temp = 0;
 	g_ui32SysClock = __SysCtlClockGet();
 	
@@ -124,11 +114,10 @@ temp_init(){
 	
 	I2CMasterEnable(I2C0_BASE);
 	
-	write16(TMP006_CONFIG, TMP006_CFG_RESET);
-	SysCtlDelay(5000);
-	write16(TMP006_CONFIG, TMP006_CFG_MODEON | TMP006_CFG_DRDYEN | TMP006_CFG_8SAMPLE);
+	write16(OPT3001_CONFIG, 0x00);
 	SysCtlDelay(5000);
 
-	mid = read16(TMP006_MANID);
-	did = read16(TMP006_DEVID);
+	mid = read16(OPT3001_MANID);
+	did = read16(OPT3001_DEVID);
 }
+
