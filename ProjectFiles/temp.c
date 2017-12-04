@@ -82,12 +82,14 @@ read16(uint8_t add){
 	I2CMasterSlaveAddrSet(I2C0_BASE, TMP006_I2CADDR, I2C_WRITE);
 	I2CMasterDataPut(I2C0_BASE, add);
 	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);
-	I2CSlaveIntClear(I2C0_BASE);	
+	I2CSlaveIntClear(I2C0_BASE);
+	I2CMasterIntClear(I2C0_BASE);	
 	while(I2CMasterBusy(I2C0_BASE));
 	I2CMasterBurstLengthSet(I2C0_BASE, 3);
 	I2CMasterSlaveAddrSet(I2C0_BASE, TMP006_I2CADDR, I2C_READ);
 	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_RECEIVE_START);
-	I2CSlaveIntClear(I2C0_BASE);	
+	I2CSlaveIntClear(I2C0_BASE);
+	I2CMasterIntClear(I2C0_BASE);
 	while(I2CMasterBusBusy(I2C0_BASE));
 	data = (I2CMasterDataGet(I2C0_BASE));
 	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_RECEIVE_CONT);
@@ -98,6 +100,7 @@ read16(uint8_t add){
 }
 
 int16_t temp_read(){
+	
 	return read16(TMP006_DEVID);
 }
 
@@ -108,7 +111,7 @@ int16_t temp_read_vobj(){
 
 int16_t temp_read_temp(){
 	
-	return read16(TMP006_TAMB);
+	return read16(TMP006_TAMB)>>2;
 }
 
 long double TMP006_getTemp(void)

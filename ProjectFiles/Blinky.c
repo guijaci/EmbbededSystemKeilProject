@@ -230,29 +230,25 @@ void clock (void  const *argument) {
 	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
 	sRect.i16YMax = 50;
 	GrContextFontSet(&sContext, g_psFontFixed6x8);
-
+	temp = temp_read();
   for (;;) {
     osSignalWait(0x0100, osWaitForever);    /* wait for an event flag 0x0100 */
-   
-		if(cont<1){
-			cont=3;
-			trig = false;
-			temp = temp_read();
-		}else{
-			temp = temp_read_vobj();
-		}
-		intToString((uint16_t) temp, buf, 10, 16);
+		temp = temp_read_temp();
+		intToString((uint16_t)temp, buf, 10, 16);
 		GrContextForegroundSet(&sContext, ClrDarkBlue);
 		GrRectFill(&sContext, &sRect);
 		GrContextForegroundSet(&sContext, ClrWhite);
 		GrStringDrawCentered(&sContext, buf, -1,
 												 GrContextDpyWidthGet(&sContext) / 2, 10, 0);
-	
-		temp2 = temp_read_temp();
-		temp2 = TMP006_getTemp2(temp,temp2);
+		temp2 = temp;
 		intToString(temp2, buf, 10, 10);
 		GrStringDrawCentered(&sContext, buf, -1,
 												 GrContextDpyWidthGet(&sContext) / 2, 25, 0);
+//		osDelay(100);  
+//		temp2 = temp_read_temp();
+//		intToString(temp2, buf, 10, 10);
+//		GrStringDrawCentered(&sContext, buf, -1,
+//												 GrContextDpyWidthGet(&sContext) / 2, 35, 0);
 		GrFlush(&sContext);
     osDelay(5000);  
 		cont--;/* delay 80ms                    */
