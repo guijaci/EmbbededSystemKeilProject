@@ -410,6 +410,29 @@
               <FileType>1</FileType>
               <FilePath>.\cfaf128x128x16.c</FilePath>
             </File>
+<<<<<<< HEAD
+=======
+            <File>
+              <FileName>servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\servo.c</FilePath>
+            </File>
+            <File>
+              <FileName>rgb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\rgb.c</FilePath>
+            </File>
+            <File>
+              <FileName>temp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\temp.c</FilePath>
+            </File>
+            <File>
+              <FileName>opt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\opt.c</FilePath>
+            </File>
+>>>>>>> Lab5_Guilherme
           </Files>
         </Group>
         <Group>
@@ -490,7 +513,11 @@
           <ListingPath>.\Flash\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
+<<<<<<< HEAD
           <CreateBatchFile>0</CreateBatchFile>
+=======
+          <CreateBatchFile>1</CreateBatchFile>
+>>>>>>> Lab5_Guilherme
           <BeforeCompile>
             <RunUserProg1>0</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
@@ -768,7 +795,11 @@
               <MiscControls></MiscControls>
               <Define>rvmdk PART_TM4C1294NCPDT TARGET_IS_TM4C129_RA0</Define>
               <Undefine></Undefine>
+<<<<<<< HEAD
               <IncludePath>..\..\EmbbededSystemKeilProject</IncludePath>
+=======
+              <IncludePath>..\</IncludePath>
+>>>>>>> Lab5_Guilherme
             </VariousControls>
           </Cads>
           <Aads>
@@ -842,6 +873,29 @@
               <FileType>1</FileType>
               <FilePath>.\cfaf128x128x16.c</FilePath>
             </File>
+<<<<<<< HEAD
+=======
+            <File>
+              <FileName>servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\servo.c</FilePath>
+            </File>
+            <File>
+              <FileName>rgb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\rgb.c</FilePath>
+            </File>
+            <File>
+              <FileName>temp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\temp.c</FilePath>
+            </File>
+            <File>
+              <FileName>opt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\opt.c</FilePath>
+            </File>
+>>>>>>> Lab5_Guilherme
           </Files>
         </Group>
         <Group>

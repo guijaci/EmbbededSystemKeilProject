@@ -29,6 +29,7 @@ Project File Date:  11/27/2017
 Rebuild Project 'base_project' - Target 'TM4C129 RAM'
 compiling LED.c...
 compiling Blinky.c...
+<<<<<<< HEAD
 C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(51): warning:  #47-D: incompatible redefinition of macro "WATCHDOG0_BASE"  (declared at line 1915 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
   #define WATCHDOG0_BASE          0x40000000  // Watchdog0
 C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(52): warning:  #47-D: incompatible redefinition of macro "WATCHDOG1_BASE"  (declared at line 1916 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
@@ -136,12 +137,41 @@ C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memma
 Blinky.c: 52 warnings, 0 errors
 compiling cfaf128x128x16.c...
 compiling RTX_Conf_CM.c...
+=======
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(22): warning:  #1295-D: Deprecated declaration rgb_init - give arg types
+  extern void rgb_init();
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif //__RGB_H__
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(190): warning:  #1-D: last line of file ends without a newline
+  }
+Blinky.c: 3 warnings, 0 errors
+compiling servo.c...
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif //__SERVO_H__
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.c(8): warning:  #1-D: last line of file ends without a newline
+  //
+servo.c: 2 warnings, 0 errors
+compiling rgb.c...
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(22): warning:  #1295-D: Deprecated declaration rgb_init - give arg types
+  extern void rgb_init();
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(24): warning:  #1-D: last line of file ends without a newline
+  #endif //__RGB_H__
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.c(165): warning:  #1-D: last line of file ends without a newline
+  }
+rgb.c: 3 warnings, 0 errors
+>>>>>>> Lab5_Guilherme
 compiling retarget_io.c...
+compiling RTX_Conf_CM.c...
 assembling startup_TM4C129.s...
 compiling system_TM4C129.c...
 linking...
+<<<<<<< HEAD
 Program Size: Code=13480 RO-data=3508 RW-data=92 ZI-data=9852  
 ".\RAM\base_project.axf" - 0 Error(s), 52 Warning(s).
+=======
+Program Size: Code=7700 RO-data=1796 RW-data=60 ZI-data=9836  
+".\RAM\base_project.axf" - 0 Error(s), 8 Warning(s).
+>>>>>>> Lab5_Guilherme
 
 <h2>Software Packages used:</h2>
 
@@ -190,9 +220,17 @@ Package Vendor: Keil
       Source file:   Source\retarget_io.c
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.1
+<<<<<<< HEAD
+=======
+      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+>>>>>>> Lab5_Guilherme
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
       Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+<<<<<<< HEAD
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
       Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
@@ -203,6 +241,15 @@ Package Vendor: Keil
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
+=======
+      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
+      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
+>>>>>>> Lab5_Guilherme
 
    * Component: ARM::CMSIS:CORE:5.0.2
 
