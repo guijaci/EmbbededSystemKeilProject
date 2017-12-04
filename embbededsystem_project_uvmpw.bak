@@ -9,25 +9,16 @@
 
   <project>
     <PathAndName>.\ProjectFiles\base_project.uvprojx</PathAndName>
-<<<<<<< HEAD
     <NodeIsActive>1</NodeIsActive>
-=======
->>>>>>> Lab5_Guilherme
     <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
   <project>
     <PathAndName>.\driverlib\driverlib.uvproj</PathAndName>
-    <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
   <project>
     <PathAndName>.\grlib\grlib.uvproj</PathAndName>
-<<<<<<< HEAD
-    <NodeIsExpanded>1</NodeIsExpanded>
-=======
-    <NodeIsActive>1</NodeIsActive>
->>>>>>> Lab5_Guilherme
   </project>
 
 </ProjectWorkspace>

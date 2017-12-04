@@ -22,156 +22,85 @@ Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\base_project.uvprojx
-Project File Date:  11/27/2017
+Project File Date:  12/04/2017
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild Project 'base_project' - Target 'TM4C129 RAM'
 compiling LED.c...
 compiling Blinky.c...
-<<<<<<< HEAD
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(51): warning:  #47-D: incompatible redefinition of macro "WATCHDOG0_BASE"  (declared at line 1915 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define WATCHDOG0_BASE          0x40000000  // Watchdog0
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(52): warning:  #47-D: incompatible redefinition of macro "WATCHDOG1_BASE"  (declared at line 1916 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define WATCHDOG1_BASE          0x40001000  // Watchdog1
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(57): warning:  #47-D: incompatible redefinition of macro "SSI0_BASE"  (declared at line 1917 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define SSI0_BASE               0x40008000  // SSI0
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(58): warning:  #47-D: incompatible redefinition of macro "SSI1_BASE"  (declared at line 1918 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define SSI1_BASE               0x40009000  // SSI1
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(59): warning:  #47-D: incompatible redefinition of macro "SSI2_BASE"  (declared at line 1919 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define SSI2_BASE               0x4000A000  // SSI2
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(60): warning:  #47-D: incompatible redefinition of macro "SSI3_BASE"  (declared at line 1920 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define SSI3_BASE               0x4000B000  // SSI3
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(61): warning:  #47-D: incompatible redefinition of macro "UART0_BASE"  (declared at line 1921 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define UART0_BASE              0x4000C000  // UART0
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(62): warning:  #47-D: incompatible redefinition of macro "UART1_BASE"  (declared at line 1922 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define UART1_BASE              0x4000D000  // UART1
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(63): warning:  #47-D: incompatible redefinition of macro "UART2_BASE"  (declared at line 1923 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define UART2_BASE              0x4000E000  // UART2
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(64): warning:  #47-D: incompatible redefinition of macro "UART3_BASE"  (declared at line 1924 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define UART3_BASE              0x4000F000  // UART3
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(65): warning:  #47-D: incompatible redefinition of macro "UART4_BASE"  (declared at line 1925 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define UART4_BASE              0x40010000  // UART4
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(66): warning:  #47-D: incompatible redefinition of macro "UART5_BASE"  (declared at line 1926 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define UART5_BASE              0x40011000  // UART5
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(67): warning:  #47-D: incompatible redefinition of macro "UART6_BASE"  (declared at line 1927 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define UART6_BASE              0x40012000  // UART6
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(68): warning:  #47-D: incompatible redefinition of macro "UART7_BASE"  (declared at line 1928 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define UART7_BASE              0x40013000  // UART7
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(69): warning:  #47-D: incompatible redefinition of macro "I2C0_BASE"  (declared at line 1929 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define I2C0_BASE               0x40020000  // I2C0
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(70): warning:  #47-D: incompatible redefinition of macro "I2C1_BASE"  (declared at line 1930 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define I2C1_BASE               0x40021000  // I2C1
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(71): warning:  #47-D: incompatible redefinition of macro "I2C2_BASE"  (declared at line 1931 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define I2C2_BASE               0x40022000  // I2C2
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(72): warning:  #47-D: incompatible redefinition of macro "I2C3_BASE"  (declared at line 1932 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define I2C3_BASE               0x40023000  // I2C3
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(77): warning:  #47-D: incompatible redefinition of macro "PWM0_BASE"  (declared at line 1933 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define PWM0_BASE               0x40028000  // Pulse Width Modulator (PWM)
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(79): warning:  #47-D: incompatible redefinition of macro "QEI0_BASE"  (declared at line 1934 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define QEI0_BASE               0x4002C000  // QEI0
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(81): warning:  #47-D: incompatible redefinition of macro "TIMER0_BASE"  (declared at line 1935 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define TIMER0_BASE             0x40030000  // Timer0
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(82): warning:  #47-D: incompatible redefinition of macro "TIMER1_BASE"  (declared at line 1936 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define TIMER1_BASE             0x40031000  // Timer1
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(83): warning:  #47-D: incompatible redefinition of macro "TIMER2_BASE"  (declared at line 1937 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define TIMER2_BASE             0x40032000  // Timer2
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(84): warning:  #47-D: incompatible redefinition of macro "TIMER3_BASE"  (declared at line 1938 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define TIMER3_BASE             0x40033000  // Timer3
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(85): warning:  #47-D: incompatible redefinition of macro "TIMER4_BASE"  (declared at line 1939 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define TIMER4_BASE             0x40034000  // Timer4
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(86): warning:  #47-D: incompatible redefinition of macro "TIMER5_BASE"  (declared at line 1940 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define TIMER5_BASE             0x40035000  // Timer5
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(89): warning:  #47-D: incompatible redefinition of macro "ADC0_BASE"  (declared at line 1941 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define ADC0_BASE               0x40038000  // ADC0
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(90): warning:  #47-D: incompatible redefinition of macro "ADC1_BASE"  (declared at line 1942 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define ADC1_BASE               0x40039000  // ADC1
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(91): warning:  #47-D: incompatible redefinition of macro "COMP_BASE"  (declared at line 1943 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define COMP_BASE               0x4003C000  // Analog comparators
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(93): warning:  #47-D: incompatible redefinition of macro "CAN0_BASE"  (declared at line 1944 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define CAN0_BASE               0x40040000  // CAN0
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(94): warning:  #47-D: incompatible redefinition of macro "CAN1_BASE"  (declared at line 1945 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define CAN1_BASE               0x40041000  // CAN1
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(99): warning:  #47-D: incompatible redefinition of macro "USB0_BASE"  (declared at line 1946 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define USB0_BASE               0x40050000  // USB 0 Controller
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(121): warning:  #47-D: incompatible redefinition of macro "EEPROM_BASE"  (declared at line 1962 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define EEPROM_BASE             0x400AF000  // EEPROM memory
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(123): warning:  #47-D: incompatible redefinition of macro "I2C8_BASE"  (declared at line 1963 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define I2C8_BASE               0x400B8000  // I2C8
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(124): warning:  #47-D: incompatible redefinition of macro "I2C9_BASE"  (declared at line 1964 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define I2C9_BASE               0x400B9000  // I2C9
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(125): warning:  #47-D: incompatible redefinition of macro "I2C4_BASE"  (declared at line 1965 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define I2C4_BASE               0x400C0000  // I2C4
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(126): warning:  #47-D: incompatible redefinition of macro "I2C5_BASE"  (declared at line 1966 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define I2C5_BASE               0x400C1000  // I2C5
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(127): warning:  #47-D: incompatible redefinition of macro "I2C6_BASE"  (declared at line 1967 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define I2C6_BASE               0x400C2000  // I2C6
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(128): warning:  #47-D: incompatible redefinition of macro "I2C7_BASE"  (declared at line 1968 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define I2C7_BASE               0x400C3000  // I2C7
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(129): warning:  #47-D: incompatible redefinition of macro "EPI0_BASE"  (declared at line 1969 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define EPI0_BASE               0x400D0000  // EPI0
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(130): warning:  #47-D: incompatible redefinition of macro "TIMER6_BASE"  (declared at line 1970 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define TIMER6_BASE             0x400E0000  // General-Purpose Timers
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(131): warning:  #47-D: incompatible redefinition of macro "TIMER7_BASE"  (declared at line 1971 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define TIMER7_BASE             0x400E1000  // General-Purpose Timers
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(132): warning:  #47-D: incompatible redefinition of macro "EMAC0_BASE"  (declared at line 1972 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define EMAC0_BASE              0x400EC000  // Ethernet Controller
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(133): warning:  #47-D: incompatible redefinition of macro "SYSEXC_BASE"  (declared at line 1973 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define SYSEXC_BASE             0x400F9000  // System Exception Module
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(134): warning:  #47-D: incompatible redefinition of macro "HIB_BASE"  (declared at line 1974 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define HIB_BASE                0x400FC000  // Hibernation Module
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(135): warning:  #47-D: incompatible redefinition of macro "FLASH_CTRL_BASE"  (declared at line 1975 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define FLASH_CTRL_BASE         0x400FD000  // FLASH Controller
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(136): warning:  #47-D: incompatible redefinition of macro "SYSCTL_BASE"  (declared at line 1976 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define SYSCTL_BASE             0x400FE000  // System Control
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(137): warning:  #47-D: incompatible redefinition of macro "UDMA_BASE"  (declared at line 1977 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define UDMA_BASE               0x400FF000  // uDMA Controller
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(138): warning:  #47-D: incompatible redefinition of macro "CCM0_BASE"  (declared at line 1978 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
-  #define CCM0_BASE               0x44030000  // Cyclical Redundancy Check (CRC)
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(145): warning:  #47-D: incompatible redefinition of macro "ITM_BASE"  (declared at line 1547 of "C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\Include\core_cm4.h")
-  #define ITM_BASE                0xE0000000  // Instrumentation Trace Macrocell
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(146): warning:  #47-D: incompatible redefinition of macro "DWT_BASE"  (declared at line 1548 of "C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\Include\core_cm4.h")
-  #define DWT_BASE                0xE0001000  // Data Watchpoint and Trace
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\inc\hw_memmap.h(148): warning:  #47-D: incompatible redefinition of macro "NVIC_BASE"  (declared at line 1552 of "C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\Include\core_cm4.h")
-  #define NVIC_BASE               0xE000E000  // Nested Vectored Interrupt Ctrl
-Blinky.c: 52 warnings, 0 errors
-compiling cfaf128x128x16.c...
-compiling RTX_Conf_CM.c...
-=======
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(22): warning:  #1295-D: Deprecated declaration rgb_init - give arg types
-  extern void rgb_init();
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(24): warning:  #1-D: last line of file ends without a newline
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\rgb.h(33): warning:  #1-D: last line of file ends without a newline
   #endif //__RGB_H__
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(190): warning:  #1-D: last line of file ends without a newline
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\servo.h(6): warning:  #1295-D: Deprecated declaration servo_init - give arg types
+  extern void servo_init();
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif //__TEMP_H__
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.h(4): warning:  #1295-D: Deprecated declaration opt_read - give arg types
+  extern int16_t opt_read();
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.h(5): warning:  #1295-D: Deprecated declaration opt_init - give arg types
+  extern void  opt_init();
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif //__OPT_H__
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(182): warning:  #177-D: variable "t"  was declared but never referenced
+                int t;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(221): warning:  #177-D: variable "teste"  was declared but never referenced
+        long double teste;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(223): warning:  #550-D: variable "trig"  was set but never used
+        bool trig = true;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(292): warning:  #1-D: last line of file ends without a newline
   }
-Blinky.c: 3 warnings, 0 errors
+Blinky.c: 10 warnings, 0 errors
+compiling cfaf128x128x16.c...
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\cfaf128x128x16.c(765): warning:  #177-D: function "ssiSetDataMode"  was declared but never referenced
+  ssiSetDataMode(uint8_t mode) {
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\cfaf128x128x16.c(772): warning:  #177-D: function "ssiSetClockDivider"  was declared but never referenced
+  ssiSetClockDivider(uint8_t divider){
+cfaf128x128x16.c: 2 warnings, 0 errors
 compiling servo.c...
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.h(8): warning:  #1-D: last line of file ends without a newline
-  #endif //__SERVO_H__
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.c(8): warning:  #1-D: last line of file ends without a newline
-  //
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\servo.h(6): warning:  #1295-D: Deprecated declaration servo_init - give arg types
+  extern void servo_init();
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\servo.c(24): warning:  #550-D: variable "g_ui32SysClock"  was set but never used
+  static uint32_t g_ui32SysClock;
 servo.c: 2 warnings, 0 errors
 compiling rgb.c...
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(22): warning:  #1295-D: Deprecated declaration rgb_init - give arg types
-  extern void rgb_init();
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(24): warning:  #1-D: last line of file ends without a newline
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\rgb.h(33): warning:  #1-D: last line of file ends without a newline
   #endif //__RGB_H__
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.c(165): warning:  #1-D: last line of file ends without a newline
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\rgb.c(191): warning:  #1-D: last line of file ends without a newline
   }
-rgb.c: 3 warnings, 0 errors
->>>>>>> Lab5_Guilherme
-compiling retarget_io.c...
+rgb.c: 2 warnings, 0 errors
+compiling temp.c...
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.h(12): warning:  #1-D: last line of file ends without a newline
+  #endif //__TEMP_H__
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.c(208): warning:  #1-D: last line of file ends without a newline
+  }
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.c(170): warning:  #177-D: variable "temp"  was declared but never referenced
+        uint16_t temp = 0;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.c(51): warning:  #177-D: variable "mid"  was declared but never referenced
+  static uint16_t mid, did;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.c(51): warning:  #550-D: variable "did"  was set but never used
+  static uint16_t mid, did;
+temp.c: 5 warnings, 0 errors
+compiling opt.c...
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.h(4): warning:  #1295-D: Deprecated declaration opt_read - give arg types
+  extern int16_t opt_read();
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.h(5): warning:  #1295-D: Deprecated declaration opt_init - give arg types
+  extern void  opt_init();
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.h(7): warning:  #1-D: last line of file ends without a newline
+  #endif //__OPT_H__
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.c(91): warning:  #177-D: variable "temp"  was declared but never referenced
+        uint16_t temp = 0;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.c(43): warning:  #550-D: variable "mid"  was set but never used
+  static uint16_t mid, did;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.c(43): warning:  #550-D: variable "did"  was set but never used
+  static uint16_t mid, did;
+opt.c: 6 warnings, 0 errors
 compiling RTX_Conf_CM.c...
+compiling retarget_io.c...
 assembling startup_TM4C129.s...
 compiling system_TM4C129.c...
 linking...
-<<<<<<< HEAD
-Program Size: Code=13480 RO-data=3508 RW-data=92 ZI-data=9852  
-".\RAM\base_project.axf" - 0 Error(s), 52 Warning(s).
-=======
-Program Size: Code=7700 RO-data=1796 RW-data=60 ZI-data=9836  
-".\RAM\base_project.axf" - 0 Error(s), 8 Warning(s).
->>>>>>> Lab5_Guilherme
+Program Size: Code=24544 RO-data=3120 RW-data=132 ZI-data=9836  
+".\RAM\base_project.axf" - 0 Error(s), 27 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -206,9 +135,9 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: Keil::Device:Startup:1.0.0
+      Source file:   Device\Source\ARM\startup_TM4C129.s
       Include file:  Device\Include\TM4C129\TM4C129.h
       Source file:   Device\Source\system_TM4C129.c
-      Source file:   Device\Source\ARM\startup_TM4C129.s
 
    * Component: Keil.ARM Compiler::Compiler:I/O:STDOUT:ITM:1.2.0
       Source file:   Source\retarget_io.c
@@ -220,41 +149,24 @@ Package Vendor: Keil
       Source file:   Source\retarget_io.c
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.1
-<<<<<<< HEAD
-=======
-      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
-      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
->>>>>>> Lab5_Guilherme
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
       Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
-<<<<<<< HEAD
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
-      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
-      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
-      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
-      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
-=======
-      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
-      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
-      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
->>>>>>> Lab5_Guilherme
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
 
    * Component: ARM::CMSIS:CORE:5.0.2
 
    * Component: ::CMSIS:RTOS:1.0.0 (API)
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:05
 </pre>
 </body>
 </html>

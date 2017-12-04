@@ -209,7 +209,11 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
+          <Filename>&lt;1&gt;.\Blinky.c</Filename>
+=======
           <Filename>&lt;1&gt;.\rgb.c</Filename>
+>>>>>>> Lab5_Guilherme
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -230,7 +234,11 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
+          <Filename>&lt;1&gt;.\Blinky.c</Filename>
+=======
           <Filename>&lt;1&gt;RTE\CMSIS\RTX_Conf_CM.c</Filename>
+>>>>>>> Lab5_Guilherme
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -270,7 +278,11 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
+          <Filename>&lt;1&gt;.\Blinky.c</Filename>
+=======
           <Filename>&lt;1&gt;.\rgb.c</Filename>
+>>>>>>> Lab5_Guilherme
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -290,7 +302,11 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
+          <Filename>&lt;1&gt;.\Blinky.c</Filename>
+=======
           <Filename>&lt;1&gt;.\cfaf128x128x16.c</Filename>
+>>>>>>> Lab5_Guilherme
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -310,7 +326,11 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
+          <Filename>&lt;1&gt;.\Blinky.c</Filename>
+=======
           <Filename>&lt;1&gt;.\rgb.c</Filename>
+>>>>>>> Lab5_Guilherme
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -318,7 +338,7 @@
           <Number>9</Number>
           <Type>0</Type>
 <<<<<<< HEAD
-          <LineNumber>269</LineNumber>
+          <LineNumber>287</LineNumber>
 =======
           <LineNumber>210</LineNumber>
 >>>>>>> Lab5_Guilherme
@@ -338,10 +358,9 @@
           <Number>10</Number>
           <Type>0</Type>
 <<<<<<< HEAD
-          <LineNumber>287</LineNumber>
+          <LineNumber>292</LineNumber>
 =======
           <LineNumber>240</LineNumber>
->>>>>>> Lab5_Guilherme
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -357,11 +376,7 @@
         <Bp>
           <Number>11</Number>
           <Type>0</Type>
-<<<<<<< HEAD
-          <LineNumber>292</LineNumber>
-=======
           <LineNumber>164</LineNumber>
->>>>>>> Lab5_Guilherme
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -371,6 +386,23 @@
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
           <Filename>&lt;1&gt;.\temp.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>12</Number>
+          <Type>0</Type>
+          <LineNumber>238</LineNumber>
+>>>>>>> Lab5_Guilherme
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>&lt;1&gt;.\Blinky.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
