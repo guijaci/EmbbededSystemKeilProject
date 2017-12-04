@@ -375,7 +375,7 @@
               <MiscControls>--c99</MiscControls>
               <Define>rvmdk</Define>
               <Undefine></Undefine>
-              <IncludePath>..</IncludePath>
+              <IncludePath>..\..\EmbbededSystemKeilProject</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
