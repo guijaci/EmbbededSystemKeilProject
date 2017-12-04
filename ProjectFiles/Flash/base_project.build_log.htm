@@ -133,19 +133,11 @@ C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\inc\hw_memmap.h(146)
   #define DWT_BASE                0xE0001000  // Data Watchpoint and Trace
 C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\inc\hw_memmap.h(148): warning:  #47-D: incompatible redefinition of macro "NVIC_BASE"  (declared at line 1550 of "C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm4.h")
   #define NVIC_BASE               0xE000E000  // Nested Vectored Interrupt Ctrl
-C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(108): error:  #20: identifier "GPIOE_Handler" is undefined
-  GPIOIntRegister(
-PIO_PORTE_BASE, GPIOE_Handler);
-Blinky.c: 52 warnings, 1 error
-compiling cfaf128x128x16.c...
-C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\cfaf128x128x16.c(875): warning:  #1-D: last line of file ends without a newline
-  //*****************************************************************************
-C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\cfaf128x128x16.c(765): warning:  #177-D: function "ssiSetDataMode"  was declared but never referenced
-  ssiSetDataMode(uint8_t mode) {
-C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\cfaf128x128x16.c(772): warning:  #177-D: function "ssiSetClockDivider"  was declared but never referenced
-  ssiSetClockDivider(uint8_t divider){
-cfaf128x128x16.c: 3 warnings, 0 errors
-compiling RTX_Conf_CM.c...
+C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(90): warning:  #177-D: variable "ui32SysClock"  was declared but never referenced
+  	uint32_t ui32SysClock;
+C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(92): warning:  #177-D: variable "i32Valy"  was declared but never referenced
+  int32_t i32Valx, i32Valy;
+Blinky.c: 54 warnings, 0 errors
 compiling temperature_sensor.c...
 C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\inc\hw_memmap.h(51): warning:  #47-D: incompatible redefinition of macro "WATCHDOG0_BASE"  (declared at line 1915 of "C:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129\TM4C1294NCPDT.h")
   #define WATCHDOG0_BASE          0x40000000  // Watchdog0
@@ -254,9 +246,20 @@ C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\inc\hw_memmap.h(148)
 C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c(93): warning:  #177-D: function "intToString"  was declared but never referenced
   static void intToString(int64_t value, char* pBuf, uint32_t len, uint32_t base)
 C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c: 53 warnings, 0 errors
+compiling cfaf128x128x16.c...
+C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\cfaf128x128x16.c(875): warning:  #1-D: last line of file ends without a newline
+  //*****************************************************************************
+C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\cfaf128x128x16.c(765): warning:  #177-D: function "ssiSetDataMode"  was declared but never referenced
+  ssiSetDataMode(uint8_t mode) {
+C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\cfaf128x128x16.c(772): warning:  #177-D: function "ssiSetClockDivider"  was declared but never referenced
+  ssiSetClockDivider(uint8_t divider){
+cfaf128x128x16.c: 3 warnings, 0 errors
+compiling RTX_Conf_CM.c...
 assembling startup_TM4C129.s...
 compiling system_TM4C129.c...
-".\Flash\base_project.axf" - 1 Error(s), 108 Warning(s).
+linking...
+Program Size: Code=12528 RO-data=2940 RW-data=80 ZI-data=4328  
+".\Flash\base_project.axf" - 0 Error(s), 110 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -283,30 +286,29 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: Keil::Device:Startup:1.0.0
-      Include file:  Device\Include\TM4C129\TM4C129.h
       Source file:   Device\Source\system_TM4C129.c
+      Include file:  Device\Include\TM4C129\TM4C129.h
       Source file:   Device\Source\ARM\startup_TM4C129.s
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.0
-      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
-      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
       Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
-      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
-      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
 
    * Component: ARM::CMSIS:CORE:5.0.1
 
    * Component: ::CMSIS:RTOS:1.0.0 (API)
-Target not created.
-Build Time Elapsed:  00:00:04
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
