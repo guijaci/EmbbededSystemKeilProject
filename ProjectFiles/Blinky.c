@@ -11,6 +11,7 @@
 #include "cmsis_os.h"
 #include "TM4C129.h"                    // Device header
 #include "LED.h"
+#include "math.h"
 
 #include "stdbool.h"
 #include "driverlib/ssi.h"
@@ -36,7 +37,7 @@ osThreadId tid_clock;                   /* Thread id of thread: clock        */
 #define LED_D      3
 #define LED_CLK    7
 
-
+static long double S01 = 0;
 
 /*----------------------------------------------------------------------------
  *      Switch LED on
@@ -161,6 +162,53 @@ static void intToString(int64_t value, char * pBuf, uint32_t len, uint32_t base)
         value /= base;
     } while(value > 0);
 }
+int16_t TMP006_getTemp2( int16_t Vobj, int16_t Tdie )
+{
+
+		volatile long double Tobj=0.0;
+		volatile long double fObj =0.0;
+		long double Vos=0.0;
+		long double S=0.0;
+		long double a1;
+    long double a2 ;
+    long double b0;
+    long double b1;
+    long double b2 ;
+    long double c2;
+    long double Tref ;
+	  long double Vobj2;
+    long double Tdie2;
+		int16_t k;
+		int t;
+
+
+   
+
+    Tdie = Tdie >> 2;
+
+    /* Calculate TMP006. This needs to be reviewed and calibrated */
+    Vobj2 = (double)Vobj*.00000015625;
+    Tdie2 = (double)Tdie*.03525 + 273.15;
+
+    /* Initialize constants */
+    S01 = 6 * pow(10, -14);
+    a1 = 1.75*pow(10, -3);
+    a2 = -1.678*pow(10, -5);
+    b0 = -2.94*pow(10, -5);
+    b1 = -5.7*pow(10, -7);
+    b2 = 4.63*pow(10, -9);
+    c2 = 13.4;
+    Tref = 298.15;
+
+    /* Calculate values */
+    S = S01*(1+a1*(Tdie2 - Tref)+a2*pow((Tdie2 - Tref),2));
+		Vos = b0 + b1*(Tdie2 - Tref) + b2*pow((Tdie2 - Tref),2);	
+		fObj = (Vobj2 - Vos) + c2*pow((Vobj2 - Vos),2);
+    Tobj = pow(pow(Tdie2,4) + (fObj/S),.25);
+		k = Tobj - 273;
+    /* Return temperature of object */
+    return k;
+}
 
 
 /*----------------------------------------------------------------------------
@@ -169,30 +217,46 @@ static void intToString(int64_t value, char * pBuf, uint32_t len, uint32_t base)
 void clock (void  const *argument) {
 	tContext sContext;
 	tRectangle sRect;
-	int16_t temp;
+	int16_t temp,temp2;
+	long double teste;
 	char buf[10];
+	bool trig = true;
+	int cont=0;
 	
 	GrContextInit(&sContext, &g_sCfaf128x128x16);
 
 	sRect.i16XMin = 0;
 	sRect.i16YMin = 0;
 	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
-	sRect.i16YMax = 23;
+	sRect.i16YMax = 50;
 	GrContextFontSet(&sContext, g_psFontFixed6x8);
 
   for (;;) {
     osSignalWait(0x0100, osWaitForever);    /* wait for an event flag 0x0100 */
-    //Switch_On (LED_CLK);
-		temp = opt_read();
+   
+		if(cont<1){
+			cont=3;
+			trig = false;
+			temp = temp_read();
+		}else{
+			temp = temp_read_vobj();
+		}
 		intToString((uint16_t) temp, buf, 10, 16);
 		GrContextForegroundSet(&sContext, ClrDarkBlue);
 		GrRectFill(&sContext, &sRect);
 		GrContextForegroundSet(&sContext, ClrWhite);
 		GrStringDrawCentered(&sContext, buf, -1,
 												 GrContextDpyWidthGet(&sContext) / 2, 10, 0);
+	
+		temp2 = temp_read_temp();
+		temp2 = TMP006_getTemp2(temp,temp2);
+		intToString(temp2, buf, 10, 10);
+		GrStringDrawCentered(&sContext, buf, -1,
+												 GrContextDpyWidthGet(&sContext) / 2, 25, 0);
 		GrFlush(&sContext);
-    osDelay(80);                            /* delay 80ms                    */
-    //Switch_Off(LED_CLK);
+    osDelay(5000);  
+		cont--;/* delay 80ms                    */
+    Switch_Off(LED_CLK);
   }
 }
 
@@ -210,7 +274,8 @@ int main (void) {
 	cfaf128x128x16Init();
 	rgb_init();
 	servo_init();
-	opt_init();
+	temp_init();
+	//opt_init();
 	
   tid_phaseA = osThreadCreate(osThread(phaseA), NULL);
   tid_phaseB = osThreadCreate(osThread(phaseB), NULL);
