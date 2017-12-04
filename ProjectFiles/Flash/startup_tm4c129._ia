@@ -1,0 +1,7 @@
+--cpu Cortex-M4.fp --pd "__RTX SETA 1" --pd "__EVAL SETA 1" -g --apcs=interwork 
+-I.\RTE\_TM4C129_Flash
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\Include
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\RTOS\RTX\INC
+-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129
+--pd "__UVISION_VERSION SETA 524" --pd "_RTE_ SETA 1" --pd "TM4C1294NCPDT SETA 1"
+--list .\flash\startup_tm4c129.lst --xref -o .\flash\startup_tm4c129.o --depend .\flash\startup_tm4c129.d "RTE\Device\TM4C1294NCPDT\startup_TM4C129.s"
