@@ -21,12 +21,40 @@ SysCtlClockFreqSet( 				\
 	120000000)
 #endif
 
+//Acionamento por PPM
+//-Período Total: 20ms
+//-Periodo Regime Maximo: 2ms
+//-Periodo Regime Minimo: 1ms
+
+//Formato de Onda: Regime Máximo
+//  ========== __________ ____...___ __________ __________
+// |          |                                           |
+// |<- 2 ms ->|                                           |
+// |                                                      |
+// |<----------------------- 20 ms ---------------------->|
+
+
+//Formato de Onda: Regime Mínimo
+//  =====______ __________ ___...____ __________ __________
+// |     |                                                |
+// |<1ms>|                                                |
+// |                                                      |
+// |<----------------------- 20 ms ---------------------->|
+
+#define CLK_F 16000000
+#define MAX_T 0.002
+
 static uint32_t g_ui32SysClock;
+static uint16_t g_ui8Period, g_ui16perMin;
+
+void
+servo_write(uint16_t angle){
+	TimerMatchSet(TIMER3_BASE, TIMER_B, g_ui16perMin*angle/0xFFFF + g_ui16perMin);
+}
 
 void 
 servo_init(){
-	uint32_t ulPeriod;
-	uint32_t dutyCycle, min;	
+	uint32_t duty_cycle;	
 	
 	g_ui32SysClock = __SysCtlClockGet();
 	
@@ -39,7 +67,8 @@ servo_init(){
 	GPIOPinConfigure(GPIO_PM3_T3CCP1);
 	GPIOPinTypeTimer(GPIO_PORTM_BASE, GPIO_PIN_3);
 
-	TimerClockSourceSet(TIMER3_BASE, TIMER_CLOCK_SYSTEM);
+	//Frequencia 16MHz
+	TimerClockSourceSet(TIMER3_BASE, TIMER_CLOCK_PIOSC);
 			
 	TimerConfigure(TIMER3_BASE, TIMER_CFG_SPLIT_PAIR | TIMER_CFG_B_PWM);
 	
@@ -48,11 +77,12 @@ servo_init(){
 
 	TimerPrescaleSet(TIMER3_BASE, TIMER_B, 4);
 
-	ulPeriod = 65535;
-	min = ulPeriod/2;
-	dutyCycle = min;
+	//Período 2ms
+	g_ui8Period = (uint16_t) CLK_F*MAX_T;
+	g_ui16perMin = g_ui8Period>>1;
+	duty_cycle = g_ui16perMin;
 		
-	TimerLoadSet(TIMER3_BASE, TIMER_B, ulPeriod - 1);
-	TimerMatchSet(TIMER3_BASE, TIMER_B, dutyCycle);
+	TimerLoadSet(TIMER3_BASE, TIMER_B, g_ui8Period);
+	TimerMatchSet(TIMER3_BASE, TIMER_B, duty_cycle);
 	TimerEnable(TIMER3_BASE, TIMER_B);
 }

@@ -167,11 +167,11 @@ static void intToString(int64_t value, char * pBuf, uint32_t len, uint32_t base)
  *      Thread 5 'clock': Signal Clock
  *---------------------------------------------------------------------------*/
 void clock (void  const *argument) {
-	tContext sContext;
-	tRectangle sRect;
 	int16_t temp;
 	char buf[10];
-	
+	tContext sContext;
+	tRectangle sRect;	
+		
 	GrContextInit(&sContext, &g_sCfaf128x128x16);
 
 	sRect.i16XMin = 0;
@@ -192,6 +192,7 @@ void clock (void  const *argument) {
 												 GrContextDpyWidthGet(&sContext) / 2, 10, 0);
 		GrFlush(&sContext);
     osDelay(80);                            /* delay 80ms                    */
+		
     //Switch_Off(LED_CLK);
   }
 }
@@ -206,6 +207,8 @@ osThreadDef(clock,  osPriorityNormal, 1, 0);
  *      Main: Initialize and start RTX Kernel
  *---------------------------------------------------------------------------*/
 int main (void) {
+	uint16_t angle = 0;
+	int8_t inc = 1;
 	osKernelInitialize();
 	cfaf128x128x16Init();
 	rgb_init();
@@ -222,6 +225,12 @@ int main (void) {
 	
 	osSignalSet(tid_phaseA, 0x0001);          /* set signal to phaseA thread   */
 	
+	while(true){
+		servo_write(angle);
+		angle += inc;
+		if(angle == 0 || angle == 0xFFFF) inc = -inc;	
+		osDelay(1);
+	}
   osDelay(osWaitForever);
   while(1);
 }
