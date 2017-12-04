@@ -11,8 +11,11 @@
 #include "cmsis_os.h"
 #include "TM4C129.h"                    // Device header
 #include "LED.h"
-
 #include "stdbool.h"
+
+#include "buzzer.h"
+#include "buttons.h"
+
 #include "driverlib/ssi.h"
 #include "driverlib/rom.h"
 #include "driverlib/sysctl.h"
@@ -31,13 +34,10 @@ osThreadId tid_clock;                   /* Thread id of thread: clock        */
 #define LED_D      3
 #define LED_CLK    7
 
-
-
 /*----------------------------------------------------------------------------
  *      Switch LED on
  *---------------------------------------------------------------------------*/
 void Switch_On (unsigned char led) {
-
   if (led != LED_CLK) LED_On (led);
 }
 
@@ -45,10 +45,8 @@ void Switch_On (unsigned char led) {
  *      Switch LED off
  *---------------------------------------------------------------------------*/
 void Switch_Off (unsigned char led) {
-
   if (led != LED_CLK) LED_Off (led);
 }
-
 
 /*----------------------------------------------------------------------------
  *      Function 'signal_func' called from multiple threads
@@ -67,10 +65,11 @@ void signal_func (osThreadId tid)  {
  *---------------------------------------------------------------------------*/
 void phaseA (void const *argument) {
   for (;;) {
-    osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-    Switch_On (LED_A);
+		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
+//    rgb_write_c24b(RGB_RED);
+    //Switch_On (LED_A);
     signal_func(tid_phaseB);                /* call common signal function   */
-    Switch_Off(LED_A);
+    //Switch_Off(LED_A);
   }
 }
 
@@ -79,10 +78,11 @@ void phaseA (void const *argument) {
  *---------------------------------------------------------------------------*/
 void phaseB (void const *argument) {
   for (;;) {
-    osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-    Switch_On (LED_B);
+		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
+  //  rgb_write_c24b(RGB_GREEN);
+    //Switch_On (LED_B);
     signal_func(tid_phaseC);                /* call common signal function   */
-    Switch_Off(LED_B);
+    //Switch_Off(LED_B);
   }
 }
 
@@ -91,10 +91,11 @@ void phaseB (void const *argument) {
  *---------------------------------------------------------------------------*/
 void phaseC (void const *argument) {
   for (;;) {
-    osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-    Switch_On (LED_C);
+		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
+  //  rgb_write_c24b(RGB_BLUE);
+    //Switch_On (LED_C);
     signal_func(tid_phaseD);                /* call common signal function   */
-    Switch_Off(LED_C);
+    //Switch_Off(LED_C);
   }
 }
 
@@ -103,10 +104,11 @@ void phaseC (void const *argument) {
  *---------------------------------------------------------------------------*/
 void phaseD (void  const *argument) {
   for (;;) {
-    osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-    Switch_On (LED_D);
+		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
+ //   rgb_write_c24b(RGB_OFF);
+    //Switch_On (LED_D);
     signal_func(tid_phaseA);                /* call common signal function   */
-    Switch_Off(LED_D);
+    //Switch_Off(LED_D);
   }
 }
 
@@ -116,9 +118,9 @@ void phaseD (void  const *argument) {
 void clock (void  const *argument) {
   for (;;) {
     osSignalWait(0x0100, osWaitForever);    /* wait for an event flag 0x0100 */
-    Switch_On (LED_CLK);
+    //Switch_On (LED_CLK);
     osDelay(80);                            /* delay 80ms                    */
-    Switch_Off(LED_CLK);
+    //Switch_Off(LED_CLK);
   }
 }
 
@@ -135,25 +137,15 @@ int main (void) {
 	tContext sContext;
 	tRectangle sRect;
 	
-//	ROM_SysCtlDeepSleepClockConfigSet(16, SYSCTL_DSLP_OSC_INT);
-//	SysCtlDeepSleepPowerSet(0x121);  // TSPD, FLASHPM = LOW_POWER_MODE, SRAMPM = STANDBY_MODE
-
 	osKernelInitialize();
+	cfaf128x128x16Init();
 	
-  SystemCoreClockUpdate();
-  LED_Initialize();                         /* Initialize the LEDs           */
- 	cfaf128x128x16Init();
+	buzzer_init();          // BUZZER
+	//rgb_init();
+	buttons_init();
 	
 	GrContextInit(&sContext, &g_sCfaf128x128x16);
-	
-  tid_phaseA = osThreadCreate(osThread(phaseA), NULL);
-  tid_phaseB = osThreadCreate(osThread(phaseB), NULL);
-  tid_phaseC = osThreadCreate(osThread(phaseC), NULL);
-  tid_phaseD = osThreadCreate(osThread(phaseD), NULL);
-  tid_clock  = osThreadCreate(osThread(clock),  NULL);
 
-	osKernelStart();
-	
 	sRect.i16XMin = 0;
 	sRect.i16YMin = 0;
 	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
@@ -175,6 +167,14 @@ int main (void) {
 											 0);
 
 	GrFlush(&sContext);
+	
+  tid_phaseA = osThreadCreate(osThread(phaseA), NULL);
+  tid_phaseB = osThreadCreate(osThread(phaseB), NULL);
+  tid_phaseC = osThreadCreate(osThread(phaseC), NULL);
+  tid_phaseD = osThreadCreate(osThread(phaseD), NULL);
+  tid_clock  = osThreadCreate(osThread(clock),  NULL);
+	
+	osKernelStart();
 	
 	osSignalSet(tid_phaseA, 0x0001);          /* set signal to phaseA thread   */
 	

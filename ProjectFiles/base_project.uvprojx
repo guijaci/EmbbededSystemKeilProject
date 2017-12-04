@@ -411,16 +411,6 @@
               <FilePath>.\cfaf128x128x16.c</FilePath>
             </File>
             <File>
-              <FileName>servo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\servo.c</FilePath>
-            </File>
-            <File>
-              <FileName>rgb.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\rgb.c</FilePath>
-            </File>
-            <File>
               <FileName>buzzer.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\buzzer.c</FilePath>
@@ -871,16 +861,6 @@
               <FileName>cfaf128x128x16.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\cfaf128x128x16.c</FilePath>
-            </File>
-            <File>
-              <FileName>servo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\servo.c</FilePath>
-            </File>
-            <File>
-              <FileName>rgb.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\rgb.c</FilePath>
             </File>
             <File>
               <FileName>buzzer.c</FileName>
