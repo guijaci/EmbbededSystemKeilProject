@@ -177,19 +177,23 @@ void clock (void  const *argument) {
 	sRect.i16XMin = 0;
 	sRect.i16YMin = 0;
 	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
-	sRect.i16YMax = 23;
+	sRect.i16YMax = 31;
 	GrContextFontSet(&sContext, g_psFontFixed6x8);
 
   for (;;) {
     osSignalWait(0x0100, osWaitForever);    /* wait for an event flag 0x0100 */
     //Switch_On (LED_CLK);
-		temp = temp_read();
-		intToString((uint16_t) temp, buf, 10, 16);
+		temp = temp_read()/32;
+		intToString((uint16_t) temp, buf, 10, 10);
 		GrContextForegroundSet(&sContext, ClrDarkBlue);
 		GrRectFill(&sContext, &sRect);
 		GrContextForegroundSet(&sContext, ClrWhite);
 		GrStringDrawCentered(&sContext, buf, -1,
 												 GrContextDpyWidthGet(&sContext) / 2, 10, 0);
+		temp = temp_read_voltage();
+		intToString((uint16_t) temp, buf, 10, 16);
+		GrStringDrawCentered(&sContext, buf, -1,
+												 GrContextDpyWidthGet(&sContext) / 2, 24, 0);
 		GrFlush(&sContext);
     osDelay(80);                            /* delay 80ms                    */
 		

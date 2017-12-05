@@ -1,5 +1,6 @@
 //
 
+#include <math.h>
 #include <stdbool.h>
 #include <stdint.h>
 #include "inc/hw_memmap.h"
@@ -12,7 +13,6 @@
 #include "driverlib/i2c.h"
 #include "driverlib/pin_map.h"
 #include "driverlib/rom_map.h"
-
 #include "temp.h"
 
 #ifndef __SysCtlClockGet
@@ -47,18 +47,23 @@ SysCtlClockFreqSet( 			\
 #define I2C_WRITE false
 #define I2C_READ 	true
 
-static uint32_t g_ui32SysClock;
-static uint16_t g_mid, g_did;
-static bool g_sentFlag;
 
 #define I2C_MASTER_INT_DATA_NACK (I2C_MASTER_INT_NACK | I2C_MASTER_INT_DATA)
+#define TIMEOUT16 0xFFFF
 
 #define is_error(e) (e ? true : false)
-#define start_stop_delay() 	SysCtlDelay(30)
+#define start_stop_delay() 	SysCtlDelay(25)
 #define __I2CMasterControl(base, command) 	\
 	g_sentFlag = false;												\
 	I2CMasterControl(base, command);					\
-	while(!g_sentFlag);
+	g_timeout_count = 0;											\
+	while(!g_sentFlag) 												\
+		if(g_timeout_count++ >= TIMEOUT16) 			\
+			break;
+
+static uint32_t g_ui32SysClock;
+static uint16_t g_mid, g_did, g_timeout_count;
+static bool g_sentFlag;
 
 static uint32_t 
 send_single(uint8_t b){
@@ -189,8 +194,12 @@ read_reg(uint8_t add){
 	return (data & 0x00FF)<<8 | (data & 0xFF00)>>8;
 }
 
-int16_t temp_read(){
+int16_t temp_read(void){
 	return read_reg(TMP006_TAMB)>>2;
+}
+
+int16_t temp_read_voltage(void){
+	return read_reg(TMP006_VOBJ);
 }
 
 static void
@@ -215,7 +224,7 @@ temp_init(){
 				!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOB)	&
 				!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOP));
 	
-	//GPIOPinTypeGPIOInput(GPIO_PORTP_BASE, GPIO_PIN_2);
+	GPIOPinTypeGPIOInput(GPIO_PORTP_BASE, GPIO_PIN_2);
 	
 	GPIOPinConfigure(GPIO_PB2_I2C0SCL);
 	GPIOPinConfigure(GPIO_PB3_I2C0SDA);
@@ -227,9 +236,9 @@ temp_init(){
 	I2CMasterGlitchFilterConfigSet(I2C0_BASE, I2C_MASTER_GLITCH_FILTER_8);
 	I2CMasterInitExpClk(I2C0_BASE, g_ui32SysClock, false);
 	
-	I2CMasterIntEnableEx(I2C0_BASE, I2C_MASTER_INT_DATA_NACK	);
-	IntEnable(INT_I2C0_TM4C129);
+	I2CMasterIntEnableEx(I2C0_BASE, I2C_MASTER_INT_DATA_NACK);
 	I2CIntRegister(I2C0_BASE, temp_int_callback);
+	IntEnable(INT_I2C0_TM4C129);
 	
 	HWREG(I2C0_BASE + I2C_O_FIFOCTL) = 80008000;
 	
@@ -237,17 +246,9 @@ temp_init(){
 	
 
 	write_reg(TMP006_CONFIG, TMP006_CFG_RESET);
-	SysCtlDelay(5000);
-	//write_reg(TMP006_CONFIG, TMP006_CFG_MODEON | TMP006_CFG_DRDYEN | TMP006_CFG_8SAMPLE);
-	write_reg(TMP006_CONFIG, TMP006_CFG_MODEON | TMP006_CFG_2SAMPLE);
+	write_reg(TMP006_CONFIG, TMP006_CFG_MODEON | TMP006_CFG_DRDYEN | TMP006_CFG_8SAMPLE);
+	//write_reg(TMP006_CONFIG, TMP006_CFG_MODEON | TMP006_CFG_2SAMPLE);
 
-
-	while(g_mid != 0x5449){
-		g_mid = read_reg(TMP006_MANID);
-		SysCtlDelay(500000);
-	}
-	while(g_did != 0x0067){
-		g_did = read_reg(TMP006_DEVID);
-		SysCtlDelay(500000);
-	}
+	g_mid = read_reg(TMP006_MANID);
+	g_did = read_reg(TMP006_DEVID);
 }

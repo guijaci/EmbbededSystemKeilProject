@@ -286,22 +286,6 @@
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
-        <Bp>
-          <Number>9</Number>
-          <Type>0</Type>
-          <LineNumber>239</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>0</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>0</BreakIfRCount>
-          <Filename>&lt;1&gt;.\temp.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression></Expression>
-        </Bp>
       </Breakpoint>
       <WatchWindow1>
         <Ww>
@@ -498,7 +482,7 @@
           <Type>0</Type>
           <LineNumber>272</LineNumber>
           <EnabledFlag>0</EnabledFlag>
-          <Address>6724</Address>
+          <Address>7052</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
@@ -508,22 +492,6 @@
           <Filename>&lt;1&gt;RTE\CMSIS\RTX_Conf_CM.c</Filename>
           <ExecCommand></ExecCommand>
           <Expression>\\base_project\RTE/CMSIS/RTX_Conf_CM.c\272</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>239</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>6606</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>&lt;1&gt;.\temp.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\base_project\temp.c\239</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>
@@ -535,12 +503,12 @@
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>g_mid</ItemText>
+          <ItemText>g_did</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>data</ItemText>
+          <ItemText>g_timeout_count</ItemText>
         </Ww>
       </WatchWindow1>
       <MemoryWindow1>
