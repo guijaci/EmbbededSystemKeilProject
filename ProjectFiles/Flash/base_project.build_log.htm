@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\base_project.uvprojx
-Project File Date:  11/29/2017
+Project File Date:  12/04/2017
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -55,7 +55,7 @@ cfaf128x128x16.c: 2 warnings, 0 errors
 compiling servo.c...
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.h(17): warning:  #1295-D: Deprecated declaration servo_init - give arg types
   extern void servo_init();
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.c(24): warning:  #550-D: variable "g_ui32SysClock"  was set but never used
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.c(47): warning:  #550-D: variable "g_ui32SysClock"  was set but never used
   static uint32_t g_ui32SysClock;
 servo.c: 2 warnings, 0 errors
 compiling rgb.c...
@@ -67,14 +67,14 @@ rgb.c: 2 warnings, 0 errors
 compiling temp.c...
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.h(9): warning:  #1-D: last line of file ends without a newline
   #endif //__TEMP_H__
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(134): warning:  #1-D: last line of file ends without a newline
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(107): warning:  #128-D: loop is not reachable
+                while(i < n){
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(148): warning:  #128-D: loop is not reachable
+                while(i < n-1){
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(253): warning:  #1-D: last line of file ends without a newline
   }
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(98): warning:  #177-D: variable "temp"  was declared but never referenced
-        uint16_t temp = 0;
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(49): warning:  #550-D: variable "mid"  was set but never used
-  static uint16_t mid, did;
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(49): warning:  #550-D: variable "did"  was set but never used
-  static uint16_t mid, did;
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(205): warning:  #177-D: variable "temp"  was declared but never referenced
+        uint64_t temp = 0;
 temp.c: 5 warnings, 0 errors
 compiling opt.c...
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(4): warning:  #1295-D: Deprecated declaration opt_read - give arg types
@@ -95,7 +95,7 @@ compiling retarget_io.c...
 assembling startup_TM4C129.s...
 compiling system_TM4C129.c...
 linking...
-Program Size: Code=15348 RO-data=2972 RW-data=116 ZI-data=9836  
+Program Size: Code=16480 RO-data=3368 RW-data=1644 ZI-data=9836  
 ".\Flash\base_project.axf" - 0 Error(s), 25 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -145,18 +145,18 @@ Package Vendor: Keil
       Source file:   Source\retarget_io.c
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.0
-      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
-      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
-      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
       Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
+      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
+      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
       Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
 
    * Component: ARM::CMSIS:CORE:5.0.1

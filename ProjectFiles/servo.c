@@ -56,13 +56,14 @@ void
 servo_init(){
 	uint32_t duty_cycle;	
 	
+	//Configura/ Recupera Clock
 	g_ui32SysClock = __SysCtlClockGet();
 	
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER3);
-	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_TIMER3));
-	
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOM);
-	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOM));
+	
+	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_TIMER3) &
+				!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOM));
 
 	GPIOPinConfigure(GPIO_PM3_T3CCP1);
 	GPIOPinTypeTimer(GPIO_PORTM_BASE, GPIO_PIN_3);
@@ -70,15 +71,28 @@ servo_init(){
 	//Frequencia 16MHz
 	TimerClockSourceSet(TIMER3_BASE, TIMER_CLOCK_PIOSC);
 			
+	//Configura timer como par (A/B) e PWM
 	TimerConfigure(TIMER3_BASE, TIMER_CFG_SPLIT_PAIR | TIMER_CFG_B_PWM);
 	
 	TimerControlLevel(TIMER3_BASE, TIMER_B, true);
 	TimerUpdateMode(TIMER3_BASE, TIMER_B, TIMER_UP_MATCH_TIMEOUT);
 
+	//O periodo máximo para o timer PWM sem prescaler Tm é 0xFFFF / 16MHz ~= 4ms
+	//Para chegar em 20ms, multiplicamos esse valor por cinco (cada unidade no prescale p 
+	//aumenta em 4ms o Tm, portanto: p = 4 -> 20ms). No entanto, o duty cycle 
+	//máximo DCm reduzira proporcionalmente ao p, pois o período em alta máximo Hm é fixo em 4ms:
+	//  p		Hm/Tm [ms]		DCm [%]
+	//	0	->	4/4  		->	100
+	//  1	->	4/8  		->	 50
+	//  2	->	4/12 		->	 33
+	//  3	->	4/16		->	 25
+	//  4	->	4/20 		->	 20
+	//Como no PPM o duty cycle máximo é 10%, isto p = 4 é suficiente
 	TimerPrescaleSet(TIMER3_BASE, TIMER_B, 4);
 
 	//Período 2ms
 	g_ui8Period = (uint16_t) CLK_F*MAX_T;
+	//Periodo minimo 1ms = 2/2ms
 	g_ui16perMin = g_ui8Period>>1;
 	duty_cycle = g_ui16perMin;
 		

@@ -5,6 +5,8 @@
 #include "inc/hw_memmap.h"
 #include "inc/hw_types.h"
 #include "inc/hw_i2c.h"
+#include "inc/hw_ints.h"
+#include "driverlib/interrupt.h"
 #include "driverlib/gpio.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/i2c.h"
@@ -46,56 +48,161 @@ SysCtlClockFreqSet( 			\
 #define I2C_READ 	true
 
 static uint32_t g_ui32SysClock;
-static uint16_t mid, did;
+static uint16_t g_mid, g_did;
+static bool g_sentFlag;
+
+#define I2C_MASTER_INT_DATA_NACK (I2C_MASTER_INT_NACK | I2C_MASTER_INT_DATA)
+
+#define is_error(e) (e ? true : false)
+#define start_stop_delay() 	SysCtlDelay(30)
+#define __I2CMasterControl(base, command) 	\
+	g_sentFlag = false;												\
+	I2CMasterControl(base, command);					\
+	while(!g_sentFlag);
+
+static uint32_t 
+send_single(uint8_t b){
+	I2CMasterSlaveAddrSet(I2C0_BASE, TMP006_I2CADDR, I2C_WRITE);
+	I2CMasterDataPut(I2C0_BASE, b);
+	while(I2CMasterBusBusy(I2C0_BASE));
+	//Pelo menos 600ns
+	start_stop_delay();	
+	__I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);	
+	while(I2CMasterBusy(I2C0_BASE));
+	return I2CMasterErr(I2C0_BASE);
+}
+
+static uint32_t 
+receive_single(uint8_t *b){
+	uint32_t e;
+	I2CMasterSlaveAddrSet(I2C0_BASE, TMP006_I2CADDR, I2C_READ);
+	while(I2CMasterBusBusy(I2C0_BASE));
+	//Pelo menos 600ns
+	start_stop_delay();	
+	__I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_RECEIVE);	
+	while(I2CMasterBusy(I2C0_BASE));
+	e = I2CMasterErr(I2C0_BASE);
+	if(is_error(e)) *b = I2CMasterDataGet(I2C0_BASE);
+	return e;
+}
+
+static uint32_t
+send_multiple(const uint8_t *b, uint8_t n){
+	uint8_t i = 0;
+	uint32_t e;
+	if(n < 2) { 
+		if(n == 1) 
+			return send_single(*b);
+		return I2C_MASTER_ERR_NONE;
+	}
+	
+	I2CMasterSlaveAddrSet(I2C0_BASE, TMP006_I2CADDR, I2C_WRITE);
+	I2CMasterBurstLengthSet(I2C0_BASE, n);
+	I2CMasterDataPut(I2C0_BASE, b[i++]);
+	while(I2CMasterBusBusy(I2C0_BASE));
+	//Pelo menos 600ns
+	start_stop_delay();	
+	__I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_START);	
+	switch(n){
+		while(i < n){
+			//Pelo menos 600ns
+			start_stop_delay();	
+			__I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_CONT);	
+			default:
+			while(I2CMasterBusy(I2C0_BASE));
+			e = I2CMasterErr(I2C0_BASE);
+			if(is_error(e)){
+				//Pelo menos 600ns
+				start_stop_delay();	
+				__I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_ERROR_STOP);	
+				return e;
+			}
+			I2CMasterDataPut(I2C0_BASE, b[i++]);
+			start_stop_delay();
+		}
+	}
+	//Pelo menos 600ns
+	start_stop_delay();	
+	__I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH);	
+	while(I2CMasterBusy(I2C0_BASE));
+	return I2CMasterErr(I2C0_BASE);
+}
+
+static uint32_t 
+receive_multiple(uint8_t *b, uint8_t n){
+	uint8_t i = 0;
+	uint32_t e;
+	if(n < 2) { 
+		if(n == 1) 
+			return receive_single(b);
+		return I2C_MASTER_ERR_NONE;
+	}
+	
+	I2CMasterSlaveAddrSet(I2C0_BASE, TMP006_I2CADDR, I2C_READ);
+	I2CMasterBurstLengthSet(I2C0_BASE, n);
+	while(I2CMasterBusBusy(I2C0_BASE));
+	//Pelo menos 600ns
+	start_stop_delay();	
+	__I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_RECEIVE_START);	
+	switch(n){
+		while(i < n-1){
+			//Pelo menos 600ns
+			start_stop_delay();	
+			__I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_RECEIVE_CONT);	
+			default:
+			while(I2CMasterBusy(I2C0_BASE));
+			e = I2CMasterErr(I2C0_BASE);
+			if(is_error(e)){
+				//Pelo menos 600ns
+				start_stop_delay();	
+				__I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_RECEIVE_ERROR_STOP);	
+				return e;
+			}
+			b[i++] = I2CMasterDataGet(I2C0_BASE);
+			//Pelo menos 600ns
+			start_stop_delay();
+		}
+	}
+	//Pelo menos 600ns
+	start_stop_delay();
+	__I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_RECEIVE_FINISH);	
+	while(I2CMasterBusy(I2C0_BASE));
+	e = I2CMasterErr(I2C0_BASE);
+	b[i] = I2CMasterDataGet(I2C0_BASE);
+	return e;
+}
 
 static void 
-write16(uint8_t add, uint16_t data){
-	uint8_t data_low  =  data & 0x00FF;
-	uint8_t data_high = (data & 0xFF00)>>8;
+write_reg(uint8_t add, uint16_t data){
+	uint32_t bytes = add | (data & 0xFF00) | (data & 0x00FF)<<16;
 	while(I2CMasterBusy(I2C0_BASE));
-	I2CMasterSlaveAddrSet(I2C0_BASE, TMP006_I2CADDR, I2C_WRITE);
-	I2CMasterDataPut(I2C0_BASE, add);
-	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);	
-	while(I2CMasterBusy(I2C0_BASE));
-	I2CMasterDataPut(I2C0_BASE, data_high);
-	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);	
-	while(I2CMasterBusy(I2C0_BASE));
-	I2CMasterDataPut(I2C0_BASE, data_low);
-	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);	
-	while(I2CMasterBusy(I2C0_BASE));
-	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_RECEIVE_FINISH);
-
+	send_multiple((uint8_t*)&bytes, 3);
 }
 
 static uint16_t 
-read16(uint8_t add){
+read_reg(uint8_t add){
 	uint16_t data;
 	while(I2CMasterBusy(I2C0_BASE));
-	I2CMasterSlaveAddrSet(I2C0_BASE, TMP006_I2CADDR, I2C_WRITE);
-	I2CMasterDataPut(I2C0_BASE, add);
-	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_SINGLE_SEND);	
-	while(I2CMasterBusy(I2C0_BASE));
-	
-	
-	I2CMasterBurstLengthSet(I2C0_BASE, 3);
-	I2CMasterSlaveAddrSet(I2C0_BASE, TMP006_I2CADDR, I2C_READ);
-	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_RECEIVE_START);
-	while(I2CMasterBusy(I2C0_BASE));
-	data = (I2CMasterDataGet(I2C0_BASE));
-	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_RECEIVE_CONT);
-	while(I2CMasterBusy(I2C0_BASE));
-	data |= I2CMasterDataGet(I2C0_BASE) << 8;
-	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_RECEIVE_FINISH);
-	return data;
+	send_single(add);
+	start_stop_delay();
+	receive_multiple((uint8_t*) &data, 2);
+	return (data & 0x00FF)<<8 | (data & 0xFF00)>>8;
 }
 
 int16_t temp_read(){
-	return read16(TMP006_DEVID);
+	return read_reg(TMP006_TAMB)>>2;
+}
+
+static void
+temp_int_callback(void){
+	I2CMasterIntClearEx(I2C0_BASE, I2C_MASTER_INT_DATA_NACK);
+	I2CMasterIntClear(I2C0_BASE);
+	g_sentFlag = true;
 }
 
 void 
 temp_init(){
-	uint16_t temp = 0;
+	uint64_t temp = 0;
 	g_ui32SysClock = __SysCtlClockGet();
 	
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C0);
@@ -116,19 +223,31 @@ temp_init(){
 	GPIOPinTypeI2CSCL(GPIO_PORTB_BASE, GPIO_PIN_2);
 	GPIOPinTypeI2C(GPIO_PORTB_BASE, GPIO_PIN_3);
 	
-	//I2CMasterTimeoutSet(I2C0_BASE, 0x09FF);
-	//I2CMasterGlitchFilterConfigSet
+	I2CMasterTimeoutSet(I2C0_BASE, 0xFFFFFFFF);
+	I2CMasterGlitchFilterConfigSet(I2C0_BASE, I2C_MASTER_GLITCH_FILTER_8);
 	I2CMasterInitExpClk(I2C0_BASE, g_ui32SysClock, false);
+	
+	I2CMasterIntEnableEx(I2C0_BASE, I2C_MASTER_INT_DATA_NACK	);
+	IntEnable(INT_I2C0_TM4C129);
+	I2CIntRegister(I2C0_BASE, temp_int_callback);
 	
 	HWREG(I2C0_BASE + I2C_O_FIFOCTL) = 80008000;
 	
 	I2CMasterEnable(I2C0_BASE);
 	
-	write16(TMP006_CONFIG, TMP006_CFG_RESET);
-	SysCtlDelay(5000);
-	write16(TMP006_CONFIG, TMP006_CFG_MODEON | TMP006_CFG_DRDYEN | TMP006_CFG_8SAMPLE);
-	SysCtlDelay(5000);
 
-	mid = read16(TMP006_MANID);
-	did = read16(TMP006_DEVID);
+	write_reg(TMP006_CONFIG, TMP006_CFG_RESET);
+	SysCtlDelay(5000);
+	//write_reg(TMP006_CONFIG, TMP006_CFG_MODEON | TMP006_CFG_DRDYEN | TMP006_CFG_8SAMPLE);
+	write_reg(TMP006_CONFIG, TMP006_CFG_MODEON | TMP006_CFG_2SAMPLE);
+
+
+	while(g_mid != 0x5449){
+		g_mid = read_reg(TMP006_MANID);
+		SysCtlDelay(500000);
+	}
+	while(g_did != 0x0067){
+		g_did = read_reg(TMP006_DEVID);
+		SysCtlDelay(500000);
+	}
 }
