@@ -233,15 +233,15 @@ void clock (void  const *argument) {
 	temp = temp_read();
   for (;;) {
     osSignalWait(0x0100, osWaitForever);    /* wait for an event flag 0x0100 */
-		temp = temp_read_temp();
-		intToString((uint16_t)temp, buf, 10, 16);
+		temp = opt_read();
+		intToString((uint16_t)temp, buf, 10, 10);
 		GrContextForegroundSet(&sContext, ClrDarkBlue);
 		GrRectFill(&sContext, &sRect);
 		GrContextForegroundSet(&sContext, ClrWhite);
 		GrStringDrawCentered(&sContext, buf, -1,
 												 GrContextDpyWidthGet(&sContext) / 2, 10, 0);
-		temp2 = temp;
-		intToString(temp2, buf, 10, 10);
+		temp2 = OPT3001_getLux();
+		intToString((uint16_t)temp2, buf, 10, 10);
 		GrStringDrawCentered(&sContext, buf, -1,
 												 GrContextDpyWidthGet(&sContext) / 2, 25, 0);
 //		osDelay(100);  
@@ -270,8 +270,8 @@ int main (void) {
 	cfaf128x128x16Init();
 	rgb_init();
 	servo_init();
-	temp_init();
-	//opt_init();
+	//temp_init();
+	opt_init();
 	
   tid_phaseA = osThreadCreate(osThread(phaseA), NULL);
   tid_phaseB = osThreadCreate(osThread(phaseB), NULL);

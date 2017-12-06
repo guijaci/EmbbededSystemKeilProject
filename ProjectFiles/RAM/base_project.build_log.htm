@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\base_project.uvprojx
-Project File Date:  12/04/2017
+Project File Date:  12/05/2017
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -33,13 +33,15 @@ C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles
   #endif //__RGB_H__
 C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\servo.h(6): warning:  #1295-D: Deprecated declaration servo_init - give arg types
   extern void servo_init();
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.h(12): warning:  #1-D: last line of file ends without a newline
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.h(10): warning:  #1-D: last line of file ends without a newline
   #endif //__TEMP_H__
 C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.h(4): warning:  #1295-D: Deprecated declaration opt_read - give arg types
   extern int16_t opt_read();
 C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.h(5): warning:  #1295-D: Deprecated declaration opt_init - give arg types
   extern void  opt_init();
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.h(7): warning:  #1-D: last line of file ends without a newline
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.h(6): warning:  #1295-D: Deprecated declaration OPT3001_getLux - give arg types
+  uint32_t OPT3001_getLux();
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.h(8): warning:  #1-D: last line of file ends without a newline
   #endif //__OPT_H__
 C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(182): warning:  #177-D: variable "t"  was declared but never referenced
                 int t;
@@ -49,7 +51,7 @@ C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles
         bool trig = true;
 C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\Blinky.c(288): warning:  #1-D: last line of file ends without a newline
   }
-Blinky.c: 10 warnings, 0 errors
+Blinky.c: 11 warnings, 0 errors
 compiling cfaf128x128x16.c...
 C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\cfaf128x128x16.c(765): warning:  #177-D: function "ssiSetDataMode"  was declared but never referenced
   ssiSetDataMode(uint8_t mode) {
@@ -69,38 +71,52 @@ C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles
   }
 rgb.c: 2 warnings, 0 errors
 compiling temp.c...
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.h(12): warning:  #1-D: last line of file ends without a newline
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.h(10): warning:  #1-D: last line of file ends without a newline
   #endif //__TEMP_H__
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.c(211): warning:  #1-D: last line of file ends without a newline
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.c(110): warning:  #128-D: loop is not reachable
+                while(i < n){
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.c(151): warning:  #128-D: loop is not reachable
+                while(i < n-1){
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.c(252): warning:  #1-D: last line of file ends without a newline
   }
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.c(173): warning:  #177-D: variable "temp"  was declared but never referenced
-        uint16_t temp = 0;
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.c(51): warning:  #177-D: variable "mid"  was declared but never referenced
-  static uint16_t mid, did;
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.c(51): warning:  #550-D: variable "did"  was set but never used
-  static uint16_t mid, did;
-temp.c: 5 warnings, 0 errors
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.c(212): warning:  #177-D: variable "temp"  was declared but never referenced
+        uint64_t temp = 0;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.c(63): warning:  #550-D: variable "g_mid"  was set but never used
+  static uint16_t g_mid, g_did, g_timeout_count;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\temp.c(63): warning:  #550-D: variable "g_did"  was set but never used
+  static uint16_t g_mid, g_did, g_timeout_count;
+temp.c: 7 warnings, 0 errors
 compiling opt.c...
 C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.h(4): warning:  #1295-D: Deprecated declaration opt_read - give arg types
   extern int16_t opt_read();
 C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.h(5): warning:  #1295-D: Deprecated declaration opt_init - give arg types
   extern void  opt_init();
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.h(7): warning:  #1-D: last line of file ends without a newline
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.h(6): warning:  #1295-D: Deprecated declaration OPT3001_getLux - give arg types
+  uint32_t OPT3001_getLux();
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.h(8): warning:  #1-D: last line of file ends without a newline
   #endif //__OPT_H__
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.c(91): warning:  #177-D: variable "temp"  was declared but never referenced
-        uint16_t temp = 0;
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.c(43): warning:  #550-D: variable "mid"  was set but never used
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.c(105): warning:  #128-D: loop is not reachable
+                while(i < n){
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.c(146): warning:  #128-D: loop is not reachable
+                while(i < n-1){
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.c(254): warning:  #177-D: variable "temp"  was declared but never referenced
+                uint64_t temp = 0;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.c(42): warning:  #550-D: variable "mid"  was set but never used
   static uint16_t mid, did;
-C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.c(43): warning:  #550-D: variable "did"  was set but never used
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.c(42): warning:  #550-D: variable "did"  was set but never used
   static uint16_t mid, did;
-opt.c: 6 warnings, 0 errors
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.c(58): warning:  #177-D: variable "g_mid"  was declared but never referenced
+  static uint16_t g_mid, g_did, g_timeout_count;
+C:\Users\Allan Patrick\Dropbox\Embarcados\EmbbededSystemKeilProject\ProjectFiles\opt.c(58): warning:  #177-D: variable "g_did"  was declared but never referenced
+  static uint16_t g_mid, g_did, g_timeout_count;
+opt.c: 11 warnings, 0 errors
 compiling RTX_Conf_CM.c...
 compiling retarget_io.c...
 assembling startup_TM4C129.s...
 compiling system_TM4C129.c...
 linking...
-Program Size: Code=24536 RO-data=3120 RW-data=132 ZI-data=9836  
-".\RAM\base_project.axf" - 0 Error(s), 27 Warning(s).
+Program Size: Code=26360 RO-data=3512 RW-data=1644 ZI-data=9836  
+".\RAM\base_project.axf" - 0 Error(s), 35 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -135,8 +151,8 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device\Source\ARM\startup_TM4C129.s
       Include file:  Device\Include\TM4C129\TM4C129.h
+      Source file:   Device\Source\ARM\startup_TM4C129.s
       Source file:   Device\Source\system_TM4C129.c
 
    * Component: Keil.ARM Compiler::Compiler:I/O:STDOUT:ITM:1.2.0
@@ -149,19 +165,19 @@ Package Vendor: Keil
       Source file:   Source\retarget_io.c
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.1
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
-      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
-      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
-      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
-      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
-      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
+      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
+      Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
 
    * Component: ARM::CMSIS:CORE:5.0.2
 

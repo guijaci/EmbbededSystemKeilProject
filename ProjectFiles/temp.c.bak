@@ -111,7 +111,7 @@ int16_t temp_read_vobj(){
 
 int16_t temp_read_temp(){
 	
-	return read16(TMP006_TAMB);
+	return read16(TMP006_TAMB)>>2;
 }
 
 long double TMP006_getTemp(void)
