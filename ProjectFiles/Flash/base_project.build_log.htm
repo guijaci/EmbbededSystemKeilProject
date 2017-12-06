@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\base_project.uvprojx
-Project File Date:  12/04/2017
+Project File Date:  12/06/2017
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -241,30 +241,41 @@ C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\inc\hw_memmap.h(146)
   #define DWT_BASE                0xE0001000  // Data Watchpoint and Trace
 C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\inc\hw_memmap.h(148): warning:  #47-D: incompatible redefinition of macro "NVIC_BASE"  (declared at line 1550 of "C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include\core_cm4.h")
   #define NVIC_BASE               0xE000E000  // Nested Vectored Interrupt Ctrl
-C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c(182): warning:  #167-D: argument of type "unsigned long *" is incompatible with parameter of type "uint32_t *"
+C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c(185): warning:  #167-D: argument of type "unsigned long *" is incompatible with parameter of type "uint32_t *"
   		ADCSequenceDataGet(
 DC0_BASE, 3, (unsigned long*) result);
-C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c(204): warning:  #177-D: variable "x"  was declared but never referenced
+C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c(287): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		converted_Value3 = (
+ormalize(acc_X)*3.3)*1000;
+C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c(295): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		converted_Value4 = (
+ormalize(acc_Y)*3.3)*1000;
+C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c(303): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  		converted_Value5 = (
+ormalize(acc_Z)*3.3)*1000;
+C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c(207): warning:  #177-D: variable "x"  was declared but never referenced
   		int32_t x,y,z;
-C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c(204): warning:  #177-D: variable "y"  was declared but never referenced
+C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c(207): warning:  #177-D: variable "y"  was declared but never referenced
   		int32_t x,y,z;
-C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c(204): warning:  #177-D: variable "z"  was declared but never referenced
+C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c(207): warning:  #177-D: variable "z"  was declared but never referenced
   		int32_t x,y,z;
-C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c: 56 warnings, 0 errors
+C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c: 59 warnings, 0 errors
 compiling cfaf128x128x16.c...
 C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\cfaf128x128x16.c(875): warning:  #1-D: last line of file ends without a newline
   //*****************************************************************************
-C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\cfaf128x128x16.c(765): warning:  #177-D: function "ssiSetDataMode"  was declared but never referenced
-  ssiSetDataMode(uint8_t mode) {
 C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\cfaf128x128x16.c(772): warning:  #177-D: function "ssiSetClockDivider"  was declared but never referenced
   ssiSetClockDivider(uint8_t divider){
 cfaf128x128x16.c: 3 warnings, 0 errors
-compiling RTX_Conf_CM.c...
 assembling startup_TM4C129.s...
+compiling accel.c...
+C:\Users\Jessica\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\accel.c(75): warning:  #1-D: last line of file ends without a newline
+  }
+accel.c: 1 warning, 0 errors
+compiling RTX_Conf_CM.c...
 compiling system_TM4C129.c...
 linking...
-Program Size: Code=15292 RO-data=2940 RW-data=80 ZI-data=4328  
-".\Flash\base_project.axf" - 0 Error(s), 112 Warning(s).
+Program Size: Code=14916 RO-data=2940 RW-data=80 ZI-data=4328  
+".\Flash\base_project.axf" - 0 Error(s), 115 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -291,29 +302,29 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: Keil::Device:Startup:1.0.0
-      Source file:   Device\Source\system_TM4C129.c
       Include file:  Device\Include\TM4C129\TM4C129.h
       Source file:   Device\Source\ARM\startup_TM4C129.s
+      Source file:   Device\Source\system_TM4C129.c
 
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.0
-      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
-      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Semaphore.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
-      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
-      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
       Source file:   CMSIS\RTOS\RTX\Templates\RTX_Conf_CM.c
+      Include file:  CMSIS\RTOS\RTX\INC\cmsis_os.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\main.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MailQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MsgQueue.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Mutex.c
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Timer.c
+      Include file:  CMSIS\RTOS\RTX\UserCodeTemplates\osObjects.h
+      Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\MemPool.c
+      Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
       Library file:  CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib
 
    * Component: ARM::CMSIS:CORE:5.0.1
 
    * Component: ::CMSIS:RTOS:1.0.0 (API)
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
