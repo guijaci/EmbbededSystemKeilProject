@@ -30,7 +30,7 @@ I (C:\ti\TivaWare_C_Series-2.1.4.178\utils\uartstdio.h)(0x5A19EFD0)
 I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x588C4824)
 I (cfaf128x128x16.h)(0x5A19DD79)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x588C4824)
-F (C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c)(0x5A27FA07)(--c99 -c --cpu Cortex-M4.fp -D__RTX -D__EVAL -g -O0 --apcs=interwork -I ..\..\EmbbededSystemKeilProject -I ..\ProjectFiles-I.\RTE\_TM4C129_Flash-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="524" -D_RTE_ -DTM4C1294NCPDT -Drvmdk -DPART_TM4C1294NCPDT -DTARGET_IS_TM4C129_RA2-o .\flash\temperature_sensor.o --omf_browse .\flash\temperature_sensor.crf --depend .\flash\temperature_sensor.d)
+F (C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c)(0x5A286B5A)(--c99 -c --cpu Cortex-M4.fp -D__RTX -D__EVAL -g -O0 --apcs=interwork -I ..\..\EmbbededSystemKeilProject -I ..\ProjectFiles-I.\RTE\_TM4C129_Flash-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="524" -D_RTE_ -DTM4C1294NCPDT -Drvmdk -DPART_TM4C1294NCPDT -DTARGET_IS_TM4C129_RA2-o .\flash\temperature_sensor.o --omf_browse .\flash\temperature_sensor.crf --depend .\flash\temperature_sensor.d)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC\cmsis_os.h)(0x58990E70)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C4824)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588C4824)
@@ -53,6 +53,8 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x588C4824)
 I (..\ProjectFiles\cfaf128x128x16.h)(0x5A19DD79)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x588C4824)
 I (..\ProjectFiles\accel.h)(0x5A27F763)
+I (..\ProjectFiles\joystick.h)(0x5A2867DF)
+I (..\ProjectFiles\speaker.h)(0x5A2869B8)
 F (.\Abstract.txt)(0x5A061764)()
 F (.\cfaf128x128x16.c)(0x5A208EBB)(--c99 -c --cpu Cortex-M4.fp -D__RTX -D__EVAL -g -O0 --apcs=interwork -I ..\..\EmbbededSystemKeilProject -I ..\ProjectFiles-I.\RTE\_TM4C129_Flash-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="524" -D_RTE_ -DTM4C1294NCPDT -Drvmdk -DPART_TM4C1294NCPDT -DTARGET_IS_TM4C129_RA2-o .\flash\cfaf128x128x16.o --omf_browse .\flash\cfaf128x128x16.crf --depend .\flash\cfaf128x128x16.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588C4824)
@@ -68,7 +70,7 @@ I (..\..\EmbbededSystemKeilProject\driverlib/rom.h)(0x5A061764)
 I (..\..\EmbbededSystemKeilProject\driverlib/pin_map.h)(0x5A061764)
 I (..\..\EmbbededSystemKeilProject\grlib/grlib.h)(0x5A061764)
 I (cfaf128x128x16.h)(0x5A19DD79)
-F (.\accel.c)(0x5A27F9AB)(--c99 -c --cpu Cortex-M4.fp -D__RTX -D__EVAL -g -O0 --apcs=interwork -I ..\..\EmbbededSystemKeilProject -I ..\ProjectFiles-I.\RTE\_TM4C129_Flash-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="524" -D_RTE_ -DTM4C1294NCPDT -Drvmdk -DPART_TM4C1294NCPDT -DTARGET_IS_TM4C129_RA2-o .\flash\accel.o --omf_browse .\flash\accel.crf --depend .\flash\accel.d)
+F (.\accel.c)(0x5A28687A)(--c99 -c --cpu Cortex-M4.fp -D__RTX -D__EVAL -g -O0 --apcs=interwork -I ..\..\EmbbededSystemKeilProject -I ..\ProjectFiles-I.\RTE\_TM4C129_Flash-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="524" -D_RTE_ -DTM4C1294NCPDT -Drvmdk -DPART_TM4C1294NCPDT -DTARGET_IS_TM4C129_RA2-o .\flash\accel.o --omf_browse .\flash\accel.crf --depend .\flash\accel.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588C4824)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C4824)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588C4824)
@@ -80,6 +82,30 @@ I (..\..\EmbbededSystemKeilProject\driverlib/sysctl.h)(0x5A061764)
 I (..\..\EmbbededSystemKeilProject\driverlib/uart.h)(0x5A061764)
 I (..\..\EmbbededSystemKeilProject\grlib/grlib.h)(0x5A061764)
 I (accel.h)(0x5A27F763)
+F (.\joystick.c)(0x5A286804)(--c99 -c --cpu Cortex-M4.fp -D__RTX -D__EVAL -g -O0 --apcs=interwork -I ..\..\EmbbededSystemKeilProject -I ..\ProjectFiles-I.\RTE\_TM4C129_Flash-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="524" -D_RTE_ -DTM4C1294NCPDT -Drvmdk -DPART_TM4C1294NCPDT -DTARGET_IS_TM4C129_RA2-o .\flash\joystick.o --omf_browse .\flash\joystick.crf --depend .\flash\joystick.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588C4824)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C4824)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588C4824)
+I (..\..\EmbbededSystemKeilProject\inc/hw_memmap.h)(0x5A061765)
+I (..\..\EmbbededSystemKeilProject\driverlib/adc.h)(0x5A061764)
+I (..\..\EmbbededSystemKeilProject\driverlib/gpio.h)(0x5A061764)
+I (..\..\EmbbededSystemKeilProject\driverlib/pin_map.h)(0x5A061764)
+I (..\..\EmbbededSystemKeilProject\driverlib/sysctl.h)(0x5A061764)
+I (..\..\EmbbededSystemKeilProject\driverlib/uart.h)(0x5A061764)
+I (..\..\EmbbededSystemKeilProject\grlib/grlib.h)(0x5A061764)
+I (joystick.h)(0x5A2867DF)
+F (.\speaker.c)(0x5A286ACC)(--c99 -c --cpu Cortex-M4.fp -D__RTX -D__EVAL -g -O0 --apcs=interwork -I ..\..\EmbbededSystemKeilProject -I ..\ProjectFiles-I.\RTE\_TM4C129_Flash-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="524" -D_RTE_ -DTM4C1294NCPDT -Drvmdk -DPART_TM4C1294NCPDT -DTARGET_IS_TM4C129_RA2-o .\flash\speaker.o --omf_browse .\flash\speaker.crf --depend .\flash\speaker.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588C4824)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C4824)
+I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588C4824)
+I (..\..\EmbbededSystemKeilProject\inc/hw_memmap.h)(0x5A061765)
+I (..\..\EmbbededSystemKeilProject\driverlib/adc.h)(0x5A061764)
+I (..\..\EmbbededSystemKeilProject\driverlib/gpio.h)(0x5A061764)
+I (..\..\EmbbededSystemKeilProject\driverlib/pin_map.h)(0x5A061764)
+I (..\..\EmbbededSystemKeilProject\driverlib/sysctl.h)(0x5A061764)
+I (..\..\EmbbededSystemKeilProject\driverlib/uart.h)(0x5A061764)
+I (..\..\EmbbededSystemKeilProject\grlib/grlib.h)(0x5A061764)
+I (speaker.h)(0x5A2869B8)
 F (..\driverlib\rvmdk\driverlib.lib)(0x5A061F95)()
 F (..\grlib\rvmdk\grlib.lib)(0x5A061F6F)()
 F (C:\ti\TivaWare_C_Series-2.1.4.178\utils\uartstdio.h)(0x5A19EFD0)()

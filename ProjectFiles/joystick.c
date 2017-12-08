@@ -1,5 +1,5 @@
 //..............................................................................
-// accel.c - Driver for the Accelerometer.
+// joystick.c - Driver for the Joystick.
 //
 // Copyright (c) 2017 Allan Patrick de Souza, Guilherme Jacichen, Jessica Isoton Sampaio,
 // Mariana Carrião.  All rights reserved.
@@ -17,12 +17,14 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/uart.h"
 #include "grlib/grlib.h"
-#include "accel.h"
+#include "joystick.h"
 
-void accel_init(void){
+
+void joystick_init(void){
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
 }
+
 
 static uint32_t analog_read(uint32_t port, uint8_t pin, uint32_t channel)
 {
@@ -58,18 +60,11 @@ static uint32_t analog_read(uint32_t port, uint8_t pin, uint32_t channel)
 	return result[0];
 }
 
-uint32_t accel_read_x(void){
-	
-	return ((to_voltage(analog_read(GPIO_PORTE_BASE, GPIO_PIN_0, ADC_CTL_CH3)))*1000);			
-			
-}
-uint32_t accel_read_y(void){
+uint32_t joystick_read_x(void){
+	return (normalize(analog_read(GPIO_PORTE_BASE, GPIO_PIN_4, ADC_CTL_CH9))*1000);			
 
-	return ((to_voltage(analog_read(GPIO_PORTE_BASE, GPIO_PIN_1, ADC_CTL_CH2)))*1000);
-		
 }
-uint32_t accel_read_z(void){
-
-	return ((to_voltage(analog_read(GPIO_PORTE_BASE, GPIO_PIN_2, ADC_CTL_CH1)))*1000);
+uint32_t joystick_read_y(void){
+	return (normalize(analog_read(GPIO_PORTE_BASE, GPIO_PIN_3, ADC_CTL_CH0))*1000);			
 
 }

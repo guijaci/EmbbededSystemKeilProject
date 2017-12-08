@@ -420,6 +420,16 @@
               <FileType>1</FileType>
               <FilePath>.\accel.c</FilePath>
             </File>
+            <File>
+              <FileName>joystick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\joystick.c</FilePath>
+            </File>
+            <File>
+              <FileName>speaker.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\speaker.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -863,6 +873,16 @@
               <FileName>accel.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\accel.c</FilePath>
+            </File>
+            <File>
+              <FileName>joystick.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\joystick.c</FilePath>
+            </File>
+            <File>
+              <FileName>speaker.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\speaker.c</FilePath>
             </File>
           </Files>
         </Group>
