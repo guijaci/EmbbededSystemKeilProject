@@ -41,11 +41,11 @@ SysCtlClockFreqSet( 				\
 // |                                                      |
 // |<----------------------- 20 ms ---------------------->|
 
-#define CLK_F 16000000
-#define MAX_T 0.002
+#define CLK_F (16000000)
+#define MAX_F (500)
 
 static uint32_t g_ui32SysClock;
-static uint16_t g_ui8Period, g_ui16perMin;
+static uint16_t g_ui16Period, g_ui16perMin;
 
 void
 servo_write(uint16_t angle){
@@ -91,12 +91,12 @@ servo_init(){
 	TimerPrescaleSet(TIMER3_BASE, TIMER_B, 4);
 
 	//Período 2ms
-	g_ui8Period = (uint16_t) CLK_F*MAX_T;
+	g_ui16Period = (uint16_t) (CLK_F/MAX_F);
 	//Periodo minimo 1ms = 2/2ms
-	g_ui16perMin = g_ui8Period>>1;
+	g_ui16perMin = g_ui16Period>>1;
 	duty_cycle = g_ui16perMin;
 		
-	TimerLoadSet(TIMER3_BASE, TIMER_B, g_ui8Period);
+	TimerLoadSet(TIMER3_BASE, TIMER_B, g_ui16Period);
 	TimerMatchSet(TIMER3_BASE, TIMER_B, duty_cycle);
 	TimerEnable(TIMER3_BASE, TIMER_B);
 }

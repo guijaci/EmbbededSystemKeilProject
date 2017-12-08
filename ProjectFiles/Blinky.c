@@ -266,13 +266,13 @@ osThreadDef(clock,  osPriorityNormal, 1, 0);
  *      Main: Initialize and start RTX Kernel
  *---------------------------------------------------------------------------*/
 int main (void) {
-	uint16_t angle = 0;
-	int8_t inc = 1;
+	int16_t angle = 0;
+	int16_t inc = 1;
 	osKernelInitialize();
 	cfaf128x128x16Init();
 	rgb_init();
 	servo_init();
-	//temp_init();
+	temp_init();
 	opt_init();
 	
   tid_phaseA = osThreadCreate(osThread(phaseA), NULL);
@@ -286,10 +286,11 @@ int main (void) {
 	osSignalSet(tid_phaseA, 0x0001);          /* set signal to phaseA thread   */
 	
 	while(true){
-		servo_write(angle);
+		servo_write_degree180(angle);
 		angle += inc;
-		if(angle == 0 || angle == 0xFFFF) inc = -inc;	
-		osDelay(1);
+		if(angle == 90 || angle == -90) 
+			inc = -inc;	
+		osDelay(100);
 	}
   osDelay(osWaitForever);
   while(1);

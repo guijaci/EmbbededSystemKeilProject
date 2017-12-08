@@ -5,9 +5,9 @@
 
 #define PI 3.14159265359
 
-#define servo_write_degree90(angle)		servo_write((uint16_t)((angle +  45) /  90 * 0xFFFF))
-#define servo_write_degree180(angle)	servo_write((uint16_t)((angle +  90) / 180 * 0xFFFF))
-#define servo_write_degree360(angle)	servo_write((uint16_t)((angle + 180) / 360 * 0xFFFF))
+#define servo_write_degree90(angle)		servo_write((uint16_t)((angle +  45.0) /  90.0 * 0xFFFF))
+#define servo_write_degree180(angle)	servo_write((uint16_t)((angle +  90.0) / 180.0 * 0xFFFF))
+#define servo_write_degree360(angle)	servo_write((uint16_t)((angle + 180.0) / 360.0 * 0xFFFF))
 
 #define servo_write_rad90(angle)			servo_write((uint16_t)((angle +  PI/4)*2 / PI * 0xFFFF))
 #define servo_write_rad180(angle)			servo_write((uint16_t)((angle +  PI/2)   / PI * 0xFFFF))
