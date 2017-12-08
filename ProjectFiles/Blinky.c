@@ -27,12 +27,16 @@
 #include "temp.h"
 #include "opt.h"
 #include "buttons.h"
+#include "buzzer.h"
 
-osThreadId tid_phaseA;                  /* Thread id of thread: phase_a      */
-osThreadId tid_phaseB;                  /* Thread id of thread: phase_b      */
-osThreadId tid_phaseC;                  /* Thread id of thread: phase_c      */
-osThreadId tid_phaseD;                  /* Thread id of thread: phase_d      */
-osThreadId tid_clock;                   /* Thread id of thread: clock        */
+osThreadId tid_buzzer;                 /* Thread id of thread: buzzer     			 	*/
+osThreadId tid_motor;                  /* Thread id of thread: motor       				*/
+osThreadId tid_rgb;                    /* Thread id of thread: rgb 	       				*/
+osThreadId tid_accel;                  /* Thread id of thread: accelerometer      */
+osThreadId tid_temp;                   /* Thread id of thread: temperture	        */
+osThreadId tid_light;                  /* Thread id of thread: microphone		      */
+osThreadId tid_mic;   
+
 
 #define LED_A      0
 #define LED_B      1
@@ -62,65 +66,53 @@ void Switch_Off (unsigned char led) {
  *      Function 'signal_func' called from multiple threads
  *---------------------------------------------------------------------------*/
 void signal_func (osThreadId tid)  {
-  osSignalSet(tid_clock, 0x0100);           /* set signal to clock thread    */
-  osDelay(500);                             /* delay 500ms                   */
-  osSignalSet(tid_clock, 0x0100);           /* set signal to clock thread    */
-  osDelay(500);                             /* delay 500ms                   */
   osSignalSet(tid, 0x0001);                 /* set signal to thread 'thread' */
   osDelay(500);                             /* delay 500ms                   */
 }
 
 /*----------------------------------------------------------------------------
+ *      Thread 1 't_buzzer': Phase A output
+ *---------------------------------------------------------------------------*/
+
+void t_buzzer(void const *argument){
+	
+
+	
+}
+	
+/*----------------------------------------------------------------------------
  *      Thread 1 'phaseA': Phase A output
  *---------------------------------------------------------------------------*/
-void phaseA (void const *argument) {
-  for (;;) {
-		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-    rgb_write_color(ApplyLightness(RGB_YELLOW, .1));
-    //Switch_On (LED_A);
-    signal_func(tid_phaseB);                /* call common signal function   */
-    //Switch_Off(LED_A);
-  }
-}
 
+void t_rgb(void const *argument){}
 /*----------------------------------------------------------------------------
- *      Thread 2 'phaseB': Phase B output
+ *      Thread 1 'phaseA': Phase A output
  *---------------------------------------------------------------------------*/
-void phaseB (void const *argument) {
-  for (;;) {
-		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-    rgb_write_color(ApplyLightness(RGB_MAGENTA, .1));
-    //Switch_On (LED_B);
-    signal_func(tid_phaseC);                /* call common signal function   */
-    //Switch_Off(LED_B);
-  }
-}
+	
+void t_mic(void const *argument){}
+	
+/*----------------------------------------------------------------------------
+ *      Thread 1 'phaseA': Phase A output
+ *---------------------------------------------------------------------------*/
+	
+void t_light(void const *argument){}
+	
+/*----------------------------------------------------------------------------
+ *      Thread 1 'phaseA': Phase A output
+ *---------------------------------------------------------------------------*/
+	
+void t_temp(void const *argument){}
+/*----------------------------------------------------------------------------
+ *      Thread 1 'phaseA': Phase A output
+ *---------------------------------------------------------------------------*/
 
+void t_motor(void const *argument){}
 /*----------------------------------------------------------------------------
- *      Thread 3 'phaseC': Phase C output
+ *      Thread 1 'phaseA': Phase A output
  *---------------------------------------------------------------------------*/
-void phaseC (void const *argument) {
-  for (;;) {
-		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-    rgb_write_color(ApplyLightness (RGB_CYAN, .1));
-    //Switch_On (LED_C);
-    signal_func(tid_phaseD);                /* call common signal function   */
-    //Switch_Off(LED_C);
-  }
-}
+	
+void t_accel(void const *argument){}
 
-/*----------------------------------------------------------------------------
- *      Thread 4 'phaseD': Phase D output
- *---------------------------------------------------------------------------*/
-void phaseD (void  const *argument) {
-  for (;;) {
-		osSignalWait(0x0001, osWaitForever);    /* wait for an event flag 0x0001 */
-    rgb_write_color(RGB_OFF);
-    //Switch_On (LED_D);
-    signal_func(tid_phaseA);                /* call common signal function   */
-    //Switch_Off(LED_D);
-  }
-}
 
 static void intToString(int64_t value, char * pBuf, uint32_t len, uint32_t base){
     static const char* pAscii = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -249,11 +241,13 @@ void clock (void  const *argument) {
   }
 }
 
-osThreadDef(phaseA, osPriorityNormal, 1, 0);
-osThreadDef(phaseB, osPriorityNormal, 1, 0);
-osThreadDef(phaseC, osPriorityNormal, 1, 0);
-osThreadDef(phaseD, osPriorityNormal, 1, 0);
-osThreadDef(clock,  osPriorityNormal, 1, 0);
+osThreadDef(t_buzzer, 		osPriorityNormal, 1, 0);
+osThreadDef(t_rgb		, 		osPriorityNormal, 1, 0);
+osThreadDef(t_mic		, 		osPriorityNormal, 1, 0);
+osThreadDef(t_light	,			osPriorityNormal, 1, 0);
+osThreadDef(t_temp	, 	 	osPriorityNormal, 1, 0);
+osThreadDef(t_motor	,  		osPriorityNormal, 1, 0);
+osThreadDef(t_accel	,  		osPriorityNormal, 1, 0);
 
 /*----------------------------------------------------------------------------
  *      Main: Initialize and start RTX Kernel
@@ -271,16 +265,19 @@ int main (void) {
 	accel_init();
 	mic_init();
 	buzzer_init();
-  tid_phaseA = osThreadCreate(osThread(phaseA), NULL);
-  tid_phaseB = osThreadCreate(osThread(phaseB), NULL);
-  tid_phaseC = osThreadCreate(osThread(phaseC), NULL);
-  tid_phaseD = osThreadCreate(osThread(phaseD), NULL);
-  tid_clock  = osThreadCreate(osThread(clock),  NULL);
+	
+  tid_buzzer = osThreadCreate(osThread(t_buzzer), NULL);
+  tid_rgb 	 = osThreadCreate(osThread(t_rgb), 		NULL);
+  tid_mic 	 = osThreadCreate(osThread(t_mic), 		NULL);
+  tid_light  = osThreadCreate(osThread(t_light), 	NULL);
+  tid_temp   = osThreadCreate(osThread(t_temp),  	NULL);
+	tid_motor  = osThreadCreate(osThread(t_motor),  NULL);
+	tid_accel  = osThreadCreate(osThread(t_accel),  NULL);
 	
 	osKernelStart();
-	
-	osSignalSet(tid_phaseA, 0x0001);          /* set signal to phaseA thread   */
-	
+//	
+//	osSignalSet(tid_phaseA, 0x0001);          /* set signal to phaseA thread   */
+
 	while(true){
 		servo_write_degree180(angle);
 		angle += inc;
