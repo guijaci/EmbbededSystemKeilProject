@@ -411,19 +411,29 @@
               <FilePath>.\accel.c</FilePath>
             </File>
             <File>
-              <FileName>cfaf128x128x16.c</FileName>
+              <FileName>buttons.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\buttons.c</FilePath>
+            </File>
+            <File>
+              <FileName>buzzer.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\buzzer.c</FilePath>
             </File>
             <File>
-              <FileName>buzzer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\buzzer.h</FilePath>
+              <FileName>cfaf128x128x16.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\cfaf128x128x16.c</FilePath>
             </File>
             <File>
-              <FileName>buttons.c</FileName>
+              <FileName>joy.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\buttons.c</FilePath>
+              <FilePath>.\joy.c</FilePath>
+            </File>
+            <File>
+              <FileName>mic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\mic.c</FilePath>
             </File>
             <File>
               <FileName>opt.c</FileName>
@@ -461,6 +471,12 @@
               <FilePath>..\grlib\rvmdk\grlib.lib</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>::CMSIS</GroupName>
+        </Group>
+        <Group>
+          <GroupName>::Compiler</GroupName>
         </Group>
         <Group>
           <GroupName>::Device</GroupName>
@@ -800,7 +816,7 @@
               <MiscControls></MiscControls>
               <Define>rvmdk PART_TM4C1294NCPDT TARGET_IS_TM4C129_RA0</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\EmbbededSystemKeilProject</IncludePath>
+              <IncludePath>..\</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -875,9 +891,49 @@
               <FilePath>.\accel.c</FilePath>
             </File>
             <File>
+              <FileName>buttons.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\buttons.c</FilePath>
+            </File>
+            <File>
+              <FileName>buzzer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\buzzer.c</FilePath>
+            </File>
+            <File>
               <FileName>cfaf128x128x16.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\cfaf128x128x16.c</FilePath>
+            </File>
+            <File>
+              <FileName>joy.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\joy.c</FilePath>
+            </File>
+            <File>
+              <FileName>mic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\mic.c</FilePath>
+            </File>
+            <File>
+              <FileName>opt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\opt.c</FilePath>
+            </File>
+            <File>
+              <FileName>rgb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\rgb.c</FilePath>
+            </File>
+            <File>
+              <FileName>servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\servo.c</FilePath>
+            </File>
+            <File>
+              <FileName>temp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\temp.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -895,6 +951,12 @@
               <FilePath>..\grlib\rvmdk\grlib.lib</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>::CMSIS</GroupName>
+        </Group>
+        <Group>
+          <GroupName>::Compiler</GroupName>
         </Group>
         <Group>
           <GroupName>::Device</GroupName>

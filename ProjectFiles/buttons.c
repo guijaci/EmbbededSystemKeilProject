@@ -21,12 +21,11 @@
 //b2 - pin32 - PL2 - gpio  
 
 /*_____________________________INIT_________________________________________*/
-void buttons_init(){
+void button_init(){
 	// Enable the GPIOA peripheral
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);
 	// Wait for the GPIOA module to be ready.
-	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOC)){
-	}
+	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOC));
 
 	// Initialize the GPIO pin configuration.
 	// Set pins as input, SW controlled.
@@ -35,56 +34,11 @@ void buttons_init(){
 }
 
 /*______________________________BUTTON 1____________________________________*/
-void button1_read(){
-	int32_t i32Button1;
-	int button1pressed;
-	
-	GPIOIntTypeSet(GPIO_PORTL_BASE, GPIO_PIN_1, GPIO_HIGH_LEVEL);
-	
-	// Read some pins.
-	i32Button1 = GPIOPinRead(GPIO_PORTL_BASE, GPIO_PIN_1);
-	
-	// Enable the pin interrupts.
-	GPIOIntEnable(GPIO_PORTL_BASE, GPIO_PIN_1);
-
-	while(1){
-	 i32Button1 = 0x00;
-	 i32Button1 = GPIOPinRead(GPIO_PORTL_BASE, GPIO_PIN_1);
-	
-	 button1pressed = 1;
-		
-		if(i32Button1 == 0){
-			button1pressed = 0;
-		}	
-	}
-
-	
+bool button_read_s1(){
+	return GPIOPinRead(GPIO_PORTL_BASE, GPIO_PIN_1) ? false : true;
 }
 
 /*______________________________BUTTON 2____________________________________*/
-void button2_read(){
-	int32_t i32Button2;
-	int button2pressed;
-	
-	GPIOIntTypeSet(GPIO_PORTL_BASE, GPIO_PIN_2, GPIO_HIGH_LEVEL);
-	
-	// Read some pins.
-	i32Button2 = GPIOPinRead(GPIO_PORTL_BASE, GPIO_PIN_2);
-	
-	// Enable the pin interrupts.
-	GPIOIntEnable(GPIO_PORTL_BASE, GPIO_PIN_2);
-	
-	while(1){
-	 i32Button2 = 0x00;
-	 i32Button2 = GPIOPinRead(GPIO_PORTL_BASE, GPIO_PIN_2);
-		
-	 button2pressed = 1;
-		
-		if(i32Button2 == 0){
-			button2pressed = 0;
-		}
-	}
-	
+bool button_read_s2(){
+	return GPIOPinRead(GPIO_PORTL_BASE, GPIO_PIN_2) ? false : true;
 }
-
-

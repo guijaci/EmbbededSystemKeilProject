@@ -1,4 +1,4 @@
-/*----------------------------------------------------------------------------
+/*-------------4---------------------------------------------------------------
  *      RL-ARM - RTX
  *----------------------------------------------------------------------------
  *      Name:    BLinky.c
@@ -18,12 +18,15 @@
 #include "driverlib/rom.h"
 #include "driverlib/sysctl.h"
 #include "grlib/grlib.h"
-
+/*----------------------------------------------------------------------------
+ * include libraries from drivers
+ *----------------------------------------------------------------------------*/
 #include "rgb.h"
 #include "cfaf128x128x16.h"
 #include "servo.h"
 #include "temp.h"
 #include "opt.h"
+#include "buttons.h"
 
 osThreadId tid_phaseA;                  /* Thread id of thread: phase_a      */
 osThreadId tid_phaseB;                  /* Thread id of thread: phase_b      */
@@ -162,53 +165,6 @@ static void intToString(int64_t value, char * pBuf, uint32_t len, uint32_t base)
         value /= base;
     } while(value > 0);
 }
-int16_t TMP006_getTemp2( int16_t Vobj, int16_t Tdie )
-{
-
-		volatile long double Tobj=0.0;
-		volatile long double fObj =0.0;
-		long double Vos=0.0;
-		long double S=0.0;
-		long double a1;
-    long double a2 ;
-    long double b0;
-    long double b1;
-    long double b2 ;
-    long double c2;
-    long double Tref ;
-	  long double Vobj2;
-    long double Tdie2;
-		int16_t k;
-		int t;
-
-
-   
-
-    Tdie = Tdie >> 2;
-
-    /* Calculate TMP006. This needs to be reviewed and calibrated */
-    Vobj2 = (double)Vobj*.00000015625;
-    Tdie2 = (double)Tdie*.03525 + 273.15;
-
-    /* Initialize constants */
-    S01 = 6 * pow(10, -14);
-    a1 = 1.75*pow(10, -3);
-    a2 = -1.678*pow(10, -5);
-    b0 = -2.94*pow(10, -5);
-    b1 = -5.7*pow(10, -7);
-    b2 = 4.63*pow(10, -9);
-    c2 = 13.4;
-    Tref = 298.15;
-
-    /* Calculate values */
-    S = S01*(1+a1*(Tdie2 - Tref)+a2*pow((Tdie2 - Tref),2));
-		Vos = b0 + b1*(Tdie2 - Tref) + b2*pow((Tdie2 - Tref),2);	
-		fObj = (Vobj2 - Vos) + c2*pow((Vobj2 - Vos),2);
-    Tobj = pow(pow(Tdie2,4) + (fObj/S),.25);
-		k = Tobj - 273;
-    /* Return temperature of object */
-    return k;
-}
 
 
 /*----------------------------------------------------------------------------
@@ -222,6 +178,9 @@ void clock (void  const *argument) {
 	char buf[10];
 	bool trig = true;
 	int cont=0;
+	bool button1;
+	bool button2;
+	
 	
 	GrContextInit(&sContext, &g_sCfaf128x128x16);
 
@@ -231,9 +190,12 @@ void clock (void  const *argument) {
 	sRect.i16YMax = 50;
 	GrContextFontSet(&sContext, g_psFontFixed6x8);
 	temp = temp_read();
+
   for (;;) {
     osSignalWait(0x0100, osWaitForever);    /* wait for an event flag 0x0100 */
 		temp = opt_read();
+		button1 = button_read_s1();
+		button2 = button_read_s2();
 		intToString((uint16_t)temp, buf, 10, 10);
 		GrContextForegroundSet(&sContext, ClrDarkBlue);
 		GrRectFill(&sContext, &sRect);
@@ -244,14 +206,14 @@ void clock (void  const *argument) {
 		intToString((uint16_t)temp2, buf, 10, 10);
 		GrStringDrawCentered(&sContext, buf, -1,
 												 GrContextDpyWidthGet(&sContext) / 2, 25, 0);
-//		osDelay(100);  
-//		temp2 = temp_read_temp();
-//		intToString(temp2, buf, 10, 10);
-//		GrStringDrawCentered(&sContext, buf, -1,
-//												 GrContextDpyWidthGet(&sContext) / 2, 35, 0);
+		if(button1)
+		GrStringDrawCentered(&sContext,(char*)"B1 Pushed", -1,
+												 GrContextDpyWidthGet(&sContext) / 2, 35, 0);
+		if(button2)
+		GrStringDrawCentered(&sContext,(char*)"B2 Pushed", -1,
+												 GrContextDpyWidthGet(&sContext) / 2, 45, 0);
 		GrFlush(&sContext);
     osDelay(5000);  
-		cont--;/* delay 80ms                    */
     Switch_Off(LED_CLK);
   }
 }
@@ -273,7 +235,7 @@ int main (void) {
 	servo_init();
 	temp_init();
 	opt_init();
-	
+	button_init();
   tid_phaseA = osThreadCreate(osThread(phaseA), NULL);
   tid_phaseB = osThreadCreate(osThread(phaseB), NULL);
   tid_phaseC = osThreadCreate(osThread(phaseC), NULL);
