@@ -46,7 +46,6 @@ static long double S01 = 0;
  *      Switch LED on
  *---------------------------------------------------------------------------*/
 void Switch_On (unsigned char led) {
-
   if (led != LED_CLK) LED_On (led);
 }
 
@@ -173,7 +172,7 @@ static void intToString(int64_t value, char * pBuf, uint32_t len, uint32_t base)
 void clock (void  const *argument) {
 	tContext sContext;
 	tRectangle sRect;
-	int16_t temp,temp2;
+	int16_t temp,temp2,joystic_x, joystic_y, acc_x, acc_y,acc_z,mic;
 	long double teste;
 	char buf[10];
 	bool trig = true;
@@ -187,21 +186,28 @@ void clock (void  const *argument) {
 	sRect.i16XMin = 0;
 	sRect.i16YMin = 0;
 	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
-	sRect.i16YMax = 50;
+	sRect.i16YMax = 115;
 	GrContextFontSet(&sContext, g_psFontFixed6x8);
 	temp = temp_read();
+	
 
   for (;;) {
     osSignalWait(0x0100, osWaitForever);    /* wait for an event flag 0x0100 */
 		temp = opt_read();
 		button1 = button_read_s1();
 		button2 = button_read_s2();
+		joystic_x = joy_read_x();
+		joystic_y = joy_read_y();
+		acc_x = accel_read_x();
+		acc_y = accel_read_y();
+		acc_z = accel_read_z();
+		mic = mic_read();
+		buzzer_read();
 		intToString((uint16_t)temp, buf, 10, 10);
 		GrContextForegroundSet(&sContext, ClrDarkBlue);
 		GrRectFill(&sContext, &sRect);
 		GrContextForegroundSet(&sContext, ClrWhite);
-		GrStringDrawCentered(&sContext, buf, -1,
-												 GrContextDpyWidthGet(&sContext) / 2, 10, 0);
+
 		temp2 = opt_get_lux();
 		intToString((uint16_t)temp2, buf, 10, 10);
 		GrStringDrawCentered(&sContext, buf, -1,
@@ -212,6 +218,31 @@ void clock (void  const *argument) {
 		if(button2)
 		GrStringDrawCentered(&sContext,(char*)"B2 Pushed", -1,
 												 GrContextDpyWidthGet(&sContext) / 2, 45, 0);
+		
+		intToString((uint16_t)joystic_x, buf, 10, 10);
+		GrStringDrawCentered(&sContext,buf, -1,
+												 GrContextDpyWidthGet(&sContext) / 2, 55, 0);
+	  intToString((uint16_t)joystic_y, buf, 10, 10);
+		GrStringDrawCentered(&sContext,buf, -1,
+												 GrContextDpyWidthGet(&sContext) / 2, 65, 0);
+		
+		
+		intToString((uint16_t)acc_x, buf, 10, 10);
+		GrStringDrawCentered(&sContext,buf, -1,
+												 GrContextDpyWidthGet(&sContext) / 2, 75, 0);
+		
+		intToString((uint16_t)acc_y, buf, 10, 10);
+		GrStringDrawCentered(&sContext,buf, -1,
+												 GrContextDpyWidthGet(&sContext) / 2, 85, 0);
+		
+		intToString((uint16_t)acc_z, buf, 10, 10);
+		GrStringDrawCentered(&sContext,buf, -1,
+												 GrContextDpyWidthGet(&sContext) / 2, 95, 0);
+		
+		intToString((uint16_t)mic, buf, 10, 10);
+		GrStringDrawCentered(&sContext,buf, -1,
+												 GrContextDpyWidthGet(&sContext) / 2, 105, 0);
+		
 		GrFlush(&sContext);
     osDelay(5000);  
     Switch_Off(LED_CLK);
@@ -236,6 +267,10 @@ int main (void) {
 	temp_init();
 	opt_init();
 	button_init();
+	joy_init();
+	accel_init();
+	mic_init();
+	buzzer_init();
   tid_phaseA = osThreadCreate(osThread(phaseA), NULL);
   tid_phaseB = osThreadCreate(osThread(phaseB), NULL);
   tid_phaseC = osThreadCreate(osThread(phaseC), NULL);

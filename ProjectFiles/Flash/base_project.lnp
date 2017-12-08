@@ -13,7 +13,7 @@
 ".\flash\temp.o"
 "..\driverlib\rvmdk\driverlib.lib"
 "..\grlib\rvmdk\grlib.lib"
-"C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib"
+"C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib"
 ".\flash\rtx_conf_cm.o"
 ".\flash\retarget_io.o"
 ".\flash\startup_tm4c129.o"

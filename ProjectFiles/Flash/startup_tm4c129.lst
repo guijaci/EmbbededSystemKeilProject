@@ -1307,8 +1307,8 @@ ARM Macro Assembler    Page 21
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=.\flash\startup_tm4c129.d -o.\flash\startup_tm4c129.o -I.\RTE\_
-TM4C129_Flash -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include -IC:\Keil_v5\
-ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC -IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP
+TM4C129_Flash -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\Include -IC:\Keil_v5\
+ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\RTOS\RTX\INC -IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP
 \1.1.0\Device\Include\TM4C129 --predefine="__RTX SETA 1" --predefine="__EVAL SE
 TA 1" --predefine="__UVISION_VERSION SETA 524" --predefine="_RTE_ SETA 1" --pre
 define="TM4C1294NCPDT SETA 1" --list=.\flash\startup_tm4c129.lst RTE\Device\TM4
