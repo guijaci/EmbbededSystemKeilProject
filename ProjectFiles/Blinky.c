@@ -140,10 +140,15 @@ int main (void) {
 	osKernelInitialize();
 	cfaf128x128x16Init();
 	
-	buzzer_init();          // BUZZER
+	//buzzer_init();          // BUZZER
+	//buzzer_init();
+//	buzzer_read();
 	//rgb_init();
 	buttons_init();
+	button1_read();
+	button2_read();
 	
+		
 	GrContextInit(&sContext, &g_sCfaf128x128x16);
 
 	sRect.i16XMin = 0;
@@ -156,17 +161,21 @@ int main (void) {
 	GrContextForegroundSet(&sContext, ClrWhite);
 	GrRectDraw(&sContext, &sRect);
 
-	GrContextFontSet(&sContext, g_psFontCm12);
-	GrStringDrawCentered(&sContext, "hello", -1,
-											 GrContextDpyWidthGet(&sContext) / 2, 10, 0);
+	while(1){
+		button1_read();
+		
+		GrContextFontSet(&sContext, g_psFontCm12);
+		GrStringDrawCentered(&sContext, "hello", -1,
+												 GrContextDpyWidthGet(&sContext) / 2, 10, 0);
 
-	GrContextFontSet(&sContext, g_psFontCm12/*g_psFontFixed6x8*/);
-	GrStringDrawCentered(&sContext, "Hello World!", -1,
-											 GrContextDpyWidthGet(&sContext) / 2,
-											 ((GrContextDpyHeightGet(&sContext) - 24) / 2) + 24,
-											 0);
+		GrContextFontSet(&sContext, g_psFontCm12/*g_psFontFixed6x8*/);
+		GrStringDrawCentered(&sContext, "Hello World!", -1,
+												 GrContextDpyWidthGet(&sContext) / 2,
+												 ((GrContextDpyHeightGet(&sContext) - 24) / 2) + 24,
+												 0);
 
-	GrFlush(&sContext);
+		GrFlush(&sContext);
+	}
 	
   tid_phaseA = osThreadCreate(osThread(phaseA), NULL);
   tid_phaseB = osThreadCreate(osThread(phaseB), NULL);

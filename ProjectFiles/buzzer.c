@@ -7,7 +7,6 @@
 #include "driverlib/gpio.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/pin_map.h"
-//#include "driverlib/rom.h"
 #include "driverlib/pwm.h"
 
 #include "buzzer.h"
@@ -15,32 +14,13 @@
 //*****************************************************************************
 // Piezo Buzzer
 // pin40 - buzzer out - PF1 - M0PWM1 -- PWM out
-//
-// fazer funcao de alterar frequencia para mudar som
 //*****************************************************************************
-
-// MARI
-// pin6  microphone - PE5 - AIN8
-
-// JESSICA
-// acelerometro
-// x - pin23 - PE0 - AIN3
-// y - pin24 - PE1 - AIN2
-// z - pin25 - PE2 - AIN1
-// joystick
-// x - pin2  - PE4 - in  -- AIN9
-// y - pin26 - PE3 - in  -- AIN0
-// ! - pin5  - PC6 - gpio
-//buttons
-//b1 - pin33 - PL1 - gpio 
-//b2 - pin32 - PL2 - gpio  
 
 #define PWM_FREQUENCY			500
 
 static uint32_t ui32SysClock;
 
-void 
-buzzer_init(){
+void buzzer_init(){
 	ui32SysClock = 120000000; // 120MHz
 	
 	// Enable the PWM0 peripheral
@@ -50,13 +30,45 @@ buzzer_init(){
 	// Wait for the PWM0 module to be ready
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF));
+	
+}
 
+void buzzer_frequency_set(freq_t div_freq){
+	
+	switch(div_freq){
+		case FREQ_0:
+			PWM_SYSCLK_DIV_64;
+		break;
+		case FREQ_1:
+			PWM_SYSCLK_DIV_32;
+		break;
+		case FREQ_2:
+			PWM_SYSCLK_DIV_16;
+		break;
+		case FREQ_3:
+			PWM_SYSCLK_DIV_8;
+		break;
+		case FREQ_4:
+			PWM_SYSCLK_DIV_4;
+		break;
+		case FREQ_5:
+			PWM_SYSCLK_DIV_2;
+		break;
+		case FREQ_6:
+			PWM_SYSCLK_DIV_1;
+	}
+	
+	// Sets the PWM clock configuration
+	// if you change DIV_64 to another value, it changes the frequency
+	PWMClockSet(PWM0_BASE, div_freq);
+	
+}
+
+void buzzer_read(){
   // Configure PIN for use by the PWM peripheral
 	GPIOPinTypePWM(GPIO_PORTF_BASE, GPIO_PIN_1);
 
-	// Sets the PWM clock configuration
-	// if you change DIV_64 to another value, it changes the frequency
-	PWMClockSet(PWM0_BASE, PWM_SYSCLK_DIV_64);
+  buzzer_frequency_set(FREQ_6);
 	
 	// Configures the alternate function of a GPIO pin
 	// PF1_M0PWM1 --> piezo buzzer
@@ -91,6 +103,6 @@ buzzer_init(){
 	PWMPulseWidthSet(PWM0_BASE, PWM_OUT_1, 3500);
 
 	// Enables the timer/counter for a PWM generator block
-	//PWMGenEnable(PWM0_BASE, PWM_GEN_0);
+	PWMGenEnable(PWM0_BASE, PWM_GEN_0);
 	
 }
