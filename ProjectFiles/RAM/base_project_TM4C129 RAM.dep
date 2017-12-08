@@ -65,7 +65,7 @@ I (..\..\embbededsystem_project\driverlib/pin_map.h)(0x5A0354BD)
 I (..\..\embbededsystem_project\driverlib/rom_map.h)(0x5A0354BD)
 I (..\..\embbededsystem_project\driverlib/pwm.h)(0x5A0354BD)
 I (rgb.h)(0x5A2AEA28)
-F (.\temp.c)(0x5A2AEA28)(-c --cpu Cortex-M4.fp -D__RTX -D__EVAL -g -O0 --apcs=interwork -I ..-I.\RTE\_TM4C129_RAM-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="524" -D_RTE_ -DTM4C1294NCPDT -DTARGET_IS_TM4C129_RA0 -DPART_TM4C1294NCPDT-o .\ram\temp.o --omf_browse .\ram\temp.crf --depend .\ram\temp.d)
+F (.\temp.c)(0x5A2AF7E8)(-c --cpu Cortex-M4.fp -D__RTX -D__EVAL -g -O0 --apcs=interwork -I ..-I.\RTE\_TM4C129_RAM-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="524" -D_RTE_ -DTM4C1294NCPDT -DTARGET_IS_TM4C129_RA0 -DPART_TM4C1294NCPDT-o .\ram\temp.o --omf_browse .\ram\temp.crf --depend .\ram\temp.d)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x588C0FE4)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588C0FE4)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C0FE4)
@@ -94,7 +94,7 @@ I (..\driverlib/pin_map.h)(0x5A0354BD)
 I (..\driverlib/rom_map.h)(0x5A0354BD)
 I (..\driverlib/interrupt.h)(0x5A0354BD)
 I (opt.h)(0x5A2AF3B6)
-F (.\accel.c)(0x5A2AF4A0)(-c --cpu Cortex-M4.fp -D__RTX -D__EVAL -g -O0 --apcs=interwork -I ..-I.\RTE\_TM4C129_RAM-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="524" -D_RTE_ -DTM4C1294NCPDT -DTARGET_IS_TM4C129_RA0 -DPART_TM4C1294NCPDT-o .\ram\accel.o --omf_browse .\ram\accel.crf --depend .\ram\accel.d)
+F (.\accel.c)(0x5A2AF7EA)(-c --cpu Cortex-M4.fp -D__RTX -D__EVAL -g -O0 --apcs=interwork -I ..-I.\RTE\_TM4C129_RAM-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="524" -D_RTE_ -DTM4C1294NCPDT -DTARGET_IS_TM4C129_RA0 -DPART_TM4C1294NCPDT-o .\ram\accel.o --omf_browse .\ram\accel.crf --depend .\ram\accel.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588C0FE4)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C0FE4)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588C0FE4)
@@ -105,8 +105,8 @@ I (..\driverlib/pin_map.h)(0x5A0354BD)
 I (..\driverlib/sysctl.h)(0x5A0354BD)
 I (..\driverlib/uart.h)(0x5A0354BD)
 I (..\grlib/grlib.h)(0x5A0354BD)
-I (accel.h)(0x5A2AF6E8)
-F (.\joy.c)(0x5A2AF5D6)(-c --cpu Cortex-M4.fp -D__RTX -D__EVAL -g -O0 --apcs=interwork -I ..-I.\RTE\_TM4C129_RAM-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="524" -D_RTE_ -DTM4C1294NCPDT -DTARGET_IS_TM4C129_RA0 -DPART_TM4C1294NCPDT-o .\ram\joy.o --omf_browse .\ram\joy.crf --depend .\ram\joy.d)
+I (accel.h)(0x5A2AF873)
+F (.\joy.c)(0x5A2AF82E)(-c --cpu Cortex-M4.fp -D__RTX -D__EVAL -g -O0 --apcs=interwork -I ..-I.\RTE\_TM4C129_RAM-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="524" -D_RTE_ -DTM4C1294NCPDT -DTARGET_IS_TM4C129_RA0 -DPART_TM4C1294NCPDT-o .\ram\joy.o --omf_browse .\ram\joy.crf --depend .\ram\joy.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588C0FE4)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C0FE4)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588C0FE4)
@@ -117,19 +117,19 @@ I (..\driverlib/pin_map.h)(0x5A0354BD)
 I (..\driverlib/sysctl.h)(0x5A0354BD)
 I (..\driverlib/uart.h)(0x5A0354BD)
 I (..\grlib/grlib.h)(0x5A0354BD)
-I (joy.h)(0x5A2AF723)
-F (.\speaker.c)(0x5A2AEA35)(-c --cpu Cortex-M4.fp -D__RTX -D__EVAL -g -O0 --apcs=interwork -I ..-I.\RTE\_TM4C129_RAM-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="524" -D_RTE_ -DTM4C1294NCPDT -DTARGET_IS_TM4C129_RA0 -DPART_TM4C1294NCPDT-o .\ram\speaker.o --omf_browse .\ram\speaker.crf --depend .\ram\speaker.d)
+I (joy.h)(0x5A2AF899)
+F (.\mic.c)(0x5A2AF811)(-c --cpu Cortex-M4.fp -D__RTX -D__EVAL -g -O0 --apcs=interwork -I ..-I.\RTE\_TM4C129_RAM-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129-D__UVISION_VERSION="524" -D_RTE_ -DTM4C1294NCPDT -DTARGET_IS_TM4C129_RA0 -DPART_TM4C1294NCPDT-o .\ram\mic.o --omf_browse .\ram\mic.crf --depend .\ram\mic.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588C0FE4)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C0FE4)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588C0FE4)
-I (..\..\embbededsystem_project\inc/hw_memmap.h)(0x5A0354BD)
-I (..\..\embbededsystem_project\driverlib/adc.h)(0x5A0354BD)
-I (..\..\embbededsystem_project\driverlib/gpio.h)(0x5A0354BD)
-I (..\..\embbededsystem_project\driverlib/pin_map.h)(0x5A0354BD)
-I (..\..\embbededsystem_project\driverlib/sysctl.h)(0x5A0354BD)
-I (..\..\embbededsystem_project\driverlib/uart.h)(0x5A0354BD)
-I (..\..\embbededsystem_project\grlib/grlib.h)(0x5A0354BD)
-I (speaker.h)(0x5A2AEA35)
+I (..\inc/hw_memmap.h)(0x5A0354BD)
+I (..\driverlib/adc.h)(0x5A0354BD)
+I (..\driverlib/gpio.h)(0x5A0354BD)
+I (..\driverlib/pin_map.h)(0x5A0354BD)
+I (..\driverlib/sysctl.h)(0x5A0354BD)
+I (..\driverlib/uart.h)(0x5A0354BD)
+I (..\grlib/grlib.h)(0x5A0354BD)
+I (mic.h)(0x5A2AF8A5)
 F (..\driverlib\rvmdk\driverlib.lib)(0x5A0624AA)()
 F (..\grlib\rvmdk\grlib.lib)(0x5A0624BF)()
 F (RTE\Device\TM4C1294NCPDT\startup_TM4C129.s)(0x5A2AEA28)(--cpu Cortex-M4.fp --pd "__RTX SETA 1" --pd "__EVAL SETA 1" -g --apcs=interwork -I.\RTE\_TM4C129_RAM-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129--pd "__UVISION_VERSION SETA 524" --pd "_RTE_ SETA 1" --pd "TM4C1294NCPDT SETA 1"--list .\startup_tm4c129.lst --xref -o .\ram\startup_tm4c129.o --depend .\ram\startup_tm4c129.d)

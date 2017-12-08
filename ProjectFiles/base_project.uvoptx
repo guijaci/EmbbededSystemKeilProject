@@ -542,8 +542,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\cfaf128x128x16.c</PathWithFileName>
-      <FilenameWithoutPath>cfaf128x128x16.c</FilenameWithoutPath>
+      <PathWithFileName>.\accel.c</PathWithFileName>
+      <FilenameWithoutPath>accel.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -554,8 +554,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\servo.c</PathWithFileName>
-      <FilenameWithoutPath>servo.c</FilenameWithoutPath>
+      <PathWithFileName>.\cfaf128x128x16.c</PathWithFileName>
+      <FilenameWithoutPath>cfaf128x128x16.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -566,8 +566,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\rgb.c</PathWithFileName>
-      <FilenameWithoutPath>rgb.c</FilenameWithoutPath>
+      <PathWithFileName>.\joy.c</PathWithFileName>
+      <FilenameWithoutPath>joy.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -578,8 +578,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\temp.c</PathWithFileName>
-      <FilenameWithoutPath>temp.c</FilenameWithoutPath>
+      <PathWithFileName>.\mic.c</PathWithFileName>
+      <FilenameWithoutPath>mic.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -602,8 +602,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\accel.c</PathWithFileName>
-      <FilenameWithoutPath>accel.c</FilenameWithoutPath>
+      <PathWithFileName>.\rgb.c</PathWithFileName>
+      <FilenameWithoutPath>rgb.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -611,11 +611,11 @@
       <GroupNumber>3</GroupNumber>
       <FileNumber>10</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\joy.c</PathWithFileName>
-      <FilenameWithoutPath>joy.c</FilenameWithoutPath>
+      <PathWithFileName>.\servo.c</PathWithFileName>
+      <FilenameWithoutPath>servo.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -626,8 +626,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\speaker.c</PathWithFileName>
-      <FilenameWithoutPath>speaker.c</FilenameWithoutPath>
+      <PathWithFileName>.\temp.c</PathWithFileName>
+      <FilenameWithoutPath>temp.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

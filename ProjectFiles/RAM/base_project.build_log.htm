@@ -36,17 +36,11 @@ servo.c: 2 warnings, 0 errors
 compiling cfaf128x128x16.c...
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\cfaf128x128x16.c(875): warning:  #1-D: last line of file ends without a newline
   //*****************************************************************************
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\cfaf128x128x16.c(765): warning:  #177-D: function "ssiSetDataMode"  was declared but never referenced
+cfaf128x128x16.c: 3 warnings, 0 errors
+#177-D: function "ssiSetDataMode"  was declared but never referenced
   ssiSetDataMode(uint8_t mode) {
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\cfaf128x128x16.c(772): warning:  #177-D: function "ssiSetClockDivider"  was declared but never referenced
   ssiSetClockDivider(uint8_t divider){
-cfaf128x128x16.c: 3 warnings, 0 errors
-compiling rgb.c...
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(33): warning:  #1-D: last line of file ends without a newline
-  #endif //__RGB_H__
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.c(191): warning:  #1-D: last line of file ends without a newline
-  }
-rgb.c: 2 warnings, 0 errors
 compiling LED.c...
 compiling Blinky.c...
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(33): warning:  #1-D: last line of file ends without a newline
@@ -72,28 +66,38 @@ C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\B
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(294): warning:  #111-D: statement is unreachable
     osDelay(osWaitForever);
 Blinky.c: 11 warnings, 0 errors
+compiling rgb.c...
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(33): warning:  #1-D: last line of file ends without a newline
+  #endif //__RGB_H__
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.c(191): warning:  #1-D: last line of file ends without a newline
+  }
+rgb.c: 2 warnings, 0 errors
 compiling temp.c...
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.h(10): warning:  #1-D: last line of file ends without a newline
   #endif //__TEMP_H__
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(112): warning:  #128-D: loop is not reachable
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(113): warning:  #128-D: loop is not reachable
   		while(i < n){
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(153): warning:  #128-D: loop is not reachable
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(154): warning:  #128-D: loop is not reachable
   		while(i < n-1){
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(214): warning:  #177-D: variable "temp"  was declared but never referenced
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(215): warning:  #177-D: variable "temp"  was declared but never referenced
   	uint64_t temp = 0;
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(65): warning:  #550-D: variable "g_mid"  was set but never used
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(66): warning:  #550-D: variable "g_mid"  was set but never used
   static uint16_t g_mid, g_did, g_timeout_count;
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(65): warning:  #550-D: variable "g_did"  was set but never used
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(66): warning:  #550-D: variable "g_did"  was set but never used
   static uint16_t g_mid, g_did, g_timeout_count;
 temp.c: 6 warnings, 0 errors
 compiling accel.c...
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\accel.c(63): warning:  #1-D: last line of file ends without a newline
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\accel.c(64): warning:  #1-D: last line of file ends without a newline
   }
 accel.c: 1 warning, 0 errors
-compiling joy.c...
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\joy.c(59): warning:  #1-D: last line of file ends without a newline
+compiling mic.c...
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\mic.h(21): warning:  #1-D: last line of file ends without a newline
+  #endif //__MIC_H__
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\mic.c(63): warning:  #223-D: function "normalize" declared implicitly
+  	return ((normalize((analog_read(GPIO_PORTE_BASE, GPIO_PIN_5, ADC_CTL_CH8))))*1000);
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\mic.c(64): warning:  #1-D: last line of file ends without a newline
   }
-joy.c: 1 warning, 0 errors
+mic.c: 3 warnings, 0 errors
 compiling opt.c...
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(4): warning:  #1295-D: Deprecated declaration opt_init - give arg types
   extern void  opt_init();
@@ -118,18 +122,19 @@ C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\o
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.c(58): warning:  #177-D: variable "g_did"  was declared but never referenced
   static uint16_t g_mid, g_did, g_timeout_count;
 opt.c: 11 warnings, 0 errors
-compiling speaker.c...
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\speaker.h(21): warning:  #1-D: last line of file ends without a newline
-  #endif
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\speaker.c(63): warning:  #1-D: last line of file ends without a newline
+compiling joy.c...
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\joy.c(60): warning:  #1-D: last line of file ends without a newline
   }
-speaker.c: 2 warnings, 0 errors
+joy.c: 1 warning, 0 errors
 assembling startup_TM4C129.s...
 compiling system_TM4C129.c...
 compiling RTX_Conf_CM.c...
 linking...
-Program Size: Code=26644 RO-data=3516 RW-data=1644 ZI-data=9836  
-".\RAM\base_project.axf" - 0 Error(s), 39 Warning(s).
+.\RAM\base_project.axf: Error: L6218E: Undefined symbol normalize (referred from mic.o).
+Not enough information to list image symbols.
+Not enough information to list load addresses in the image map.
+Finished: 2 information, 0 warning and 1 error messages.
+".\RAM\base_project.axf" - 1 Error(s), 39 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -178,6 +183,7 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.0.1
 
    * Component: ::CMSIS:RTOS:1.0.0 (API)
+Target not created.
 Build Time Elapsed:  00:00:05
 </pre>
 </body>

@@ -8,7 +8,7 @@
 ".\ram\opt.o"
 ".\ram\accel.o"
 ".\ram\joy.o"
-".\ram\speaker.o"
+".\ram\mic.o"
 "..\driverlib\rvmdk\driverlib.lib"
 "..\grlib\rvmdk\grlib.lib"
 ".\ram\startup_tm4c129.o"

@@ -1,5 +1,5 @@
 //..............................................................................
-// joystick.c - Driver for the Joystick.
+// joy.c - Driver for the Joystick.
 //
 // Copyright (c) 2017 Allan Patrick de Souza, Guilherme Jacichen, Jessica Isoton Sampaio,
 // Mariana Carrião.  All rights reserved.
@@ -17,6 +17,7 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/uart.h"
 #include "grlib/grlib.h"
+
 #include "joy.h"
 
 void joy_init(void){
@@ -24,7 +25,7 @@ void joy_init(void){
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
 }
 
-static uint32_t analog_read(uint32_t port, uint8_t pin, uint32_t channel)
+static uint16_t analog_read(uint32_t port, uint8_t pin, uint32_t channel)
 {
 	uint32_t result[1];
 
@@ -49,11 +50,10 @@ static uint32_t analog_read(uint32_t port, uint8_t pin, uint32_t channel)
 	return result[0];
 }
 
-uint32_t joy_read_x(void){
+uint16_t joy_read_x(void){
 	return analog_read(GPIO_PORTE_BASE, GPIO_PIN_4, ADC_CTL_CH9);			
-
 }
 
-uint32_t joy_read_y(void){
+uint16_t joy_read_y(void){
 	return analog_read(GPIO_PORTE_BASE, GPIO_PIN_3, ADC_CTL_CH0);			
 }

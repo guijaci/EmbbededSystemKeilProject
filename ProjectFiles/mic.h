@@ -1,21 +1,19 @@
 //..............................................................................
-//Speaker header for using speaker driver functions.
+// Microphone header for using microphone driver functions.
 //
 // Copyright (c) 2017 Allan Patrick de Souza, Guilherme Jacichen, Jessica Isoton Sampaio,
 // Mariana Carrião.  All rights reserved.
 // Software License Agreement
 //..............................................................................
-#ifndef __SPEAKER_H__
-#define __SPEAKER_H__
+#ifndef __MIC_H__
+#define __MIC_H__
 
 //..............................................................................
 //Normalize read value using ADC resolution 4096
 //..............................................................................
-#define normalize(v) (v/(float)0xFFF)
+#define mic_norm(v) (mic_read(v)/(float)0xFFF)
 
+extern void mic_init(void);
+extern uint16_t mic_read(void);
 
-extern void speaker_init(void);
-extern uint32_t speaker_read(void);
-
-
-#endif
+#endif //__MIC_H__

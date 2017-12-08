@@ -28,5 +28,5 @@ extern uint16_t accel_read_x(void);
 extern uint16_t accel_read_y(void);
 extern uint16_t accel_read_z(void);
 
-#endif
+#endif // __ACCEL_H__
 

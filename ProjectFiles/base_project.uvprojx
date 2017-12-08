@@ -406,34 +406,14 @@
           <GroupName>drivers</GroupName>
           <Files>
             <File>
-              <FileName>cfaf128x128x16.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\cfaf128x128x16.c</FilePath>
-            </File>
-            <File>
-              <FileName>servo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\servo.c</FilePath>
-            </File>
-            <File>
-              <FileName>rgb.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\rgb.c</FilePath>
-            </File>
-            <File>
-              <FileName>temp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\temp.c</FilePath>
-            </File>
-            <File>
-              <FileName>opt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\opt.c</FilePath>
-            </File>
-            <File>
               <FileName>accel.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\accel.c</FilePath>
+            </File>
+            <File>
+              <FileName>cfaf128x128x16.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\cfaf128x128x16.c</FilePath>
             </File>
             <File>
               <FileName>joy.c</FileName>
@@ -441,9 +421,29 @@
               <FilePath>.\joy.c</FilePath>
             </File>
             <File>
-              <FileName>speaker.c</FileName>
+              <FileName>mic.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\speaker.c</FilePath>
+              <FilePath>.\mic.c</FilePath>
+            </File>
+            <File>
+              <FileName>opt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\opt.c</FilePath>
+            </File>
+            <File>
+              <FileName>rgb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\rgb.c</FilePath>
+            </File>
+            <File>
+              <FileName>servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\servo.c</FilePath>
+            </File>
+            <File>
+              <FileName>temp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\temp.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -870,34 +870,14 @@
           <GroupName>drivers</GroupName>
           <Files>
             <File>
-              <FileName>cfaf128x128x16.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\cfaf128x128x16.c</FilePath>
-            </File>
-            <File>
-              <FileName>servo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\servo.c</FilePath>
-            </File>
-            <File>
-              <FileName>rgb.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\rgb.c</FilePath>
-            </File>
-            <File>
-              <FileName>temp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\temp.c</FilePath>
-            </File>
-            <File>
-              <FileName>opt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\opt.c</FilePath>
-            </File>
-            <File>
               <FileName>accel.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\accel.c</FilePath>
+            </File>
+            <File>
+              <FileName>cfaf128x128x16.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\cfaf128x128x16.c</FilePath>
             </File>
             <File>
               <FileName>joy.c</FileName>
@@ -905,9 +885,29 @@
               <FilePath>.\joy.c</FilePath>
             </File>
             <File>
-              <FileName>speaker.c</FileName>
+              <FileName>mic.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\speaker.c</FilePath>
+              <FilePath>.\mic.c</FilePath>
+            </File>
+            <File>
+              <FileName>opt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\opt.c</FilePath>
+            </File>
+            <File>
+              <FileName>rgb.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\rgb.c</FilePath>
+            </File>
+            <File>
+              <FileName>servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\servo.c</FilePath>
+            </File>
+            <File>
+              <FileName>temp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\temp.c</FilePath>
             </File>
           </Files>
         </Group>

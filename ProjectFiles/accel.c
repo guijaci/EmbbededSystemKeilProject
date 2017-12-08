@@ -17,6 +17,7 @@
 #include "driverlib/sysctl.h"
 #include "driverlib/uart.h"
 #include "grlib/grlib.h"
+
 #include "accel.h"
 
 void accel_init(void){
