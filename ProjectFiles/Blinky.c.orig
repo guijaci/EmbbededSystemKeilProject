@@ -9,6 +9,7 @@
  *---------------------------------------------------------------------------*/
 
 #include "cmsis_os.h"
+<<<<<<< HEAD
 #include "TM4C129.h"                    // Device header
 #include "LED.h"
 #include "math.h"
@@ -16,58 +17,126 @@
 #include "stdbool.h"
 #include "driverlib/ssi.h"
 #include "driverlib/rom.h"
+=======
+#include "TM4C129.h"
+#include "system_TM4C129.h"
+#include <stdbool.h>
+#include <stdint.h>
+#include "inc/hw_memmap.h"
+#include "driverlib/adc.h"
+#include "driverlib/gpio.h"
+#include "driverlib/pin_map.h"
+>>>>>>> Lab5_Jessica
 #include "driverlib/sysctl.h"
+#include "driverlib/uart.h"
 #include "grlib/grlib.h"
+<<<<<<< HEAD
 
 #include "rgb.h"
 #include "cfaf128x128x16.h"
 #include "servo.h"
 #include "temp.h"
 #include "opt.h"
+=======
+#include "C:\ti\TivaWare_C_Series-2.1.4.178\utils\uartstdio.h"
+#include "cfaf128x128x16.h"
+#include "math.h"
+#include <stdint.h>
+#include "TM4C129.h"
 
-osThreadId tid_phaseA;                  /* Thread id of thread: phase_a      */
-osThreadId tid_phaseB;                  /* Thread id of thread: phase_b      */
-osThreadId tid_phaseC;                  /* Thread id of thread: phase_c      */
-osThreadId tid_phaseD;                  /* Thread id of thread: phase_d      */
-osThreadId tid_clock;                   /* Thread id of thread: clock        */
 
-#define LED_A      0
-#define LED_B      1
-#define LED_C      2
-#define LED_D      3
-#define LED_CLK    7
+static void intToString(int64_t value, char* pBuf, uint32_t len, uint32_t base)
+{
+    static const char* pAscii = "0123456789abcdefghijklmnopqrstuvwxyz";
+    int pos = 0;
+    uint32_t tmpValue = value;
 
+    // the buffer must not be null and at least have a length of 2 to handle one
+    // digit and null-terminator
+    if (pBuf == NULL || len < 2)
+    {
+        return;
+    }
+
+    // a valid base cannot be less than 2 or larger than 36
+    // a base value of 2 means binary representation. A value of 1 would mean only zeros
+    // a base larger than 36 can only be used if a larger alphabet were used.
+    if (base < 2 || base > 36)
+    {
+        return;
+    }
+
+    // negative value
+    if (value < 0)
+    {
+        tmpValue = -tmpValue;
+        value    = -value;
+        pBuf[pos++] = '-';
+    }
+
+    // calculate the required length of the buffer
+    do {
+        pos++;
+        tmpValue /= base;
+    } while(tmpValue > 0);
+
+
+    if (pos > len)
+    {
+        // the len parameter is invalid.
+        return;
+    }
+
+    pBuf[pos] = '\0';
+
+    do {
+        pBuf[--pos] = pAscii[value % base];
+        value /= base;
+    } while(value > 0);
+
+    return;
+>>>>>>> Lab5_Jessica
+
+}
+
+
+<<<<<<< HEAD
 static long double S01 = 0;
+=======
 
-/*----------------------------------------------------------------------------
- *      Switch LED on
- *---------------------------------------------------------------------------*/
-void Switch_On (unsigned char led) {
+//int main (void) {
+//		//Impressao dos valores do ADC
+//		tContext sContext;
+//		tRectangle sRect;
+//			char pBuf[10];
+//	uint32_t ui32SysClock;
+//	int buttonpressed = 0;
+//int32_t i32Valx, i32Valy;
+>>>>>>> Lab5_Jessica
 
-  if (led != LED_CLK) LED_On (led);
-}
+// cfaf128x128x16Init();
+//		//Inicializacoes de Contexto
+//	  GrContextInit(&sContext, &g_sCfaf128x128x16);
+//		GrContextForegroundSet(&sContext, ClrWhite);
+//		GrRectDraw(&sContext, &sRect);
+//		GrContextFontSet(&sContext, g_psFontCm12/*g_psFontFixed6x8*/);	
+//	
+//	
 
-/*----------------------------------------------------------------------------
- *      Switch LED off
- *---------------------------------------------------------------------------*/
-void Switch_Off (unsigned char led) {
+// Enable the GPIOA peripheral
 
-  if (led != LED_CLK) LED_Off (led);
-}
+//SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);
 
+// Wait for the GPIOA module to be ready.
 
-/*----------------------------------------------------------------------------
- *      Function 'signal_func' called from multiple threads
- *---------------------------------------------------------------------------*/
-void signal_func (osThreadId tid)  {
-  osSignalSet(tid_clock, 0x0100);           /* set signal to clock thread    */
-  osDelay(500);                             /* delay 500ms                   */
-  osSignalSet(tid_clock, 0x0100);           /* set signal to clock thread    */
-  osDelay(500);                             /* delay 500ms                   */
-  osSignalSet(tid, 0x0001);                 /* set signal to thread 'thread' */
-  osDelay(500);                             /* delay 500ms                   */
-}
+//while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOC))
+//{
+//}
 
+// Register the port-level interrupt handler. This handler is the first
+// level interrupt handler for all the pin interrupts.
+
+<<<<<<< HEAD
 /*----------------------------------------------------------------------------
  *      Thread 1 'phaseA': Phase A output
  *---------------------------------------------------------------------------*/
@@ -215,13 +284,6 @@ int16_t TMP006_getTemp2( int16_t Vobj, int16_t Tdie )
  *      Thread 5 'clock': Signal Clock
  *---------------------------------------------------------------------------*/
 void clock (void  const *argument) {
-<<<<<<< HEAD
-	int16_t temp;
-	char buf[10];
-	tContext sContext;
-	tRectangle sRect;	
-		
-=======
 	tContext sContext;
 	tRectangle sRect;
 	int16_t temp,temp2;
@@ -230,44 +292,23 @@ void clock (void  const *argument) {
 	bool trig = true;
 	int cont=0;
 	
->>>>>>> Lab5_allanps
 	GrContextInit(&sContext, &g_sCfaf128x128x16);
 
 	sRect.i16XMin = 0;
 	sRect.i16YMin = 0;
 	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
-<<<<<<< HEAD
-	sRect.i16YMax = 31;
-=======
 	sRect.i16YMax = 50;
->>>>>>> Lab5_allanps
 	GrContextFontSet(&sContext, g_psFontFixed6x8);
 	temp = temp_read();
   for (;;) {
     osSignalWait(0x0100, osWaitForever);    /* wait for an event flag 0x0100 */
-<<<<<<< HEAD
-    //Switch_On (LED_CLK);
-		temp = temp_read()/32;
-		intToString((uint16_t) temp, buf, 10, 10);
-=======
 		temp = opt_read();
 		intToString((uint16_t)temp, buf, 10, 10);
->>>>>>> Lab5_allanps
 		GrContextForegroundSet(&sContext, ClrDarkBlue);
 		GrRectFill(&sContext, &sRect);
 		GrContextForegroundSet(&sContext, ClrWhite);
 		GrStringDrawCentered(&sContext, buf, -1,
 												 GrContextDpyWidthGet(&sContext) / 2, 10, 0);
-<<<<<<< HEAD
-		temp = temp_read_voltage();
-		intToString((uint16_t) temp, buf, 10, 16);
-		GrStringDrawCentered(&sContext, buf, -1,
-												 GrContextDpyWidthGet(&sContext) / 2, 24, 0);
-		GrFlush(&sContext);
-    osDelay(80);                            /* delay 80ms                    */
-		
-    //Switch_Off(LED_CLK);
-=======
 		temp2 = OPT3001_getLux();
 		intToString((uint16_t)temp2, buf, 10, 10);
 		GrStringDrawCentered(&sContext, buf, -1,
@@ -281,32 +322,34 @@ void clock (void  const *argument) {
     osDelay(5000);  
 		cont--;/* delay 80ms                    */
     Switch_Off(LED_CLK);
->>>>>>> Lab5_allanps
   }
 }
+=======
 
-osThreadDef(phaseA, osPriorityNormal, 1, 0);
-osThreadDef(phaseB, osPriorityNormal, 1, 0);
-osThreadDef(phaseC, osPriorityNormal, 1, 0);
-osThreadDef(phaseD, osPriorityNormal, 1, 0);
-osThreadDef(clock,  osPriorityNormal, 1, 0);
+//GPIOIntRegister(GPIO_PORTC_BASE, GPIOC_Handler);
 
+// Initialize the GPIO pin configuration.
+
+// Set pins 2, 4, and 5 as input, SW controlled.
+
+//GPIOPinTypeGPIOInput(GPIO_PORTC_BASE,GPIO_PIN_6);
+>>>>>>> Lab5_Jessica
+
+// Set pins 0 and 3 as output, SW controlled.
+
+<<<<<<< HEAD
 /*----------------------------------------------------------------------------
  *      Main: Initialize and start RTX Kernel
  *---------------------------------------------------------------------------*/
 int main (void) {
-	uint16_t angle = 0;
-	int8_t inc = 1;
+	int16_t angle = 0;
+	int16_t inc = 1;
 	osKernelInitialize();
 	cfaf128x128x16Init();
 	rgb_init();
 	servo_init();
-<<<<<<< HEAD
 	temp_init();
-=======
-	//temp_init();
 	opt_init();
->>>>>>> Lab5_allanps
 	
   tid_phaseA = osThreadCreate(osThread(phaseA), NULL);
   tid_phaseB = osThreadCreate(osThread(phaseB), NULL);
@@ -319,11 +362,89 @@ int main (void) {
 	osSignalSet(tid_phaseA, 0x0001);          /* set signal to phaseA thread   */
 	
 	while(true){
-		servo_write(angle);
+		servo_write_degree180(angle);
 		angle += inc;
-		if(angle == 0 || angle == 0xFFFF) inc = -inc;	
-		osDelay(1);
+		if(angle == 90 || angle == -90) 
+			inc = -inc;	
+		osDelay(100);
 	}
   osDelay(osWaitForever);
   while(1);
 }
+=======
+//GPIOPinTypeGPIOOutput(GPIO_PORTA_BASE, GPIO_PIN_0 | GPIO_PIN_3);
+
+// Make pins 2 and 4 rising edge triggered interrupts.
+
+//GPIOIntTypeSet(GPIO_PORTC_BASE, GPIO_PIN_6, GPIO_HIGH_LEVEL);
+
+// Make pin 5 high level triggered interrupts.
+
+//GPIOIntTypeSet(GPIO_PORTA_BASE, GPIO_PIN_5, GPIO_HIGH_LEVEL);
+
+// Read some pins.
+
+//i32Valx = GPIOPinRead(GPIO_PORTC_BASE, GPIO_PIN_6);
+
+
+// Write some pins. Even though pins 2, 4, and 5 are specified, those pins
+// are unaffected by this write because they are configured as inputs. At
+// the end of this write, pin 0 is low, and pin 3 is high.
+
+//GPIOPinWrite(GPIO_PORTA_BASE,
+//(GPIO_PIN_0 | GPIO_PIN_2 | GPIO_PIN_3 |
+//GPIO_PIN_4 | GPIO_PIN_5),
+//(GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 |
+//GPIO_PIN_7));
+
+// Enable the pin interrupts.
+
+//GPIOIntEnable(GPIO_PORTC_BASE, GPIO_PIN_6);
+
+//while(1)
+//{
+//	
+//	i32Valx = 0x00;
+
+//i32Valx = GPIOPinRead(GPIO_PORTC_BASE, GPIO_PIN_6);
+
+//	buttonpressed = 0;
+//	
+//	if(i32Valx == 0)
+//	{
+//		buttonpressed = 1;
+//	}
+//	
+//	if(buttonpressed == 1){
+//		sRect.i16XMin = 0;
+//			sRect.i16YMin = 0;
+//			sRect.i16XMax = GrContextDpyWidthGet(&sContext) -1;
+//			sRect.i16YMax = GrContextDpyHeightGet(&sContext) -1;
+//			GrContextForegroundSet(&sContext, ClrBlack);
+//			GrRectFill(&sContext, &sRect);
+//				
+//			GrContextForegroundSet(&sContext, ClrWhite);
+//			GrRectDraw(&sContext, &sRect);
+
+//			
+//			intToString(1, pBuf, 10, 10);		
+//			
+//			//VREFP - VREFN = 3.3
+//	
+//GrStringDrawCentered(&sContext, pBuf, 10,
+//											 GrContextDpyWidthGet(&sContext) / 2,
+//											 ((GrContextDpyHeightGet(&sContext) - 84) / 2) + 24,
+//											 0);
+//intToString(i32Valx/*converted_Value*/, pBuf, 10, 10);		
+//	}
+//		sRect.i16XMin = 0;
+//		sRect.i16YMin = 0;
+//			sRect.i16XMax = GrContextDpyWidthGet(&sContext) -1;
+//			sRect.i16YMax = GrContextDpyHeightGet(&sContext) -1;
+//			GrContextForegroundSet(&sContext, ClrBlack);
+//			GrRectFill(&sContext, &sRect);
+
+//}
+
+//}
+>>>>>>> Lab5_Jessica

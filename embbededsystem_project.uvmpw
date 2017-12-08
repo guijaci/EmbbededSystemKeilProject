@@ -8,8 +8,7 @@
   <WorkspaceName>WorkSpace</WorkspaceName>
 
   <project>
-    <PathAndName>.\ProjectFiles\base_project.uvprojx</PathAndName>
-    <NodeIsActive>1</NodeIsActive>
+    <PathAndName>C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\base_project.uvprojx</PathAndName>
     <NodeIsExpanded>1</NodeIsExpanded>
   </project>
 
