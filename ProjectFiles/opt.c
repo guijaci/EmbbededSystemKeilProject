@@ -1,5 +1,3 @@
-
-
 #include <stdbool.h>
 #include <stdint.h>
 #include "inc/hw_memmap.h"
@@ -35,6 +33,7 @@ SysCtlClockFreqSet( 			\
 #define OPT3001_LOW  		0x02
 #define OPT3001_HIGH  	0x03
 #define OPT3001_RESET  	0x06
+#define DEFAULT_CONFIG_100 0xC410 // 100ms
 
 #define I2C_WRITE false
 #define I2C_READ 	true
@@ -188,15 +187,67 @@ read_reg(uint8_t add){
 	return (data & 0x00FF)<<8 | (data & 0xFF00)>>8;
 }
 
-//int16_t opt_read(){
-//	return read16(OPT3001_RESULT);
-//}
+int16_t opt_read(){
+	return read_reg(OPT3001_RESULT);
+}
 
 static void
 temp_int_callback(void){
 	I2CMasterIntClearEx(I2C0_BASE, I2C_MASTER_INT_DATA_NACK);
 	I2CMasterIntClear(I2C0_BASE);
 	g_sentFlag = true;
+}
+
+uint32_t OPT3001_getLux()
+{
+    uint16_t exponent = 0;
+    uint32_t result = 0;
+    int16_t raw;
+    raw = read_reg(OPT3001_RESULT);
+    /*Convert to LUX*/
+    //extract result & exponent data from raw readings
+    result = raw&0x0FFF;
+    exponent = (raw>>12)&0x000F;
+    //convert raw readings to LUX
+    switch(exponent){
+    case 0: //*0.015625
+        result = result>>6;
+        break;
+    case 1: //*0.03125
+        result = result>>5;
+        break;
+    case 2: //*0.0625
+        result = result>>4;
+        break;
+    case 3: //*0.125
+        result = result>>3;
+        break;
+    case 4: //*0.25
+        result = result>>2;
+        break;
+    case 5: //*0.5
+        result = result>>1;
+        break;
+    case 6:
+        result = result;
+        break;
+    case 7: //*2
+        result = result<<1;
+        break;
+    case 8: //*4
+        result = result<<2;
+        break;
+    case 9: //*8
+        result = result<<3;
+        break;
+    case 10: //*16
+        result = result<<4;
+        break;
+    case 11: //*32
+        result = result<<5;
+        break;
+    }
+    return result;
 }
 void 
 opt_init(){
@@ -235,9 +286,9 @@ opt_init(){
 
 	write_reg(OPT3001_CONFIG, 0x00);
 	SysCtlDelay(5000);
-	write_reg(OPT3001_CONFIG, 0x00);
+	write_reg(OPT3001_CONFIG, 0x06);
 
+	write_reg(OPT3001_CONFIG, DEFAULT_CONFIG_100);
 	mid = read_reg(OPT3001_MANID);
 	did = read_reg(OPT3001_DEVID);
 }
-
