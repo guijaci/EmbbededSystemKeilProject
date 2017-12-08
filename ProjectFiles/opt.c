@@ -198,7 +198,7 @@ temp_int_callback(void){
 	g_sentFlag = true;
 }
 
-uint32_t OPT3001_getLux()
+uint32_t opt_get_lux()
 {
     uint16_t exponent = 0;
     uint32_t result = 0;
