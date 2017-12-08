@@ -9,10 +9,9 @@
 ".\flash\temp.o"
 ".\flash\opt.o"
 =======
-".\flash\accel.o"
-".\flash\joystick.o"
-".\flash\speaker.o"
->>>>>>> Lab5_Jessica
+".\flash\buzzer.o"
+".\flash\buttons.o"
+>>>>>>> Lab5_Mariana
 "..\driverlib\rvmdk\driverlib.lib"
 "..\grlib\rvmdk\grlib.lib"
 "C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\LIB\ARM\RTX_CM4.lib"

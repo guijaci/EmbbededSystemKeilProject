@@ -336,7 +336,11 @@
               <MiscControls></MiscControls>
               <Define>TARGET_IS_TM4C129_RA0 PART_TM4C1294NCPDT</Define>
               <Undefine></Undefine>
-              <IncludePath>..;.</IncludePath>
+<<<<<<< HEAD
+              <IncludePath>..</IncludePath>
+=======
+              <IncludePath>..\</IncludePath>
+>>>>>>> Lab5_Mariana
             </VariousControls>
           </Cads>
           <Aads>
@@ -390,11 +394,6 @@
               <FileType>1</FileType>
               <FilePath>.\Blinky.c</FilePath>
             </File>
-            <File>
-              <FileName>temperature_sensor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -411,15 +410,30 @@
           <GroupName>drivers</GroupName>
           <Files>
             <File>
+              <FileName>accel.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\accel.c</FilePath>
+            </File>
+            <File>
               <FileName>cfaf128x128x16.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\cfaf128x128x16.c</FilePath>
             </File>
             <File>
 <<<<<<< HEAD
-              <FileName>servo.c</FileName>
+              <FileName>joy.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\servo.c</FilePath>
+              <FilePath>.\joy.c</FilePath>
+            </File>
+            <File>
+              <FileName>mic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\mic.c</FilePath>
+            </File>
+            <File>
+              <FileName>opt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\opt.c</FilePath>
             </File>
             <File>
               <FileName>rgb.c</FileName>
@@ -427,29 +441,34 @@
               <FilePath>.\rgb.c</FilePath>
             </File>
             <File>
+              <FileName>servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\servo.c</FilePath>
+            </File>
+            <File>
               <FileName>temp.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\temp.c</FilePath>
-            </File>
-            <File>
-              <FileName>opt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\opt.c</FilePath>
 =======
-              <FileName>accel.c</FileName>
+              <FileName>buzzer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\accel.c</FilePath>
+              <FilePath>.\buzzer.c</FilePath>
             </File>
             <File>
-              <FileName>joystick.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\joystick.c</FilePath>
+              <FileName>buzzer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\buzzer.h</FilePath>
             </File>
             <File>
-              <FileName>speaker.c</FileName>
+              <FileName>buttons.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\speaker.c</FilePath>
->>>>>>> Lab5_Jessica
+              <FilePath>.\buttons.c</FilePath>
+            </File>
+            <File>
+              <FileName>buttons.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\buttons.h</FilePath>
+>>>>>>> Lab5_Mariana
             </File>
           </Files>
         </Group>
@@ -466,21 +485,20 @@
               <FileType>4</FileType>
               <FilePath>..\grlib\rvmdk\grlib.lib</FilePath>
             </File>
-            <File>
-              <FileName>uartstdio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>C:\ti\TivaWare_C_Series-2.1.4.178\utils\uartstdio.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>::CMSIS</GroupName>
+          <GroupName>::Device</GroupName>
         </Group>
         <Group>
+<<<<<<< HEAD
+          <GroupName>::CMSIS</GroupName>
+=======
           <GroupName>::Compiler</GroupName>
         </Group>
         <Group>
           <GroupName>::Device</GroupName>
+>>>>>>> Lab5_Mariana
         </Group>
       </Groups>
     </Target>
@@ -801,7 +819,7 @@
             <wLevel>0</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
-            <uC99>1</uC99>
+            <uC99>0</uC99>
             <useXO>0</useXO>
             <v6Lang>1</v6Lang>
             <v6LangP>1</v6LangP>
@@ -812,13 +830,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>rvmdk PART_TM4C1294NCPDT TARGET_IS_TM4C129_RA2</Define>
+              <Define>rvmdk PART_TM4C1294NCPDT TARGET_IS_TM4C129_RA0</Define>
               <Undefine></Undefine>
-<<<<<<< HEAD
               <IncludePath>..\..\EmbbededSystemKeilProject</IncludePath>
-=======
-              <IncludePath>..\..\EmbbededSystemKeilProject;..\ProjectFiles</IncludePath>
->>>>>>> Lab5_Jessica
             </VariousControls>
           </Cads>
           <Aads>
@@ -872,11 +886,6 @@
               <FileType>1</FileType>
               <FilePath>.\Blinky.c</FilePath>
             </File>
-            <File>
-              <FileName>temperature_sensor.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -893,15 +902,30 @@
           <GroupName>drivers</GroupName>
           <Files>
             <File>
+              <FileName>accel.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\accel.c</FilePath>
+            </File>
+            <File>
               <FileName>cfaf128x128x16.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\cfaf128x128x16.c</FilePath>
             </File>
             <File>
 <<<<<<< HEAD
-              <FileName>servo.c</FileName>
+              <FileName>joy.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\servo.c</FilePath>
+              <FilePath>.\joy.c</FilePath>
+            </File>
+            <File>
+              <FileName>mic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\mic.c</FilePath>
+            </File>
+            <File>
+              <FileName>opt.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\opt.c</FilePath>
             </File>
             <File>
               <FileName>rgb.c</FileName>
@@ -909,29 +933,34 @@
               <FilePath>.\rgb.c</FilePath>
             </File>
             <File>
+              <FileName>servo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\servo.c</FilePath>
+            </File>
+            <File>
               <FileName>temp.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\temp.c</FilePath>
-            </File>
-            <File>
-              <FileName>opt.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\opt.c</FilePath>
 =======
-              <FileName>accel.c</FileName>
+              <FileName>buzzer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\accel.c</FilePath>
+              <FilePath>.\buzzer.c</FilePath>
             </File>
             <File>
-              <FileName>joystick.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\joystick.c</FilePath>
+              <FileName>buzzer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\buzzer.h</FilePath>
             </File>
             <File>
-              <FileName>speaker.c</FileName>
+              <FileName>buttons.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\speaker.c</FilePath>
->>>>>>> Lab5_Jessica
+              <FilePath>.\buttons.c</FilePath>
+            </File>
+            <File>
+              <FileName>buttons.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\buttons.h</FilePath>
+>>>>>>> Lab5_Mariana
             </File>
           </Files>
         </Group>
@@ -948,21 +977,20 @@
               <FileType>4</FileType>
               <FilePath>..\grlib\rvmdk\grlib.lib</FilePath>
             </File>
-            <File>
-              <FileName>uartstdio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>C:\ti\TivaWare_C_Series-2.1.4.178\utils\uartstdio.h</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>::CMSIS</GroupName>
+          <GroupName>::Device</GroupName>
         </Group>
         <Group>
+<<<<<<< HEAD
+          <GroupName>::CMSIS</GroupName>
+=======
           <GroupName>::Compiler</GroupName>
         </Group>
         <Group>
           <GroupName>::Device</GroupName>
+>>>>>>> Lab5_Mariana
         </Group>
       </Groups>
     </Target>

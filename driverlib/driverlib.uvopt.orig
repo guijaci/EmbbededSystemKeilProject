@@ -26,9 +26,9 @@
     <ToolsetNumber>0x4</ToolsetNumber>
     <ToolsetName>ARM-ADS</ToolsetName>
     <TargetOption>
-      <CLKADS>16000000</CLKADS>
+      <CLKADS>120000000</CLKADS>
       <OPTTT>
-        <gFlags>0</gFlags>
+        <gFlags>1</gFlags>
         <BeepAtEnd>1</BeepAtEnd>
         <RunSim>1</RunSim>
         <RunTarget>0</RunTarget>
@@ -73,11 +73,28 @@
         <LExpSel>0</LExpSel>
       </OPTXL>
       <OPTFL>
-        <tvExp>0</tvExp>
+        <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
-      <CpuCode>0</CpuCode>
+      <CpuCode>255</CpuCode>
+      <Books>
+        <Book>
+          <Number>0</Number>
+          <Title>Data Sheet</Title>
+          <Path>DATASHTS\TI\TM4C129\NotYetAvailable.pdf</Path>
+        </Book>
+        <Book>
+          <Number>1</Number>
+          <Title>Technical Reference Manual</Title>
+          <Path>datashts\arm\cortex_m4\r0p1\DDI0439C_CORTEX_M4_R0P1_TRM.PDF</Path>
+        </Book>
+        <Book>
+          <Number>2</Number>
+          <Title>Generic User Guide</Title>
+          <Path>datashts\arm\cortex_m4\r0p1\DUI0553A_CORTEX_M4_DGUG.PDF</Path>
+        </Book>
+      </Books>
       <DebugOpt>
         <uSim>1</uSim>
         <uTrg>0</uTrg>
@@ -114,11 +131,140 @@
         <tIfile></tIfile>
         <pMon>BIN\lmidk-agdi.dll</pMon>
       </DebugOpt>
+      <TargetDriverDllRegistry>
+        <SetRegEntry>
+          <Number>0</Number>
+          <Key>UL2CM3</Key>
+          <Name>UL2CM3(-O207 -S0 -C0 -FO7 -FD20000000 -FC800 -FN1 -FF0TM4C129_1024 -FS00 -FL0100000)</Name>
+        </SetRegEntry>
+        <SetRegEntry>
+          <Number>0</Number>
+          <Key>lmidk-agdi</Key>
+          <Name>-O4622 -S3 -FO29</Name>
+        </SetRegEntry>
+      </TargetDriverDllRegistry>
       <Breakpoint>
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>292</LineNumber>
+          <LineNumber>271</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>&lt;1&gt;RTE\CMSIS\RTX_Conf_CM.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+<<<<<<< HEAD
+          <LineNumber>206</LineNumber>
+=======
+          <LineNumber>182</LineNumber>
+>>>>>>> Lab5_Mariana
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
+          <Filename>C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c</Filename>
+=======
+          <Filename>&lt;1&gt;.\Blinky.c</Filename>
+>>>>>>> Lab5_Mariana
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+<<<<<<< HEAD
+          <LineNumber>150</LineNumber>
+=======
+          <LineNumber>224</LineNumber>
+>>>>>>> Lab5_Mariana
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
+          <Filename>&lt;1&gt;.\Blinky.c</Filename>
+=======
+          <Filename>&lt;1&gt;RTE\Device\TM4C1294NCPDT\startup_TM4C129.s</Filename>
+>>>>>>> Lab5_Mariana
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>3</Number>
+          <Type>0</Type>
+<<<<<<< HEAD
+          <LineNumber>163</LineNumber>
+=======
+          <LineNumber>106</LineNumber>
+>>>>>>> Lab5_Mariana
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
+          <Filename>&lt;1&gt;.\Blinky.c</Filename>
+=======
+          <Filename>C:\Users\Mariana\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\rgb.c</Filename>
+>>>>>>> Lab5_Mariana
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>4</Number>
+          <Type>0</Type>
+<<<<<<< HEAD
+          <LineNumber>165</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+=======
+          <LineNumber>272</LineNumber>
+          <EnabledFlag>0</EnabledFlag>
+>>>>>>> Lab5_Mariana
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
+          <Filename>&lt;1&gt;.\Blinky.c</Filename>
+=======
+          <Filename>&lt;1&gt;RTE\CMSIS\RTX_Conf_CM.c</Filename>
+>>>>>>> Lab5_Mariana
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>5</Number>
+          <Type>0</Type>
+<<<<<<< HEAD
+          <LineNumber>171</LineNumber>
+=======
+          <LineNumber>147</LineNumber>
+>>>>>>> Lab5_Mariana
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -132,9 +278,13 @@
           <Expression></Expression>
         </Bp>
         <Bp>
-          <Number>1</Number>
+          <Number>6</Number>
           <Type>0</Type>
-          <LineNumber>164</LineNumber>
+<<<<<<< HEAD
+          <LineNumber>235</LineNumber>
+=======
+          <LineNumber>134</LineNumber>
+>>>>>>> Lab5_Mariana
           <EnabledFlag>1</EnabledFlag>
           <Address>0</Address>
           <ByteObject>0</ByteObject>
@@ -143,7 +293,171 @@
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>0</BreakIfRCount>
-          <Filename>&lt;1&gt;.\temp.c</Filename>
+<<<<<<< HEAD
+          <Filename>C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c</Filename>
+=======
+          <Filename>C:\Users\Mariana\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\rgb.c</Filename>
+>>>>>>> Lab5_Mariana
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>7</Number>
+          <Type>0</Type>
+<<<<<<< HEAD
+          <LineNumber>261</LineNumber>
+=======
+          <LineNumber>133</LineNumber>
+>>>>>>> Lab5_Mariana
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
+          <Filename>C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c</Filename>
+=======
+          <Filename>C:\Users\Mariana\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\rgb.c</Filename>
+>>>>>>> Lab5_Mariana
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>8</Number>
+          <Type>0</Type>
+<<<<<<< HEAD
+          <LineNumber>309</LineNumber>
+=======
+          <LineNumber>135</LineNumber>
+>>>>>>> Lab5_Mariana
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
+          <Filename>C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c</Filename>
+=======
+          <Filename>C:\Users\Mariana\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\rgb.c</Filename>
+>>>>>>> Lab5_Mariana
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>9</Number>
+          <Type>0</Type>
+<<<<<<< HEAD
+          <LineNumber>264</LineNumber>
+=======
+          <LineNumber>136</LineNumber>
+>>>>>>> Lab5_Mariana
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
+          <Filename>C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c</Filename>
+=======
+          <Filename>C:\Users\Mariana\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\rgb.c</Filename>
+>>>>>>> Lab5_Mariana
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>10</Number>
+          <Type>0</Type>
+<<<<<<< HEAD
+          <LineNumber>312</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>11</Number>
+          <Type>0</Type>
+          <LineNumber>265</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>12</Number>
+          <Type>0</Type>
+          <LineNumber>268</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>13</Number>
+          <Type>0</Type>
+          <LineNumber>313</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+          <Filename>C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression></Expression>
+        </Bp>
+        <Bp>
+          <Number>14</Number>
+          <Type>0</Type>
+          <LineNumber>316</LineNumber>
+=======
+          <LineNumber>132</LineNumber>
+>>>>>>> Lab5_Mariana
+          <EnabledFlag>1</EnabledFlag>
+          <Address>0</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>0</BreakIfRCount>
+<<<<<<< HEAD
+          <Filename>C:\ti\TivaWare_C_Series-2.1.4.178\examples\peripherals\adc\temperature_sensor.c</Filename>
+=======
+          <Filename>C:\Users\Mariana\Documents\GitHub\EmbbededSystemKeilProject\ProjectFiles\rgb.c</Filename>
+>>>>>>> Lab5_Mariana
           <ExecCommand></ExecCommand>
           <Expression></Expression>
         </Bp>
@@ -153,7 +467,7 @@
       </Tracepoint>
       <DebugFlag>
         <trace>0</trace>
-        <periodic>0</periodic>
+        <periodic>1</periodic>
         <aLwin>0</aLwin>
         <aCover>0</aCover>
         <aSer1>0</aSer1>
@@ -195,7 +509,7 @@
 
   <Group>
     <GroupName>Source</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -347,7 +661,7 @@
       <GroupNumber>1</GroupNumber>
       <FileNumber>13</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>.\gpio.c</PathWithFileName>
@@ -587,7 +901,7 @@
 
   <Group>
     <GroupName>Documentation</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -602,6 +916,25 @@
       <FilenameWithoutPath>readme.txt</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
+      <WindowPosition>
+        <length>44</length>
+        <flags>0</flags>
+        <showCmd>1</showCmd>
+        <MinPosition>
+          <xPos>-1</xPos>
+          <yPos>-1</yPos>
+        </MinPosition>
+        <MaxPosition>
+          <xPos>-1</xPos>
+          <yPos>-1</yPos>
+        </MaxPosition>
+        <NormalPosition>
+          <Top>0</Top>
+          <Left>0</Left>
+          <Right>729</Right>
+          <Bottom>300</Bottom>
+        </NormalPosition>
+      </WindowPosition>
     </File>
   </Group>
 
