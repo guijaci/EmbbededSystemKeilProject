@@ -84,8 +84,7 @@ SysCtlClockFreqSet( 			\
 
 static uint32_t g_ui32SysClock;
 
-void 
-rgb_write_r(uint8_t r){
+void rgb_write_r(uint8_t r){
 	static bool enabled = false;
 	if(!r &&  enabled) {
 		MAP_PWMOutputState(RGB_PWM_BASE, RGB_PWM_OUT_R_BIT, false);
@@ -97,8 +96,7 @@ rgb_write_r(uint8_t r){
 	enabled = r ? true : false;
 }
 
-void 
-rgb_write_g(uint8_t g){
+void rgb_write_g(uint8_t g){
 	static bool enabled = false;
 	if(!g &&  enabled) {
 		MAP_PWMOutputState(RGB_PWM_BASE, RGB_PWM_OUT_G_BIT, false);
@@ -110,8 +108,7 @@ rgb_write_g(uint8_t g){
 	enabled = g ? true : false;
 }
 
-void 
-rgb_write_b(uint8_t b){
+void rgb_write_b(uint8_t b){
 	static bool enabled = false;
 	if(!b &&  enabled) {
 		MAP_PWMOutputState(RGB_PWM_BASE, RGB_PWM_OUT_B_BIT, false);
@@ -123,23 +120,20 @@ rgb_write_b(uint8_t b){
 	enabled = b ? true : false;
 }
 
-void
-rgb_write(uint8_t r, uint8_t g, uint8_t b){
+void rgb_write(uint8_t r, uint8_t g, uint8_t b){
 	rgb_write_r(r);
 	rgb_write_g(g);
 	rgb_write_b(b);
 }
 
-void
-rgb_write_color(uint32_t rgb){
+void rgb_write_color(uint32_t rgb){
 	rgb_write(
 		GetR(rgb),
 		GetG(rgb),
 		GetB(rgb));
 }
 
-void 
-rgb_init(){
+void rgb_init(){
 	g_ui32SysClock = __SysCtlClockGet();
 	
 	MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_PWM0);

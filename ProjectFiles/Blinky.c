@@ -12,7 +12,7 @@
 #include "TM4C129.h"                    // Device header
 #include "LED.h"
 #include "math.h"
-
+#include "string.h"
 #include "stdbool.h"
 #include "driverlib/ssi.h"
 #include "driverlib/rom.h"
@@ -28,6 +28,11 @@
 #include "opt.h"
 #include "buttons.h"
 #include "buzzer.h"
+#include "joy.h"
+#include "mic.h"
+#include "accel.h"
+#include "LED.h"
+
 
 osThreadId tid_buzzer;                 /* Thread id of thread: buzzer     			 	*/
 osThreadId tid_motor;                  /* Thread id of thread: motor       				*/
@@ -44,76 +49,20 @@ osThreadId tid_mic;
 #define LED_D      3
 #define LED_CLK    7
 
+
 static long double S01 = 0;
 
+//To print on the screen
+tContext sContext;
+tRectangle sRect;
+
+freq_t freq_vet[7] = {FREQ_0, FREQ_1, FREQ_2, FREQ_3, FREQ_4, FREQ_5, FREQ_6};
+uint8_t position_freq; // 0,1,2,3,4,5,6;
+
+char pbuf[10];
 /*----------------------------------------------------------------------------
- *      Switch LED on
+ *  Transforming int to string
  *---------------------------------------------------------------------------*/
-void Switch_On (unsigned char led) {
-  if (led != LED_CLK) LED_On (led);
-}
-
-/*----------------------------------------------------------------------------
- *      Switch LED off
- *---------------------------------------------------------------------------*/
-void Switch_Off (unsigned char led) {
-
-  if (led != LED_CLK) LED_Off (led);
-}
-
-
-/*----------------------------------------------------------------------------
- *      Function 'signal_func' called from multiple threads
- *---------------------------------------------------------------------------*/
-void signal_func (osThreadId tid)  {
-  osSignalSet(tid, 0x0001);                 /* set signal to thread 'thread' */
-  osDelay(500);                             /* delay 500ms                   */
-}
-
-/*----------------------------------------------------------------------------
- *      Thread 1 't_buzzer': Phase A output
- *---------------------------------------------------------------------------*/
-
-void t_buzzer(void const *argument){
-	
-
-	
-}
-	
-/*----------------------------------------------------------------------------
- *      Thread 1 'phaseA': Phase A output
- *---------------------------------------------------------------------------*/
-
-void t_rgb(void const *argument){}
-/*----------------------------------------------------------------------------
- *      Thread 1 'phaseA': Phase A output
- *---------------------------------------------------------------------------*/
-	
-void t_mic(void const *argument){}
-	
-/*----------------------------------------------------------------------------
- *      Thread 1 'phaseA': Phase A output
- *---------------------------------------------------------------------------*/
-	
-void t_light(void const *argument){}
-	
-/*----------------------------------------------------------------------------
- *      Thread 1 'phaseA': Phase A output
- *---------------------------------------------------------------------------*/
-	
-void t_temp(void const *argument){}
-/*----------------------------------------------------------------------------
- *      Thread 1 'phaseA': Phase A output
- *---------------------------------------------------------------------------*/
-
-void t_motor(void const *argument){}
-/*----------------------------------------------------------------------------
- *      Thread 1 'phaseA': Phase A output
- *---------------------------------------------------------------------------*/
-	
-void t_accel(void const *argument){}
-
-
 static void intToString(int64_t value, char * pBuf, uint32_t len, uint32_t base){
     static const char* pAscii = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     int pos = 0;
@@ -156,90 +105,302 @@ static void intToString(int64_t value, char * pBuf, uint32_t len, uint32_t base)
         value /= base;
     } while(value > 0);
 }
+/*----------------------------------------------------------------------------
+ *    Initializations
+ *---------------------------------------------------------------------------*/
+
+void init_all(){
+	cfaf128x128x16Init();
+	joy_init();
+	accel_init();
+	buzzer_init(); 
+	button_init();
+	mic_init();
+	rgb_init();
+	servo_init();
+	temp_init();
+	opt_init();
+	LED_Initialize();
+}
+/*----------------------------------------------------------------------------
+ *    Sidelong menu with thread's name
+ *---------------------------------------------------------------------------*/
+
+void init_sidelong_menu(){
+
+
+	GrContextInit(&sContext, &g_sCfaf128x128x16);
+	
+	GrFlush(&sContext);
+	GrContextFontSet(&sContext,g_psFontFixed6x8);
+	
+	GrContextForegroundSet(&sContext, ClrWhite);
+	GrContextBackgroundSet(&sContext, ClrBlack);
+	
+	//Escreve menu lateral:
+	GrStringDrawCentered(&sContext,"B", -1,
+								 GrContextDpyWidthGet(&sContext) - 120,
+								 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);
+	GrStringDrawCentered(&sContext,"S", -1,
+								 GrContextDpyWidthGet(&sContext) - 120,
+								 ((GrContextDpyHeightGet(&sContext)- 115)) + 10,0);
+	GrStringDrawCentered(&sContext," RGB", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 95)) + 10,0);
+	GrStringDrawCentered(&sContext,"A", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);
+	GrStringDrawCentered(&sContext,"T", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);
+	GrStringDrawCentered(&sContext,"L", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);
+	GrStringDrawCentered(&sContext,"M", -1,
+											 GrContextDpyWidthGet(&sContext) - 120,
+											 ((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);
+
+}
+/*----------------------------------------------------------------------------
+ *      Switch LED on
+ *---------------------------------------------------------------------------*/
+void Switch_On (unsigned char led) {
+  if (led != LED_CLK) LED_On (led);
+}
+
+/*----------------------------------------------------------------------------
+ *      Switch LED off
+ *---------------------------------------------------------------------------*/
+void Switch_Off (unsigned char led) {
+
+  if (led != LED_CLK) LED_Off (led);
+}
 
 
 /*----------------------------------------------------------------------------
- *      Thread 5 'clock': Signal Clock
+ *      Function 'signal_func' called from multiple threads
  *---------------------------------------------------------------------------*/
-void clock (void  const *argument) {
-	tContext sContext;
-	tRectangle sRect;
-	int16_t temp,temp2,joystic_x, joystic_y, acc_x, acc_y,acc_z,mic;
-	long double teste;
-	char buf[10];
-	bool trig = true;
-	int cont=0;
-	bool button1;
-	bool button2;
+void signal_func (osThreadId tid)  {
+  osSignalSet(tid, 0x0001);                 /* set signal to thread 'thread' */
+ 
+}
+/*----------------------------------------------------------------------------
+ *      Function 'set_thread_status'
+*			status: 1 for Running, and 0 for Waiting
+ *---------------------------------------------------------------------------*/
+void thread_status(osThreadId tid, int8_t status)  {
 	
 	
-	GrContextInit(&sContext, &g_sCfaf128x128x16);
+ 
+}
+/*----------------------------------------------------------------------------
+ *      Thread 1 't_buzzer': Phase A output
+ *---------------------------------------------------------------------------*/
 
-	sRect.i16XMin = 0;
-	sRect.i16YMin = 0;
-	sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
-	sRect.i16YMax = 115;
-	GrContextFontSet(&sContext, g_psFontFixed6x8);
-	temp = temp_read();
-	
+void t_buzzer(void const *argument){
 
-  for (;;) {
-    osSignalWait(0x0100, osWaitForever);    /* wait for an event flag 0x0100 */
-		temp = opt_read();
-		button1 = button_read_s1();
-		button2 = button_read_s2();
-		joystic_x = joy_read_x();
-		joystic_y = joy_read_y();
-		acc_x = accel_read_x();
-		acc_y = accel_read_y();
-		acc_z = accel_read_z();
-		mic = mic_read();
-		buzzer_read();
-		intToString((uint16_t)temp, buf, 10, 10);
-		GrContextForegroundSet(&sContext, ClrDarkBlue);
+	while(1){
+		
+		osSignalWait(0x0001, osWaitForever);
+		
+			if(button_read_s1() == true){
+				if(position_freq == 6){
+					buzzer_frequency_set(6);
+				}else{
+					position_freq += 1;				
+				}
+				buzzer_frequency_set(freq_vet[position_freq]);
+		//		buzzer_read();
+				GrStringDrawCentered(&sContext,"B1: ON", -1,
+				GrContextDpyWidthGet(&sContext) - 100,
+				((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);
+			}else{
+				GrStringDrawCentered(&sContext,"B1: OFF", -1,
+							 GrContextDpyWidthGet(&sContext) - 100,
+							 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);
+			}
+			
+			if(button_read_s2() == true){				
+				if(position_freq == 0){
+					buzzer_frequency_set(0);
+				}else{
+					position_freq -= 1;				
+				}				
+				
+				buzzer_frequency_set(freq_vet[position_freq]);
+	//			buzzer_read();
+				GrStringDrawCentered(&sContext,"B2: ON", -1,
+											 GrContextDpyWidthGet(&sContext) - 80,
+											 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);
+
+			}else{	
+				GrStringDrawCentered(&sContext,"B2: OFF", -1,
+							 GrContextDpyWidthGet(&sContext) - 80,
+								((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);	
+			}
+			
+			
+	intToString(buzzer_frequency_get(), pbuf, 10, 10);
+
+	GrStringDrawCentered(&sContext,(char*)pbuf, -1,
+											 GrContextDpyWidthGet(&sContext) - 60,
+											 ((GrContextDpyHeightGet(&sContext)- 128)) + 10,0);	
+	
+		signal_func(tid_buzzer);     
+	}
+		
+}
+	
+/*----------------------------------------------------------------------------
+ *      Thread 1 'phaseA': Phase A output
+ *---------------------------------------------------------------------------*/
+
+void t_rgb(void const *argument){
+
+	while(1){
+		osSignalWait(0x0001, osWaitForever);
+	
+	
+	
+		signal_func(tid_accel); 
+	}
+}
+/*----------------------------------------------------------------------------
+ *      Thread 1 'phaseA': Phase A output
+ *---------------------------------------------------------------------------*/
+	
+void t_mic(void const *argument){
+	
+	while(1){
+		osSignalWait(0x0001, osWaitForever);
+		//Desenho
+			sRect.i16XMin = 15;
+			sRect.i16YMin = 110;
+			sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
+			sRect.i16YMax = 128;
+			GrContextForegroundSet(&sContext, ClrBlack);
+			GrContextBackgroundSet(&sContext, ClrBlack);
+			GrRectFill(&sContext, &sRect);
+			GrContextForegroundSet(&sContext, ClrWhite);
+			
+			intToString(mic_read(), pbuf, 10, 10);
+			GrStringDrawCentered(&sContext,(char*)pbuf, -1,
+												 GrContextDpyWidthGet(&sContext) - 100, 
+			((GrContextDpyHeightGet(&sContext)- 17)) + 10,0);	
+			
+			
+			if(mic_read()<=200)
+			{
+				LED_On(0);
+				osDelay(500);
+				LED_Off(0);
+			
+			}
+		
+		signal_func(tid_rgb); 
+	}		
+	
+}
+	
+/*----------------------------------------------------------------------------
+ *      Thread 1 'phaseA': Phase A output
+ *---------------------------------------------------------------------------*/
+	
+void t_light(void const *argument){
+	
+while(1){
+	osSignalWait(0x0001, osWaitForever);
+		sRect.i16XMin = 15;
+		sRect.i16YMin = 91;
+		sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
+		sRect.i16YMax = 110;
+		GrContextForegroundSet(&sContext, ClrBlack);
+		GrContextBackgroundSet(&sContext, ClrBlack);
 		GrRectFill(&sContext, &sRect);
 		GrContextForegroundSet(&sContext, ClrWhite);
-
-		temp2 = opt_get_lux();
-		intToString((uint16_t)temp2, buf, 10, 10);
-		GrStringDrawCentered(&sContext, buf, -1,
-												 GrContextDpyWidthGet(&sContext) / 2, 25, 0);
-		if(button1)
-		GrStringDrawCentered(&sContext,(char*)"B1 Pushed", -1,
-												 GrContextDpyWidthGet(&sContext) / 2, 35, 0);
-		if(button2)
-		GrStringDrawCentered(&sContext,(char*)"B2 Pushed", -1,
-												 GrContextDpyWidthGet(&sContext) / 2, 45, 0);
 		
-		intToString((uint16_t)joystic_x, buf, 10, 10);
-		GrStringDrawCentered(&sContext,buf, -1,
-												 GrContextDpyWidthGet(&sContext) / 2, 55, 0);
-	  intToString((uint16_t)joystic_y, buf, 10, 10);
-		GrStringDrawCentered(&sContext,buf, -1,
-												 GrContextDpyWidthGet(&sContext) / 2, 65, 0);
+		intToString(opt_read(), pbuf, 10, 10);
+		GrStringDrawCentered(&sContext,(char*)pbuf, -1,
+											 GrContextDpyWidthGet(&sContext) - 100, 
+		((GrContextDpyHeightGet(&sContext)- 35)) + 10,0);	
 		
-		
-		intToString((uint16_t)acc_x, buf, 10, 10);
-		GrStringDrawCentered(&sContext,buf, -1,
-												 GrContextDpyWidthGet(&sContext) / 2, 75, 0);
-		
-		intToString((uint16_t)acc_y, buf, 10, 10);
-		GrStringDrawCentered(&sContext,buf, -1,
-												 GrContextDpyWidthGet(&sContext) / 2, 85, 0);
-		
-		intToString((uint16_t)acc_z, buf, 10, 10);
-		GrStringDrawCentered(&sContext,buf, -1,
-												 GrContextDpyWidthGet(&sContext) / 2, 95, 0);
-		
-		intToString((uint16_t)mic, buf, 10, 10);
-		GrStringDrawCentered(&sContext,buf, -1,
-												 GrContextDpyWidthGet(&sContext) / 2, 105, 0);
-		
-		GrFlush(&sContext);
-    osDelay(5000);  
-    Switch_Off(LED_CLK);
-  }
+		signal_func(tid_mic);   
+	}
 }
+	
+/*----------------------------------------------------------------------------
+ *      Thread 1 'phaseA': Phase A output
+ *---------------------------------------------------------------------------*/
+	
+void t_temp(void const *argument){
+	while(1){
+			osSignalWait(0x0001, osWaitForever);
+				sRect.i16XMin = 15;
+					sRect.i16YMin = 70;
+					sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
+					sRect.i16YMax = 91;
+					GrContextForegroundSet(&sContext, ClrBlack);
+					GrContextBackgroundSet(&sContext, ClrBlack);
+					GrRectFill(&sContext, &sRect);
+
+					GrContextForegroundSet(&sContext, ClrWhite);
+					intToString(temp_read()/32, pbuf, 10, 10);
+					GrStringDrawCentered(&sContext,(char*)pbuf , -1,
+														 GrContextDpyWidthGet(&sContext) - 100, 
+					((GrContextDpyHeightGet(&sContext)- 55)) + 10,0);	
+		
+		signal_func(tid_light);   
+	}
+}
+/*----------------------------------------------------------------------------
+ *      Thread 1 'phaseA': Phase A output
+ *---------------------------------------------------------------------------*/
+
+void t_motor(void const *argument){
+
+}
+/*----------------------------------------------------------------------------
+ *      Thread 1 'phaseA': Phase A output
+ *---------------------------------------------------------------------------*/
+	
+void t_accel(void const *argument){
+					
+	while(1){
+		osSignalWait(0x0001, osWaitForever);
+		sRect.i16XMin = 15;
+		sRect.i16YMin = 53;
+		sRect.i16XMax = GrContextDpyWidthGet(&sContext) - 1;
+		sRect.i16YMax = 70;
+		GrContextForegroundSet(&sContext, ClrBlack);
+		GrContextBackgroundSet(&sContext, ClrBlack);
+		GrRectFill(&sContext, &sRect);
+
+		
+		GrContextForegroundSet(&sContext, ClrWhite);
+		intToString(accel_read_x(), pbuf, 10, 10);
+		GrStringDrawCentered(&sContext,(char*)pbuf, -1,
+											 GrContextDpyWidthGet(&sContext) - 100, 
+		((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
+		
+			intToString(accel_read_y(), pbuf, 10, 10);
+		GrStringDrawCentered(&sContext,(char*)pbuf, -1,
+											 GrContextDpyWidthGet(&sContext) - 70, 
+		((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
+		
+		intToString(accel_read_z(), pbuf, 10, 10);
+		GrStringDrawCentered(&sContext,(char*) pbuf, -1,
+											 GrContextDpyWidthGet(&sContext) - 40, 
+		((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
+		
+//					intToString(pMail->deadline, buf, 10, 10);
+//					GrStringDrawCentered(&sContext,(char*)buf, -1,
+//														 GrContextDpyWidthGet(&sContext) - 20, 
+//					((GrContextDpyHeightGet(&sContext)- 75)) + 10,0);	
+		signal_func(tid_temp);   
+	}
+}
+
+
 
 osThreadDef(t_buzzer, 		osPriorityNormal, 1, 0);
 osThreadDef(t_rgb		, 		osPriorityNormal, 1, 0);
@@ -255,16 +416,11 @@ osThreadDef(t_accel	,  		osPriorityNormal, 1, 0);
 int main (void) {
 	int16_t angle = 0, inc = 1;
 	osKernelInitialize();
-	cfaf128x128x16Init();
-	rgb_init();
-	servo_init();
-	temp_init();
-	opt_init();
-	button_init();
-	joy_init();
-	accel_init();
-	mic_init();
-	buzzer_init();
+
+	//Initializing all peripherals
+	init_all();
+	//Sidelong menu creation
+	init_sidelong_menu();
 	
   tid_buzzer = osThreadCreate(osThread(t_buzzer), NULL);
   tid_rgb 	 = osThreadCreate(osThread(t_rgb), 		NULL);
@@ -275,16 +431,16 @@ int main (void) {
 	tid_accel  = osThreadCreate(osThread(t_accel),  NULL);
 	
 	osKernelStart();
-//	
-//	osSignalSet(tid_phaseA, 0x0001);          /* set signal to phaseA thread   */
 
-	while(true){
-		servo_write_degree180(angle);
-		angle += inc;
-		if(angle == 90 || angle == -90) 
-			inc = -inc;	
-		osDelay(200);
-	}
+	signal_func(tid_accel);         
+
+//	while(true){
+//		servo_write_degree180(angle);
+//		angle += inc;
+//		if(angle == 90 || angle == -90) 
+//			inc = -inc;	
+//		osDelay(200);
+//	}
   osDelay(osWaitForever);
   while(1);
 }

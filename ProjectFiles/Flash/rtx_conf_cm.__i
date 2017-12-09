@@ -1,7 +1,7 @@
 -c --cpu Cortex-M4.fp -D__RTX -D__EVAL -g -O0 --apcs=interwork -I ..\..\EmbbededSystemKeilProject
 -I.\RTE\_TM4C129_Flash
--IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\Include
--IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.1\CMSIS\RTOS\RTX\INC
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\Include
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.1\CMSIS\RTOS\RTX\INC
 -IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C129
 -D__UVISION_VERSION="524" -D_RTE_ -DTM4C1294NCPDT -Drvmdk -DPART_TM4C1294NCPDT -DTARGET_IS_TM4C129_RA0
 -o .\flash\rtx_conf_cm.o --omf_browse .\flash\rtx_conf_cm.crf --depend .\flash\rtx_conf_cm.d "RTE\CMSIS\RTX_Conf_CM.c"

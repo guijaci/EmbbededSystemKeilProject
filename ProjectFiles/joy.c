@@ -23,6 +23,16 @@
 void joy_init(void){
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
+	
+	// Enable the GPIOC peripheral
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOC);
+	// Wait for the GPIOC module to be ready.
+	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOC));
+
+	// Initialize the GPIO pin configuration.
+	// Set pins as input, SW controlled.
+	GPIOPinTypeGPIOInput(GPIO_PORTC_BASE,GPIO_PIN_6); // Joystick Z
+
 }
 
 static uint16_t analog_read(uint32_t port, uint8_t pin, uint32_t channel)
@@ -48,6 +58,10 @@ static uint16_t analog_read(uint32_t port, uint8_t pin, uint32_t channel)
 	//ADCSequenceDisable(ADC0_BASE, 3);
  
 	return result[0];
+}
+
+bool joy_read_z(){
+	return GPIOPinRead(GPIO_PORTC_BASE, GPIO_PIN_6) ? false : true;
 }
 
 uint16_t joy_read_x(void){

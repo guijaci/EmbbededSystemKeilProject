@@ -7,5 +7,6 @@ freq_t;
 extern void buzzer_init();
 extern void buzzer_read();
 extern void buzzer_frequency_set(freq_t);
+extern uint32_t buzzer_frequency_get();
 
 #endif //__BUZZER_H

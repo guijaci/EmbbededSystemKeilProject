@@ -20,6 +20,60 @@
 
 static uint32_t ui32SysClock;
 
+uint32_t current_freq = 600;
+
+
+
+void buzzer_frequency_set(freq_t div_freq){
+	
+	switch(div_freq){
+		case FREQ_0:
+		//	PWM_SYSCLK_DIV_64; 
+			PWMClockSet(PWM0_BASE, PWM_SYSCLK_DIV_64);
+			//	current_freq = 0;
+		break;
+		case FREQ_1:
+		//PWM_SYSCLK_DIV_32;
+			PWMClockSet(PWM0_BASE, PWM_SYSCLK_DIV_32);
+			//current_freq = 100;
+		break;
+		case FREQ_2:
+			//PWM_SYSCLK_DIV_16;
+			PWMClockSet(PWM0_BASE, PWM_SYSCLK_DIV_16);
+			//current_freq = 200;
+		break;
+		case FREQ_3:
+			//PWM_SYSCLK_DIV_8;
+			PWMClockSet(PWM0_BASE, PWM_SYSCLK_DIV_8);
+		//	current_freq = 300;
+		break;
+		case FREQ_4:
+			//PWM_SYSCLK_DIV_4;
+				PWMClockSet(PWM0_BASE, PWM_SYSCLK_DIV_4);
+			//current_freq = 400;
+		break;
+		case FREQ_5:
+			//PWM_SYSCLK_DIV_2;
+				PWMClockSet(PWM0_BASE, PWM_SYSCLK_DIV_2);
+			//current_freq = 500;
+		break;
+		case FREQ_6:
+			//PWM_SYSCLK_DIV_64;
+				PWMClockSet(PWM0_BASE, PWM_SYSCLK_DIV_64);
+			//current_freq = 600;
+	}
+	
+	// Sets the PWM clock configuration
+	// if you change DIV_64 to another value, it changes the frequency
+	PWMClockSet(PWM0_BASE, div_freq);
+	
+}
+
+uint32_t buzzer_frequency_get(){
+	return current_freq;
+}
+
+
 void buzzer_init(){
 	ui32SysClock = 120000000; // 120MHz
 	
@@ -30,45 +84,10 @@ void buzzer_init(){
 	// Wait for the PWM0 module to be ready
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);
 	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF));
-	
-}
-
-void buzzer_frequency_set(freq_t div_freq){
-	
-	switch(div_freq){
-		case FREQ_0:
-			PWM_SYSCLK_DIV_64;
-		break;
-		case FREQ_1:
-			PWM_SYSCLK_DIV_32;
-		break;
-		case FREQ_2:
-			PWM_SYSCLK_DIV_16;
-		break;
-		case FREQ_3:
-			PWM_SYSCLK_DIV_8;
-		break;
-		case FREQ_4:
-			PWM_SYSCLK_DIV_4;
-		break;
-		case FREQ_5:
-			PWM_SYSCLK_DIV_2;
-		break;
-		case FREQ_6:
-			PWM_SYSCLK_DIV_1;
-	}
-	
-	// Sets the PWM clock configuration
-	// if you change DIV_64 to another value, it changes the frequency
-	PWMClockSet(PWM0_BASE, div_freq);
-	
-}
-
-void buzzer_read(){
   // Configure PIN for use by the PWM peripheral
 	GPIOPinTypePWM(GPIO_PORTF_BASE, GPIO_PIN_1);
 
-  buzzer_frequency_set(FREQ_6);
+  //buzzer_frequency_set(FREQ_0);
 	
 	// Configures the alternate function of a GPIO pin
 	// PF1_M0PWM1 --> piezo buzzer
@@ -103,6 +122,18 @@ void buzzer_read(){
 	PWMPulseWidthSet(PWM0_BASE, PWM_OUT_1, 3500);
 
 	// Enables the timer/counter for a PWM generator block
-	PWMGenEnable(PWM0_BASE, PWM_GEN_0);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	PWMGenEnable(PWM0_BASE, PWM_GEN_0);
+	
+	
+//	buzzer_frequency_set(FREQ_0);
 	
 }
