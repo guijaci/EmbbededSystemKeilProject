@@ -77,23 +77,12 @@ servo_init(){
 	TimerControlLevel(TIMER3_BASE, TIMER_B, true);
 	TimerUpdateMode(TIMER3_BASE, TIMER_B, TIMER_UP_MATCH_TIMEOUT);
 
-	//O periodo máximo para o timer PWM sem prescaler Tm é 0xFFFF / 16MHz ~= 4ms
-	//Para chegar em 20ms, multiplicamos esse valor por cinco (cada unidade no prescale p 
-	//aumenta em 4ms o Tm, portanto: p = 4 -> 20ms). No entanto, o duty cycle 
-	//máximo DCm reduzira proporcionalmente ao p, pois o período em alta máximo Hm é fixo em 4ms:
-	//  p		Hm/Tm [ms]		DCm [%]
-	//	0	->	4/4  		->	100
-	//  1	->	4/8  		->	 50
-	//  2	->	4/12 		->	 33
-	//  3	->	4/16		->	 25
-	//  4	->	4/20 		->	 20
-	//Como no PPM o duty cycle máximo é 10%, isto p = 4 é suficiente
 	TimerPrescaleSet(TIMER3_BASE, TIMER_B, 4);
 
 	//Período 2ms
-	g_ui16Period = (uint16_t) (CLK_F/MAX_F);
+	g_ui16Period = 64000;
 	//Periodo minimo 1ms = 2/2ms
-	g_ui16perMin = g_ui16Period>>1;
+	g_ui16perMin = 16000;
 	duty_cycle = g_ui16perMin;
 		
 	TimerLoadSet(TIMER3_BASE, TIMER_B, g_ui16Period);

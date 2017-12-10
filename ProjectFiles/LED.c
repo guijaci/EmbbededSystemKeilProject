@@ -14,14 +14,14 @@
  *----------------------------------------------------------------------------*/
 
 #include <TM4C129.h>
-#include "LED.h"
+#include "led.h"
 
 const uint32_t led_mask[] = { 1UL << 1, 1UL << 0, 1UL << 4, 1UL << 0  };
 
 /*----------------------------------------------------------------------------
   initialize LED Pins (GPION1, GPION0, GPIOF0, GPIOF4)
  *----------------------------------------------------------------------------*/
-void LED_Initialize (void) {
+void led_init (void) {
 
   /* Enable clock and init GPIO outputs */
   SYSCTL->RCGCGPIO |= (1UL << 12) | (1UL << 5);  /* enable clock for GPIOs    */
@@ -35,7 +35,7 @@ void LED_Initialize (void) {
 /*----------------------------------------------------------------------------
   Function that turns on requested LED
  *----------------------------------------------------------------------------*/
-void LED_On (uint32_t num) {
+void led_on (uint8_t num) {
 
   if (num < LED_NUM) {
     switch (num) {
@@ -50,7 +50,7 @@ void LED_On (uint32_t num) {
 /*----------------------------------------------------------------------------
   Function that turns off requested LED
  *----------------------------------------------------------------------------*/
-void LED_Off (uint32_t num) {
+void led_off (uint8_t num) {
 
   if (num < LED_NUM) {
     switch (num) {
@@ -65,14 +65,14 @@ void LED_Off (uint32_t num) {
 /*----------------------------------------------------------------------------
   Function that outputs value to LEDs
  *----------------------------------------------------------------------------*/
-void LED_Out(uint32_t value) {
+void led_write(uint8_t value) {
   int i;
 
   for (i = 0; i < LED_NUM; i++) {
     if (value & (1<<i)) {
-      LED_On (i);
+      led_on (i);
     } else {
-      LED_Off(i);
+      led_off(i);
     }
   }
 }

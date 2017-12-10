@@ -1,10 +1,10 @@
 --cpu=Cortex-M4.fp
-".\flash\led.o"
 ".\flash\blinky.o"
 ".\flash\buzzer.o"
 ".\flash\accel.o"
 ".\flash\buttons.o"
 ".\flash\cfaf128x128x16.o"
+".\flash\led.o"
 ".\flash\joy.o"
 ".\flash\mic.o"
 ".\flash\opt.o"

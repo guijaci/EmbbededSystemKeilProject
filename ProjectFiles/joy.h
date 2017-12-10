@@ -17,6 +17,6 @@
 extern void joy_init(void);
 extern uint16_t joy_read_x(void);
 extern uint16_t joy_read_y(void);
-extern bool joy_read_z();
+extern bool joy_read_center();
 
 #endif // __JOY_H__

@@ -381,11 +381,6 @@
           <GroupName>Source Files</GroupName>
           <Files>
             <File>
-              <FileName>LED.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\LED.c</FilePath>
-            </File>
-            <File>
               <FileName>Blinky.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Blinky.c</FilePath>
@@ -424,6 +419,11 @@
               <FileName>cfaf128x128x16.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\cfaf128x128x16.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\led.c</FilePath>
             </File>
             <File>
               <FileName>joy.c</FileName>
@@ -816,7 +816,7 @@
               <MiscControls></MiscControls>
               <Define>rvmdk PART_TM4C1294NCPDT TARGET_IS_TM4C129_RA0</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\EmbbededSystemKeilProject</IncludePath>
+              <IncludePath>..\</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -861,11 +861,6 @@
           <GroupName>Source Files</GroupName>
           <Files>
             <File>
-              <FileName>LED.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\LED.c</FilePath>
-            </File>
-            <File>
               <FileName>Blinky.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Blinky.c</FilePath>
@@ -904,6 +899,11 @@
               <FileName>cfaf128x128x16.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\cfaf128x128x16.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\led.c</FilePath>
             </File>
             <File>
               <FileName>joy.c</FileName>

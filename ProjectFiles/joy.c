@@ -60,7 +60,7 @@ static uint16_t analog_read(uint32_t port, uint8_t pin, uint32_t channel)
 	return result[0];
 }
 
-bool joy_read_z(){
+bool joy_read_center(){
 	return GPIOPinRead(GPIO_PORTC_BASE, GPIO_PIN_6) ? false : true;
 }
 

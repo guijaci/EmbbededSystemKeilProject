@@ -19,9 +19,9 @@
 /* LED Definitions */
 #define LED_NUM     4                        /* Number of user LEDs          */
 
-extern void LED_Initialize(void);
-extern void LED_On        (uint32_t num);
-extern void LED_Off       (uint32_t num);
-extern void LED_Out       (uint32_t value);
+extern void led_init(void);
+extern void led_on        (uint8_t num);
+extern void led_off       (uint8_t num);
+extern void led_write			(uint8_t value);
 
 #endif
