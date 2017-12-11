@@ -86,38 +86,38 @@ static uint32_t g_ui32SysClock;
 
 void rgb_write_r(uint8_t r){
 	static bool enabled = false;
-	if(!r &&  enabled) {
+	if(r <  2 &&  enabled) {
 		MAP_PWMOutputState(RGB_PWM_BASE, RGB_PWM_OUT_R_BIT, false);
 	}	
 	PWMDutyCicle(RGB_PWM_OUT_R, PWMWidthR(r));
-	if( r && !enabled) { 
+	if(r >= 2 && !enabled) { 
 		MAP_PWMOutputState(RGB_PWM_BASE, RGB_PWM_OUT_R_BIT, true);
 	}
-	enabled = r ? true : false;
+	enabled = r >= 2 ? true : false;
 }
 
 void rgb_write_g(uint8_t g){
 	static bool enabled = false;
-	if(!g &&  enabled) {
+	if(g <  2 &&  enabled) {
 		MAP_PWMOutputState(RGB_PWM_BASE, RGB_PWM_OUT_G_BIT, false);
 	}	
 	PWMDutyCicle(RGB_PWM_OUT_G, PWMWidthG(g));
-	if( g && !enabled) {
+	if(g >= 2 && !enabled) {
 		MAP_PWMOutputState(RGB_PWM_BASE, RGB_PWM_OUT_G_BIT, true);
 	}
-	enabled = g ? true : false;
+	enabled = g >= 2 ? true : false;
 }
 
 void rgb_write_b(uint8_t b){
 	static bool enabled = false;
-	if(!b &&  enabled) {
+	if(b <  2 &&  enabled) {
 		MAP_PWMOutputState(RGB_PWM_BASE, RGB_PWM_OUT_B_BIT, false);
 	}
 	PWMDutyCicle(RGB_PWM_OUT_B, PWMWidthB(b));
-	if( b && !enabled) {		
+	if(b >= 2 && !enabled) {		
 		MAP_PWMOutputState(RGB_PWM_BASE, RGB_PWM_OUT_B_BIT, true);
 	}
-	enabled = b ? true : false;
+	enabled = b >= 2 ? true : false;
 }
 
 void rgb_write(uint8_t r, uint8_t g, uint8_t b){
@@ -128,9 +128,9 @@ void rgb_write(uint8_t r, uint8_t g, uint8_t b){
 
 void rgb_write_color(uint32_t rgb){
 	rgb_write(
-		GetR(rgb),
-		GetG(rgb),
-		GetB(rgb));
+		rgb_color_r(rgb),
+		rgb_color_g(rgb),
+		rgb_color_b(rgb));
 }
 
 void rgb_init(){

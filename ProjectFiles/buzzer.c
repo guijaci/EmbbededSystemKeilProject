@@ -117,7 +117,7 @@ buzzer_init(){
 	// using.
 	
 	buzzer_per_set(0xFFFF);
-	buzzer_vol_set(0xEFFF);
+	buzzer_vol_set(0x7FFF);
 	buzzer_write(false);
 	
 	PWMOutputInvert(PWM0_BASE, PWM_OUT_1_BIT, false);

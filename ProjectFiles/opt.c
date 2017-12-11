@@ -187,7 +187,7 @@ read_reg(uint8_t add){
 	return (data & 0x00FF)<<8 | (data & 0xFF00)>>8;
 }
 
-int16_t opt_read(){
+uint16_t opt_read(){
 	return read_reg(OPT3001_RESULT);
 }
 
@@ -198,7 +198,7 @@ temp_int_callback(void){
 	g_sentFlag = true;
 }
 
-uint32_t opt_get_lux()
+uint32_t opt_read_lux()
 {
     uint16_t exponent = 0;
     uint32_t result = 0;
@@ -211,40 +211,40 @@ uint32_t opt_get_lux()
     //convert raw readings to LUX
     switch(exponent){
     case 0: //*0.015625
-        result = result>>6;
+        result = result<<0;
         break;
     case 1: //*0.03125
-        result = result>>5;
-        break;
-    case 2: //*0.0625
-        result = result>>4;
-        break;
-    case 3: //*0.125
-        result = result>>3;
-        break;
-    case 4: //*0.25
-        result = result>>2;
-        break;
-    case 5: //*0.5
-        result = result>>1;
-        break;
-    case 6:
-        result = result;
-        break;
-    case 7: //*2
         result = result<<1;
         break;
-    case 8: //*4
+    case 2: //*0.0625
         result = result<<2;
         break;
-    case 9: //*8
+    case 3: //*0.125
         result = result<<3;
         break;
-    case 10: //*16
+    case 4: //*0.25
         result = result<<4;
         break;
-    case 11: //*32
+    case 5: //*0.5
         result = result<<5;
+        break;
+    case 6:
+        result = result<<6;
+        break;
+    case 7: //*2
+        result = result<<7;
+        break;
+    case 8: //*4
+        result = result<<8;
+        break;
+    case 9: //*8
+        result = result<<9;
+        break;
+    case 10: //*16
+        result = result<<10;
+        break;
+    case 11: //*32
+        result = result<<11;
         break;
     }
     return result;

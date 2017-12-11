@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\base_project.uvprojx
-Project File Date:  12/10/2017
+Project File Date:  12/11/2017
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -30,17 +30,17 @@ Rebuild Project 'base_project' - Target 'TM4C129 Flash'
 compiling Blinky.c...
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\rgb.h(33): warning:  #1-D: last line of file ends without a newline
   #endif //__RGB_H__
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.h(17): warning:  #1295-D: Deprecated declaration servo_init - give arg types
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.h(12): warning:  #1295-D: Deprecated declaration servo_init - give arg types
   extern void servo_init();
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.h(10): warning:  #1-D: last line of file ends without a newline
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.h(12): warning:  #1-D: last line of file ends without a newline
   #endif //__TEMP_H__
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(4): warning:  #1295-D: Deprecated declaration opt_init - give arg types
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(6): warning:  #1295-D: Deprecated declaration opt_init - give arg types
   extern void  opt_init();
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(5): warning:  #1295-D: Deprecated declaration opt_read - give arg types
-  extern int16_t opt_read();
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(6): warning:  #1295-D: Deprecated declaration opt_get_lux - give arg types
-  extern uint32_t opt_get_lux();
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(8): warning:  #1-D: last line of file ends without a newline
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(7): warning:  #1295-D: Deprecated declaration opt_read - give arg types
+  extern uint16_t opt_read();
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(8): warning:  #1295-D: Deprecated declaration opt_read_lux - give arg types
+  extern uint32_t opt_read_lux();
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(10): warning:  #1-D: last line of file ends without a newline
   #endif //__OPT_H__
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\buttons.h(5): warning:  #1295-D: Deprecated declaration button_init - give arg types
   extern void button_init();
@@ -61,12 +61,12 @@ C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\j
 ool joy_read_center();
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\mic.h(19): warning:  #1-D: last line of file ends without a newline
   #endif //__MIC_H__
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(376): warning:  #177-D: variable "angle"  was declared but never referenced
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(413): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                sqr = (mic-.5)*2;
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(627): warning:  #177-D: variable "angle"  was declared but never referenced
         int16_t angle = 0, inc = 1;
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(376): warning:  #177-D: variable "inc"  was declared but never referenced
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(627): warning:  #177-D: variable "inc"  was declared but never referenced
         int16_t angle = 0, inc = 1;
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\Blinky.c(53): warning:  #177-D: variable "S01"  was declared but never referenced
-  static long double S01 = 0;
 Blinky.c: 18 warnings, 0 errors
 compiling buzzer.c...
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\buzzer.h(4): warning:  #1295-D: Deprecated declaration buzzer_init - give arg types
@@ -119,13 +119,13 @@ C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\m
   }
 mic.c: 2 warnings, 0 errors
 compiling opt.c...
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(4): warning:  #1295-D: Deprecated declaration opt_init - give arg types
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(6): warning:  #1295-D: Deprecated declaration opt_init - give arg types
   extern void  opt_init();
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(5): warning:  #1295-D: Deprecated declaration opt_read - give arg types
-  extern int16_t opt_read();
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(6): warning:  #1295-D: Deprecated declaration opt_get_lux - give arg types
-  extern uint32_t opt_get_lux();
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(8): warning:  #1-D: last line of file ends without a newline
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(7): warning:  #1295-D: Deprecated declaration opt_read - give arg types
+  extern uint16_t opt_read();
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(8): warning:  #1295-D: Deprecated declaration opt_read_lux - give arg types
+  extern uint32_t opt_read_lux();
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.h(10): warning:  #1-D: last line of file ends without a newline
   #endif //__OPT_H__
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\opt.c(105): warning:  #128-D: loop is not reachable
                 while(i < n){
@@ -149,13 +149,13 @@ C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\r
   }
 rgb.c: 2 warnings, 0 errors
 compiling servo.c...
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.h(17): warning:  #1295-D: Deprecated declaration servo_init - give arg types
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.h(12): warning:  #1295-D: Deprecated declaration servo_init - give arg types
   extern void servo_init();
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.c(47): warning:  #550-D: variable "g_ui32SysClock"  was set but never used
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\servo.c(46): warning:  #550-D: variable "g_ui32SysClock"  was set but never used
   static uint32_t g_ui32SysClock;
 servo.c: 2 warnings, 0 errors
 compiling temp.c...
-C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.h(10): warning:  #1-D: last line of file ends without a newline
+C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.h(12): warning:  #1-D: last line of file ends without a newline
   #endif //__TEMP_H__
 C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\temp.c(113): warning:  #128-D: loop is not reachable
                 while(i < n){
@@ -169,11 +169,10 @@ C:\Users\Guilherme\Documents\Keil\Projects\embbededsystem_project\ProjectFiles\t
   static uint16_t g_mid, g_did, g_timeout_count;
 temp.c: 6 warnings, 0 errors
 compiling RTX_Conf_CM.c...
-compiling retarget_io.c...
 assembling startup_TM4C129.s...
 compiling system_TM4C129.c...
 linking...
-Program Size: Code=21532 RO-data=3400 RW-data=1644 ZI-data=9892  
+Program Size: Code=25696 RO-data=3416 RW-data=1644 ZI-data=10588  
 ".\Flash\base_project.axf" - 0 Error(s), 56 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -185,14 +184,6 @@ Package Vendor: ARM
    * Component: Keil RTX Version: 4.81.0
    * Component: CORE Version: 5.0.1
    * Component: RTOS Version: 1.0.0
-
-Package Vendor: Keil
-                http://www.keil.com/pack/Keil.ARM_Compiler.1.3.1.pack
-                Keil.ARM_Compiler.1.3.1
-                Keil ARM Compiler extensions for ARM Compiler 5 and ARM Compiler 6
-   * Component: STDOUT Variant: ITM Version: 1.2.0
-   * Component: STDIN Variant: ITM Version: 1.2.0
-   * Component: STDERR Variant: ITM Version: 1.2.0
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.TM4C_DFP.1.1.0.pack
@@ -213,15 +204,6 @@ Package Vendor: Keil
       Source file:   Device\Source\system_TM4C129.c
       Source file:   Device\Source\ARM\startup_TM4C129.s
 
-   * Component: Keil.ARM Compiler::Compiler:I/O:STDOUT:ITM:1.2.0
-      Source file:   Source\retarget_io.c
-
-   * Component: Keil.ARM Compiler::Compiler:I/O:STDIN:ITM:1.2.0
-      Source file:   Source\retarget_io.c
-
-   * Component: Keil.ARM Compiler::Compiler:I/O:STDERR:ITM:1.2.0
-      Source file:   Source\retarget_io.c
-
    * Component: ARM::CMSIS:RTOS:Keil RTX:4.81.0
       Source file:   CMSIS\RTOS\RTX\UserCodeTemplates\Thread.c
       Source file:   CMSIS\RTOS\RTX\SRC\ARM\SVC_Table.s
@@ -240,7 +222,7 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.0.1
 
    * Component: ::CMSIS:RTOS:1.0.0 (API)
-Build Time Elapsed:  00:00:09
+Build Time Elapsed:  00:00:10
 </pre>
 </body>
 </html>

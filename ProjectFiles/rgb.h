@@ -14,14 +14,14 @@
 #define RGB_CYAN					0x0000FFFF
 #define RGB_MAGENTA				0x00FF00FF
 
-#define GetR(c)	((c & 0x00FF0000) >> 16 )
-#define GetG(c) ((c & 0x0000FF00) >>  8 )
-#define GetB(c)	( c & 0x000000FF        )
+#define rgb_color_r(c)	(((c) & 0x00FF0000) >> 16 )
+#define rgb_color_g(c)  (((c) & 0x0000FF00) >>  8 )
+#define rgb_color_b(c)	( (c) & 0x000000FF        )
 
-#define ApplyLightness(c, i)												\
-		((((uint8_t) (GetR(c) * i)) & 0xFF) << 16)	|		\
-		((((uint8_t) (GetG(c) * i)) & 0xFF) << 8 )	|		\
-		 (((uint8_t) (GetB(c) * i)) & 0xFF)						
+#define rgb_color_intensity(c, i)														\
+		((((uint8_t) (rgb_color_r(c) * (i))) & 0xFF) << 16)	|		\
+		((((uint8_t) (rgb_color_g(c) * (i))) & 0xFF) << 8 )	|		\
+		 (((uint8_t) (rgb_color_b(c) * (i))) & 0xFF)						
 
 extern void rgb_write_r(uint8_t r);
 extern void rgb_write_g(uint8_t g);

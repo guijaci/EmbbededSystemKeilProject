@@ -3,12 +3,11 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include "inc/hw_memmap.h"
-#include "driverlib/rom.h"
 #include "driverlib/pin_map.h"
 #include "driverlib/gpio.h"
 #include "driverlib/sysctl.h"
 #include "driverlib/timer.h"
-
+#include "driverlib/rom_map.h"
 #include "servo.h"
 
 #ifndef __SysCtlClockGet
@@ -49,7 +48,7 @@ static uint16_t g_ui16Period, g_ui16perMin;
 
 void
 servo_write(uint16_t angle){
-	TimerMatchSet(TIMER3_BASE, TIMER_B, g_ui16perMin*angle/0xFFFF + g_ui16perMin);
+	MAP_TimerMatchSet(TIMER3_BASE, TIMER_B, g_ui16perMin*angle/0xFFFF + g_ui16perMin);
 }
 
 void 
@@ -59,25 +58,25 @@ servo_init(){
 	//Configura/ Recupera Clock
 	g_ui32SysClock = __SysCtlClockGet();
 	
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER3);
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOM);
+	MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_TIMER3);
+	MAP_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOM);
 	
-	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_TIMER3) &
-				!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOM));
+	while(!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_TIMER3) &
+				!MAP_SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOM));
 
-	GPIOPinConfigure(GPIO_PM3_T3CCP1);
-	GPIOPinTypeTimer(GPIO_PORTM_BASE, GPIO_PIN_3);
+	MAP_GPIOPinConfigure(GPIO_PM3_T3CCP1);
+	MAP_GPIOPinTypeTimer(GPIO_PORTM_BASE, GPIO_PIN_3);
 
 	//Frequencia 16MHz
-	TimerClockSourceSet(TIMER3_BASE, TIMER_CLOCK_PIOSC);
+	MAP_TimerClockSourceSet(TIMER3_BASE, TIMER_CLOCK_PIOSC);
 			
 	//Configura timer como par (A/B) e PWM
-	TimerConfigure(TIMER3_BASE, TIMER_CFG_SPLIT_PAIR | TIMER_CFG_B_PWM);
+	MAP_TimerConfigure(TIMER3_BASE, TIMER_CFG_SPLIT_PAIR | TIMER_CFG_B_PWM);
 	
-	TimerControlLevel(TIMER3_BASE, TIMER_B, true);
+	MAP_TimerControlLevel(TIMER3_BASE, TIMER_B, true);
 	TimerUpdateMode(TIMER3_BASE, TIMER_B, TIMER_UP_MATCH_TIMEOUT);
 
-	TimerPrescaleSet(TIMER3_BASE, TIMER_B, 4);
+	MAP_TimerPrescaleSet(TIMER3_BASE, TIMER_B, 4);
 
 	//Período 2ms
 	g_ui16Period = 64000;
@@ -85,7 +84,7 @@ servo_init(){
 	g_ui16perMin = 16000;
 	duty_cycle = g_ui16perMin;
 		
-	TimerLoadSet(TIMER3_BASE, TIMER_B, g_ui16Period);
-	TimerMatchSet(TIMER3_BASE, TIMER_B, duty_cycle);
-	TimerEnable(TIMER3_BASE, TIMER_B);
+	MAP_TimerLoadSet(TIMER3_BASE, TIMER_B, g_ui16Period);
+	MAP_TimerMatchSet(TIMER3_BASE, TIMER_B, duty_cycle);
+	MAP_TimerEnable(TIMER3_BASE, TIMER_B);
 }

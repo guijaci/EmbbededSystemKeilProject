@@ -11,7 +11,7 @@
 //..............................................................................
 //Normalize read value using ADC resolution 4096
 //..............................................................................
-#define mic_norm(v) (mic_read(v)/(float)0xFFF)
+#define mic_norm() (mic_read()/(float)0xFFF)
 
 extern void mic_init(void);
 extern uint16_t mic_read(void);
