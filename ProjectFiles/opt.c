@@ -276,10 +276,13 @@ opt_init(){
 	I2CMasterGlitchFilterConfigSet(I2C0_BASE, I2C_MASTER_GLITCH_FILTER_8);
 	I2CMasterInitExpClk(I2C0_BASE, g_ui32SysClock, false);
 	
+	//habilita interrupção
 	I2CMasterIntEnableEx(I2C0_BASE, I2C_MASTER_INT_DATA_NACK);
+	//Direciona para um registrador
 	I2CIntRegister(I2C0_BASE, temp_int_callback);
+	//habilita interrupções
 	IntEnable(INT_I2C0_TM4C129);
-	
+	//
 	HWREG(I2C0_BASE + I2C_O_FIFOCTL) = 80008000;
 	
 	I2CMasterEnable(I2C0_BASE);

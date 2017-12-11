@@ -143,9 +143,11 @@ receive_multiple(uint8_t *b, uint8_t n){
 			return receive_single(b);
 		return I2C_MASTER_ERR_NONE;
 	}
-	
+	//define master e slave e tipo de operação
 	I2CMasterSlaveAddrSet(I2C0_BASE, TMP006_I2CADDR, I2C_READ);
+	//define  tamanho numero de bytes a serem enviados
 	I2CMasterBurstLengthSet(I2C0_BASE, n);
+	//espera por envio de dados do barramento I2C
 	while(I2CMasterBusBusy(I2C0_BASE));
 	//Pelo menos 600ns
 	start_stop_delay();	
@@ -156,7 +158,9 @@ receive_multiple(uint8_t *b, uint8_t n){
 			start_stop_delay();	
 			__I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_RECEIVE_CONT);	
 			default:
+			//espera por envio de dados do barramento I2C
 			while(I2CMasterBusy(I2C0_BASE));
+			//verificaão de erro
 			e = I2CMasterErr(I2C0_BASE);
 			if(is_error(e)){
 				//Pelo menos 600ns
@@ -164,6 +168,7 @@ receive_multiple(uint8_t *b, uint8_t n){
 				__I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_RECEIVE_ERROR_STOP);	
 				return e;
 			}
+			//receve os dados
 			b[i++] = I2CMasterDataGet(I2C0_BASE);
 			//Pelo menos 600ns
 			start_stop_delay();
@@ -214,7 +219,7 @@ void
 temp_init(){
 	uint64_t temp = 0;
 	g_ui32SysClock = __SysCtlClockGet();
-	
+	//habilita ports B e P e Barramento I2C
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C0);
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOP);
@@ -227,9 +232,10 @@ temp_init(){
 	
 	GPIOPinTypeGPIOInput(GPIO_PORTP_BASE, GPIO_PIN_2);
 	
+	//preaparando para inicializão dos pinos do I2C
 	GPIOPinConfigure(GPIO_PB2_I2C0SCL);
 	GPIOPinConfigure(GPIO_PB3_I2C0SDA);
-	
+	//inicializando pinos I2C
 	GPIOPinTypeI2CSCL(GPIO_PORTB_BASE, GPIO_PIN_2);
 	GPIOPinTypeI2C(GPIO_PORTB_BASE, GPIO_PIN_3);
 	
@@ -240,7 +246,7 @@ temp_init(){
 	I2CMasterIntEnableEx(I2C0_BASE, I2C_MASTER_INT_DATA_NACK);
 	I2CIntRegister(I2C0_BASE, temp_int_callback);
 	IntEnable(INT_I2C0_TM4C129);
-	
+	// limpa o Buffer de dados
 	HWREG(I2C0_BASE + I2C_O_FIFOCTL) = 80008000;
 	
 	I2CMasterEnable(I2C0_BASE);
