@@ -260,7 +260,7 @@ void Switch_Off (unsigned char led) {
  *---------------------------------------------------------------------------*/
 void thread_status(uint8_t n, bool status)  {
 	osMutexWait (mid_display, osWaitForever);
-		GrContextForegroundSet(&sContext, status ? ClrGreen : ClrRed);
+		GrContextForegroundSet(&sContext, status ? ClrLightGreen : ClrRed);
 		fill_circle(4,n);
 	osMutexRelease (mid_display);
 }
@@ -383,7 +383,7 @@ void t_rgb(void const *argument){
 			GrContextForegroundSet(&sContext, ClrRed);
 			GrStringDraw(&sContext,(char*)pbufx, -1, 
 				(sContext.psFont->ui8MaxWidth)*6,  (sContext.psFont->ui8Height+2)*2, true);
-			GrContextForegroundSet(&sContext, ClrGreen);
+			GrContextForegroundSet(&sContext, ClrLightGreen);
 			GrStringDraw(&sContext,(char*)pbufy, -1, 
 				(sContext.psFont->ui8MaxWidth)*11, (sContext.psFont->ui8Height+2)*2, true);
 			GrContextForegroundSet(&sContext, ClrBlue);
@@ -445,7 +445,7 @@ void t_light(void const *argument){
 			lux = opt_fread_lux();
 		osMutexRelease (mid_i2c);
 		
-		floatToString(lux, pbuf, 10, 10, 2, 3);
+		floatToString(lux, pbuf, 10, 10, 4, 3);
 		
 		osMutexWait (mid_display, osWaitForever);
 			GrContextBackgroundSet(&sContext, ClrBlack);
@@ -491,11 +491,11 @@ void t_servo(void const *argument){
 	osEvent evt;
 	
 	while(1){
-		evt = osMailGet(mqid_joy_to_rgb, osWaitForever);
+		evt = osMailGet(mqid_joy_to_servo, osWaitForever);
 		if(evt.status == osEventMail){
 			mail_msg_joy = (joy_reading_t*) evt.value.p;
 				joy 		= mail_msg_joy->dirs.y;
-			osMailFree(mqid_joy_to_rgb, mail_msg_joy);
+			osMailFree(mqid_joy_to_servo, mail_msg_joy);
 		}
 		thread_status(1, true);
 
@@ -593,11 +593,11 @@ void t_joy(){
 			mail_msg->center = center;
 		osMailPut(mqid_joy_to_rgb, mail_msg);
 
-		mail_msg = (joy_reading_t*) osMailAlloc(mqid_joy_to_rgb, osWaitForever);
+		mail_msg = (joy_reading_t*) osMailAlloc(mqid_joy_to_servo, osWaitForever);
 			mail_msg->dirs.x = x;
 			mail_msg->dirs.y = y;
 			mail_msg->center = center;
-		osMailPut(mqid_joy_to_rgb, mail_msg);
+		osMailPut(mqid_joy_to_servo, mail_msg);
 
 		thread_status(7, false);
 		osDelay(20);
