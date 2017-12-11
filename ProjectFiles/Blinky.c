@@ -260,7 +260,7 @@ void Switch_Off (unsigned char led) {
  *---------------------------------------------------------------------------*/
 void thread_status(uint8_t n, bool status)  {
 	osMutexWait (mid_display, osWaitForever);
-		GrContextForegroundSet(&sContext, status ? ClrGreen : ClrRed);
+		GrContextForegroundSet(&sContext, status ? ClrLightGreen : ClrRed);
 		fill_circle(4,n);
 	osMutexRelease (mid_display);
 }
@@ -383,7 +383,7 @@ void t_rgb(void const *argument){
 			GrContextForegroundSet(&sContext, ClrRed);
 			GrStringDraw(&sContext,(char*)pbufx, -1, 
 				(sContext.psFont->ui8MaxWidth)*6,  (sContext.psFont->ui8Height+2)*2, true);
-			GrContextForegroundSet(&sContext, ClrGreen);
+			GrContextForegroundSet(&sContext, ClrLightGreen);
 			GrStringDraw(&sContext,(char*)pbufy, -1, 
 				(sContext.psFont->ui8MaxWidth)*11, (sContext.psFont->ui8Height+2)*2, true);
 			GrContextForegroundSet(&sContext, ClrBlue);
@@ -445,7 +445,7 @@ void t_light(void const *argument){
 			lux = opt_fread_lux();
 		osMutexRelease (mid_i2c);
 		
-		floatToString(lux, pbuf, 10, 10, 2, 3);
+		floatToString(lux, pbuf, 10, 10, 4, 3);
 		
 		osMutexWait (mid_display, osWaitForever);
 			GrContextBackgroundSet(&sContext, ClrBlack);
