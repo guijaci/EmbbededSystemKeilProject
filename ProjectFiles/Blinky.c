@@ -491,11 +491,11 @@ void t_servo(void const *argument){
 	osEvent evt;
 	
 	while(1){
-		evt = osMailGet(mqid_joy_to_rgb, osWaitForever);
+		evt = osMailGet(mqid_joy_to_servo, osWaitForever);
 		if(evt.status == osEventMail){
 			mail_msg_joy = (joy_reading_t*) evt.value.p;
 				joy 		= mail_msg_joy->dirs.y;
-			osMailFree(mqid_joy_to_rgb, mail_msg_joy);
+			osMailFree(mqid_joy_to_servo, mail_msg_joy);
 		}
 		thread_status(1, true);
 
@@ -593,11 +593,11 @@ void t_joy(){
 			mail_msg->center = center;
 		osMailPut(mqid_joy_to_rgb, mail_msg);
 
-		mail_msg = (joy_reading_t*) osMailAlloc(mqid_joy_to_rgb, osWaitForever);
+		mail_msg = (joy_reading_t*) osMailAlloc(mqid_joy_to_servo, osWaitForever);
 			mail_msg->dirs.x = x;
 			mail_msg->dirs.y = y;
 			mail_msg->center = center;
-		osMailPut(mqid_joy_to_rgb, mail_msg);
+		osMailPut(mqid_joy_to_servo, mail_msg);
 
 		thread_status(7, false);
 		osDelay(20);
