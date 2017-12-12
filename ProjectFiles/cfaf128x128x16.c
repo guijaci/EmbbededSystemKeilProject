@@ -1,7 +1,10 @@
-//*****************************************************************************
+//..............................................................................
 //
-// Author: Guilherme Jacichen
-// E-mail: jacichen@alunos.utfpr.edu.br
+// Copyright (c) 2017 
+// Allan Patrick de Souza - <allansouza@alunos.utfpr.edu.br>
+// Guilherme Jacichen     - <jacichen@alunos.utfpr.edu.br>
+// Jessica Isoton Sampaio - <jessicasampaio@alunos.utfpr.edu.br>
+// Mariana Carrião        - <mcarriao@alunos.utfpr.edu.br>
 //
 // cfaf128x128x16.c - Display driver for the Crystalfontz CFAF128128B-0145T
 //                  display with an ST7735S.  This version uses an SSI
@@ -11,7 +14,9 @@
 //									ek-tm4c1294xl board, the cfal96x64x16 driver for the dk-tm4c123g
 //									board and the Energia's Screen_HX8353E driver for dk-tm4c1294xl board
 //
-//*****************************************************************************
+// All rights reserved. 
+// Software License Agreement
+//...............................................................................
 
 //*****************************************************************************
 //

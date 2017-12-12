@@ -11,16 +11,16 @@
 //..............................................................................
 //Normalize read value using ADC resolution 4096
 //..............................................................................
-#define accel_read_norm_x(v) (accel_read_x(v)/(float)0xFFF)
-#define accel_read_norm_y(v) (accel_read_y(v)/(float)0xFFF)
-#define accel_read_norm_z(v) (accel_read_z(v)/(float)0xFFF)
+#define accel_read_norm_x() (accel_read_x()/(float)0xFFF)
+#define accel_read_norm_y() (accel_read_y()/(float)0xFFF)
+#define accel_read_norm_z() (accel_read_z()/(float)0xFFF)
 	
 //..............................................................................
 //Covert value to voltage using Vref 3.3V
 //..............................................................................	
-#define accel_read_voltage_x(v) (accel_read_norm_x(v)*3.3)
-#define accel_read_voltage_y(v) (accel_read_norm_y(v)*3.3)
-#define accel_read_voltage_z(v) (accel_read_norm_z(v)*3.3)
+#define accel_read_voltage_x() (accel_read_norm_x()*3.3)
+#define accel_read_voltage_y() (accel_read_norm_y()*3.3)
+#define accel_read_voltage_z() (accel_read_norm_z()*3.3)
 
 
 extern void accel_init(void);

@@ -11,8 +11,8 @@
 //..............................................................................
 //Normalize read value using ADC resolution 4096
 //..............................................................................
-#define joy_read_norm_x(v) (joy_read_x(v)/(float)0xFFF)
-#define joy_read_norm_y(v) (joy_read_y(v)/(float)0xFFF)
+#define joy_read_norm_x() (joy_read_x()/(float)0xFFF)
+#define joy_read_norm_y() (joy_read_y()/(float)0xFFF)
 
 extern void joy_init(void);
 extern uint16_t joy_read_x(void);
