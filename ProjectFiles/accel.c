@@ -1,4 +1,5 @@
 //..............................................................................
+// adc.c - Driver for interfacing Kionix KXTC9-2050 accelerometer.
 //
 // Copyright (c) 2017 
 // Allan Patrick de Souza - <allansouza@alunos.utfpr.edu.br>

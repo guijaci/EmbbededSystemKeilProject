@@ -1,5 +1,5 @@
 //..............................................................................
-//Accelerometer header for using servo motor driver functions.
+//Accelerometer header for using LED RGB driver functions.
 //
 // Copyright (c) 2017 Allan Patrick de Souza, Guilherme Jacichen, Jessica Isoton Sampaio,
 // Mariana Carrião.  All rights reserved.
