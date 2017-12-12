@@ -1,4 +1,7 @@
-SET PATH=C:\Keil_v5\ARM\ARMCC\Bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Java\jdk1.8.0_144;C:\Program Files (x86)\Java\jdk1.8.0_144\bin;C:\Program Files (x86)\Java\jdk1.8.0_144\jre;C:\Program Files\PuTTY\;C:\Program Files\SourceGear\Common\DiffMerge\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\dotnet\;C:\Users\Guilherme\AppData\Local\Microsoft\WindowsApps;C:\Users\Guilherme\AppData\Local\Android\sdk\tools;C:\Users\Guilherme\AppData\Local\Android\sdk\platforms;C:\Users\Guilherme\AppData\Local\Android\sdk\platform-tools;C:\Users\Guilherme\AppData\Local\GitHubDesktop\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;
+SET PATH=C:\Keil_v5\ARM\ARMCC\Bin;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\Apache Software Foundation\apache-maven-2.2.1\bin;C:\Program Files (x86)\Java\jre1.8.0_40;C:\Program Files\MATLAB\R2012b\runtime\win64;C:\Program Files\MATLAB\R2012b\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\Atmel\Flip 3.4.7\bin;C:\Program Files (x86)\Apache Software Foundation\apache-maven-2.2.1\bin;C:\Users\Allan Patrick\AppData\Local\GitHubDesktop\bin
+SET ARMCC5_ASMOPT=--diag_suppress=9931
+SET ARMCC5_CCOPT=--diag_suppress=9931
+SET ARMCC5_LINKOPT=--diag_suppress=9931
 SET CPU_TYPE=TM4C1294NCPDT
 SET CPU_VENDOR=Texas Instruments
 SET UV2_TARGET=TM4C129 Flash
@@ -9,11 +12,11 @@ SET CPU_CLOCK=0x07270E00
 "C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via ".\flash\buttons.__i"
 "C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via ".\flash\cfaf128x128x16.__i"
 "C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via ".\flash\led.__i"
-"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via ".\flash\joy.__i"
 "C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via ".\flash\mic.__i"
 "C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via ".\flash\opt.__i"
 "C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via ".\flash\rgb.__i"
 "C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via ".\flash\servo.__i"
+"C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via ".\flash\joy.__i"
 "C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via ".\flash\temp.__i"
 "C:\Keil_v5\ARM\ARMCC\Bin\ArmCC" --Via ".\flash\rtx_conf_cm.__i"
 "C:\Keil_v5\ARM\ARMCC\Bin\ArmAsm" --Via ".\flash\startup_tm4c129._ia"

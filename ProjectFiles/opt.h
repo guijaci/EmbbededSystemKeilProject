@@ -1,3 +1,17 @@
+//..............................................................................
+// temp.h - header for using OPT3001 driver functions .
+//
+// Copyright (c) 2017 
+// Allan Patrick de Souza - <allansouza@alunos.utfpr.edu.br>
+// Guilherme Jacichen     - <jacichen@alunos.utfpr.edu.br>
+// Jessica Isoton Sampaio - <jessicasampaio@alunos.utfpr.edu.br>
+// Mariana Carrião        - <mcarriao@alunos.utfpr.edu.br>
+//
+// All rights reserved. 
+// Software License Agreement
+//...............................................................................
+
+
 #ifndef __OPT_H__
 #define __OPT_H__
 

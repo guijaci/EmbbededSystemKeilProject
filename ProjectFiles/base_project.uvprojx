@@ -813,7 +813,7 @@
               <MiscControls></MiscControls>
               <Define>rvmdk PART_TM4C1294NCPDT TARGET_IS_TM4C129_RA0</Define>
               <Undefine></Undefine>
-              <IncludePath>..\</IncludePath>
+              <IncludePath>..\..\EmbbededSystemKeilProject</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
