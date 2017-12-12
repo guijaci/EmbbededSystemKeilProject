@@ -1,3 +1,18 @@
+//..............................................................................
+// opt.c - Driver for interfacing OPT3001.
+//
+// Copyright (c) 2017 
+// Allan Patrick de Souza - <allansouza@alunos.utfpr.edu.br>
+// Guilherme Jacichen     - <jacichen@alunos.utfpr.edu.br>
+// Jessica Isoton Sampaio - <jessicasampaio@alunos.utfpr.edu.br>
+// Mariana Carrião        - <mcarriao@alunos.utfpr.edu.br>
+//
+// All rights reserved. 
+// Software License Agreement
+//...............................................................................
+
+
+
 #include <stdbool.h>
 #include <stdint.h>
 #include "inc/hw_memmap.h"
@@ -58,6 +73,11 @@ static uint32_t g_ui32SysClock;
 static uint16_t g_mid, g_did, g_timeout_count;
 static bool g_sentFlag;
 
+/***************************************************************************//**
+ * @brief  Writes byte data to the sensor
+ * @param  b Address of register you want to modify
+ * @return uint32_t  error if had
+ ******************************************************************************/
 static uint32_t 
 send_single(uint8_t b){
 	I2CMasterSlaveAddrSet(I2C0_BASE, OPT3001_I2CADDR, I2C_WRITE);
@@ -70,6 +90,11 @@ send_single(uint8_t b){
 	return I2CMasterErr(I2C0_BASE);
 }
 
+/***************************************************************************//**
+ * @brief  Reads a byte data from the sensor by I2C
+ * @param  b Pointer wished to be recived the data 
+ * @return uint32_t  error if had
+ ******************************************************************************/
 static uint32_t 
 receive_single(uint8_t *b){
 	uint32_t e;
@@ -84,6 +109,12 @@ receive_single(uint8_t *b){
 	return e;
 }
 
+/***************************************************************************//**
+ * @brief  Writes multiple bytes data to the sensor by i2C bus
+ * @param  b Pointer wished to be recived the data 
+ * @param  n numbers of bytes
+ * @return uint32_t  error if had
+ ******************************************************************************/
 static uint32_t
 send_multiple(const uint8_t *b, uint8_t n){
 	uint8_t i = 0;
@@ -125,7 +156,12 @@ send_multiple(const uint8_t *b, uint8_t n){
 	while(I2CMasterBusy(I2C0_BASE));
 	return I2CMasterErr(I2C0_BASE);
 }
-
+/***************************************************************************//**
+ * @brief  Reads multiple bytes data to the sensor by i2C bus
+ * @param  b Pointer wished to be recived the data 
+ * @param  n numbers of bytes
+ * @return uint32_t  error if had
+ ******************************************************************************/
 static uint32_t 
 receive_multiple(uint8_t *b, uint8_t n){
 	uint8_t i = 0;
@@ -169,7 +205,12 @@ receive_multiple(uint8_t *b, uint8_t n){
 	b[i] = I2CMasterDataGet(I2C0_BASE);
 	return e;
 }
-
+/***************************************************************************//**
+ * @brief  Writes data on sensor
+ * @param  add Address of register to read from
+ * @param  data Data to be written to the specified register
+ * @return none
+ ******************************************************************************/
 static void 
 write_reg(uint8_t add, uint16_t data){
 	uint32_t bytes = add | (data & 0xFF00) | (data & 0x00FF)<<16;
@@ -177,6 +218,12 @@ write_reg(uint8_t add, uint16_t data){
 	send_multiple((uint8_t*)&bytes, 3);
 }
 
+
+/***************************************************************************//**
+ * @brief  Reads data from the sensor
+ * @param  add Address of register to read from
+ * @return Register contents
+ ******************************************************************************/
 static uint16_t 
 read_reg(uint8_t add){
 	uint16_t data;
@@ -186,10 +233,19 @@ read_reg(uint8_t add){
 	receive_multiple((uint8_t*) &data, 2);
 	return (data & 0x00FF)<<8 | (data & 0xFF00)>>8;
 }
-
+/***************************************************************************//**
+ * @brief  Reads data temperature from the sensor  
+ * @param  none
+ * @return results
+ ******************************************************************************/
 uint16_t opt_read(){
 	return read_reg(OPT3001_RESULT);
 }
+/***************************************************************************//**
+ * @brief Clear interrption and alter g_sentFlag
+ * @param  none
+ * @return none
+ ******************************************************************************/
 
 static void
 temp_int_callback(void){
@@ -197,6 +253,13 @@ temp_int_callback(void){
 	I2CMasterIntClear(I2C0_BASE);
 	g_sentFlag = true;
 }
+
+
+/***************************************************************************//**
+ * @brief  Configures the  I2C and OPT3001
+ * @param  none
+ * @return none
+ ******************************************************************************/
 
 uint32_t opt_read_lux()
 {

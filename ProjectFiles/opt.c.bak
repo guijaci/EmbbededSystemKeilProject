@@ -1,3 +1,18 @@
+//..............................................................................
+// opt.c - Driver for interfacing OPT3001.
+//
+// Copyright (c) 2017 
+// Allan Patrick de Souza - <allansouza@alunos.utfpr.edu.br>
+// Guilherme Jacichen     - <jacichen@alunos.utfpr.edu.br>
+// Jessica Isoton Sampaio - <jessicasampaio@alunos.utfpr.edu.br>
+// Mariana Carrião        - <mcarriao@alunos.utfpr.edu.br>
+//
+// All rights reserved. 
+// Software License Agreement
+//...............................................................................
+
+
+
 #include <stdbool.h>
 #include <stdint.h>
 #include "inc/hw_memmap.h"
@@ -58,6 +73,11 @@ static uint32_t g_ui32SysClock;
 static uint16_t g_mid, g_did, g_timeout_count;
 static bool g_sentFlag;
 
+/***************************************************************************//**
+ * @brief  Writes byte data to the sensor
+ * @param  b Address of register you want to modify
+ * @return uint32_t  error if had
+ ******************************************************************************/
 static uint32_t 
 send_single(uint8_t b){
 	I2CMasterSlaveAddrSet(I2C0_BASE, OPT3001_I2CADDR, I2C_WRITE);
@@ -70,6 +90,11 @@ send_single(uint8_t b){
 	return I2CMasterErr(I2C0_BASE);
 }
 
+/***************************************************************************//**
+ * @brief  Reads a byte data from the sensor by I2C
+ * @param  b Pointer wished to be recived the data 
+ * @return uint32_t  error if had
+ ******************************************************************************/
 static uint32_t 
 receive_single(uint8_t *b){
 	uint32_t e;
@@ -84,6 +109,12 @@ receive_single(uint8_t *b){
 	return e;
 }
 
+/***************************************************************************//**
+ * @brief  Writes multiple bytes data to the sensor by i2C bus
+ * @param  b Pointer wished to be recived the data 
+ * @param  n numbers of bytes
+ * @return uint32_t  error if had
+ ******************************************************************************/
 static uint32_t
 send_multiple(const uint8_t *b, uint8_t n){
 	uint8_t i = 0;
@@ -125,7 +156,12 @@ send_multiple(const uint8_t *b, uint8_t n){
 	while(I2CMasterBusy(I2C0_BASE));
 	return I2CMasterErr(I2C0_BASE);
 }
-
+/***************************************************************************//**
+ * @brief  Reads multiple bytes data to the sensor by i2C bus
+ * @param  b Pointer wished to be recived the data 
+ * @param  n numbers of bytes
+ * @return uint32_t  error if had
+ ******************************************************************************/
 static uint32_t 
 receive_multiple(uint8_t *b, uint8_t n){
 	uint8_t i = 0;
@@ -169,7 +205,12 @@ receive_multiple(uint8_t *b, uint8_t n){
 	b[i] = I2CMasterDataGet(I2C0_BASE);
 	return e;
 }
-
+/***************************************************************************//**
+ * @brief  Writes data on sensor
+ * @param  add Address of register to read from
+ * @param  data Data to be written to the specified register
+ * @return none
+ ******************************************************************************/
 static void 
 write_reg(uint8_t add, uint16_t data){
 	uint32_t bytes = add | (data & 0xFF00) | (data & 0x00FF)<<16;
@@ -177,6 +218,12 @@ write_reg(uint8_t add, uint16_t data){
 	send_multiple((uint8_t*)&bytes, 3);
 }
 
+
+/***************************************************************************//**
+ * @brief  Reads data from the sensor
+ * @param  add Address of register to read from
+ * @return Register contents
+ ******************************************************************************/
 static uint16_t 
 read_reg(uint8_t add){
 	uint16_t data;
@@ -276,10 +323,13 @@ opt_init(){
 	I2CMasterGlitchFilterConfigSet(I2C0_BASE, I2C_MASTER_GLITCH_FILTER_8);
 	I2CMasterInitExpClk(I2C0_BASE, g_ui32SysClock, false);
 	
+	//habilita interrupção
 	I2CMasterIntEnableEx(I2C0_BASE, I2C_MASTER_INT_DATA_NACK);
+	//Direciona para um registrador
 	I2CIntRegister(I2C0_BASE, temp_int_callback);
+	//habilita interrupções
 	IntEnable(INT_I2C0_TM4C129);
-	
+	//
 	HWREG(I2C0_BASE + I2C_O_FIFOCTL) = 80008000;
 	
 	I2CMasterEnable(I2C0_BASE);
