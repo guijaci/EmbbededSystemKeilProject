@@ -1,4 +1,5 @@
 //..............................................................................
+// rgb.c - Driver for interfacing an RGB LED.
 //
 // Copyright (c) 2017 
 // Allan Patrick de Souza - <allansouza@alunos.utfpr.edu.br>

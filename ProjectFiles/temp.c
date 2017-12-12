@@ -27,6 +27,11 @@
 
 #include "temp.h"
 
+/*******************************************************************************
+ * @brief Redefining this macro overwrite the default method for getting system 
+ *				clock. Tiva TM4C1294 systems can't use the TivaWare's SysCtlClockGet() 
+ *				to get the system clock, so SysCtlClockFreqSet() is used instead.
+ *******************************************************************************/
 #ifndef __SysCtlClockGet
 #define __SysCtlClockGet()	\
 SysCtlClockFreqSet( 			\

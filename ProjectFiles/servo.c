@@ -1,4 +1,5 @@
 //..............................................................................
+// servo.c - Driver for interfacing Servo Motor controls.
 //
 // Copyright (c) 2017 
 // Allan Patrick de Souza - <allansouza@alunos.utfpr.edu.br>
