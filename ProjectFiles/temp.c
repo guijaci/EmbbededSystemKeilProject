@@ -59,12 +59,24 @@ SysCtlClockFreqSet( 			\
 #define I2C_WRITE false
 #define I2C_READ 	true
 
-
+/*******************************************************************************
+ * @brief Enable calkback interruption
+ *******************************************************************************/
 #define I2C_MASTER_INT_DATA_NACK (I2C_MASTER_INT_NACK | I2C_MASTER_INT_DATA)
 #define TIMEOUT16 0xFFFF
 
 #define is_error(e) (e ? true : false)
+	
+/*******************************************************************************
+ * @brief delay 600ns
+ *******************************************************************************/
 #define start_stop_delay() 	SysCtlDelay(25)
+
+/*******************************************************************************
+ * @brief Redefining this macro overwrite the default method for getting system 
+ *				clock. Tiva TM4C1294 systems can't use the TivaWare's SysCtlClockGet() 
+ *				to get the system clock, so SysCtlClockFreqSet() is used instead.
+ *******************************************************************************/
 #define __I2CMasterControl(base, command) 	\
 	g_sentFlag = false;												\
 	I2CMasterControl(base, command);					\

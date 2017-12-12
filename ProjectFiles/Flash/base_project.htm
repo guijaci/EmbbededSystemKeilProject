@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Flash\base_project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Flash\base_project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Mon Dec 11 03:16:50 2017
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Mon Dec 11 23:44:44 2017
 <BR><P>
 <H3>Maximum Stack Usage =        160 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -467,11 +467,11 @@ Global Symbols
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
-<LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
-<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
-<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
+<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
+<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_init
 </UL>
 
@@ -575,7 +575,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_off
 </UL>
 
-<P><STRONG><a name="[e1]"></a>thread_status</STRONG> (Thumb, 64 bytes, Stack size 24 bytes, blinky.o(.text))
+<P><STRONG><a name="[e1]"></a>thread_status</STRONG> (Thumb, 62 bytes, Stack size 24 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = thread_status &rArr; fill_circle &rArr; GrCircleFill &rArr; GrLineDrawH
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexWait
@@ -592,7 +592,7 @@ Global Symbols
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;t_buzzer
 </UL>
 
-<P><STRONG><a name="[94]"></a>t_buzzer</STRONG> (Thumb, 382 bytes, Stack size 24 bytes, blinky.o(.text))
+<P><STRONG><a name="[94]"></a>t_buzzer</STRONG> (Thumb, 386 bytes, Stack size 24 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = t_buzzer &rArr; thread_status &rArr; fill_circle &rArr; GrCircleFill &rArr; GrLineDrawH
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexWait
@@ -611,7 +611,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> blinky.o(.constdata)
 </UL>
-<P><STRONG><a name="[95]"></a>t_rgb</STRONG> (Thumb, 674 bytes, Stack size 80 bytes, blinky.o(.text))
+<P><STRONG><a name="[95]"></a>t_rgb</STRONG> (Thumb, 672 bytes, Stack size 80 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160<LI>Call Chain = t_rgb &rArr; thread_status &rArr; fill_circle &rArr; GrCircleFill &rArr; GrLineDrawH
 </UL>
 <BR>[Calls]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_color
@@ -628,7 +628,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> blinky.o(.constdata)
 </UL>
-<P><STRONG><a name="[96]"></a>t_mic</STRONG> (Thumb, 406 bytes, Stack size 56 bytes, blinky.o(.text))
+<P><STRONG><a name="[96]"></a>t_mic</STRONG> (Thumb, 410 bytes, Stack size 56 bytes, blinky.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = t_mic &rArr; thread_status &rArr; fill_circle &rArr; GrCircleFill &rArr; GrLineDrawH
 </UL>
 <BR>[Calls]<UL><LI><a href="#[e2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMutexWait
@@ -959,6 +959,152 @@ Global Symbols
 <LI><a href="#[e0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;led_off
 </UL>
 
+<P><STRONG><a name="[cf]"></a>mic_init</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, mic.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = mic_init
+</UL>
+<BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralEnable
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_all
+</UL>
+
+<P><STRONG><a name="[ef]"></a>mic_read</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, mic.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = mic_read &rArr; analog_read &rArr; GPIOPinTypeADC &rArr; GPIOPadConfigSet
+</UL>
+<BR>[Calls]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
+</UL>
+<BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;t_mic
+</UL>
+
+<P><STRONG><a name="[13d]"></a>opt_read</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, opt.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
+</UL>
+
+<P><STRONG><a name="[f4]"></a>opt_read_lux</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, opt.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = opt_read_lux &rArr; read_reg &rArr; receive_multiple &rArr; receive_single
+</UL>
+<BR>[Calls]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
+</UL>
+<BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;t_light
+</UL>
+
+<P><STRONG><a name="[d3]"></a>opt_init</STRONG> (Thumb, 244 bytes, Stack size 24 bytes, opt.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = opt_init &rArr; read_reg &rArr; receive_multiple &rArr; receive_single
+</UL>
+<BR>[Calls]<UL><LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralReset
+<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
+<LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IntEnable
+<LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterTimeoutSet
+<LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterIntEnableEx
+<LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterInitExpClk
+<LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterGlitchFilterConfigSet
+<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterEnable
+<LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CIntRegister
+<LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeI2CSCL
+<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeI2C
+<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
+<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_reg
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlClockFreqSet
+<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeGPIOInput
+<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralReady
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralEnable
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinConfigure
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_all
+</UL>
+
+<P><STRONG><a name="[14a]"></a>rgb_write_r</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, rgb.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = rgb_write_r
+</UL>
+<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMPulseWidthSet
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMOutputState
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMGenPeriodGet
+</UL>
+<BR>[Called By]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write
+</UL>
+
+<P><STRONG><a name="[14b]"></a>rgb_write_g</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, rgb.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = rgb_write_g
+</UL>
+<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMPulseWidthSet
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMOutputState
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMGenPeriodGet
+</UL>
+<BR>[Called By]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write
+</UL>
+
+<P><STRONG><a name="[14c]"></a>rgb_write_b</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, rgb.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = rgb_write_b
+</UL>
+<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMPulseWidthSet
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMOutputState
+<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMGenPeriodGet
+</UL>
+<BR>[Called By]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write
+</UL>
+
+<P><STRONG><a name="[14d]"></a>rgb_write</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, rgb.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = rgb_write &rArr; rgb_write_b
+</UL>
+<BR>[Calls]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_b
+<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_g
+<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_r
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_color
+</UL>
+
+<P><STRONG><a name="[ed]"></a>rgb_write_color</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, rgb.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = rgb_write_color &rArr; rgb_write &rArr; rgb_write_b
+</UL>
+<BR>[Calls]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_init
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;t_rgb
+</UL>
+
+<P><STRONG><a name="[d0]"></a>rgb_init</STRONG> (Thumb, 272 bytes, Stack size 24 bytes, rgb.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = rgb_init &rArr; GPIOPinTypePWM &rArr; GPIOPadConfigSet
+</UL>
+<BR>[Calls]<UL><LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMGenDisable
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlClockFreqSet
+<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralReady
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralEnable
+<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMGenPeriodSet
+<LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMGenEnable
+<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMGenConfigure
+<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMClockSet
+<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypePWM
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinConfigure
+<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_color
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_all
+</UL>
+
+<P><STRONG><a name="[f7]"></a>servo_write</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, servo.o(.text))
+<BR><BR>[Calls]<UL><LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerMatchSet
+</UL>
+<BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;t_servo
+</UL>
+
+<P><STRONG><a name="[d1]"></a>servo_init</STRONG> (Thumb, 164 bytes, Stack size 24 bytes, servo.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = servo_init &rArr; GPIOPinTypeTimer &rArr; GPIOPadConfigSet
+</UL>
+<BR>[Calls]<UL><LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerUpdateMode
+<LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerPrescaleSet
+<LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerMatchSet
+<LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerLoadSet
+<LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerEnable
+<LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerControlLevel
+<LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerConfigure
+<LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerClockSourceSet
+<LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeTimer
+<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlClockFreqSet
+<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralReady
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralEnable
+<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinConfigure
+</UL>
+<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_all
+</UL>
+
 <P><STRONG><a name="[cb]"></a>joy_init</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, joy.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 44<LI>Call Chain = joy_init &rArr; GPIOPinTypeGPIOInput &rArr; GPIOPadConfigSet
 </UL>
@@ -980,7 +1126,7 @@ Global Symbols
 <P><STRONG><a name="[100]"></a>joy_read_x</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, joy.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = joy_read_x &rArr; analog_read &rArr; GPIOPinTypeADC &rArr; GPIOPadConfigSet
 </UL>
-<BR>[Calls]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
+<BR>[Calls]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;t_joy
 </UL>
@@ -988,155 +1134,9 @@ Global Symbols
 <P><STRONG><a name="[101]"></a>joy_read_y</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, joy.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = joy_read_y &rArr; analog_read &rArr; GPIOPinTypeADC &rArr; GPIOPadConfigSet
 </UL>
-<BR>[Calls]<UL><LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
+<BR>[Calls]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 </UL>
 <BR>[Called By]<UL><LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;t_joy
-</UL>
-
-<P><STRONG><a name="[cf]"></a>mic_init</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, mic.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = mic_init
-</UL>
-<BR>[Calls]<UL><LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralEnable
-</UL>
-<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_all
-</UL>
-
-<P><STRONG><a name="[ef]"></a>mic_read</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, mic.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = mic_read &rArr; analog_read &rArr; GPIOPinTypeADC &rArr; GPIOPadConfigSet
-</UL>
-<BR>[Calls]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
-</UL>
-<BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;t_mic
-</UL>
-
-<P><STRONG><a name="[13e]"></a>opt_read</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, opt.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
-</UL>
-
-<P><STRONG><a name="[f4]"></a>opt_read_lux</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, opt.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = opt_read_lux &rArr; read_reg &rArr; receive_multiple &rArr; receive_single
-</UL>
-<BR>[Calls]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
-</UL>
-<BR>[Called By]<UL><LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;t_light
-</UL>
-
-<P><STRONG><a name="[d3]"></a>opt_init</STRONG> (Thumb, 244 bytes, Stack size 24 bytes, opt.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = opt_init &rArr; read_reg &rArr; receive_multiple &rArr; receive_single
-</UL>
-<BR>[Calls]<UL><LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralReset
-<LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
-<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IntEnable
-<LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterTimeoutSet
-<LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterIntEnableEx
-<LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterInitExpClk
-<LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterGlitchFilterConfigSet
-<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterEnable
-<LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CIntRegister
-<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeI2CSCL
-<LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeI2C
-<LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
-<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_reg
-<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlClockFreqSet
-<LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeGPIOInput
-<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralReady
-<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralEnable
-<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinConfigure
-</UL>
-<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_all
-</UL>
-
-<P><STRONG><a name="[14b]"></a>rgb_write_r</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, rgb.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = rgb_write_r
-</UL>
-<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMPulseWidthSet
-<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMOutputState
-<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMGenPeriodGet
-</UL>
-<BR>[Called By]<UL><LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write
-</UL>
-
-<P><STRONG><a name="[14c]"></a>rgb_write_g</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, rgb.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = rgb_write_g
-</UL>
-<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMPulseWidthSet
-<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMOutputState
-<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMGenPeriodGet
-</UL>
-<BR>[Called By]<UL><LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write
-</UL>
-
-<P><STRONG><a name="[14d]"></a>rgb_write_b</STRONG> (Thumb, 82 bytes, Stack size 16 bytes, rgb.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = rgb_write_b
-</UL>
-<BR>[Calls]<UL><LI><a href="#[109]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMPulseWidthSet
-<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMOutputState
-<LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMGenPeriodGet
-</UL>
-<BR>[Called By]<UL><LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write
-</UL>
-
-<P><STRONG><a name="[14e]"></a>rgb_write</STRONG> (Thumb, 24 bytes, Stack size 16 bytes, rgb.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = rgb_write &rArr; rgb_write_b
-</UL>
-<BR>[Calls]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_b
-<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_g
-<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_r
-</UL>
-<BR>[Called By]<UL><LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_color
-</UL>
-
-<P><STRONG><a name="[ed]"></a>rgb_write_color</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, rgb.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = rgb_write_color &rArr; rgb_write &rArr; rgb_write_b
-</UL>
-<BR>[Calls]<UL><LI><a href="#[14e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write
-</UL>
-<BR>[Called By]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_init
-<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;t_rgb
-</UL>
-
-<P><STRONG><a name="[d0]"></a>rgb_init</STRONG> (Thumb, 278 bytes, Stack size 16 bytes, rgb.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 52<LI>Call Chain = rgb_init &rArr; GPIOPinTypePWM &rArr; GPIOPadConfigSet
-</UL>
-<BR>[Calls]<UL><LI><a href="#[14f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMGenDisable
-<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlClockFreqSet
-<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralReady
-<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralEnable
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMGenPeriodSet
-<LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMGenEnable
-<LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMGenConfigure
-<LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PWMClockSet
-<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypePWM
-<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinConfigure
-<LI><a href="#[ed]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_color
-</UL>
-<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_all
-</UL>
-
-<P><STRONG><a name="[f7]"></a>servo_write</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, servo.o(.text))
-<BR><BR>[Calls]<UL><LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerMatchSet
-</UL>
-<BR>[Called By]<UL><LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;t_servo
-</UL>
-
-<P><STRONG><a name="[d1]"></a>servo_init</STRONG> (Thumb, 164 bytes, Stack size 24 bytes, servo.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = servo_init &rArr; GPIOPinTypeTimer &rArr; GPIOPadConfigSet
-</UL>
-<BR>[Calls]<UL><LI><a href="#[155]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerUpdateMode
-<LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerPrescaleSet
-<LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerMatchSet
-<LI><a href="#[157]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerLoadSet
-<LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerEnable
-<LI><a href="#[154]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerControlLevel
-<LI><a href="#[153]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerConfigure
-<LI><a href="#[152]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimerClockSourceSet
-<LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeTimer
-<LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlClockFreqSet
-<LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralReady
-<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralEnable
-<LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinConfigure
-</UL>
-<BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_all
 </UL>
 
 <P><STRONG><a name="[f5]"></a>temp_read</STRONG> (Thumb, 12 bytes, Stack size 8 bytes, temp.o(.text))
@@ -1156,16 +1156,16 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
 <LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_reg
-<LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralReset
-<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IntEnable
-<LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterTimeoutSet
-<LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterIntEnableEx
-<LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterInitExpClk
-<LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterGlitchFilterConfigSet
-<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterEnable
-<LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CIntRegister
-<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeI2CSCL
-<LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeI2C
+<LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralReset
+<LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IntEnable
+<LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterTimeoutSet
+<LI><a href="#[146]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterIntEnableEx
+<LI><a href="#[145]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterInitExpClk
+<LI><a href="#[144]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterGlitchFilterConfigSet
+<LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterEnable
+<LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CIntRegister
+<LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeI2CSCL
+<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeI2C
 <LI><a href="#[12c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlClockFreqSet
 <LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeGPIOInput
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlPeripheralReady
@@ -2156,19 +2156,19 @@ Global Symbols
 <P><STRONG><a name="[1ed]"></a>__semihosting_library_function</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, indicate_semi.o(.text), UNUSED)
 
 <P><STRONG><a name="[117]"></a>ADCIntClear</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, adc.o(i.ADCIntClear))
-<BR><BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
+<BR><BR>[Called By]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 <LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 </UL>
 
 <P><STRONG><a name="[119]"></a>ADCIntStatus</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, adc.o(i.ADCIntStatus))
-<BR><BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
+<BR><BR>[Called By]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 <LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 </UL>
 
 <P><STRONG><a name="[118]"></a>ADCProcessorTrigger</STRONG> (Thumb, 26 bytes, Stack size 0 bytes, adc.o(i.ADCProcessorTrigger))
-<BR><BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
+<BR><BR>[Called By]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 <LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 </UL>
@@ -2176,19 +2176,19 @@ Global Symbols
 <P><STRONG><a name="[115]"></a>ADCSequenceConfigure</STRONG> (Thumb, 96 bytes, Stack size 8 bytes, adc.o(i.ADCSequenceConfigure))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = ADCSequenceConfigure
 </UL>
-<BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
+<BR>[Called By]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 <LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 </UL>
 
 <P><STRONG><a name="[11a]"></a>ADCSequenceDataGet</STRONG> (Thumb, 36 bytes, Stack size 0 bytes, adc.o(i.ADCSequenceDataGet))
-<BR><BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
+<BR><BR>[Called By]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 <LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 </UL>
 
 <P><STRONG><a name="[116]"></a>ADCSequenceEnable</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, adc.o(i.ADCSequenceEnable))
-<BR><BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
+<BR><BR>[Called By]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 <LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 </UL>
@@ -2196,15 +2196,15 @@ Global Symbols
 <P><STRONG><a name="[113]"></a>ADCSequenceStepConfigure</STRONG> (Thumb, 154 bytes, Stack size 4 bytes, adc.o(i.ADCSequenceStepConfigure))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = ADCSequenceStepConfigure
 </UL>
-<BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
+<BR>[Called By]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 <LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 </UL>
 
 <P><STRONG><a name="[173]"></a>GPIODirModeSet</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, gpio.o(i.GPIODirModeSet))
-<BR><BR>[Called By]<UL><LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeTimer
-<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeI2CSCL
-<LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeI2C
+<BR><BR>[Called By]<UL><LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeTimer
+<LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeI2CSCL
+<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeI2C
 <LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeGPIOInput
 <LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeADC
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypePWM
@@ -2213,9 +2213,9 @@ Global Symbols
 <P><STRONG><a name="[174]"></a>GPIOPadConfigSet</STRONG> (Thumb, 312 bytes, Stack size 24 bytes, gpio.o(i.GPIOPadConfigSet))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = GPIOPadConfigSet
 </UL>
-<BR>[Called By]<UL><LI><a href="#[151]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeTimer
-<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeI2CSCL
-<LI><a href="#[143]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeI2C
+<BR>[Called By]<UL><LI><a href="#[150]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeTimer
+<LI><a href="#[141]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeI2CSCL
+<LI><a href="#[142]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeI2C
 <LI><a href="#[11b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeGPIOInput
 <LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeADC
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypePWM
@@ -2241,7 +2241,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPadConfigSet
 <LI><a href="#[173]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIODirModeSet
 </UL>
-<BR>[Called By]<UL><LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
+<BR>[Called By]<UL><LI><a href="#[158]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 <LI><a href="#[12e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;analog_read
 </UL>
@@ -2258,7 +2258,7 @@ Global Symbols
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;button_init
 </UL>
 
-<P><STRONG><a name="[143]"></a>GPIOPinTypeI2C</STRONG> (Thumb, 28 bytes, Stack size 12 bytes, gpio.o(i.GPIOPinTypeI2C))
+<P><STRONG><a name="[142]"></a>GPIOPinTypeI2C</STRONG> (Thumb, 28 bytes, Stack size 12 bytes, gpio.o(i.GPIOPinTypeI2C))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = GPIOPinTypeI2C &rArr; GPIOPadConfigSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPadConfigSet
@@ -2268,7 +2268,7 @@ Global Symbols
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_init
 </UL>
 
-<P><STRONG><a name="[142]"></a>GPIOPinTypeI2CSCL</STRONG> (Thumb, 28 bytes, Stack size 12 bytes, gpio.o(i.GPIOPinTypeI2CSCL))
+<P><STRONG><a name="[141]"></a>GPIOPinTypeI2CSCL</STRONG> (Thumb, 28 bytes, Stack size 12 bytes, gpio.o(i.GPIOPinTypeI2CSCL))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = GPIOPinTypeI2CSCL &rArr; GPIOPadConfigSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPadConfigSet
@@ -2288,7 +2288,7 @@ Global Symbols
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer_init
 </UL>
 
-<P><STRONG><a name="[151]"></a>GPIOPinTypeTimer</STRONG> (Thumb, 28 bytes, Stack size 12 bytes, gpio.o(i.GPIOPinTypeTimer))
+<P><STRONG><a name="[150]"></a>GPIOPinTypeTimer</STRONG> (Thumb, 28 bytes, Stack size 12 bytes, gpio.o(i.GPIOPinTypeTimer))
 <BR><BR>[Stack]<UL><LI>Max Depth = 36<LI>Call Chain = GPIOPinTypeTimer &rArr; GPIOPadConfigSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[174]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPadConfigSet
@@ -2372,135 +2372,135 @@ Global Symbols
 <LI><a href="#[d9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;init_sidelong_menu
 </UL>
 
-<P><STRONG><a name="[148]"></a>I2CIntRegister</STRONG> (Thumb, 80 bytes, Stack size 8 bytes, i2c.o(i.I2CIntRegister))
+<P><STRONG><a name="[147]"></a>I2CIntRegister</STRONG> (Thumb, 80 bytes, Stack size 8 bytes, i2c.o(i.I2CIntRegister))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = I2CIntRegister &rArr; IntRegister
 </UL>
-<BR>[Calls]<UL><LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IntEnable
+<BR>[Calls]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IntEnable
 <LI><a href="#[179]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;IntRegister
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;temp_init
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_init
 </UL>
 
-<P><STRONG><a name="[13a]"></a>I2CMasterBurstLengthSet</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterBurstLengthSet))
+<P><STRONG><a name="[139]"></a>I2CMasterBurstLengthSet</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterBurstLengthSet))
 <BR><BR>[Called By]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
-<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
+<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
 </UL>
 
-<P><STRONG><a name="[133]"></a>I2CMasterBusBusy</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterBusBusy))
+<P><STRONG><a name="[132]"></a>I2CMasterBusBusy</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterBusBusy))
 <BR><BR>[Called By]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
-<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
-<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
+<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
 </UL>
 
-<P><STRONG><a name="[135]"></a>I2CMasterBusy</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterBusy))
+<P><STRONG><a name="[134]"></a>I2CMasterBusy</STRONG> (Thumb, 12 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterBusy))
 <BR><BR>[Called By]<UL><LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
 <LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_reg
 <LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
-<LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
-<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_reg
-<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
-<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
+<LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
+<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_reg
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
+<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
 </UL>
 
-<P><STRONG><a name="[134]"></a>I2CMasterControl</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterControl))
+<P><STRONG><a name="[133]"></a>I2CMasterControl</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterControl))
 <BR><BR>[Called By]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
-<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
-<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
+<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
 </UL>
 
-<P><STRONG><a name="[138]"></a>I2CMasterDataGet</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterDataGet))
+<P><STRONG><a name="[137]"></a>I2CMasterDataGet</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterDataGet))
 <BR><BR>[Called By]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
-<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
-<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
 </UL>
 
-<P><STRONG><a name="[132]"></a>I2CMasterDataPut</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterDataPut))
+<P><STRONG><a name="[131]"></a>I2CMasterDataPut</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterDataPut))
 <BR><BR>[Called By]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
+<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
 </UL>
 
-<P><STRONG><a name="[14a]"></a>I2CMasterEnable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterEnable))
+<P><STRONG><a name="[149]"></a>I2CMasterEnable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterEnable))
 <BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;temp_init
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_init
 </UL>
 
-<P><STRONG><a name="[136]"></a>I2CMasterErr</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterErr))
+<P><STRONG><a name="[135]"></a>I2CMasterErr</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterErr))
 <BR><BR>[Called By]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
-<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
-<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
+<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
 </UL>
 
-<P><STRONG><a name="[145]"></a>I2CMasterGlitchFilterConfigSet</STRONG> (Thumb, 74 bytes, Stack size 4 bytes, i2c.o(i.I2CMasterGlitchFilterConfigSet))
+<P><STRONG><a name="[144]"></a>I2CMasterGlitchFilterConfigSet</STRONG> (Thumb, 74 bytes, Stack size 4 bytes, i2c.o(i.I2CMasterGlitchFilterConfigSet))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = I2CMasterGlitchFilterConfigSet
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;temp_init
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_init
 </UL>
 
-<P><STRONG><a name="[146]"></a>I2CMasterInitExpClk</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterInitExpClk))
+<P><STRONG><a name="[145]"></a>I2CMasterInitExpClk</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterInitExpClk))
 <BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;temp_init
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_init
 </UL>
 
-<P><STRONG><a name="[140]"></a>I2CMasterIntClear</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterIntClear))
+<P><STRONG><a name="[13f]"></a>I2CMasterIntClear</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterIntClear))
 <BR><BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;temp_int_callback
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;temp_int_callback
 </UL>
 
-<P><STRONG><a name="[13f]"></a>I2CMasterIntClearEx</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterIntClearEx))
+<P><STRONG><a name="[13e]"></a>I2CMasterIntClearEx</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterIntClearEx))
 <BR><BR>[Called By]<UL><LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;temp_int_callback
 <LI><a href="#[7c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;temp_int_callback
 </UL>
 
-<P><STRONG><a name="[147]"></a>I2CMasterIntEnableEx</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterIntEnableEx))
+<P><STRONG><a name="[146]"></a>I2CMasterIntEnableEx</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterIntEnableEx))
 <BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;temp_init
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_init
 </UL>
 
-<P><STRONG><a name="[131]"></a>I2CMasterSlaveAddrSet</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterSlaveAddrSet))
+<P><STRONG><a name="[130]"></a>I2CMasterSlaveAddrSet</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterSlaveAddrSet))
 <BR><BR>[Called By]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
 <LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
-<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
-<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
+<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
 </UL>
 
-<P><STRONG><a name="[144]"></a>I2CMasterTimeoutSet</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterTimeoutSet))
+<P><STRONG><a name="[143]"></a>I2CMasterTimeoutSet</STRONG> (Thumb, 4 bytes, Stack size 0 bytes, i2c.o(i.I2CMasterTimeoutSet))
 <BR><BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;temp_init
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_init
 </UL>
 
-<P><STRONG><a name="[149]"></a>IntEnable</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, interrupt.o(i.IntEnable))
-<BR><BR>[Called By]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CIntRegister
+<P><STRONG><a name="[148]"></a>IntEnable</STRONG> (Thumb, 92 bytes, Stack size 0 bytes, interrupt.o(i.IntEnable))
+<BR><BR>[Called By]<UL><LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CIntRegister
 <LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;temp_init
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_init
 </UL>
@@ -2508,7 +2508,7 @@ Global Symbols
 <P><STRONG><a name="[179]"></a>IntRegister</STRONG> (Thumb, 44 bytes, Stack size 8 bytes, interrupt.o(i.IntRegister))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = IntRegister
 </UL>
-<BR>[Called By]<UL><LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CIntRegister
+<BR>[Called By]<UL><LI><a href="#[147]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CIntRegister
 </UL>
 
 <P><STRONG><a name="[106]"></a>PWMClockSet</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, pwm.o(i.PWMClockSet))
@@ -2521,7 +2521,7 @@ Global Symbols
 <LI><a href="#[cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer_init
 </UL>
 
-<P><STRONG><a name="[14f]"></a>PWMGenDisable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, pwm.o(i.PWMGenDisable))
+<P><STRONG><a name="[14e]"></a>PWMGenDisable</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, pwm.o(i.PWMGenDisable))
 <BR><BR>[Called By]<UL><LI><a href="#[d0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_init
 </UL>
 
@@ -2531,9 +2531,9 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[108]"></a>PWMGenPeriodGet</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, pwm.o(i.PWMGenPeriodGet))
-<BR><BR>[Called By]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_b
-<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_g
-<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_r
+<BR><BR>[Called By]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_b
+<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_g
+<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_r
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer_vol_set
 </UL>
 
@@ -2547,16 +2547,16 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[107]"></a>PWMOutputState</STRONG> (Thumb, 16 bytes, Stack size 0 bytes, pwm.o(i.PWMOutputState))
-<BR><BR>[Called By]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_b
-<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_g
-<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_r
+<BR><BR>[Called By]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_b
+<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_g
+<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_r
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer_write
 </UL>
 
 <P><STRONG><a name="[109]"></a>PWMPulseWidthSet</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, pwm.o(i.PWMPulseWidthSet))
-<BR><BR>[Called By]<UL><LI><a href="#[14d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_b
-<LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_g
-<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_r
+<BR><BR>[Called By]<UL><LI><a href="#[14c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_b
+<LI><a href="#[14b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_g
+<LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rgb_write_r
 <LI><a href="#[e7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;buzzer_vol_set
 </UL>
 
@@ -2592,45 +2592,45 @@ Global Symbols
 <LI><a href="#[ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;button_init
 </UL>
 
-<P><STRONG><a name="[141]"></a>SysCtlPeripheralReset</STRONG> (Thumb, 56 bytes, Stack size 4 bytes, sysctl.o(i.SysCtlPeripheralReset))
+<P><STRONG><a name="[140]"></a>SysCtlPeripheralReset</STRONG> (Thumb, 56 bytes, Stack size 4 bytes, sysctl.o(i.SysCtlPeripheralReset))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = SysCtlPeripheralReset
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;temp_init
 <LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_init
 </UL>
 
-<P><STRONG><a name="[152]"></a>TimerClockSourceSet</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timer.o(i.TimerClockSourceSet))
+<P><STRONG><a name="[151]"></a>TimerClockSourceSet</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, timer.o(i.TimerClockSourceSet))
 <BR><BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_init
 </UL>
 
-<P><STRONG><a name="[153]"></a>TimerConfigure</STRONG> (Thumb, 88 bytes, Stack size 4 bytes, timer.o(i.TimerConfigure))
+<P><STRONG><a name="[152]"></a>TimerConfigure</STRONG> (Thumb, 88 bytes, Stack size 4 bytes, timer.o(i.TimerConfigure))
 <BR><BR>[Stack]<UL><LI>Max Depth = 4<LI>Call Chain = TimerConfigure
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_init
 </UL>
 
-<P><STRONG><a name="[154]"></a>TimerControlLevel</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, timer.o(i.TimerControlLevel))
+<P><STRONG><a name="[153]"></a>TimerControlLevel</STRONG> (Thumb, 22 bytes, Stack size 0 bytes, timer.o(i.TimerControlLevel))
 <BR><BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_init
 </UL>
 
-<P><STRONG><a name="[158]"></a>TimerEnable</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, timer.o(i.TimerEnable))
+<P><STRONG><a name="[157]"></a>TimerEnable</STRONG> (Thumb, 14 bytes, Stack size 0 bytes, timer.o(i.TimerEnable))
 <BR><BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_init
 </UL>
 
-<P><STRONG><a name="[157]"></a>TimerLoadSet</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, timer.o(i.TimerLoadSet))
+<P><STRONG><a name="[156]"></a>TimerLoadSet</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, timer.o(i.TimerLoadSet))
 <BR><BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_init
 </UL>
 
-<P><STRONG><a name="[150]"></a>TimerMatchSet</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, timer.o(i.TimerMatchSet))
+<P><STRONG><a name="[14f]"></a>TimerMatchSet</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, timer.o(i.TimerMatchSet))
 <BR><BR>[Called By]<UL><LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_write
 <LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_init
 </UL>
 
-<P><STRONG><a name="[156]"></a>TimerPrescaleSet</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, timer.o(i.TimerPrescaleSet))
+<P><STRONG><a name="[155]"></a>TimerPrescaleSet</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, timer.o(i.TimerPrescaleSet))
 <BR><BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_init
 </UL>
 
-<P><STRONG><a name="[155]"></a>TimerUpdateMode</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, timer.o(i.TimerUpdateMode))
+<P><STRONG><a name="[154]"></a>TimerUpdateMode</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, timer.o(i.TimerUpdateMode))
 <BR><BR>[Called By]<UL><LI><a href="#[d1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;servo_init
 </UL>
 
@@ -3696,7 +3696,113 @@ Local Symbols
 <P><STRONG><a name="[a1]"></a>cfaf128x128x16Flush</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, cfaf128x128x16.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> cfaf128x128x16.o(.constdata)
 </UL>
-<P><STRONG><a name="[12e]"></a>analog_read</STRONG> (Thumb, 104 bytes, Stack size 24 bytes, joy.o(.text))
+<P><STRONG><a name="[12e]"></a>analog_read</STRONG> (Thumb, 104 bytes, Stack size 24 bytes, mic.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = analog_read &rArr; GPIOPinTypeADC &rArr; GPIOPadConfigSet
+</UL>
+<BR>[Calls]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeADC
+<LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceStepConfigure
+<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceEnable
+<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceDataGet
+<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceConfigure
+<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCProcessorTrigger
+<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCIntStatus
+<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCIntClear
+</UL>
+<BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mic_read
+</UL>
+
+<P><STRONG><a name="[12f]"></a>send_single</STRONG> (Thumb, 98 bytes, Stack size 16 bytes, opt.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = send_single
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
+<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterSlaveAddrSet
+<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterErr
+<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDataPut
+<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterControl
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusBusy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
+<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
+</UL>
+
+<P><STRONG><a name="[136]"></a>receive_single</STRONG> (Thumb, 106 bytes, Stack size 24 bytes, opt.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = receive_single
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
+<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterSlaveAddrSet
+<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterErr
+<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDataGet
+<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterControl
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusBusy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
+</UL>
+
+<P><STRONG><a name="[138]"></a>send_multiple</STRONG> (Thumb, 340 bytes, Stack size 40 bytes, opt.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = send_multiple &rArr; send_single
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
+<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterSlaveAddrSet
+<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterErr
+<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDataPut
+<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterControl
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusBusy
+<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBurstLengthSet
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
+</UL>
+<BR>[Called By]<UL><LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_reg
+</UL>
+
+<P><STRONG><a name="[13a]"></a>receive_multiple</STRONG> (Thumb, 342 bytes, Stack size 40 bytes, opt.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = receive_multiple &rArr; receive_single
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
+<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterSlaveAddrSet
+<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterErr
+<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDataGet
+<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterControl
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusBusy
+<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBurstLengthSet
+<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
+</UL>
+<BR>[Called By]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
+</UL>
+
+<P><STRONG><a name="[13b]"></a>write_reg</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, opt.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = write_reg &rArr; send_multiple &rArr; send_single
+</UL>
+<BR>[Calls]<UL><LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
+</UL>
+<BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_init
+</UL>
+
+<P><STRONG><a name="[13c]"></a>read_reg</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, opt.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = read_reg &rArr; receive_multiple &rArr; receive_single
+</UL>
+<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
+<LI><a href="#[12f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
+</UL>
+<BR>[Called By]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_read
+<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_read_lux
+<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_init
+</UL>
+
+<P><STRONG><a name="[7c]"></a>temp_int_callback</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, opt.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = temp_int_callback
+</UL>
+<BR>[Calls]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterIntClearEx
+<LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterIntClear
+</UL>
+<BR>[Address Reference Count : 1]<UL><LI> opt.o(.text)
+</UL>
+<P><STRONG><a name="[158]"></a>analog_read</STRONG> (Thumb, 104 bytes, Stack size 24 bytes, joy.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = analog_read &rArr; GPIOPinTypeADC &rArr; GPIOPadConfigSet
 </UL>
 <BR>[Calls]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeADC
@@ -3712,122 +3818,16 @@ Local Symbols
 <LI><a href="#[100]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;joy_read_x
 </UL>
 
-<P><STRONG><a name="[12f]"></a>analog_read</STRONG> (Thumb, 104 bytes, Stack size 24 bytes, mic.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 60<LI>Call Chain = analog_read &rArr; GPIOPinTypeADC &rArr; GPIOPadConfigSet
-</UL>
-<BR>[Calls]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIOPinTypeADC
-<LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceStepConfigure
-<LI><a href="#[116]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceEnable
-<LI><a href="#[11a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceDataGet
-<LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCSequenceConfigure
-<LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCProcessorTrigger
-<LI><a href="#[119]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCIntStatus
-<LI><a href="#[117]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADCIntClear
-</UL>
-<BR>[Called By]<UL><LI><a href="#[ef]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mic_read
-</UL>
-
-<P><STRONG><a name="[130]"></a>send_single</STRONG> (Thumb, 98 bytes, Stack size 16 bytes, opt.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = send_single
-</UL>
-<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
-<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterSlaveAddrSet
-<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterErr
-<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDataPut
-<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterControl
-<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusBusy
-</UL>
-<BR>[Called By]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
-</UL>
-
-<P><STRONG><a name="[137]"></a>receive_single</STRONG> (Thumb, 106 bytes, Stack size 24 bytes, opt.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = receive_single
-</UL>
-<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
-<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterSlaveAddrSet
-<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterErr
-<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDataGet
-<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterControl
-<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusBusy
-</UL>
-<BR>[Called By]<UL><LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
-</UL>
-
-<P><STRONG><a name="[139]"></a>send_multiple</STRONG> (Thumb, 340 bytes, Stack size 40 bytes, opt.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = send_multiple &rArr; send_single
-</UL>
-<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
-<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterSlaveAddrSet
-<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterErr
-<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDataPut
-<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterControl
-<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusBusy
-<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBurstLengthSet
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
-</UL>
-<BR>[Called By]<UL><LI><a href="#[13c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_reg
-</UL>
-
-<P><STRONG><a name="[13b]"></a>receive_multiple</STRONG> (Thumb, 342 bytes, Stack size 40 bytes, opt.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = receive_multiple &rArr; receive_single
-</UL>
-<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
-<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterSlaveAddrSet
-<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterErr
-<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDataGet
-<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterControl
-<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusBusy
-<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBurstLengthSet
-<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
-</UL>
-<BR>[Called By]<UL><LI><a href="#[13d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
-</UL>
-
-<P><STRONG><a name="[13c]"></a>write_reg</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, opt.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = write_reg &rArr; send_multiple &rArr; send_single
-</UL>
-<BR>[Calls]<UL><LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
-</UL>
-<BR>[Called By]<UL><LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_init
-</UL>
-
-<P><STRONG><a name="[13d]"></a>read_reg</STRONG> (Thumb, 50 bytes, Stack size 16 bytes, opt.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = read_reg &rArr; receive_multiple &rArr; receive_single
-</UL>
-<BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
-<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
-<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
-</UL>
-<BR>[Called By]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_read
-<LI><a href="#[f4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_read_lux
-<LI><a href="#[d3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;opt_init
-</UL>
-
-<P><STRONG><a name="[7c]"></a>temp_int_callback</STRONG> (Thumb, 34 bytes, Stack size 8 bytes, opt.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = temp_int_callback
-</UL>
-<BR>[Calls]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterIntClearEx
-<LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterIntClear
-</UL>
-<BR>[Address Reference Count : 1]<UL><LI> opt.o(.text)
-</UL>
 <P><STRONG><a name="[159]"></a>send_single</STRONG> (Thumb, 98 bytes, Stack size 16 bytes, temp.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = send_single
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
-<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterSlaveAddrSet
-<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterErr
-<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDataPut
-<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterControl
-<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusBusy
+<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterSlaveAddrSet
+<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterErr
+<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDataPut
+<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterControl
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusBusy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
 <LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
@@ -3837,12 +3837,12 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = receive_single
 </UL>
 <BR>[Calls]<UL><LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
-<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterSlaveAddrSet
-<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterErr
-<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDataGet
-<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterControl
-<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusBusy
+<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterSlaveAddrSet
+<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterErr
+<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDataGet
+<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterControl
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusBusy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
 </UL>
@@ -3852,13 +3852,13 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
-<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterSlaveAddrSet
-<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterErr
-<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDataPut
-<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterControl
-<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusBusy
-<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBurstLengthSet
+<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterSlaveAddrSet
+<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterErr
+<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDataPut
+<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterControl
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusBusy
+<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBurstLengthSet
 </UL>
 <BR>[Called By]<UL><LI><a href="#[15d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;write_reg
 </UL>
@@ -3868,13 +3868,13 @@ Local Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[15a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_single
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
-<LI><a href="#[131]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterSlaveAddrSet
-<LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterErr
-<LI><a href="#[138]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDataGet
-<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterControl
-<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
-<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusBusy
-<LI><a href="#[13a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBurstLengthSet
+<LI><a href="#[130]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterSlaveAddrSet
+<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterErr
+<LI><a href="#[137]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterDataGet
+<LI><a href="#[133]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterControl
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[132]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusBusy
+<LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBurstLengthSet
 </UL>
 <BR>[Called By]<UL><LI><a href="#[15e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;read_reg
 </UL>
@@ -3883,7 +3883,7 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = write_reg &rArr; send_multiple &rArr; send_single
 </UL>
 <BR>[Calls]<UL><LI><a href="#[15b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_multiple
-<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[d2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;temp_init
 </UL>
@@ -3894,7 +3894,7 @@ Local Symbols
 <BR>[Calls]<UL><LI><a href="#[15c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;receive_multiple
 <LI><a href="#[159]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;send_single
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysCtlDelay
-<LI><a href="#[135]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
+<LI><a href="#[134]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterBusy
 </UL>
 <BR>[Called By]<UL><LI><a href="#[15f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;temp_read_voltage
 <LI><a href="#[f5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;temp_read
@@ -3904,8 +3904,8 @@ Local Symbols
 <P><STRONG><a name="[7d]"></a>temp_int_callback</STRONG> (Thumb, 26 bytes, Stack size 8 bytes, temp.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = temp_int_callback
 </UL>
-<BR>[Calls]<UL><LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterIntClearEx
-<LI><a href="#[140]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterIntClear
+<BR>[Calls]<UL><LI><a href="#[13e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterIntClearEx
+<LI><a href="#[13f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;I2CMasterIntClear
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> temp.o(.text)
 </UL>

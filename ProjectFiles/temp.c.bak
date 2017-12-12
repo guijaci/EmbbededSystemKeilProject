@@ -277,7 +277,7 @@ temp_int_callback(void){
 }
 
 /***************************************************************************//**
- * @brief  Configures the TMP006 Infrared Thermopile Sensor
+ * @brief  Configures the I@C and TMP006 Infrared Thermopile Sensor
  * @param  none
  * @return none
  ******************************************************************************/

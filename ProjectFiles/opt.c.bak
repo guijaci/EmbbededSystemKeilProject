@@ -233,10 +233,19 @@ read_reg(uint8_t add){
 	receive_multiple((uint8_t*) &data, 2);
 	return (data & 0x00FF)<<8 | (data & 0xFF00)>>8;
 }
-
+/***************************************************************************//**
+ * @brief  Reads data temperature from the sensor  
+ * @param  none
+ * @return results
+ ******************************************************************************/
 uint16_t opt_read(){
 	return read_reg(OPT3001_RESULT);
 }
+/***************************************************************************//**
+ * @brief Clear interrption and alter g_sentFlag
+ * @param  none
+ * @return none
+ ******************************************************************************/
 
 static void
 temp_int_callback(void){
@@ -244,6 +253,13 @@ temp_int_callback(void){
 	I2CMasterIntClear(I2C0_BASE);
 	g_sentFlag = true;
 }
+
+
+/***************************************************************************//**
+ * @brief  Configures the  I2C and OPT3001
+ * @param  none
+ * @return none
+ ******************************************************************************/
 
 uint32_t opt_read_lux()
 {
